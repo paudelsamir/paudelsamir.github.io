@@ -1,6 +1,6 @@
 # Sam's Portfolio
 
-![Portfolio Preview](link-to-preview-image)
+![Portfolio Preview](assets/pcpreview.jpg)
 
 Welcome to my personal portfolio website! This project is a reflection of my skills, projects, and experiences, designed to provide visitors with an insight into who I am and what I do.
 
