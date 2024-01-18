@@ -7,9 +7,9 @@ Welcome to my portfolio! This is a simple showcase of my work and skills.
 
 ## Features
 - **Home:** Introductory section.
-- **Projects:** Highlighting my best projects.
-- **Skills:** Listing my technical expertise.
 - **About Me:** A brief personal introduction.
+- **Projects:** Highlighting my best projects.
+- **Blogs:** Connect with me – I'd love to hear from you.
 - **Contact:** Ways to get in touch.
 
 ## Technologies Used
