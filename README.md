@@ -3,7 +3,7 @@
 Welcome to my portfolio! This is a simple showcase of my work and skills.
 
 ## Preview
-![Portfolio Preview](assets/pcpreview.jpg)
+![Portfolio Preview](assets/pcpreview.png)
 
 ## Features
 - **Home:** Introductory section.
