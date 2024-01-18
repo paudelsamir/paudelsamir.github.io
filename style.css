@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
+html{
+    min-height: 100%;
+}
+    
 *{
     margin: 0;
     padding: 0;
@@ -9,9 +13,13 @@
 }
 body {
     background: #010f1a;
+    background-size: cover;
+    width: 1409.25px; height:40px; top:0; left:0; position:fixed;
 
     /* background-color: rgb(255, 255, 255); */
+    height: fit-content;
     height: 100vh;
+    width: 100%;
     /* background-image: url(assets/background.jpg); */
     background-size: cover;
     background-position: center;
@@ -39,6 +47,7 @@ a {
  
   
   a:hover::before {
+    /* text-decoration: underline; */
     visibility: visible;
     transform: scaleX(1);
   }
@@ -47,14 +56,16 @@ li {
     list-style: none;
 }
 
-a{
+#header .nav1 a{
     text-decoration: none;
     color: #fff;
-    font-size: 1rem;
     
 }
 li a {
     text-transform: uppercase;
+    font-size: 0.7rem;
+
+
 
 }
 
@@ -78,6 +89,56 @@ header {
     position: relative;
     padding: 0 2rem;
 
+}
+div.intro #myname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.intro #mystyle{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+
+
+#header h1 a {
+    color: #ffffff;
+    text-align: center;
+    line-height: 3;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #header h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+    
+
+  }
+
+  #header h2 span {
+    color: #ffc107;
+    padding-left: 2px;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .typing::after {
+    content: "|"; 
+    animation: blink-caret 0.75s infinite;
+}
+
+@keyframes blink-caret {
+    50% {
+        opacity: 0;
+    }
 }
 
 .navbar {
@@ -108,10 +169,11 @@ header {
     background-color: rgb(255, 119, 0);
     color: #fff;
     padding: 0.5rem;
+    margin: 1rem;
     border: none;
     outline: none;
     border-radius: 20px;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 0 1px rgb(255, 119, 0), 0 0 10px rgb(255, 119, 0);
@@ -157,24 +219,115 @@ header {
 
 }
 
-@media (max-width: 992px)
+.personal-photo {
+    position: relative;
+    height: 200px;
+    width: 210px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0%;
+    margin-top: 4rem;
+    margin-bottom: 1rm;
+    background: #ff7700;
+    border-radius: 50%;
+    transition: .5s ease-in-out;
+}
+.personal-photo:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    
+}
+
+  .social-links {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  
+ .social-links a {
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    line-height: 1;
+    margin-right: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+  
+   .social-links a:hover {
+    background: #ff7700;
+  }
+
+
+
+@media (max-width: 750px)
 {
     .navbar .links, .navbar .action_btn{
         display: none;
     }
 
+    .navbar .toggle_btn  {
+        display: block;
+    }
+    .dropdownMenu{
+        display: block;
+        position: static;
+    }
+    .dropdownMenu.open{
+        height: auto;
+    }
+}
+
+@media (max-width: 450px){
+    .dropdownMenu{
+        left: 2rem;
+        width: unset;
+        width: 100%;
+        /* display: block;
+        position: static;
+        height: auto;
+        /* backdrop-filter: none; */
+        /* border-radius: 5px;
+        overflow: visible; */ 
+    }
+
+    .dropdownMenu.open{
+        height: auto;
+    }
+    .navbar .links, .navbar .action_btn{
+        display: none;
+    }
     .navbar .toggle_btn {
         display: block;
     }
     .dropdownMenu{
         display: block
     }
-}
-
-@media (max-width: 576px){
-    .dropdownMenu{
-        left: 2rem;
-        width: unset;
-    }
         
 }
+@media (max-width: 992px) {
+    #header h1 {
+      font-size: 36px;
+    }
+    #header h2 {
+      font-size: 20px;
+      line-height: 30px;
+    }
+    #header .social-links {
+      margin-top: 45px;
+      
+    }
+    #header .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+}
+
