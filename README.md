@@ -3,7 +3,7 @@
 Welcome to my portfolio! This is a simple showcase of my work and skills.
 
 ## Preview
-![Portfolio Preview](assets/pcpreview)
+![Portfolio Preview](assets/pcpreview.jpg)
 
 ## Features
 - **Home:** Introductory section.
@@ -17,15 +17,11 @@ Welcome to my portfolio! This is a simple showcase of my work and skills.
 - CSS3
 - JavaScript
 
-
 ## Usage
 Explore the different sections to learn more about me and my work.
 
 ## Contributing
 Feel free to suggest improvements or report issues through pull requests.
-
-## License
-This project is licensed under the MIT License.
 
 ## Contact
 Connect with me on [LinkedIn](https://www.linkedin.com/in/sampdl).
