@@ -1,42 +1,33 @@
 # Sam's Portfolio
 
-![Portfolio Preview](assets/pcpreview.jpg)
-
-Welcome to my personal portfolio website! This project is a reflection of my skills, projects, and experiences, designed to provide visitors with an insight into who I am and what I do.
-
-## Table of Contents
-- [Preview](#preview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+Welcome to my portfolio! This is a simple showcase of my work and skills.
 
 ## Preview
-![Portfolio Preview](link-to-full-screenshot)
-
-Check out the live version [here](link-to-live-website).
+![Portfolio Preview](assets/pcpreview)
 
 ## Features
-- **Home Section:** A captivating introduction and overview of my skills.
-- **Projects Section:** Showcase of my best projects with descriptions and links.
-- **Skills Section:** Highlighting my technical expertise and soft skills.
-- **About Me Section:** Personal insights and background.
-- **Contact Section:** Various ways to get in touch.
+- **Home:** Introductory section.
+- **Projects:** Highlighting my best projects.
+- **Skills:** Listing my technical expertise.
+- **About Me:** A brief personal introduction.
+- **Contact:** Ways to get in touch.
 
 ## Technologies Used
 - HTML5
 - CSS3
 - JavaScript
-- [Any Frameworks or Libraries Used]
 
-## Getting Started
-To get a copy of this project and set it up locally, follow these simple steps:
 
-```bash
-git clone https://github.com/your-username/portfolio.git
-cd portfolio
-# Additional setup instructions if necessary
-#portfolioWeb
+## Usage
+Explore the different sections to learn more about me and my work.
+
+## Contributing
+Feel free to suggest improvements or report issues through pull requests.
+
+## License
+This project is licensed under the MIT License.
+
+## Contact
+Connect with me on [LinkedIn](https://www.linkedin.com/in/sampdl).
+
+Thank you for visiting! 🚀
