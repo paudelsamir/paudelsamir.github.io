@@ -265,7 +265,7 @@ a.homebutton:hover::before{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #ffffff1a;
+    background: hsla(0, 0%, 100%, 0.05);
     color: #fff;
     line-height: 1;
     margin-right: 10px; /* Slightly increased margin */
