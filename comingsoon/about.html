@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coming Soon</title>
+  <style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    body {
+
+      font-family: 'poppins', sans-serif;
+      background: rgb(255, 121, 19);
+      background: linear-gradient(152deg, rgba(255, 121, 19, 1) 0%, rgba(123, 74, 37, 1) 0%, rgba(43, 45, 48, 1) 55%, rgba(5, 32, 53, 1) 100%);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    #container {
+      width: 80%;
+      max-width: 600px;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15) 0%, rgba(0, 0, 0, 0.15) 100%), radial-gradient(at top center, rgba(255, 255, 255, 0.40) 0%, rgba(0, 0, 0, 0.40) 120%) #989898;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    h1 {
+      color: #010f1a;;
+      /* margin-bottom: 20px;
+      margin-top: 100px; */
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+
+    p {
+      color: #000000;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    button {
+      background-color: #010f1a;
+      
+      color: #989898;
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin: 5px;
+    }
+
+
+    button:hover {
+      background-color: #582500;
+    }
+    div .gotohome button {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      margin-bottom: 20px;
+      font-size: 7px;
+      padding: 7px 15px
+      
+    }
+    
+    div .index button{
+      position: relative;
+      bottom:26px;
+      margin-bottom: 0px;
+      font-size: 7px;
+      padding:10px 15px;
+      border-radius: 50%;
+      
+    }
+    div .gotoproject button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      margin-bottom: 20px;
+      font-size: 7px;
+      padding: 7px 15px
+      
+    }
+div .prevnext{
+  display: flex;
+  justify-content: space-around;
+} 
+p span {
+
+color: rgb(103, 47, 24);
+font-size: medium;
+font-weight: 600;
+} 
+
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="prevnext">
+    <a href="projects.html" class="gotoproject"><button>▶▶</button></a>
+    <!-- <a href="" class="index"><button>HOME</button></a> -->
+    <a href="../index.html" class="gotohome"><button>◀◀</button></a>
+    </div>
+    <H1>ABOUT ME</H1>
+
+    <p style="padding-top: 2rem;">Samir Paudel - Unfiltered Edition <br>
+      
+      Hey there! I'm Samir, a caffeine enthusiast and part-time adulting expert. By day, I tackle sleeping challenges; by night, I battle evil Fortnite monsters.
+      <br>
+      My life motto? "sleeping makes everything better." and my talents include the ability to binge-watch an entire TV series in one sitting without a bathroom break.
+      <br>
+      Join me on this wild ride filled with laughter, chaos, and a questionable love for Butter-chicken flavoured IceCream. Let's keep it real 🚀✨."</p>
+    <p><br>  Here Comes my not so serious judgement call <br> Choose One :</br><br>
+    <div class="messiorronaldo"><button
+        onclick="showContactInfo('That means you are Skillful, Determined, and Graceful Bro!! Sorry for wasting your valuable time <3 ')">Messi</button>
+      <button
+        onclick="showContactInfo('That means you are Strong, Confident, and Aggressive Bro!! Sorry for wasting your precious time <3 ')">Ronaldo</button>
+    </div>
+    <br>
+    <p><span>Disclaimer: About Section to be Updated !!!</span></p>
+
+
+    </p>
+  </div>
+
+  <script>
+    // Function to show contact info with a fade-in effect
+    function showContactInfo(message) {
+      const container = document.getElementById('container');
+      container.style.opacity = '1';
+      container.style.transform = 'translateY(0)';
+      alert(message);
+    }
+  </script>
+
+</body>
+
+</html>

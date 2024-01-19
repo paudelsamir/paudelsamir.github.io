@@ -5,8 +5,8 @@ html{
 }
     
 *{
-    margin: 0;
-    padding: 0;
+    margin: 0.1em;
+    padding: 0.08em;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 
@@ -70,7 +70,7 @@ li a {
 }
 
 li a:hover {
-    color: rgb(255, 121, 19)
+    color: #ff7913
   }
   
 li a::before {
@@ -80,7 +80,7 @@ li a::before {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: rgb(255, 121, 19);
+    background-color: #ff7913;
     visibility: hidden;
     transform: scaleX(0);
     transition: all 0.3s ease-in-out 0s;
@@ -183,8 +183,9 @@ div.intro #mystyle{
 .action_btn:hover{
     scale: 1.05;
     color: #fff;
-    box-shadow: 0 0 5px rgb(255, 119, 0), 0 0 20px rgb(255, 119, 0);
-
+    box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255);
+    text-decoration: none;
+    
 
 }
 .dropdownMenu{
@@ -194,7 +195,7 @@ div.intro #mystyle{
     top: 90px;
     width: 300px;
     height: 0;
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff1a;
     backdrop-filter: blur(15px);
     border-radius: 10px;
     overflow: hidden;
@@ -252,7 +253,7 @@ div.intro #mystyle{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.1);
+    background: #ffffff1a;
     color: #fff;
     line-height: 1;
     margin-right: 8px;
