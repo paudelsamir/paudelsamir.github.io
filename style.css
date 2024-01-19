@@ -6,7 +6,7 @@ html{
     
 *{
     margin: 0.1em;
-    padding: 0.08em;
+    padding: 0.0em;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 
@@ -61,6 +61,7 @@ li {
     color: #fff;
     
 }
+
 li a {
     text-transform: uppercase;
     font-size: 0.7rem;
@@ -99,6 +100,10 @@ div.intro #mystyle{
     display: flex;
     /* justify-content: center;
     align-items: center; */
+}
+a.homebutton{
+    color: #ff7700;
+    size: 5px;
 }
 
 
@@ -282,8 +287,10 @@ div.intro #mystyle{
         position: static;
     }
     .dropdownMenu.open{
-        height: auto;
+        height: 300px;
+        display: ;
     }
+    
 }
 
 @media (max-width: 450px){
@@ -291,12 +298,16 @@ div.intro #mystyle{
         left: 2rem;
         width: unset;
         width: 100%;
+
         /* display: block;
         position: static;
         height: auto;
         /* backdrop-filter: none; */
         /* border-radius: 5px;
         overflow: visible; */ 
+    }
+    .navbar{
+        display: none;
     }
 
     .dropdownMenu.open{
@@ -311,7 +322,7 @@ div.intro #mystyle{
     .dropdownMenu{
         display: block
     }
-        
+
 }
 @media (max-width: 992px) {
     #header h1 {
