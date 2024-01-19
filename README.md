@@ -4,6 +4,7 @@ Welcome to my portfolio! This is a simple showcase of my work and skills.
 
 ## Preview
 ![Portfolio Preview](assets/pcpreview.png)
+https://samir-pdl.github.io/
 
 ## Features
 - **Home:** Introductory section.
