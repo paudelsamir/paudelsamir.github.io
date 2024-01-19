@@ -66,12 +66,13 @@ li a {
     text-transform: uppercase;
     font-size: 0.7rem;
 
-
-
+    
+    font-weight: bold;
+    
 }
 
 li a:hover {
-    color: #ff7913
+    color: #ff7913;
   }
   
 li a::before {
@@ -103,9 +104,16 @@ div.intro #mystyle{
 }
 a.homebutton{
     color: #ff7700;
-    size: 5px;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1); 
+    padding: 8px 12px;
+    border-radius: 10px;
 }
 
+a.homebutton:hover::before{
+    /* text-decoration: dotted; */
+    background-color: #ff6600;
+}
 
 
 #header h1 a {
@@ -177,7 +185,7 @@ a.homebutton{
     margin: 1rem;
     border: none;
     outline: none;
-    border-radius: 20px;
+    border-radius: 12px;
     font-size: 0.6rem;
     font-weight: bold;
     cursor: pointer;
@@ -245,31 +253,47 @@ a.homebutton{
     
 }
 
-  .social-links {
+ .social-links {
     margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
-  }
-  
- .social-links a {
-    font-size: 16px;
+.social-links a {
+    font-size: 18px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: #ffffff1a;
     color: #fff;
     line-height: 1;
-    margin-right: 8px;
+    margin-right: 10px; /* Slightly increased margin */
     border-radius: 50%;
     width: 40px;
     height: 40px;
-  }
-  
-   .social-links a:hover {
-    background: #ff7700;
-  }
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s  ease-in-out, box-shadow 0.3s ease;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    mix-blend-mode: screen;
+}
+
+.social-links a:hover {
+    background: #ff7700; /* Hover color from your specification */
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Hover shadow */
+}
+
 
 
 
@@ -288,7 +312,7 @@ a.homebutton{
     }
     .dropdownMenu.open{
         height: 300px;
-        display: ;
+    
     }
     
 }
@@ -306,9 +330,9 @@ a.homebutton{
         /* border-radius: 5px;
         overflow: visible; */ 
     }
-    .navbar{
+    /* .navbar{
         display: none;
-    }
+    } */
 
     .dropdownMenu.open{
         height: auto;
