@@ -25,6 +25,6 @@ Explore the different sections to learn more about me and my work.
 Feel free to suggest improvements or report issues through pull requests.
 
 ## Contact
-Connect with me on [LinkedIn](https://www.linkedin.com/in/sampdl).
+Connect with me on  [LinkedIn](https://www.linkedin.com/in/sampdl).
 
 Thank you for visiting! 🚀
