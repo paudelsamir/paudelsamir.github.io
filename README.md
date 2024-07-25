@@ -10,7 +10,6 @@ https://paudelsamir.github.io/
 - **Home:** Introductory section.
 - **About Me:** A brief personal introduction.
 - **Projects:** Highlighting my best projects.
-- **Blogs:** Connect with me – I'd love to hear from you.
 - **Contact:** Ways to get in touch.
 
 ## Technologies Used
