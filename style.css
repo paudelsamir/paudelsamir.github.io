@@ -77,27 +77,25 @@ li {
 li a {
     text-transform: uppercase;
     font-size: 0.7rem;
-
-    
+    transition: background-color 0.3s ease, padding 0.3s ease;
     font-weight: bold;
     
 }
 
 li a:hover {
-    color: #ff7913;
+    color: #ff7700;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
   }
   
 li a::before {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #ff7913;
-    visibility: hidden;
-    transform: scaleX(0);
-    transition: all 0.3s ease-in-out 0s;
+    content: none;
   }
 header {
     position: relative;
@@ -114,18 +112,26 @@ div.intro #mystyle{
     /* justify-content: center;
     align-items: center; */
 }
-a.homebutton{
+a.homebutton {
     color: #ff7700;
     font-weight: bold;
-    background-color: rgba(255, 102, 0, 0.1); 
-    padding: 8px 12px;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
     border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
 }
 
-a.homebutton:hover::before{
-    /* text-decoration: dotted; */
-    background-color: #ff6600;
-}
+/* a.homebutton:hover {
+ background-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 0 px #ff7700, 0 0 20px #ff7700, 0 0 30px #ff7700;
+} */
+
+/* a.homebutton:active {
+    background-color: rgba(255, 102, 0, 0.3);
+} */
 
 
 
@@ -175,14 +181,10 @@ a.homebutton:hover::before{
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    
-
 }
 .navbar .links {
     display: flex;
     gap: 2rem
-
 }
 
 .navbar .toggle_btn {
@@ -194,11 +196,11 @@ a.homebutton:hover::before{
 .action_btn{
     background-color: rgb(255, 119, 0);
     color: #fff;
-    padding: 0.5rem;
+    padding: 5px 12px;
     margin: 1rem;
     border: none;
     outline: none;
-    border-radius: 12px;
+    border-radius: 10px;
     font-size: 0.6rem;
     font-weight: bold;
     cursor: pointer;
@@ -207,12 +209,16 @@ a.homebutton:hover::before{
 }
 
 .action_btn:hover{
-    scale: 1.05;
-    color: #fff;
-    box-shadow: 0 0 5px rgb(255, 255, 255), 0 0 20px rgb(255, 255, 255);
+    color: #ff7700;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 10px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
     
-
 }
 .dropdownMenu{
     display: none;

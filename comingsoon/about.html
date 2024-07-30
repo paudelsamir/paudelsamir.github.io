@@ -42,53 +42,29 @@
               padding: 2rem;
           }
 
-                .home-button {
-            position:absolute;
-            top: 20px;
-            left: 20px;
-            background-color: var(--accent-color);
-            color: var(--bg-color);
-            padding: 8px 16px;
+            a.homebutton {
+            color: #ff7700;
+            font-size: 0.7rem;
+            font-weight: bold;
+            background-color: rgba(255, 102, 0, 0.1);
+            padding: 5px 12px;
+            border-radius: 10px;
             text-decoration: none;
-            border-radius: 20px;
-            font-weight: 500;
-            font-size: 14px;
             transition: all 0.3s ease;
-            z-index: 10;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            display: inline-block;
-            overflow: hidden;
             position: relative;
+            overflow: hidden;
+        
         }
 
-        .home-button::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 200%;
-            height: 200%;
-            background: rgba(0, 0, 0, 0.2);
-            transform: translate(-50%, -50%) rotate(45deg);
-            transition: width 0.3s ease, height 0.3s ease;
-            border-radius: 50%;
-            pointer-events: none;
-        }
+            a.homebutton:hover {
+                background-color: rgba(255, 102, 0, 0.2);
+                box-shadow: 0 0 5px #ff7700, 0 0 10px #ff7700, 0 0 10px #ff7700;
+            }
 
-        .home-button:hover::before {
-            width: 300%;
-            height: 300%;
-        }
+            a.homebutton:active {
+                background-color: rgba(255, 102, 0, 0.3);
+            }
 
-        .home-button:hover {
-            background-color: var(--accent-color);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(229, 207, 171, 0.15);
-        }
-
-        .home-button:active {
-            transform: translateY(-1px);
-        }
 
 
 
@@ -117,31 +93,31 @@
           }
 
           .profile-image {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin: 20px auto;
-      width: 250px;
-      height: 250px;
-      background: rgb(195, 78, 0);
-      border-radius: 25%; /* Changed to make it a perfect circle */
-      overflow: hidden; /* Ensures the image stays within the circle */
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-      transition: 1s box-shadow;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 20px;
-      font-weight: lighter;
-      letter-spacing: 2px;
-  }
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
+                margin: 20px auto;
+                width: 250px;
+                height: 250px;
+                background: rgb(195, 78, 0);
+                border-radius: 25%; /* Changed to make it a perfect circle */
+                overflow: hidden; /* Ensures the image stays within the circle */
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+                transition: 1s box-shadow;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 20px;
+                font-weight: lighter;
+                letter-spacing: 2px;
+            }
 
-  .profile-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover; /* Ensures the image covers the entire container */
-      transition: transform 0.3s ease;
-      transform: scale(1);
-  }
+            .profile-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; /* Ensures the image covers the entire container */
+                transition: transform 0.3s ease;
+                transform: scale(1);
+            }
 
   /* .profile-image:hover img {
       transform: scale(1.05);
@@ -252,8 +228,9 @@
               font-weight: 600;
               transition: all 0.3s ease;
               padding: 10px 20px;
+              margin: 2px;
               border: 2px solid var(--bg-color);
-              border-radius: 30px;
+              border-radius: 5px;
           }
 
           .contact a:hover {
@@ -303,7 +280,9 @@
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="home-button">Home</a>
+        <a href="../index.html"  <a href="#" class="homebutton">
+            <span>HOME</span>
+        </a>
 
         <h1>About Me</h1>
 
