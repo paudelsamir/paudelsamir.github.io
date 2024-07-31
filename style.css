@@ -1,38 +1,28 @@
 @import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
 
-
-html{
-    min-height: 100%;
-}
-    
-
-*{
-    margin: 0.1em;
-    padding: 0.0em;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-
-}
-body {
-    background: #010f1a;  /* Your fixed background color */
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    position: fixed;
     font-family: 'Montserrat', sans-serif;
     color: #ffffff;
 }
+    
+
+body {
+    background: #010f1a;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
 
 #galaxy-bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
     z-index: -1;
 }
 
@@ -67,12 +57,7 @@ li {
     list-style: none;
 }
 
-#header .nav1 a{
-    text-decoration: none;
-    color: #fff;
-    
-    
-}
+
 
 li a {
     text-transform: uppercase;
@@ -97,9 +82,10 @@ li a:hover {
 li a::before {
     content: none;
   }
-header {
+#header {
     position: relative;
     padding: 0 2rem;
+    overflow: hidden; 
 
 }
 div.intro #myname{
@@ -134,7 +120,12 @@ a.homebutton {
 } */
 
 
-
+#header .nav1 a{
+    text-decoration: none;
+    color: #fff;
+    
+    
+}
 #header h1 a {
     color: #ffffff;
     text-align: center;
@@ -189,11 +180,11 @@ a.homebutton {
 
 .navbar .toggle_btn {
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     display: none;
 }
-.action_btn{
+.action_btn {
     background-color: rgb(255, 119, 0);
     color: #fff;
     padding: 5px 12px;
@@ -201,12 +192,13 @@ a.homebutton {
     border: none;
     outline: none;
     border-radius: 10px;
-    font-size: 0.6rem;
+    font-size: 0.69rem;
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 0 1px rgb(255, 119, 0), 0 0 10px rgb(255, 119, 0);
-
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
 
 .action_btn:hover{
     color: #ff7700;
@@ -259,27 +251,31 @@ a.homebutton {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    padding: 0%;
     margin-top: 4rem;
-    margin-bottom: 1rm;
+    margin-bottom: 1rem; 
     background: #ff7700;
     border-radius: 50%;
-    transition: .5s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent; 
 }
+
 .personal-photo:hover {
-    transform: scale(1.05);
-    cursor: pointer;
-    
+    transform: scale(1.03); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
 }
 
  .social-links {
     margin-top: 40px;
+    padding: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .social-links a {
+    margin-bottom: 30px;
     font-size: 18px;
     display: flex;
     justify-content: center;
@@ -287,7 +283,7 @@ a.homebutton {
     background: hsla(0, 0%, 100%, 0.05);
     color: #fff;
     line-height: 1;
-    margin-right: 10px; /* Slightly increased margin */
+    margin-right: 10px; 
     border-radius: 50%;
     width: 38px;
     height: 38px;
@@ -315,74 +311,88 @@ a.homebutton {
 
 
 
-
-@media (max-width: 750px)
-{
-    .navbar .links, .navbar .action_btn{
-        display: none;
+@media (max-width: 992px) {
+    #header h1 {
+        font-size: 36px;
     }
-
-    .navbar .toggle_btn  {
-        display: block;
+    #header h2 {
+        font-size: 20px;
+        line-height: 30px;
     }
-    .dropdownMenu{
-        display: block;
-        position: static;
+    #header .social-links {
+        margin-top: px;
     }
-    .dropdownMenu.open{
-        height: 300px;
-
+    #header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    
 }
 
-@media (max-width: 450px){
-    .dropdownMenu{
-        left: 2rem;
-        width: unset;
-        width: 100%;
-
-        /* display: block;
-        position: static;
-        height: auto;
-        /* backdrop-filter: none; */
-        /* border-radius: 5px;
-        overflow: visible; */ 
-    }
-    /* .navbar{
-        display: none;
-    } */
-
-    .dropdownMenu.open{
-        height: auto;
-    }
-    .navbar .links, .navbar .action_btn{
+@media (max-width: 750px) {
+    .navbar .links, .navbar .action_btn {
         display: none;
     }
     .navbar .toggle_btn {
         display: block;
     }
-    .dropdownMenu{
-        display: block
+    .dropdownMenu {
+        display: block;
+        position: static;
     }
-
+    .dropdownMenu.open {
+        height: 300px;
+    }
+    
+    /* Ensure social icons are visible */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .social-links a {
+        margin: 0 10px;
+    }
 }
-@media (max-width: 992px) {
+
+@media (max-width: 450px) {
+    .dropdownMenu {
+        left: 2rem;
+        width: 100%;
+    }
+    .dropdownMenu.open {
+        height: auto;
+    }
+    .navbar .links, .navbar .action_btn {
+        display: none;
+    }
+    .navbar .toggle_btn {
+        display: block;
+    }
+    .dropdownMenu {
+        display: block;
+    }
+    
+    /* Adjust layout for smaller screens */
     #header h1 {
-      font-size: 36px;
+        font-size: 28px;
     }
     #header h2 {
-      font-size: 20px;
-      line-height: 30px;
+        font-size: 18px;
     }
-    #header .social-links {
-      margin-top: 45px;
-      
+    .personal-photo {
+        width: 180px;
+        height: 175px;
     }
-    #header .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+    
+    /* Ensure social icons are visible and properly spaced */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .social-links a {
+        margin: 5px;
     }
 }
-

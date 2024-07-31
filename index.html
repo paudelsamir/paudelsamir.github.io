@@ -5,8 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio Website </title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+
+
+
+
+
+
     <link rel="stylesheet" href="style.css">
     <link rel="icon " href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -17,10 +22,13 @@
 </head>
 
 <body>
+    
     <div id="galaxy-bg"></div>
+    <div class="starfield-container" id="starfield"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="app.js"></script>
+    <!-- <script src="app.js"></script> -->
     <header id="header">
+        
         <div class="container">
 
             <div class="navbar">
@@ -53,10 +61,8 @@
                 <li><a href="comingsoon/about.html">about</a></li>
                 <li><a href="comingsoon/projects.html">projects</a></li>
                 <!-- <li><a href="comingsoon/blogs.html">blogs</a></li> -->
-                <li><a href="comingsoon/contact.html">contact</a></li>
+                <li><a href="">contact</a></li>
                 <li><a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link" class="action_btn">RESUME</a> </li>
-
-
 
             </div>
         </div>  
@@ -84,6 +90,26 @@
 
 
     <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+    <script>
+      window.onload = function() {
+        VANTA.WAVES({
+          el: "#header",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.00,
+          minWidth: 200.00,
+          scale: 1.00,
+          scaleMobile: 1.00,
+          color: 0x010f1a, 
+          shininess: 27.00,
+          waveHeight: 10.50,
+          zoom: 0.79
+        });
+      };
+    </script>
 
 </body>
 
