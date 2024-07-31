@@ -22,12 +22,12 @@
 </head>
 
 <body>
+    <header id="header">
     
     <div id="galaxy-bg"></div>
     <div class="starfield-container" id="starfield"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <!-- <script src="app.js"></script> -->
-    <header id="header">
         
         <div class="container">
 
@@ -85,7 +85,7 @@
 
         </div>
 
-    </header>
+
     
 
 
@@ -95,7 +95,7 @@
     <script>
       window.onload = function() {
         VANTA.WAVES({
-          el: "#header",
+          el: "body",
           mouseControls: true,
           touchControls: true,
           gyroControls: false,
@@ -110,7 +110,8 @@
         });
       };
     </script>
-
+ </header>
 </body>
+
 
 </html>
