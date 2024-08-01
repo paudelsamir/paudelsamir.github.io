@@ -3,390 +3,370 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Projects</title>
+    <title>Samir's Python Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
-:root {
-    --bg-color: #010f1a;
-    --text-color: #ffffff;
-    --accent-color: #ff7913;
-    --secondary-bg: #021728;
-    --hover-color: #ff9142;
-}
+    :root {
+        --bg-color: #010f1a;
+        --text-color: #ffffff;
+        --accent-color: #ff7913;
+        --secondary-bg: #021728;
+        --hover-color: #ff9142;
+    }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    padding: 2rem;
-}
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.6;
+        padding: 2rem;
+    }
 
-span {
-    color: var(--accent-color);
-}
+    .home-button {
+        color: #ff7700;
+        font-size: 0.7rem;
+        font-weight: bold;
+        background-color: rgba(255, 102, 0, 0.1);
+        padding: 5px 12px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    background: var(--secondary-bg);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(255, 121, 19, 0.1);
-    overflow: hidden;
-    position: relative;
-    padding: 2rem;
-}
+    .home-button:hover {
+        background-color: rgba(255, 102, 0, 0.2);
+        box-shadow: 0 0 5px #ff7700, 0 0 10px #ff7700, 0 0 10px #ff7700;
+    }
 
-.home-button {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    padding: 8px 16px;
-    text-decoration: none;
-    border-radius: 20px;
-    font-weight: 500;
-    font-size: 14px;
-    transition: all 0.3s ease;
-    z-index: 10;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: inline-block;
-    overflow: hidden;
-    position: relative;
-}
-
-.home-button::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 200%;
-    height: 200%;
-    background: rgba(0, 0, 0, 0.2);
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: width 0.3s ease, height 0.3s ease;
-    border-radius: 50%;
-    pointer-events: none;
-}
-
-.home-button:hover::before {
-    width: 300%;
-    height: 300%;
-}
-
-.home-button:hover {
-    background-color: var(--accent-color);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(229, 207, 171, 0.15);
-}
-
-.home-button:active {
-    transform: translateY(-1px);
-}
-
-h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin: 1rem 0 2rem;
-    color: var(--accent-color);
-    position: relative;
-}
-
-h1::after {
-    content: '';
-    display: block;
-    width: 50px;
-    height: 3px;
-    background: var(--accent-color);
-    margin: 10px auto;
-}
-
-main {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.project {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    overflow: hidden;
-    position: relative;
-}
-
-.project::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, var(--accent-color) 10%, transparent 10%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.project:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(255, 121, 19, 0.2);
-}
-
-.project:hover::before {
-    opacity: 0.05;
-}
-
-h2 {
-    color: var(--accent-color);
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-    position: relative;
-    display: inline-block;
-}
-
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: var(--accent-color);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
-    transform-origin: left;
-}
-
-.project:hover h2::after {
-    transform: scaleX(1);
-}
-
-p {
-    margin-bottom: 1rem;
-    font-size: 1rem;
-}
-
-.github-link {
-    display: inline-flex;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: var(--accent-color);
-    color: var(--bg-color);
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    position: relative;
-}
-
-.github-link::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 150%;
-    height: 150%;
-    background: rgba(255, 255, 255, 0.1);
-    transform: translate(-50%, -50%) rotate(45deg);
-    transition: width 0.3s ease, height 0.3s ease;
-}
-
-.github-link:hover::before {
-    width: 200%;
-    height: 200%;
-}
-
-.github-link:hover {
-    background-color: var(--hover-color);
-    transform: translateY(-3px);
-    box-shadow: 0 6px 12px rgba(255, 121, 19, 0.15);
-}
-
-.github-logo {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
-    transition: transform 0.3s ease;
-}
-
-.github-link:hover .github-logo {
-    transform: rotate(360deg);
-}
-
-footer {
-    text-align: center;
-    padding: 1rem;
-    margin-top: 2rem;
-    color: var(--text-color);
-    font-size: 0.9rem;
-}
-
-@media (max-width: 768px) {
     .container {
-        padding: 1rem;
-    }
-}
-
-@keyframes fadeInUp {
-    from {
+        max-width: 1200px;
+        margin: 2rem auto;
+        background: var(--secondary-bg);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(255, 121, 19, 0.1);
+        overflow: hidden;
+        padding: 2rem;
         opacity: 0;
-        transform: translateY(20px);
+        animation: fadeIn 1s forwards;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
     }
-}
 
-.project {
-    animation: fadeInUp 0.6s ease-out forwards;
-    opacity: 0;
-}
+    h1, h2 {
+        color: var(--accent-color);
+        text-align: center;
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
 
-.project:nth-child(1) { animation-delay: 0.1s; }
-.project:nth-child(2) { animation-delay: 0.3s; }
-.project:nth-child(3) { animation-delay: 0.5s; }
-.project:nth-child(4) { animation-delay: 0.7s; }
+   
+    h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 1rem 0 2rem;
+            color: var(--accent-color);
+            position: relative;
+        }
+
+        h1::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--accent-color);
+            margin: 10px auto;
+        }
+
+    h2 {
+        font-size: 1.7rem;
+    }
+
+    .project-section {
+        margin-bottom: 2rem;
+    }
+
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 10px;
+        padding: 1.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .project-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .project-card h3 {
+        font-size: 1.4rem;
+        margin-bottom: 0.75rem;
+        font-weight: 500;
+    }
+
+    .project-card p {
+        font-size: 1rem;
+        margin-bottom: 1.25rem;
+        font-weight: 300;
+    }
+
+    .card-buttons {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+
+    .github-link, .features-btn {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        background-color: var(--accent-color);
+        color: var(--bg-color);
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .github-link {
+        margin-right: 0.5rem;
+    }
+
+    .github-link:hover, .features-btn:hover {
+        background-color: var(--hover-color);
+        transform: scale(1.05);
+    }
+
+    .features-list {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.3s ease, opacity 0.3s ease;
+    }
+
+    footer {
+        text-align: center;
+        padding: 1rem;
+        margin-top: 2rem;
+        font-size: 0.9rem;
+        color: #ccc;
+        font-weight: 300;
+    }
+
+    footer a {
+        color: var(--accent-color);
+        text-decoration: none;
+    }
+
+    footer a:hover {
+        text-decoration: underline;
+    }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <a href="../index.html" class="home-button">Home</a>
-        <h1>Under <span>Construction</span></h1>
+        <a href="../index.html" class="home-button">HOME</a>
+        <h1>  Projects</h1>
         
-        <!-- <main>
-            <div class="project">
-                <div class="project-image">
-                    <img src="/api/placeholder/400/300" alt="Machine Learning Algorithm Explorer">
-                </div>
-                <h2>Machine Learning Algorithm Explorer</h2>
-                <p>An interactive web application showcasing various machine learning algorithms and their real-world applications. Users can visualize and experiment with different algorithms in real-time.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Scikit-learn</span>
-                    <span class="tag">Flask</span>
-                    <span class="tag">D3.js</span>
-                </div>
-                <a href="https://github.com/yourusername/ml-algorithm-explorer" class="github-link">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="project">
-                <div class="project-image">
-                    <img src="/api/placeholder/400/300" alt="Data Visualization Dashboard">
-                </div>
-                <h2>Data Visualization Dashboard</h2>
-                <p>A responsive dashboard built with Python and Dash, offering interactive and insightful visualizations for complex datasets. Features customizable charts and real-time data updates.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">Dash</span>
-                    <span class="tag">Plotly</span>
-                    <span class="tag">Pandas</span>
-                </div>
-                <a href="https://github.com/yourusername/data-viz-dashboard" class="github-link">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="project">
-                <div class="project-image">
-                    <img src="/api/placeholder/400/300" alt="Predictive Maintenance System">
-                </div>
-                <h2>Predictive Maintenance System</h2>
-                <p>An advanced machine learning model that predicts equipment failures in industrial settings. This system helps optimize maintenance schedules, reducing downtime and maintenance costs.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">TensorFlow</span>
-                    <span class="tag">IoT</span>
-                    <span class="tag">Time Series Analysis</span>
-                </div>
-                <a href="https://github.com/yourusername/predictive-maintenance" class="github-link">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
-                </a>
-            </div>
-
-            <div class="project">
-                <div class="project-image">
-                    <img src="/api/placeholder/400/300" alt="Natural Language Processing Toolkit">
-                </div>
-                <h2>Natural Language Processing Toolkit</h2>
-                <p>A comprehensive NLP toolkit that includes modules for text classification, sentiment analysis, named entity recognition, and text summarization. Built with state-of-the-art models and techniques.</p>
-                <div class="project-tags">
-                    <span class="tag">Python</span>
-                    <span class="tag">NLTK</span>
-                    <span class="tag">SpaCy</span>
-                    <span class="tag">Transformers</span>
-                </div>
-                <a href="https://github.com/yourusername/nlp-toolkit" class="github-link">
-                    <i class="fab fa-github"></i>
-                    View on GitHub
-                </a>
-            </div>
-        </main>
-
-        <section class="skills-section">
-            <h2>Technical <span>Skills</span></h2>
-            <div class="skills">
-                <div class="skill">
-                    <span class="skill-name">Python</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 90%;"></div>
+        <section class="project-section">
+            <h2>Beginner Projects - Python</h2>
+            <div class="projects-grid">
+        
+                <div class="project-card">
+                    <h3>Hangman Project</h3>
+                    <p>Classic word-guessing game implementation.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2007-Hangman%20Project" class="github-link">
+                            <i class="fab fa-github"></i>GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
                     </div>
+                    
+                    <ul class="features-list">
+                        <li>Random word selection</li>
+                        <li>ASCII art for game states</li>
+                        <li>Limited guesses</li>
+                    </ul>            
                 </div>
-                <div class="skill">
-                    <span class="skill-name">Machine Learning</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 85%;"></div>
+        
+                <div class="project-card">
+                    <h3>Caesar Cipher</h3>
+                    <p>Encryption and decryption using Caesar Cipher.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2008-Caesar%20Cyphers%20And%20function%20Parameters" class="github-link">
+                       
+                            <i class="fab fa-github"></i>  GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
                     </div>
+                    
+                    <ul class="features-list">
+                        <li>Shift cipher implementation</li>
+                        <li>Supports arbitrary shift values</li>
+                        <li>Handles both encryption and decryption</li>
+                    </ul>            
                 </div>
-                <div class="skill">
-                    <span class="skill-name">Data Visualization</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 80%;"></div>
+        
+                <div class="project-card">
+                    <h3>Calculator</h3>
+                    <p>Functional calculator with basic arithmetic operations.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2010-%20Building%20Calculator%20Using%20Function%20with%20outputs" class="github-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
                     </div>
+                    
+                    <ul class="features-list">
+                        <li>Supports addition, subtraction, multiplication, and division</li>
+                        <li>User-friendly interface</li>
+                        <li>Handles invalid inputs gracefully</li>
+                    </ul>            
                 </div>
-                <div class="skill">
-                    <span class="skill-name">Web Development</span>
-                    <div class="skill-bar">
-                        <div class="skill-level" style="width: 75%;"></div>
+        
+                <div class="project-card">
+                    <h3>Blackjack Game</h3>
+                    <p>Text-based Blackjack card game.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2011-%20The%20Blackjack%20Capstone%20Project" class="github-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
                     </div>
+                    
+                    <ul class="features-list">
+                        <li>Simulates a real Blackjack game</li>
+                        <li>Interactive user commands</li>
+                        <li>Includes betting system</li>
+                    </ul>            
                 </div>
+        
+                <div class="project-card">
+                    <h3>Higher Lower Game</h3>
+                    <p>Guessing game comparing item popularity.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2014-%20Higher%20Lower%20Game%20Project" class="github-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Compares popularity metrics</li>
+                        <li>Interactive and engaging gameplay</li>
+                        <li>Score tracking</li>
+                    </ul>            
+                </div>
+        
+                <div class="project-card">
+                    <h3>Simple Coffee Machine</h3>
+                    <p>A project to build a simple coffee machine.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2015-%20Building%20Simple%20Coffee%20Machine" class="github-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <button class="features-btn" onclick="openFile()">Features</button>
+                    </div>
+                    <ul class="features-list">
+                        <li>Basic coffee machine implementation</li>
+                        <li>Handles different coffee recipes</li>
+                        <li>Interactive command-line interface</li>
+                    </ul>            
+                </div>
+        
+                <div class="project-card">
+                    <h3>Quiz Project</h3>
+                    <p>Interactive quiz application on various topics.</p>
+                    <div class="card-buttons">
+                        <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2017-%20The%20quiz%20project" class="github-link">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <button class="features-btn">Features</button>
+                    </div>
+                    
+                    <ul class="features-list">
+                        <li>Question management</li>
+                        <li>Score tracking</li>
+                        <li>Multiple categories</li>
+                    </ul>            
+                </div>
+        
+            
+        
             </div>
         </section>
+        
 
-        <section class="contact">
-            <h2>Get in <span>Touch</span></h2>
-            <p>Interested in collaborating or have a project idea? Let's connect!</p>
-            <div class="contact-links">
-                <a href="mailto:samirpaudel2005@gmail.com" class="contact-button">
-                    <i class="fas fa-envelope"></i> Email
-                </a>s
-                <a href="https://www.linkedin.com/in/sampdl" class="contact-button">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-                <a href="https://github.com/yourusername" class="contact-button">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
+
+        <section class="project-section">
+            <h2>Intermediate Projects - Python</h2>
+            <div class="project-card">
+                <h3>Snake Game</h3>
+                <p>Recreation of the classic Snake game.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2020-%20Snake%20Game%20Project" class="github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <button class="features-btn">Features</button>
+                </div>
+                
+                <ul class="features-list">
+                    <li>Control the snake using keyboard</li>
+                    <li>Grow by eating food</li>
+                    <li>Avoid collisions</li>
+                </ul>            
             </div>
         </section>
+<!-- 
+        <section class="project-section">
+            <h2>Advanced Projects</h2>
+            <p>Coming soon...</p>
+        </section> -->
     </div>
 
     <footer>
-        <p>&copy; 2024 Samir Paudel. All rights reserved.</p>
+        <p>© 2024 Samir Paudel. Made with ❤️</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.features-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const featuresList = button.closest('.project-card').querySelector('.features-list');
+                    if (featuresList.style.maxHeight) {
+                        featuresList.style.maxHeight = null;
+                        featuresList.style.opacity = 0;
+                    } else {
+                        featuresList.style.maxHeight = featuresList.scrollHeight + 'px';
+                        featuresList.style.opacity = 1;
+                    }
+                });
+            });
+        });
+    </script>
 </body>
-</html> -->
+</html>
