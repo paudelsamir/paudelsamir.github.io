@@ -167,7 +167,7 @@ a.homebutton {
 
 .navbar {
     width: 100%;
-    height: 40px;
+    height: 60px;
     max-width: 1200px;
     margin: 20px auto;
     display: flex;
@@ -336,16 +336,23 @@ a.homebutton {
     }
     .navbar .toggle_btn {
         display: block;
+
     }
     .dropdownMenu {
         display: block;
+        top: 60px;
         position: static;
+        max-height: 300px; /* Ensure it doesn't exceed a specific height */
+        overflow-y: auto; /* Make the menu scrollable if it exceeds the max height */
+        z-index: 1000;
+        transition: max-height 0.3s ease-in-out;
     }
     .dropdownMenu.open {
-        height: 300px;
+        height:fit-content;
+        margin: 20px 0;
+  
     }
-    
-    /* Ensure social icons are visible */
+
     .social-links {
         display: flex;
         justify-content: center;
@@ -354,7 +361,35 @@ a.homebutton {
     .social-links a {
         margin: 0 10px;
     }
+    .main-content {
+        padding: 110px 0; 
+        margin-bottom: 5px ;
+    }
+
+    .personal-photo {
+        width: 100px; 
+        height: 100px;
+        border-radius: 50%; 
+        margin: 0 auto 10px; 
+        margin-bottom: 30px ;
+    }
+
+    .intro h1 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+        margin-bottom: 5px; /* Reduce bottom margin */
+    }
+
+    .intro h2 {
+        font-size: 1em; 
+        margin-bottom: 10px; 
+    }
+
+    .content-below-box {
+        padding: 100px 0; 
+        margin-top: 0px; 
+    }
 }
+
 
 @media (max-width: 450px) {
     .dropdownMenu {
