@@ -8,10 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 
 
-
-
-
-
     <link rel="stylesheet" href="style.css">
     <link rel="icon " href="assets/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
@@ -23,12 +19,12 @@
 
 <body>
     <header id="header">
-    
-    <div id="galaxy-bg"></div>
-    <div class="starfield-container" id="starfield"></div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <!-- <script src="app.js"></script> -->
-        
+
+        <div id="galaxy-bg"></div>
+        <div class="starfield-container" id="starfield"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+        <!-- <script src="app.js"></script> -->
+
         <div class="container">
 
             <div class="navbar">
@@ -41,15 +37,17 @@
                             <span>HOME</span>
                         </a>
                     </li>
-                    <li><a href="comingsoon/about.html">about</a></li>
+                    <li><a href="comingsoon/about.html">about</a>
+                    </li>
                     <li><a href="comingsoon/projects.html">projects</a></li>
                     <!-- <li><a href="comingsoon/blogs.html">blogs</a></li> -->
                     <!-- <li><a href="comingsoon/contact.html">contact</a></li> -->
                 </ul>
-                <a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link" class="action_btn">
+                <a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link"
+                    class="action_btn">
                     <span>RESUME</span>
-                   
-                  </a>
+
+                </a>
                 <div class="toggle_btn">
                     <i class="fa-solid fa-bars"></i>
                 </div>
@@ -61,56 +59,58 @@
                 <li><a href="comingsoon/about.html">about</a></li>
                 <li><a href="comingsoon/projects.html">projects</a></li>
                 <!-- <li><a href="comingsoon/blogs.html">blogs</a></li> -->
-                <li><a href="">contact</a></li>
-                <li><a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link" class="action_btn">RESUME</a> </li>
+                <!-- <li><a href="">contact</a></li> -->
+                <li><a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link"
+                        class="action_btn">RESUME</a> </li>
 
             </div>
-        </div>  
+            <div class="main-content">
+                <img src="assets/formal dress.png" alt="who the heck is this bro??" class="personal-photo">
+                <div class="intro">
+                    <h1><a href="index.html" id="myname">Samir Paudel</a></h1>
+                    <h2 style="color:#fff" id="mystyle">I'm <span class="typing" style="color:#ff7700"></span></h2>
+                </div>
 
-        <img src="assets/formal dress.png" alt="who the heck is this bro??" class="personal-photo">
-        <div class="intro" >
-            <h1 ><a href="index.html" id="myname">Samir Paudel</a></h1>
-            <h2 style="color:#fff"  id="mystyle" style="padding-bottom: 10px;">I'm  <span class="typing" style="color:#ff7700"></span></h2>
-        </div>
-
-
-        <div class="social-links">
-            <a href="https://www.linkedin.com/in/sampdl" target="_blank" class="linkedin"><i
-                    class='bx bxl-linkedin-square'></i>
-                <a href="https://www.github.com/paudelsamir" target="_blank" class="github"><i
-                        class="bx bxl-github"></i></a>
-                <a href="https://www.instagram.com/samirpdl" target="_blank" class="instagram"><i
-                        class="bx bxl-instagram"></i></a>
-                <a href="https://www.twitter.com/samirpaudel_" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
-
-        </div>
-
-
-    
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/sampdl" target="_blank" class="linkedin"><i
+                            class='bx bxl-linkedin-square'></i></a>
+                    <a href="https://www.github.com/paudelsamir" target="_blank" class="github"><i
+                            class="bx bxl-github"></i></a>
+                    <a href="https://www.instagram.com/samirpdl" target="_blank" class="instagram"><i
+                            class="bx bxl-instagram"></i></a>
+                    <a href="https://www.twitter.com/samirpaudel_" target="_blank" class="twitter"><i
+                            class="bx bxl-twitter"></i></a>
+                </div>
+            </div>
 
 
-    <script src="script.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-    <script>
-      window.onload = function() {
-        VANTA.WAVES({
-          el: "body",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.00,
-          minWidth: 200.00,
-          scale: 1.00,
-          scaleMobile: 1.00,
-          color: 0x010f1a, 
-          shininess: 27.00,
-          waveHeight: 10.50,
-          zoom: 0.79
-        });
-      };
-    </script>
- </header>
+
+
+
+
+            <script src="script.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+            <script>
+                window.onload = function () {
+                    VANTA.WAVES({
+                        el: "body",
+                        mouseControls: true,
+                        touchControls: true,
+                        gyroControls: false,
+                        minHeight: 200.00,
+                        minWidth: 200.00,
+                        scale: 1.00,
+                        scaleMobile: 1.00,
+                        color: 0x010f1a,
+                        shininess: 27.00,
+                        waveHeight: 10.50,
+                        zoom: 0.79
+                    });
+                };
+
+            </script>
+    </header>
 </body>
 
 
