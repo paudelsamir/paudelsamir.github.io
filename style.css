@@ -421,8 +421,6 @@ a.homebutton {
         width: 180px;
         height: 175px;
     }
-    
-    /* Ensure social icons are visible and properly spaced */
     .social-links {
         display: flex;
         justify-content: center;
