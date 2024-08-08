@@ -81,6 +81,9 @@ li a:hover {
     overflow: hidden;
   }
   
+ul.links{
+    padding-left: 0px ;
+}
 li a::before {
     content: none;
   }
@@ -214,7 +217,7 @@ a.homebutton {
     overflow: hidden;
     
 }
-.dropdownMenu{
+.dropdownMenu {
     display: none;
     position: absolute;
     right: 2rem;
@@ -225,26 +228,29 @@ a.homebutton {
     backdrop-filter: blur(15px);
     border-radius: 10px;
     overflow: hidden;
-    transition: height .2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease-in-out;
+    opacity: 0;
+}
 
-}
-.dropdownMenu.open{
+.dropdownMenu.open {
     height: 200px;
+    opacity: 1;
 }
-.dropdownMenu li{
+
+.dropdownMenu li {
     padding: 0.7rem;
     display: flex;
     justify-content: center;
     align-items: center;
-
+    cursor: pointer;
 }
 
-.dropdownMenu .action_btn{
+.dropdownMenu .action_btn {
     width: 100%;
     display: flex;
     justify-content: center;
-
 }
+
 
 .personal-photo {
     position: relative;
@@ -285,10 +291,10 @@ a.homebutton {
     background: hsla(0, 0%, 100%, 0.05);
     color: #fff;
     line-height: 1;
-    margin-right: 10px; 
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    margin-right: 15px; 
+    border-radius: 47%;
+    width: 43px;
+    height: 43px;
     overflow: hidden;
     position: relative;
     transition: transform 0.3s  ease-in-out, box-shadow 0.3s ease;
