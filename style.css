@@ -208,8 +208,11 @@ header .navbar ul li a.active::after {
   }
   @media (max-width: 768px) {
     #menu {
+      width: 3rem;
+      text-align: center;
       display: block;
     }
+    
     header .navbar {
       position: fixed;
       display: flex;
@@ -256,16 +259,18 @@ header .navbar ul li a.active::after {
 
     }
     
+    
     .fa-times {
-      position: absolute;
+      width: 3rem;
+      position:fixed;
       top: 2rem;
       right: 2rem;
       font-size: 3rem;
       color: #fff;
       cursor: pointer;
-      transition: transform 0.3s ease; /* Smooth transition for rotation */
+      transition: transform 0.2s ease; /* Smooth transition for rotation */
     }
-    
+  
     .fa-times:hover {
       transform: rotate(90deg); /* Rotate the close button on hover */
     }
@@ -294,7 +299,7 @@ header .navbar ul li a.active::after {
       margin-top: 12rem;
     }
     .home .image img {
-      /* margin-top: -12rem; */
+      margin-top: -12rem;
     }
     .home .content h2 {
       flex: 1 1 40rem;
@@ -450,12 +455,13 @@ header .navbar ul li a.active::after {
     }
     .home .content {
     flex: 1 1 40rem;
-    padding-top: 1rem;
+    padding-top: 69px;
     z-index: 1;
     }
     .home .image {
-    flex: 1 1 40rem;
+    flex: 1 1 20rem;
     z-index: 1;
+    /* padding-bottom: 4rem; */
     }
     .home .image img {
     width: 70%;
