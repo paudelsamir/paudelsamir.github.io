@@ -34,7 +34,7 @@ body {
 }
 
 html {
-  font-size: 50%;
+  font-size: 55%;
   overflow-x: hidden;
 }
 html::-webkit-scrollbar {
@@ -455,7 +455,7 @@ header .navbar ul li a.active::after {
     }
     .home .content {
     flex: 1 1 40rem;
-    padding-top: 69px;
+    padding-top: 60px;
     z-index: 1;
     }
     .home .image {
