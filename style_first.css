@@ -1,0 +1,442 @@
+@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&display=swap");
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+}
+    
+
+body {
+    background: #010f1a;
+    background-size: cover;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    padding: 2px;
+    
+}
+
+#galaxy-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+
+.nav1 img{
+    height: 90px;
+    width: 90px;
+    margin-top: auto;
+    cursor:pointer;
+    transition: .5s ease-in-out;
+}
+.nav1 img:hover {
+    transform: scale(1.1);
+    
+}
+a {
+    text-decoration: none;
+    color: #fff;
+    position: relative;
+    transition: color 0.3s ease-in-out;
+  }
+  
+ 
+  
+  /* a:hover::before {
+    text-decoration: underline;
+    visibility: visible;
+    transform: scaleX(1);
+  } */
+
+li {
+    list-style: none;
+}
+
+
+
+li a {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    font-weight: bold;
+    
+}
+
+li a:hover {
+    color: #ff7700;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+ul.links{
+    padding-left: 0px ;
+}
+li a::before {
+    content: none;
+  }
+#header {
+    position: relative;
+    padding: 0 2rem;
+    overflow: hidden; 
+
+}
+div.intro #myname{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+div.intro #mystyle{
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
+}
+a.homebutton {
+    color: #ff7700;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* a.homebutton:hover {
+ background-color: rgba(255, 102, 0, 0.2);
+    box-shadow: 0 0 px #ff7700, 0 0 20px #ff7700, 0 0 30px #ff7700;
+} */
+
+/* a.homebutton:active {
+    background-color: rgba(255, 102, 0, 0.3);
+} */
+
+
+#header .nav1 a{
+    text-decoration: none;
+    color: #fff;
+    
+    
+}
+#header h1 a {
+    color: #ffffff;
+    text-align: center;
+    line-height: 3;
+    display: inline-block;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #header h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #000000;
+    align-items: center;
+    justify-content: center;
+    
+
+  }
+
+  #header h2 span {
+    color: #ffc107;
+    padding-left: 2px;
+    align-items: center;
+    justify-content: center;
+
+  }
+  
+  .typing::after {
+    content: "|"; 
+    animation: blink-caret 0.75s infinite;
+}
+
+@keyframes blink-caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+.navbar {
+    width: 100%;
+    height: 60px;
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.navbar .links {
+    display: flex;
+    gap: 2rem
+}
+
+.navbar .toggle_btn {
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: none;
+}
+.action_btn {
+    background-color: rgb(255, 119, 0);
+    color: #fff;
+    padding: 5px 12px;
+    margin: 1rem;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    font-size: 0.69rem;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 0 1px rgb(255, 119, 0), 0 0 10px rgb(255, 119, 0);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+
+.action_btn:hover{
+    color: #ff7700;
+    font-weight: bold;
+    background-color: rgba(255, 102, 0, 0.1);
+    padding: 5px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    
+}
+.dropdownMenu {
+    display: none;
+    position: absolute;
+    right: 2rem;
+    top: 90px;
+    width: 300px;
+    height: 0;
+    background: #ffffff1a;
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s ease-in-out;
+    opacity: 0;
+}
+
+.dropdownMenu.open {
+    height: 200px;
+    opacity: 1;
+}
+
+.dropdownMenu li {
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dropdownMenu .action_btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+
+.personal-photo {
+    position: relative;
+    height: 200px;
+    width: 210px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    /* margin-top: 4rem; */
+    margin-bottom: 1rem; 
+    background: #ff7700;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent; 
+}
+
+.personal-photo:hover {
+    transform: scale(1.03); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+}
+
+ .social-links {
+    margin-top: 40px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.social-links a {
+    margin-bottom: 30px;
+    font-size: 23px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: hsla(0, 0%, 100%, 0.05);
+    color: #fff;
+    line-height: 1;
+    margin-right: 15px; 
+    border-radius: 47%;
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s  ease-in-out, box-shadow 0.3s ease;
+}
+
+.social-links a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    mix-blend-mode: screen;
+}
+
+.social-links a:hover {
+    background: #ff7700; /* Hover color from your specification */
+    transform: scale(1.1);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Hover shadow */
+}
+
+
+
+@media (max-width: 992px) {
+    #header h1 {
+        font-size: 36px;
+    }
+    #header h2 {
+        font-size: 20px;
+        line-height: 30px;
+    }
+    #header .social-links {
+        margin-top: px;
+    }
+    #header .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media (max-width: 750px) {
+    .navbar .links, .navbar .action_btn {
+        display: none;
+    }
+    .navbar .toggle_btn {
+        display: block;
+
+    }
+    .dropdownMenu {
+        display: block;
+        top: 60px;
+        position: static;
+        max-height: 300px; /* Ensure it doesn't exceed a specific height */
+        overflow-y: auto; /* Make the menu scrollable if it exceeds the max height */
+        z-index: 1000;
+        transition: max-height 0.3s ease-in-out;
+    }
+    .dropdownMenu.open {
+        height:fit-content;
+        margin: 10px 0;
+  
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+
+    }
+    .social-links a {
+        margin: 0 10px;
+    }
+    .main-content {
+        padding: 103px 0; 
+        margin-bottom: 5px ;
+    }
+
+    .personal-photo {
+        width: 100px; 
+        height: 100px;
+        border-radius: 50%; 
+        /* margin-top: 7rem; */
+        margin-bottom: 5rem ;
+    }
+
+    .intro h1 {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+        margin-bottom: 5px; /* Reduce bottom margin */
+    }
+
+    .intro h2 {
+        font-size: 1em; 
+        margin-bottom: 10px; 
+    }
+
+    .content-below-box {
+        padding: 100px 0; 
+        margin-top: 0px; 
+    }
+}
+
+
+@media (max-width: 450px) {
+    .dropdownMenu {
+        left: 2rem;
+        width: 100%;
+    }
+    .dropdownMenu.open {
+        height: auto;
+    }
+    .navbar .links, .navbar .action_btn {
+        display: none;
+    }
+    .navbar .toggle_btn {
+        display: block;
+    }
+    .dropdownMenu {
+        display: block;
+    }
+    
+    /* Adjust layout for smaller screens */
+    #header h1 {
+        font-size: 28px;
+    }
+    #header h2 {
+        font-size: 18px;
+    }
+    .personal-photo {
+        width: 180px;
+        height: 175px;
+    }
+    
+    /* Ensure social icons are visible and properly spaced */
+    .social-links {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .social-links a {
+        margin: 5px;
+    }
+}

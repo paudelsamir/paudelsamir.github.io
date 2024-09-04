@@ -1,110 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Website </title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
-
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <link rel="icon " href="assets/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Favicon -->
+    <link id='favicon' rel="shortcut icon" href="assets/favicon.ico" type="image/ico">
+    <title>Portfolio |Samir Paudel</title>
 </head>
+<!-- pre loader -->
+<!-- <div class="loader-container">
+  <img draggable="false" src="./assets/images/preloader.gif" alt="">
+</div> -->
 
-<body>
-    <section id="header">
+<!-- navbar starts -->
+<header>
+    <a href="/" class="logo">
+        <img src="assets/blacklogo.png" alt="Samir Logo" class="logo-image">
+        SAM
+      </a>
+      
 
-        <div id="galaxy-bg"></div>
-        <div class="starfield-container" id="starfield"></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-        <!-- <script src="app.js"></script> -->
-
-        <div class="container">
-
-            <div class="navbar">
-                <div class="nav1">
-                    <a href="#"><img src="assets/whitelogorange.png" alt="logo"></a>
-                </div>
-                <ul class="links">
-                    <li>
-                        <a href="index.html" class="homebutton">
-                            <span>HOME</span>
-                        </a>
-                    </li>
-                    <li><a href="comingsoon/about.html">about</a>
-                    </li>
-                    <li><a href="comingsoon/projects.html">projects</a></li>
-                </ul>
-                <a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link"
-                    class="action_btn">
-                    <span>RESUME</span>
-
-                </a>
-                <div class="toggle_btn">
-                    <i class="fa-solid fa-bars"></i>
-                </div>
-            </div>
-
-            <div class="dropdownMenu open" id="mobileDropdown">
-
-                <li><a href="#" class="homebutton">Home</a></li>
-                <li><a href="comingsoon/about.html">about</a></li>
-                <li><a href="comingsoon/projects.html">projects</a></li>
-                <!-- <li><a href="comingsoon/blogs.html">blogs</a></li> -->
-                <!-- <li><a href="">contact</a></li> -->
-                <li><a href="https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link"
-                        class="action_btn">RESUME</a> </li>
-
-            </div>
-            <div class="main-content">
-                <img src="assets/formal dress.png" alt="who the heck is this bro??" class="personal-photo">
-                <div class="intro">
-                    <h1><a href="index.html" id="myname">Samir Paudel</a></h1>
-                    <h2 style="color:#fff" id="mystyle">I'm <span class="typing" style="color:#ff7700"></span></h2>
-                </div>
-
-                <div class="social-links">
-                    <a href="https://www.linkedin.com/in/sampdl" target="_blank" class="linkedin"><i
-                            class='bx bxl-linkedin-square'></i></a>
-                    <a href="https://www.github.com/paudelsamir" target="_blank" class="github"><i
-                            class="bx bxl-github"></i></a>
-                    <a href="https://www.instagram.com/samirpdl" target="_blank" class="instagram"><i
-                            class="bx bxl-instagram"></i></a>
-                    <a href="https://www.twitter.com/samirpaudel_" target="_blank" class="twitter"><i
-                            class="bx bxl-twitter"></i></a>
-                </div>
-            </div>
-        </section>
+        <div id="menu" class="fas fa-bars"></div>
+        <nav class="navbar">
+            <ul>
+            <li><a class="active" href="#">Home</a></li>
+            <li><a href="comingsoon/about.html">About</a></li>
+            <!-- <li><a href="#skills">Skills</a></li> -->
+            <!-- <li><a href="#education">Education</a></li> -->
+            <li><a href="comingsoon/projects.html">Projects</a></li>
+            <!-- <li><a href="#experience">Experience</a></li> -->
+            <!-- <li><a href="#contact">Contact</a></li> -->
+            <button onclick="window.open('https://drive.google.com/file/d/1yRVCawOeAaLrH2Qx1BPZXfXAdcCP7_Ud/view?usp=drive_link', '_blank');" class="space-btn">RESUME</button>
 
 
-            <script src="script.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
-            <script>
-                window.onload = function () {
-                    VANTA.WAVES({
-                        el: "body",
-                        mouseControls: true,
-                        touchControls: true,
-                        gyroControls: false,
-                        minHeight: 200.00,
-                        minWidth: 200.00,
-                        scale: 1.00,
-                        scaleMobile: 1.00,
-                        color: 0x010f1a,
-                        shininess: 27.00,
-                        waveHeight: 10.50,
-                        zoom: 0.79
-                    });
-                };
+            </ul>
+        </nav>
+</header>
+<!-- navbar ends -->
 
-            </script>
-    
+
+<!-- hero section starts -->
+<section class="home" id="home">
+    <div id="particles-js"></div>
+
+    <div class="content">
+    <h2>Greetings ! <br/>I'm  Samir<span> Paudel</span></h2>
+    <p>i am into <span class="typing-text"></span></p>
+    <a href="comingsoon/about.html" class="btn"><span>About Me</span>
+      <i class="fas fa-arrow-circle-down"></i>
+    </a>
+    <div class="socials">
+        <ul class="social-icons">
+          <li><a class="linkedin" aria-label="LinkedIn" href="https://www.linkedin.com/in/paudelsamir/" target="_blank"><i class="fab fa-linkedin"></i></a></li> 
+          <li><a class="github" aria-label="GitHub" href="https://github.com/paudelsamir" target="_blank"><i class="fab fa-github"></i></a></li>
+          <li><a class="twitter" aria-label="Twitter" href="https://twitter.com/samirpaudel_" target="_blank"><i class="fab fa-twitter"></i></a></li>
+          
+          <li><a class="instagram" aria-label="Instagram" href="https://www.instagram.com/samirpdl"><i class="fab fa-instagram" target="_blank"></i></a></li>
+          <li><a class="dev" aria-label="Dev" href="https://dev.to/paudelsamir" target="_blank"><i class="fab fa-dev"></i></a></li>
+        </ul>
+      </div>
+    </div>
+<div class="image">
+    <img draggable="false" class="tilt" src="assets/formal dress.png" alt="">
+</div>
+</section>
+<!-- hero section ends -->
+ <!-- typed.js cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.5/typed.min.js" integrity="sha512-1KbKusm/hAtkX5FScVR5G36wodIMnVd/aP04af06iyQTkD17szAMGNmxfNH+tEuFp3Og/P5G32L1qEC47CZbUQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.waves.min.js"></script>
+<script>
+    window.onload = function () {
+        VANTA.WAVES({
+            el: "body",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: true,
+            minHeight: 200.00,
+            minWidth: 100.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x010f1a,
+            shininess: 10.00,
+            waveHeight: 10.50,
+            zoom: 0.8
+        });
+    };
+
+</script>
+
 </body>
 </html>
