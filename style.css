@@ -137,11 +137,13 @@ header .logo {
     display: flex;
     align-items: center;
     font-size: 1.8rem;
-    font-weight: 700;
-    color: #343739;
+    font-weight: 1000;
+    color: #000000;
     text-decoration: none;
 }
-
+header .logo :hover{
+  color: #FF7913;
+}
 header .logo-image {
     width: 40px;
     height: 40px;
@@ -158,8 +160,8 @@ header .navbar ul {
 
 header .navbar ul li a {
     font-size: 1.5rem;
-    color: #343739;
-    font-weight: 600;
+    color: #000000;
+    font-weight: 800;
     text-decoration: none;
     position: relative;
     transition: color 0.3s ease;
