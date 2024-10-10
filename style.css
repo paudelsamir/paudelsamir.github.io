@@ -34,7 +34,7 @@ body {
 }
 
 html {
-  font-size: 53%;
+  font-size: 55%;
   overflow-x: hidden;
 }
 html::-webkit-scrollbar {
@@ -141,25 +141,23 @@ header .logo {
     color: #000000;
     text-decoration: none;
 }
-header .logo :hover{
-  color: #FF7913;
-}
+
 header .logo-image {
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     margin-right: 0.5rem;
 }
 
 header .navbar ul {
     list-style: none;
     display: flex;
-    gap: 2.5rem;
+    gap: 4rem;
     margin: 0;
     padding: 0;
 }
 
 header .navbar ul li a {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #000000;
     font-weight: 800;
     text-decoration: none;
@@ -327,10 +325,10 @@ header .navbar ul li a.active::after {
     .space-btn {
         position: relative;
         font-family: 'Poppins', sans-serif;
-        font-size: 1.1em;
+        font-size: 1.5em;
         text-transform: uppercase;
-        letter-spacing: 0.15em;
-        line-height: 1;
+        letter-spacing: 0.1em;
+        line-height: 0.8;
         color: var(--btn-color);
         font-weight: bold; /* Make text bold */
         margin: 0;
@@ -457,18 +455,20 @@ header .navbar ul li a.active::after {
     }
     .home .content {
     flex: 1 1 40rem;
-    padding-top: 58px;
+    padding-top: 60px;
     z-index: 1;
     }
     .home .image {
     flex: 1 1 20rem;
     z-index: 1;
+    width: 220px;
+    height: 220px;
     /* padding-bottom: 4rem; */
     }
     .home .image img {
     width: 70%;
     margin-left: 6rem;
-    border-radius: 50%;
+    border-radius: 5%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     background: #c5c6c7;
