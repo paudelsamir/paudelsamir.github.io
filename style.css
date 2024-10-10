@@ -299,7 +299,9 @@ header .navbar ul li a.active::after {
       margin-top: 12rem;
     }
     .home .image img {
-      margin-top: -12rem;
+      margin-left: 0 !important;  /* Remove left margin on mobile */
+      width: 80% !important; /* Scale down the image width */
+      margin-top: -12rem; /* Keep this if needed */
     }
     .home .content h2 {
       flex: 1 1 40rem;
@@ -461,13 +463,13 @@ header .navbar ul li a.active::after {
     .home .image {
     flex: 1 1 20rem;
     z-index: 1;
-    width: 220px;
-    height: 220px;
+    width: 200px;
+    height: 200px;
     /* padding-bottom: 4rem; */
     }
     .home .image img {
-    width: 70%;
-    margin-left: 6rem;
+    width: 60%;
+    margin-left: 17rem;
     border-radius: 5%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     cursor: pointer;
