@@ -303,6 +303,9 @@ header .navbar ul li a.active::after {
       width: 80% !important; /* Scale down the image width */
       margin-top: -12rem; /* Keep this if needed */
     }
+    .home .content{
+      padding-bottom: 80px;
+    }
     .home .content h2 {
       flex: 1 1 40rem;
       font-size: 4rem;
