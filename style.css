@@ -580,7 +580,7 @@ header .navbar ul li a.active::after {
         background-color: #007bb6;
     }
     
-    .social-icons a.dev:hover {
+    .social-icons a.medium:hover {
         background-color: #070707;
     }
     
