@@ -120,53 +120,95 @@ h2::after {
     left: 100%;
     margin-left: 15px;
 }
-
 .project-section {
-    margin-bottom: 3rem;
+    margin-block-end: 5rem;
+    padding-inline: 2rem;
+    background: var(--bg-color);
+    border-radius: 1rem;
+    box-shadow: inset 0 6px 12px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
 }
 
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
+    align-items: stretch;
+    padding-bottom: 40px;
 }
 
 .project-card {
-    background: var(--card-bg);
-    border-radius: 15px;
+    background: var(--secondary-bg);
+    border-radius: 1rem;
     padding: 1.5rem;
-    transition: var(--transition);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background var(--transition);
+    position: relative;
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(255, 121, 19, 0.2);
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    background: var(--secondary-bg);
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient( at top right, var(--hover-color) 10%, transparent 70%);
+    opacity: 0.1;
+    z-index: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.project-card:hover::before {
+    opacity: 0.3;
 }
 
 .project-card h3 {
-    font-size: 1.4rem;
-    margin-bottom: 0.75rem;
-    font-weight: 500;
+    font-size: 1.5rem;
+    margin-block-end: 0.5rem;
+    font-weight: 600;
     color: var(--accent-color);
+    position: relative;
+    z-index: 1;
 }
 
 .project-card p {
     font-size: 1rem;
-    margin-bottom: 1.25rem;
+    margin-block-end: 1.25rem;
     font-weight: 300;
-    flex-grow: 1;
+    color: var(--text-color);
+    position: relative;
+    z-index: 1;
+    opacity: 0.85;
 }
 
 .card-buttons {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    margin-top: auto;
+    gap: 0.5rem;
+    margin-block-start: auto;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.card-buttons button:hover {
+    background: var(--hover-color);
+    transform: scale(1.05);
+    box-shadow: 0 6px 15px rgba(255, 121, 19, 0.5);
+}
+
+.card-buttons button + button {
+    margin-left: 0.5rem; /* Space between buttons */
 }
 
 .github-link, .features-btn {
@@ -310,7 +352,7 @@ footer {
             <h3>Hangman Game</h3>
             <p>Classic word-guessing game implementation.</p>
             <div class="card-buttons">
-                <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2007-Hangman%20Project" class="github-link">
+                <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2007%20%26%2008/Hangman%20Project" class="github-link">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <button class="features-btn">Features</button>
@@ -326,7 +368,7 @@ footer {
             <h3>Caesar Cipher</h3>
             <p>Encryption and decryption using Caesar Cipher.</p>
             <div class="card-buttons">
-                <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2008-Caesar%20Cyphers%20And%20function%20Parameters" class="github-link">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2009%20%26%2010-Caesar%20Cyphers%20And%20function%20Parameters/Function%20with%20inputs/caesar-cyphers.py" class="github-link">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <button class="features-btn">Features</button>
@@ -427,7 +469,7 @@ footer {
             <h3>Snake Game</h3>
             <p>Recreation of the classic Snake game.</p>
             <div class="card-buttons">
-                <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2020-%20Snake%20Game%20Project" class="github-link">
+                <a href="https://github.com/paudelsamir/python-mastery/tree/main/Day%2025%20%26%2026-%20Snake%20Game%20Project" class="github-link">
                     <i class="fab fa-github"></i> GitHub
                 </a>
                 <button class="features-btn">Features</button>
@@ -521,57 +563,95 @@ footer {
     </section>
 
     <section class="project-section">
-        <h2>Beginner Data Science Projects</h2>
+        <h2>EDA Projects </h2>
         <div class="projects-grid">
+       <!-- FIFA Player Statistics -->
             <div class="project-card">
-                <h3>Exploratory Data Analysis</h3>
-                <p>Basic data analysis on a dataset of your choice.</p>
+                <h3>FIFA Player Statistics</h3>
+                <p>Explore the performance and skills of FIFA players.</p>
                 <div class="card-buttons">
-                    <a href="#" class="github-link">
-                        <i class="fab fa-github"></i> GitHub
+                    <a href="https://github.com/paudelsamir/EDA-Projects/blob/main/Project%2005-%20EDA%20Capstone%20Project%20%40%20Final%20Insights%20with%20FIFA%20dataset/EDA_with_FIFA_final.ipynb" class="github-link">
+                        <i class="fab fa-github"></i>GitHub
                     </a>
-                    <button class="features-btn">Features</button>
+                    <button class="features-btn">See Features</button>
                 </div>
                 <ul class="features-list">
                     <li>Data cleaning and preprocessing</li>
-                    <li>Statistical analysis</li>
-                    <li>Data visualization using matplotlib and seaborn</li>
-                </ul>            
+                    <li>Player skill and trend analysis</li>
+                    <li>Visualizations of player attributes</li>
+                </ul>
             </div>
-
+            <!-- Superhero Attributes -->
             <div class="project-card">
-                <h3>Simple Linear Regression</h3>
-                <p>Implement a basic linear regression model.</p>
+                <h3>Superhero Attributes</h3>
+                <p>Analyze the attributes and powers of superheroes.</p>
                 <div class="card-buttons">
-                    <a href="#" class="github-link">
+                    <a href="https://github.com/paudelsamir/EDA-Projects/tree/main/Project%2001%20-%20Superhero%20Dataset" class="github-link">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <button class="features-btn">Features</button>
+                    <button class="features-btn">See Features</button>
                 </div>
                 <ul class="features-list">
-                    <li>Data preparation and splitting</li>
-                    <li>Model training and evaluation</li>
-                    <li>Visualization of regression results</li>
-                </ul>            
+                    <li>Exploration of superhero demographics</li>
+                    <li>Analysis of power distributions</li>
+                    <li>Visualizations of key insights</li>
+                </ul>
             </div>
-
+    
+         
+    
+            <!-- Ukraine vs. Russia War Analysis -->
             <div class="project-card">
-                <h3>Twitter Sentiment Analysis</h3>
-                <p>Analyze sentiments of tweets on a specific topic.</p>
+                <h3>Ukraine vs. Russia War Analysis</h3>
+                <p>Analyze key trends and statistics of the ongoing conflict.</p>
                 <div class="card-buttons">
-                    <a href="#" class="github-link">
+                    <a href="https://github.com/paudelsamir/EDA-Projects/tree/main/Project%2002%20-%20Ukarine%20Vs%20Russia%20War" class="github-link">
                         <i class="fab fa-github"></i> GitHub
                     </a>
-                    <button class="features-btn">Features</button>
+                    <button class="features-btn">See Features</button>
                 </div>
                 <ul class="features-list">
-                    <li>Data collection using Twitter API</li>
-                    <li>Text preprocessing</li>
-                    <li>Sentiment classification</li>
-                </ul>            
+                    <li>Data on conflict events and impacts</li>
+                    <li>Trend and statistical analysis</li>
+                    <li>Visualizations of conflict data</li>
+                </ul>
+            </div>
+    
+            <!-- Nepal Trekking Trails -->
+            <div class="project-card">
+                <h3>Nepal Trekking Trails</h3>
+                <p>Insights into popular trekking routes in Nepal.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/paudelsamir/EDA-Projects/tree/main/Project%2003%20-%20Trekking%20Trails%20Nepal" class="github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <button class="features-btn">See Features</button>
+                </div>
+                <ul class="features-list">
+                    <li>Analysis of trekking routes</li>
+                    <li>Insights into route popularity</li>
+                    <li>Visualizations for trekking data</li>
+                </ul>
+            </div>
+    
+            <!-- Exercise Routines -->
+            <div class="project-card">
+                <h3>Exercise Routine Exploration</h3>
+                <p>Explore patterns and insights in fitness routines.</p>
+                <div class="card-buttons">
+                    <a href="https://github.com/paudelsamir/EDA-Projects/tree/main/Project%2004%20-%20Best%2050%20Exercises%20for%20your%20body" class="github-link">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <button class="features-btn">See Features</button>
+                </div>
+                <ul class="features-list">
+                    <li>Analysis of fitness data</li>
+                    <li>Pattern identification and recommendations</li>
+                    <li>Visualizations of workout trends</li>
+                </ul>
             </div>
         </div>
-    </section>
+    </section>    
 </div>
 
 <footer>
