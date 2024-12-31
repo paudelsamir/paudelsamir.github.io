@@ -303,6 +303,33 @@
         }
 
 
+
+.challenge-cards {
+    display: flex;
+    flex-wrap: wrap; /* Allows the cards to wrap onto the next line */
+    gap: 1rem; /* Adds space between the cards */
+}
+
+.card {
+    flex: 1 1 calc(300px - 1rem); /* Makes each card flexible, with a minimum width of ~300px */
+    max-width: 400px; /* Optional: Sets a maximum width for each card */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds a slight shadow for a clean look */
+    padding: 1rem;
+    border-radius: 10px; /* Smooth corners */
+    background-color: #ffffff; /* Adjust as needed for your theme */
+}
+
+.card img {
+    width: 100%; /* Ensures images scale with the card */
+    height: auto; /* Maintains the image's aspect ratio */
+    border-radius: 8px; /* Smooth corners for images */
+}
+
+.card p {
+    margin-top: 0.5rem;
+    font-size: 0.9rem; /* Adjust font size as needed */
+}
+
     </style>
 </head>
 
@@ -366,7 +393,7 @@
                         </section>
                         
                         <section class="ongoing-challenge">
-                            <h2>Ongoing Challenge 🚀</h2>
+                            <h2>Ongoing Challenge</h2>
                             <p>I'm exploring new data science concepts every day in my <strong>#365DaysOfData</strong> challenge. Track my progress and join the fun on GitHub!</p>
                         
                             <div class="challenge-cards">
@@ -375,16 +402,17 @@
                                     <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank">
                                         <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo">
                                     </a>
-                                    <p>Check out the repository where I document my daily progress and projects!</p>
+                                    
                                 </div>
+                                <p>Check out the repository where I document my daily progress and projects!</p>
                         
                                 <!-- GitHub Streak Card -->
                                 <div class="card streak-card">
                                     <a href="https://git.io/streak-stats" target="_blank">
                                         <img src="https://streak-stats.demolab.com/?user=paudelsamir&theme=dark" alt="GitHub Streak">
                                     </a>
-                                    <p>Here's my current GitHub streak 🔥. Consistency is the key, right?? </p>
                                 </div>
+                                <p>Here's my current GitHub streak . Consistency is the key, right?? </p>
                             </div>
                         </section>
                     
