@@ -207,6 +207,8 @@
             overflow: hidden;
             position: relative;
         }
+    
+
 
         .skill-level {
             height: 100%;
@@ -265,9 +267,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .container {
-                padding: 1rem;
-            }
         }
 
         @keyframes fadeInUp {
@@ -302,6 +301,8 @@
         section:nth-child(4) {
             animation-delay: 0.7s;
         }
+
+
     </style>
 </head>
 
@@ -324,6 +325,13 @@
                 <img src="../assets/c.jpg" alt="Samir Paudel">
             </div>
             <div class="content">
+                   <section>
+                    <h2>Ongoing Challenge</h2>
+                    <div class="repo-card">
+                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo">
+                    </div>
+                </section>
+                
                 <section>
                     <h2>Who I Am</h2>
                     <p>Hello! I'm <span>Samir Paudel</span>, a computer science student based in Kathmandu. With a
@@ -371,20 +379,26 @@
                         </div>
                     </div>
                 </section>
-                 
+
+             
                 <section>
                     <h2>Beyond Work</h2>
                     <p>When I'm not immersed in coding or studying, you can find me playing football or watching movies.
                         I believe in balancing work and leisure to stay motivated and inspired. I'm always eager to take
                         on new challenges and collaborate on innovative projects.</p>
                 </section>
-
-                <section class="contact">
-                    <h2>Get in Touch</h2>
-                    <p>I'm always open to new opportunities and interesting conversations. Feel free to reach out!</p>
-                    <a href="mailto:samirpaudel2005@gmail.com">Email</a>
-                    <a href="https://www.linkedin.com/in/sampdl">LinkedIn</a>
-                </section>
+                
+                <section class="linkedin-profile">
+                <h2>Connect with me on LinkedIn</h2>
+                <div class="elfsight-widget">
+                    <iframe src="https://214bf88481f64add8a11c14dc5004728.elf.site" 
+                            width="100%" 
+                            height="500px" 
+                            frameborder="0"
+                            scrolling="no"
+                            title="LinkedIn Profile"></iframe>
+                </div>
+            </section>         
             </div>
         </main>
     </div>
@@ -393,6 +407,63 @@
         <p>© 2024 Samir Paudel. Made with ❤️</p>
     </footer>
     <script src="../script.js"></script>
+    <script>
+// Fetch 365DaysOfData repository from GitHub API
+fetch('https://api.github.com/repos/paudelsamir/365DaysOfData')
+  .then(response => response.json())
+  .then(repo => {
+    const repoListContainer = document.getElementById('github-repos');
+
+    const repoCard = document.createElement('div');
+    repoCard.classList.add('repo-card');
+
+    repoCard.innerHTML = `
+        <h3><span class="repo-icon">&#x1F4BB;</span>${repo.name}</h3>
+        <p>${repo.description || 'No description available'}</p>
+        <a href="${repo.html_url}" target="_blank">View on GitHub</a>
+        <div class="repo-stars">
+            ⭐ ${repo.stargazers_count} stars
+        </div>
+        <div class="repo-preview">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/120px-Octicons-mark-github.svg.png" alt="GitHub icon">
+            <p>Repository Preview</p>
+        </div>
+    `;
+
+    repoListContainer.appendChild(repoCard);
+})
+.catch(error => console.error('Error fetching 365DaysOfData repo:', error));
+
+async function fetchLinkedInData() {
+    const token = 'YOUR_ACCESS_TOKEN'; // You'll need an access token from LinkedIn's OAuth 2.0 flow
+
+    // Replace 'me' with your LinkedIn profile ID
+    const apiUrl = 'https://api.linkedin.com/v2/paudelsamir?oauth2_access_token=' + token;
+
+    try {
+        const response = await fetch(apiUrl, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'X-Restli-Protocol-Version': '2.0.0'
+            }
+        });
+
+        const data = await response.json();
+        console.log(data);
+
+        // Example: Display your LinkedIn headline
+        document.getElementById('linkedin-headline').textContent = data.localizedHeadline;
+    } catch (error) {
+        console.error('Error fetching LinkedIn data:', error);
+    }
+}
+
+// Call this function to fetch LinkedIn data when the page loads
+fetchLinkedInData();
+
+
+    </script>
 </body>
 
 </html>
