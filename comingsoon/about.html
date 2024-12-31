@@ -325,68 +325,70 @@
                 <img src="../assets/c.jpg" alt="Samir Paudel">
             </div>
             <div class="content">
-                   <section>
-                    <h2>Ongoing Challenge</h2>
-                    <div class="repo-card">
-                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo">
-                    </div>
-                </section>
                 
-                <section>
-                    <h2>Who I Am</h2>
-                    <p>Hello! I'm <span>Samir Paudel</span>, a computer science student based in Kathmandu. With a
-                    background in programming and a passion for technology.</p>
-                </section>
-
-                <section>
-                    <h2>My Journey</h2>
-                    <p>My journey in computer science began when I started my undergraduate studies. Since then, I've
-                    had the opportunity to learn various programming languages like C, C++, and Python. Currently, I
-                    am in my 4th semester, and my interest in machine learning and data science continues to grow as
-                    I delve deeper into these fields.</p>
-                </section>
-
-                <section>
-                    <h2>What I Do</h2>
-                    <p>I am currently focused on enhancing my knowledge and skills in machine learning and data science.
-                        I have intermediate proficiency in programming languages such as C, C++, and Python. My current
-                        projects involve exploring different machine learning algorithms and understanding their
-                        applications in real-world scenarios.</p>
-
-                    <div class="skills">
-                        <div class="skill">
-                            <span class="skill-name">Python</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 80%;"></div>
+                    <section>
+                        <h2>Who I Am ?</h2>
+                        <p>Hello! I'm <span>Samir Paudel</span>, a computer science student based in Nepal.
+                        <p>
+                  </section>
+                    <section>
+                        <h2>My Journey</h2>
+                        <p>I’m currently pursuing my bachelor’s in Computer Science at Tribhuvan University, now in my 5th semester . My journey started with a love for problem-solving 🔍, and today I’m diving deep into Python and ML 🤖. Every new challenge is a chance to learn, and I’m excited to see where this path leads — with a lot of coffee ☕ along the way!</p>
+               
+                            <p>In my three-year journey with computers, I’ve learned a lot—both in tech and in life. I’ve explored countless topics and discovered so many fascinating things, but my curiosity keeps pushing me to dive deeper into data. After all, Its my love for the curves 😅</p>
+                        
+                            <div class="skills">
+                                <div class="skill">
+                                    <span class="skill-name">Python 🐍</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 80%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">C++ 💻</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Web Development 🌐</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 40%;"></div>
+                                    </div>
+                                </div>
+                                <div class="skill">
+                                    <span class="skill-name">Machine Learning 🤖</span>
+                                    <div class="skill-bar">
+                                        <div class="skill-level" style="width: 10%;"></div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="skill">
-                            <span class="skill-name">C++</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 70%;"></div>
+                        </section>
+                        
+                        <section class="ongoing-challenge">
+                            <h2>Ongoing Challenge 🚀</h2>
+                            <p>I'm exploring new data science concepts every day in my <strong>#365DaysOfData</strong> challenge. Track my progress and join the fun on GitHub!</p>
+                        
+                            <div class="challenge-cards">
+                                <!-- GitHub Repository Card -->
+                                <div class="card repo-card">
+                                    <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank">
+                                        <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo">
+                                    </a>
+                                    <p>Check out the repository where I document my daily progress and projects!</p>
+                                </div>
+                        
+                                <!-- GitHub Streak Card -->
+                                <div class="card streak-card">
+                                    <a href="https://git.io/streak-stats" target="_blank">
+                                        <img src="https://streak-stats.demolab.com/?user=paudelsamir&theme=dark" alt="GitHub Streak">
+                                    </a>
+                                    <p>Here's my current GitHub streak 🔥. Consistency is the key to growth!</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="skill">
-                            <span class="skill-name">Web Development</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 40%;"></div>
-                            </div>
-                        </div><div class="skill">
-                            <span class="skill-name">Machine Learning</span>
-                            <div class="skill-bar">
-                                <div class="skill-level" style="width: 10%;"></div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-             
-                <section>
-                    <h2>Beyond Work</h2>
-                    <p>When I'm not immersed in coding or studying, you can find me playing football or watching movies.
-                        I believe in balancing work and leisure to stay motivated and inspired. I'm always eager to take
-                        on new challenges and collaborate on innovative projects.</p>
-                </section>
+                        </section>
+                        
+                        
                 
                 <section class="linkedin-profile">
                 <h2>Connect with me on LinkedIn</h2>
@@ -398,7 +400,9 @@
                             scrolling="no"
                             title="LinkedIn Profile"></iframe>
                 </div>
-            </section>         
+            </section>
+
+            
             </div>
         </main>
     </div>
@@ -408,59 +412,7 @@
     </footer>
     <script src="../script.js"></script>
     <script>
-// Fetch 365DaysOfData repository from GitHub API
-fetch('https://api.github.com/repos/paudelsamir/365DaysOfData')
-  .then(response => response.json())
-  .then(repo => {
-    const repoListContainer = document.getElementById('github-repos');
 
-    const repoCard = document.createElement('div');
-    repoCard.classList.add('repo-card');
-
-    repoCard.innerHTML = `
-        <h3><span class="repo-icon">&#x1F4BB;</span>${repo.name}</h3>
-        <p>${repo.description || 'No description available'}</p>
-        <a href="${repo.html_url}" target="_blank">View on GitHub</a>
-        <div class="repo-stars">
-            ⭐ ${repo.stargazers_count} stars
-        </div>
-        <div class="repo-preview">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/120px-Octicons-mark-github.svg.png" alt="GitHub icon">
-            <p>Repository Preview</p>
-        </div>
-    `;
-
-    repoListContainer.appendChild(repoCard);
-})
-.catch(error => console.error('Error fetching 365DaysOfData repo:', error));
-
-async function fetchLinkedInData() {
-    const token = 'YOUR_ACCESS_TOKEN'; // You'll need an access token from LinkedIn's OAuth 2.0 flow
-
-    // Replace 'me' with your LinkedIn profile ID
-    const apiUrl = 'https://api.linkedin.com/v2/paudelsamir?oauth2_access_token=' + token;
-
-    try {
-        const response = await fetch(apiUrl, {
-            method: 'GET',
-            headers: {
-                'Authorization': `Bearer ${token}`,
-                'X-Restli-Protocol-Version': '2.0.0'
-            }
-        });
-
-        const data = await response.json();
-        console.log(data);
-
-        // Example: Display your LinkedIn headline
-        document.getElementById('linkedin-headline').textContent = data.localizedHeadline;
-    } catch (error) {
-        console.error('Error fetching LinkedIn data:', error);
-    }
-}
-
-// Call this function to fetch LinkedIn data when the page loads
-fetchLinkedInData();
 
 
     </script>
