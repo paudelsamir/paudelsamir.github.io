@@ -206,6 +206,7 @@ header .navbar ul li a.active::after {
   cursor: pointer;
   color: rgb(24, 2, 63);
   display: none;
+  
 }
 
 @media (max-width: 768px) {
