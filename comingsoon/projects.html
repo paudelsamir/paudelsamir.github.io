@@ -131,7 +131,7 @@
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         gap: 1.5rem;
-        align-items: stretch;
+        align-items: start;
         padding-bottom: 40px;
     }
 
@@ -261,7 +261,7 @@
     }
 
     .features-list li:before {
-        content: "\2022";
+        content: "\2025";
         color: var(--accent-color);
         font-weight: bold;
         position: absolute;
@@ -336,6 +336,25 @@
 
     ::-webkit-scrollbar-thumb:hover {
         background: var(--hover-color);
+    }
+    .back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+
+    .back-to-top:hover {
+        opacity: 1;
     }
     </style>
 </head>
@@ -671,7 +690,40 @@
                 }
             });
         });
+
+        // Add smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add a back-to-top button
+        const backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTopButton.classList.add('back-to-top');
+        document.body.appendChild(backToTopButton);
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
     });
 </script>
+
+
 </body>
 </html>

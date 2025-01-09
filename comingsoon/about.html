@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Samir Paudel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
@@ -330,6 +331,25 @@
     font-size: 0.9rem; /* Adjust font size as needed */
 }
 
+.back-to-top {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        background: var(--accent-color);
+        color: var(--bg-color);
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        display: none;
+        opacity: 0.8;
+        transition: opacity 0.3s;
+    }
+
+    .back-to-top:hover {
+        opacity: 1;
+    }
     </style>
 </head>
 
@@ -405,13 +425,15 @@
                                     
                                 </div>
                                 <p>Check out the repository where I document my daily progress and projects!</p>
-                        
+                      
                                 <!-- GitHub Streak Card -->
                                 <div class="card streak-card">
-                                    <a href="https://git.io/streak-stats"><img src="https://streak-stats.demolab.com?user=paudelsamir&theme=dark&short_numbers=true&date_format=%5BY%20%5DM%20j&hide_total_contributions=true" alt="GitHub Streak" /></a>
+                                    <a href="https://git.io/streak-stats">
+                                          <img src="https://github-readme-streak-stats.herokuapp.com?user=paudelsamir" alt="GitHub Streak" />
                                     </a>
                                 </div>
-                                <p>Here's my current GitHub streak . Consistency is the key, right?? </p>
+                                
+                                <p>Here's my current Learning streak . Consistency is the key, right?? </p>
                             </div>
                         </section>
                     
@@ -425,10 +447,82 @@
     <script src="../script.js"></script>
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <script>
+    // Smooth scrolling for navigation buttons
+    document.querySelectorAll('.nav-button').forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+            window.location.href = this.getAttribute('href');
+        });
 
 
+    // Animate profile image on hover
+    const profileImage = document.querySelector('.profile-image img');
+    profileImage.addEventListener('mouseover', () => {
+        profileImage.style.transform = 'scale(1.05)';
+        profileImage.style.boxShadow = '0 5px 35px rgba(0, 0, 0, 0.1)';
+    });
+    profileImage.addEventListener('mouseout', () => {
+        profileImage.style.transform = 'scale(1)';
+        profileImage.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+    });
 
-    </script>
+    // Animate skill bars on scroll
+    const skillBars = document.querySelectorAll('.skill-level');
+    const options = {
+        threshold: 0.5
+    };
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.width = entry.target.getAttribute('style').split(':')[1];
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    skillBars.forEach(bar => {
+        skillObserver.observe(bar);
+    });
+
+    // Fade in sections on scroll
+    const sections = document.querySelectorAll('section');
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+
+    // Go up button
+    const backToTopButton = document.createElement('button');
+        backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+        backToTopButton.classList.add('back-to-top');
+        document.body.appendChild(backToTopButton);
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopButton.style.display = 'block';
+            } else {
+                backToTopButton.style.display = 'none';
+            }
+        });
+});
+</script>
+<!-- <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> -->
+
 </body>
 
 </html>
