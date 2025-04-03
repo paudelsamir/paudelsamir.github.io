@@ -228,13 +228,13 @@
 
         <section class="about-text">
           <p>
-            I'm Samir Paudel, a computer science student based in Nepal.
+            Third year CS student based in Nepal.
           </p>
 
           <p>
-            CS student @ Tribhuvan University- 5th sem. I am into machine learning, data science, and solving cool problems. 
-            Love building stuff, tweaking models, and making ai actually work. 
-            When i'm not coding, you'll find me on the football field, binge watching a series, or enjoying a good cup of coffee.
+            I try build simple things with neural networks. <br>
+            love building and tweaking, and have a love/hate relationship with AI. 
+            <br> When I'm not coding, I'm either into football, shows, or just vibing with pollution in kathmandu.
           </p>
         </section>
 
@@ -246,7 +246,7 @@
 
         <section class="service">
 
-          <h3 class="h3 service-title">What I'm Doing</h3>
+          <h3 class="h3 service-title">What I'm actually into</h3>
 
           <ul class="service-list">
 
@@ -260,7 +260,7 @@
             <h4 class="h4 service-item-title">Python Development</h4>
 
             <p class="service-item-text">
-              High quality Automated scripts and tools for your needs.
+               quality automated scripts and tools for your needs.
             </p>
               </div>
 
@@ -276,7 +276,7 @@
             <h4 class="h4 service-item-title">Web Design</h4>
 
             <p class="service-item-text">
-              Simple and modern web services tailored to your needs.
+              simple and modern web services tailored to your needs.
             </p>
               </div>
 
@@ -292,7 +292,7 @@
             <h4 class="h4 service-item-title">Machine Learning</h4>
 
             <p class="service-item-text">
-              Deploying ML models for real-world solutions.
+              simple stuffs with Neural Networks as your need.
             </p>
               </div>
 
@@ -314,13 +314,13 @@
         </section>
         <section class="ongoing-challenge">     
           <div>
-            <h2 class="h3 section-title">Ongoing Challenge</h2>
+            <h2 class="h3 section-title">Right Now</h2>
             <div class="service-item">
               <!-- GitHub Repository Card -->
               <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link" style="text-decoration: none; color: inherit;">
                 <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo" class="repo-image" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
                 <h3 class="repo-title" style="font-size: 1.2rem; font-weight: 600; margin: 0;">#365DaysOfData</h3>
-                <p class="repo-description" style="font-size: 0.9rem; color: #555; margin-top: 5px;">Join my daily data science journey starting November 2024!</p>
+                <p class="repo-description" style="font-size: 0.9rem; color: #555; margin-top: 5px;">Challenging myself to learn daily starting November 2024!</p>
               </a>
             </div>
           </div>
@@ -432,96 +432,103 @@
         </section>
 
         <section class="skill">
-          <h3 class="h3 skills-title">My skills</h3>
+          <h3 class="h3 skills-title">Tools used/ Skills</h3>
           <div class="skills-grid">
-        <style>
-          .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            padding: 1rem;
-          }
+                <style>
+                  .skills-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 0.75rem;
+                    padding: 0.75rem;
+                    max-width: 1000px;
+                    margin: 0 auto;
+                  }
 
-          .skills-card {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
-            width: 80%;
-            margin: 0 auto;
-          }
+                  .skills-card {
+                    background: #f8f9fa;
+                    padding: 1rem;
+                    border-radius: 8px;
+                    transition: transform 0.2s ease, box-shadow 0.2s ease;
+                    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+                    position: relative;
+                    overflow: hidden;
+                  }
 
-          .skills-card:hover {
-            transform: translateY(-3px);
-          }
+                  .skills-card:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+                  }
 
-          .skills-card h5 {
-            color: #495057;
-            margin: 0 0 0.75rem 0;
-            font-size: 0.9rem;
-          }
+                  .skills-card h5 {
+                    color: #495057;
+                    margin: 0 0 0.5rem 0;
+                    font-size: 0.9rem;
+                    font-weight: 600;
+                    position: relative;
+                    z-index: 1;
+                  }
 
-          .skill-progress {
-            height: 6px;
-            background: #adb5bd;
-            border-radius: 4px;
-            margin-bottom: 0.5rem;
-          }
+                  .skill-progress {
+                    height: 6px;
+                    background: #e9ecef;
+                    border-radius: 3px;
+                    margin-bottom: 0.5rem;
+                    position: relative;
+                    overflow: hidden;
+                  }
 
-          .skill-progress-fill {
-            height: 100%;
-            background: #495057;
-            border-radius: 4px;
-            transition: width 1s ease;
-          }
+                  .skill-progress-fill {
+                    height: 100%;
+                    background: linear-gradient(90deg, #495057 0%, #6c757d 100%);
+                    border-radius: 3px;
+                    transition: width 0.8s ease-out;
+                    position: relative;
+                  }
 
-          .skills-card data {
-            display: block;
-            text-align: right;
-            color: #343a40;
-            font-weight: 600;
-            font-size: 0.8rem;
-          }
+                  .skill-progress-fill::after {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+                    bottom: 0;
+                    background: rgba(255, 255, 255, 0.1);
+                    animation: progress-shine 1.5s infinite;
+                  }
 
-          @media (max-width: 1200px) {
-            .skills-grid {
-          grid-template-columns: repeat(2, 1fr);
-            }
-          }
+                  .skills-card data {
+                    display: block;
+                    text-align: right;
+                    color: #343a40;
+                    font-weight: 600;
+                    font-size: 0.8rem;
+                    letter-spacing: 0.4px;
+                  }
 
-          @media (max-width: 768px) {
-            .skills-grid {
-          grid-template-columns: 1fr;
-            }
+                  @keyframes progress-shine {
+                    0% { transform: translateX(-100%); }
+                    100% { transform: translateX(100%); }
+                  }
 
-            .skills-title {
-          font-size: 1.75rem;
-            }
-          }
-        </style>
+                  @media (max-width: 768px) {
+                    .skills-grid {
+                      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                      padding: 0.5rem;
+                    }
 
+                    .skills-card {
+                      padding: 0.75rem;
+                    }
+                  }
+                </style>
+      
+        <!-- general development -->
         <div class="skills-card">
           <h5 class="h5">Web Development</h5>
           <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 85%;"></div>
+            <div class="skill-progress-fill" style="width: 65%;"></div>
           </div>
-          <data value="85">85%</data>
-        </div>
-
-        <div class="skills-card">
-          <h5 class="h5">Machine Learning</h5>
-          <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 90%;"></div>
-          </div>
-          <data value="90">90%</data>
-        </div>
-
-        <div class="skills-card">
-          <h5 class="h5">ANN / CNN / RNN</h5>
-          <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 85%;"></div>
-          </div>
-          <data value="85">85%</data>
+          <data value="65">65%</data>
         </div>
 
         <div class="skills-card">
@@ -532,24 +539,98 @@
           <data value="80">80%</data>
         </div>
 
+        <!-- machine learning / deep learning -->
         <div class="skills-card">
-          <h5 class="h5">Data Visualization / Preprocessing</h5>
+          <h5 class="h5">Machine Learning</h5>
           <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 75%;"></div>
+            <div class="skill-progress-fill" style="width: 90%;"></div>
           </div>
-          <data value="75">75%</data>
+          <data value="82">82%</data>
         </div>
 
         <div class="skills-card">
-          <h5 class="h5">AWS / Docker / Azure</h5>
+          <h5 class="h5">NN Optimization</h5>
           <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 70%;"></div>
+            <div class="skill-progress-fill" style="width: 10%;"></div>
           </div>
-          <data value="70">70%</data>
+          <data value="10">10%</data>
         </div>
 
         <div class="skills-card">
-          <h5 class="h5">Python / C++ / Prompt Engineering</h5>
+          <h5 class="h5">Sequence Modeling</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 15%;"></div>
+          </div>
+          <data value="15">15%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">Transformers</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 15%;"></div>
+          </div>
+          <data value="15">15%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">Computer Vision</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 30%;"></div>
+          </div>
+          <data value="30">30%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">RNN</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 30%;"></div>
+          </div>
+          <data value="30">30%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">NLP</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 45%;"></div>
+          </div>
+          <data value="45">45%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">CNN</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 60%;"></div>
+          </div>
+          <data value="60">60%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">ANN</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 60%;"></div>
+          </div>
+          <data value="60">60%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">Generative Models</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 5%;"></div>
+          </div>
+          <data value="5">5%</data>
+        </div>
+
+        <!-- programming / tools -->
+        <div class="skills-card">
+          <h5 class="h5">C++</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 40%;"></div>
+          </div>
+          <data value="40">40%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">Python</h5>
           <div class="skill-progress">
             <div class="skill-progress-fill" style="width: 90%;"></div>
           </div>
@@ -557,11 +638,43 @@
         </div>
 
         <div class="skills-card">
-          <h5 class="h5">NLP / Computer Vision</h5>
+          <h5 class="h5">Git / GitHub</h5>
           <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 85%;"></div>
+            <div class="skill-progress-fill" style="width: 90%;"></div>
           </div>
-          <data value="85">85%</data>
+          <data value="90">90%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">PyTorch</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 70%;"></div>
+          </div>
+          <data value="70">70%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">Scikit-Learn</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 80%;"></div>
+          </div>
+          <data value="80">80%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">TensorFlow</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 80%;"></div>
+          </div>
+          <data value="80">80%</data>
+        </div>
+
+        <div class="skills-card">
+          <h5 class="h5">AWS</h5>
+          <div class="skill-progress">
+            <div class="skill-progress-fill" style="width: 70%;"></div>
+          </div>
+          <data value="70">70%</data>
         </div>
 
         <div class="skills-card">
@@ -572,23 +685,8 @@
           <data value="60">60%</data>
         </div>
 
-        <div class="skills-card">
-          <h5 class="h5">Git / GitHub</h5>
-          <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 80%;"></div>
           </div>
-          <data value="80">80%</data>
-        </div>
-
-        <div class="skills-card">
-          <h5 class="h5">Scikit-Learn / TensorFlow / PyTorch</h5>
-          <div class="skill-progress">
-            <div class="skill-progress-fill" style="width: 85%;"></div>
-          </div>
-          <data value="85">85%</data>
-        </div>
-          </div>
-        </section>
+      </section>
       </article>
 
 
