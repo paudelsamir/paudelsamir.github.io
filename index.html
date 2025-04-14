@@ -52,7 +52,7 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/formal_dress.png" alt="Samir-Paudel" width="60" >
+          <img src="./assets/blacklogo.png" alt="Samir-Paudel" width="60" style="filter: grayscale(100%);">
         </figure>
 
         <div class="info-content">
@@ -314,15 +314,57 @@
         </section>
         <section class="ongoing-challenge">     
           <div>
-            <h2 class="h3 section-title">Right Now</h2>
-            <div class="service-item">
-              <!-- GitHub Repository Card -->
-              <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link" style="text-decoration: none; color: inherit;">
-                <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData" alt="365DaysOfData Repo" class="repo-image" style="border-radius: 8px; width: 100%; margin-bottom: 15px;">
-                <h3 class="repo-title" style="font-size: 1.2rem; font-weight: 600; margin: 0;">#365DaysOfData</h3>
-                <p class="repo-description" style="font-size: 0.9rem; color: #555; margin-top: 5px;">Challenging myself to learn daily starting November 2024!</p>
+
+            <h3 class="h3 service-title">Right Now !!!!</h3>
+            <div class="service-item github-card">
+              <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link">
+                <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData&theme=graywhite&border_radius=10" alt="365DaysOfData Repo" class="repo-image">
+                <!-- <h3 class="repo-title">#365DaysOfData</h3> -->
+                <p class="repo-description">Challenging myself to learn daily starting November 2024!</p>
               </a>
             </div>
+            <style>
+
+              .github-card {
+                background-color: #ffffff;
+                border: 1px solid #ddd;
+                border-radius: 15px;
+                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
+                padding: 20px;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+              }
+
+                .github-card:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+                }
+
+              .repo-link {
+                text-decoration: none;
+                color: #000;
+              }
+
+              .repo-image {
+                width: 100%;
+                border-radius: 10px;
+                margin-bottom: 15px;
+                filter: grayscale(100%); /* Make the GitHub card B/W */
+              }
+
+              .repo-title {
+                font-size: 1.3;
+                font-weight: bold;
+                color: #111;
+              }
+
+              .repo-description {
+                font-size: 0.94rem;
+                color: #0e0e0e;
+              }
+
+            </style>
+            
           </div>
         </section>
 
@@ -353,51 +395,121 @@
       <article class="resume" data-page="resume">
         <header>
           <h2 class="h2 article-title">Resume</h2>
-          <!-- Add this download button -->
+          <!-- Download button -->
           <a href="https://drive.google.com/file/d/1SeQgFQc3K9e43E2Hnxjohm58Jwjoc-QH/view?usp=sharing" 
-         class="resume-download-btn" 
-         target="_blank"
-         rel="noopener noreferrer"
-         download>
-        <ion-icon name="download-outline"></ion-icon>
-        Download Full Resume
+             class="resume-download-btn" 
+             target="_blank"
+             rel="noopener noreferrer"
+             download>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <ion-icon name="download-outline"></ion-icon>
+            Download Full Resume
           </a>
         </header>
 
-        <!-- Add this CSS -->
+        <!-- CSS for styling -->
         <style>
           .resume header {
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-bottom: 2rem;
-        gap: 0.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            gap: 0.5rem;
           }
 
           .resume-download-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        background: #f5f5f5;
-        color: #333;
-        border-radius: 4px;
-        text-decoration: none;
-        transition: all 0.3s ease;
-        font-weight: 500;
-        border: 1px solid #ccc;
-        font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: #f8f9fa;
+            color: #333;
+            /* border-radius: 6px; */
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid #ccc;
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
           }
 
           .resume-download-btn:hover {
-        background: #e0e0e0;
-        transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            background: #e9ecef;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
           }
 
-          .resume-download-btn:active {
-        transform: translateY(0);
+          .resume-download-btn span {
+            position: absolute;
+            display: block;
+          }
+            .resume-download-btn span:nth-child(1),
+            .resume-download-btn span:nth-child(3) {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #474747);
+            }
+
+            .resume-download-btn span:nth-child(2),
+            .resume-download-btn span:nth-child(4) {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg, transparent, #d3d1d1);
+            }
+
+            .resume-download-btn span:nth-child(1) {
+            top: 0;
+            left: -100%;
+            animation: btn-anim1 1.5s linear infinite;
+            }
+
+            .resume-download-btn span:nth-child(2) {
+            top: -100%;
+            right: 0;
+            animation: btn-anim2 1.5s linear infinite 0.3s;
+            }
+
+            .resume-download-btn span:nth-child(3) {
+            bottom: 0;
+            right: -100%;
+            animation: btn-anim3 1.5s linear infinite 0.6s;
+            }
+
+            .resume-download-btn span:nth-child(4) {
+            bottom: -100%;
+            left: 0;
+            animation: btn-anim4 1.5s linear infinite 0.9s;
+            }
+
+          @keyframes btn-anim1 {
+            0% { left: -100%; }
+            100% { left: 100%; }
+          }
+
+          @keyframes btn-anim2 {
+            0% { top: -100%; }
+            100% { top: 100%; }
+          }
+
+          @keyframes btn-anim3 {
+            0% { right: -100%; }
+            100% { right: 100%; }
+          }
+
+          @keyframes btn-anim4 {
+            0% { bottom: -100%; }
+            100% { bottom: 100%; }
+          }
+
+          .resume-download-btn ion-icon {
+            font-size: 1.2rem;
+            color: #555;
           }
         </style>
 
@@ -446,15 +558,8 @@
             background: #f8f9fa;
             padding: 1rem;
             border-radius: 8px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid #dee2e6; /* Minimal border added */
             box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-          }
-
-          .skills-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
           }
 
           .skills-card h5 {
@@ -462,36 +567,20 @@
             margin: 0 0 0.5rem 0;
             font-size: 0.9rem;
             font-weight: 600;
-            position: relative;
-            z-index: 1;
           }
 
           .skill-progress {
             height: 6px;
             background: #e9ecef;
             border-radius: 3px;
-            margin-bottom: 0.5rem;
-            position: relative;
             overflow: hidden;
           }
 
           .skill-progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #495057 0%, #6c757d 100%);
+            background: linear-gradient(90deg, #2e2e2e 0%, #b2b2b2 100%);
             border-radius: 3px;
-            transition: width 0.8s ease-out;
-            position: relative;
-          }
-
-          .skill-progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.1);
-            animation: progress-shine 1.5s infinite;
+            transition: width 0.3s ease-out;
           }
 
           .skills-card data {
@@ -501,11 +590,6 @@
             font-weight: 600;
             font-size: 0.8rem;
             letter-spacing: 0.4px;
-          }
-
-          @keyframes progress-shine {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
           }
 
           @media (max-width: 768px) {
@@ -519,6 +603,15 @@
             }
           }
         </style>
+        </style>
+        </style>
+
+        <div class="skills-disclaimer" style="display: flex; align-items: center; margin-bottom: 1rem; font-size: 0.85rem; color: #555; font-style: italic;">
+            <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+            <ion-icon name="information-circle-outline" style="margin-right: 8px; font-size: 1.2rem; color: #000;"></ion-icon>
+            <span>Skills and Tools Used - Last updated on March 2025</span>
+          <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+        </div>
           <h3 class="h3 skills-title">Skills</h3>
           <div class="skills-grid">
             <!-- general development -->
@@ -602,7 +695,7 @@
         </section>
 
         <section class="tools">
-          <h3 class="h3 tools-title">Tools Used</h3>
+            <h3 class="h3 tools-title" style="margin-top: 20px;">Tools Used</h3>
           <div class="skills-grid">
             <!-- programming / tools -->
             <div class="skills-card">
@@ -684,7 +777,15 @@
               <data value="30">30%</data>
             </div>
           </div>
-        </section>
+        </section>  
+        
+        <div style="margin-top: 2rem;"></div> <!-- Added gap before the section -->
+        <div class="skills-disclaimer" style="display: flex; align-items: center; margin-bottom: 1rem; font-size: 0.85rem; color: #555; font-style: italic;">
+          <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+            <ion-icon name="information-circle-outline" style="margin-right: 8px; font-size: 1.2rem; color: #000;"></ion-icon>
+            <span>Percentages represent my confidence level, not perfection. Always improving!</span>
+          <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+        </div>
 
       </article>
 
@@ -1062,150 +1163,35 @@
         <header>
           <h2 class="h2 article-title">Gallery</h2>
         </header>
-        <style>
 
-        
-          .signature-unique {
-        position: absolute;
-        bottom: 20px;
-        left: 20px;
-          }
-        
-          .signature-unique a {
-        font-family: 'Poppins', sans-serif;
-        font-size: 16px;
-        color: #0cb9d8;
-        text-decoration: none;
-          }
-        
-          .box-area-unique {
-        width: 100%;
-        display: flex;
-        justify-content: left;
-        align-items: center;
-          }
-        
-          .box-unique {
-        width: 70px;
-        height: 400px;
-        margin-right: 20px;
-        overflow: hidden;
-        border-radius: 20px;
-        position: relative;
-        transition: all linear 0.6s;
-          }
-        
-          .box-unique:last-child {
-        margin-right: 0;
-          }
-        
-          .box-unique::before {
-        content: '';
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.3);
-          }
-        
-          .box-unique img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-          }
-        
-          .box-unique i {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        text-align: center;
-        line-height: 40px;
-        background: #fff;
-        position: absolute;
-        bottom: 20px;
-        left: 10px;
-        font-size: 20px;
-          }
-        
-          .box-unique:nth-child(1) i {
-        color: #ff5200;
-          }
-          .box-unique:nth-child(2) i {
-        color: #ca470a;
-          }
-          .box-unique:nth-child(3) i {
-        color: #00d9ff;
-          }
-          .box-unique:nth-child(4) i {
-        color: #0077ff;
-          }
-        
-          .box-unique h2 {
-        position: absolute;
-        bottom: 30px;
-        left: 60px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 25px;
-        color: #f6f6f6;
-        font-weight: 600;
-        opacity: 0.8; /* Set a default opacity */
-        transition: all linear 0.3s;
-          }
-        
-          .box-unique p {
-        position: absolute;
-        bottom: 10px;
-        left: 60px;
-        font-family: 'Poppins', sans-serif;
-        font-size: 18px;
-        font-weight: 400;
-        color: #f6f6f6;
-        opacity: 0.8; /* Set a default opacity */
-        transition: all linear 0.3s;
-          }
-        
-          .box-unique.active h2 {
-        opacity: 1;
-          }
-        
-          .box-unique.active p {
-        opacity: 1;
-          }
-        
-          .active-unique {
-        width: 500px;
-        transition: all linear 0.6s;
-          }
-      </style>
         </head>
         <body>
         
         <div class="box-area-unique">
             <div class="box-unique active-unique" style="overflow: hidden;">
-            <img src="./assets/images/family.jpg" alt="Family" style="object-fit: cover; object-position: top; width: 100%; height: 100%;">
-          <i class="fa-solid fa-person-walking"></i>
-            <h2>Familia 💖</h2>
-      </div>
-      <div class="box-unique">
-          <img src="./assets/images/sachin_me.png" alt="Vibing Hard">
-          <i class="fa-solid fa-hand-rock"></i>
-          <h2>Vibing Hard</h2>
-      </div>
-      <div class="box-unique">
-          <img src="./assets/images/bhaktapur.png" alt="Bhaktapur">
-          <i class="fa-solid fa-tree"></i>
-          <h2>Bhaktapur</h2>
-      </div>
-      <div class="box-unique">
-          <img src="./assets/images/thisisme.png" alt="Chandragiri">
-          <i class="fa-solid fa-sunglasses"></i>
-          <h2>Chandragiri</h2>
-      </div>
+            <img src="./assets/images/family.jpg" alt="Family" style="object-fit: cover; object-position: top; width: 100%; height: 100%; filter: grayscale(100%);">
+          <!-- <i class="fa-solid fa-person-walking"></i> -->
+            <!-- <h2>Familia</h2> -->
+            </div>
+            <div class="box-unique">
+          <img src="./assets/godawari.png" alt="Vibing Hard" style="filter: grayscale(100%);">
+          <!-- <i class="fa-solid fa-hand-rock"></i> -->
+          <!-- <h2>Vibing Hard</h2> -->
+            </div>
+            <div class="box-unique">
+          <img src="./assets/images/bhaktapur.png" alt="Bhaktapur" style="filter: grayscale(100%);">
+          <!-- <i class="fa-solid fa-tree"></i> -->
+          <!-- <h2>Bhaktapur</h2> -->
+            </div>
+            <div class="box-unique">
+          <img src="./assets/images/thisisme.png" alt="Chandragiri" style="filter: grayscale(100%);">
+          <!-- <i class="fa-solid fa-water"></i> -->
+          <!-- <h2>Chandragiri</h2> -->
+            </div>
            <div class="box-unique">
-          <img src="./assets/images/friends_patan.png" alt="Patan Durbar">
-          <i class="fa-solid fa-person-walking"></i>
-          <h2>Patan Durbar</h2>
+          <img src="./assets/images/friends_patan.png" alt="Patan Durbar" style="filter: grayscale(100%);">
+          <!-- <i class="fa-solid fa-person-walking"></i> -->
+          <!-- <h2>Patan</h2> -->
             </div>
         </div>
   
@@ -1224,42 +1210,181 @@
       <!--
         - #CONTACT
       -->
+<article class="contact" data-page="contact">
 
-      <article class="contact" data-page="contact">
+  <header>
+    <h2 class="h2 article-title">Contact</h2>
+  </header>
 
-        <header>
-          <h2 class="h2 article-title">Contact</h2>
-        </header>
+  <!-- Google Maps Embed -->
+  <section class="mapbox" data-mapbox>
+    <figure>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.123456789!2d85.3496773!3d27.6538939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x123456789abcdef!2sYour%20Location!5e0!3m2!1sen!2snp!4v1234567890123"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </figure>
+  </section>
 
-        <section class="mapbox" data-mapbox>
-          <figure>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3532.123456789!2d85.3496773!3d27.6538939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x123456789abcdef!2sYour%20Location!5e0!3m2!1sen!2snp!4v1234567890123"
-              width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-          </figure>
-        </section>
+  
+ <!-- Contact Form -->
+ <section class="contact-form">
+  <h3 class="h3 form-title">Reach Out via Email</h3>
+  <form action="#" class="form" data-form>
+    <input type="text" name="fullname" class="form-input" placeholder="Your Name" required>
+    <input type="email" name="email" class="form-input" placeholder="Your Email" required>
+    <textarea name="message" class="form-input" placeholder="Your Message" rows="4" required></textarea>
+    <a class="form-btn button-animation" type="submit">
+      <ion-icon name="send-outline"></ion-icon>
+      Send Message
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </a>
+    
+  </form>
+</section>
 
-        <section class="contact-form">
+<!-- Social Media Section -->
+<section class="social-contact">
+  <p>Prefer social media? I am mostly active on X:</p>
+  <a href="https://twitter.com/samireey" target="_blank" class="social-btn">
+    <ion-icon name="logo-x"></ion-icon>
+    Chat on X (Twitter)
+  </a>
+</section>
 
-          <h3 class="h3 form-title">Contact Form</h3>
+<style>
+  .contact-form, .social-contact {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: #e5e6e7;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
 
-          <form action="#" class="form" data-form>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 
-            <div class="input-wrapper">
-              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #333;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    background: #f2f2f2;
+    color: #111;
+  }
+  .form-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    font-size: 0.9rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    overflow: hidden;
+    border-radius: 2%;
+  }
 
-              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
-            </div>
+  .form-btn span {
+    position: absolute;
+    display: block;
+  }
 
-            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+  .form-btn span:nth-child(1),
+  .form-btn span:nth-child(3) {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #9b9b9b);
+  }
 
-            <button class="form-btn" type="submit" disabled data-form-btn>
-              <ion-icon name="paper-plane"></ion-icon>
-              <span>Send Message</span>
-            </button>
-          </form>
-        </section>
-      </article>
+  .form-btn span:nth-child(2),
+  .form-btn span:nth-child(4) {
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #a3a0a0);
+  }
+
+  .form-btn span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    animation: btn-anim1 1.5s linear infinite;
+  }
+
+  .form-btn span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    animation: btn-anim2 1.5s linear infinite 0.3s;
+  }
+
+  .form-btn span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    animation: btn-anim3 1.5s linear infinite 0.6s;
+  }
+
+  .form-btn span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    animation: btn-anim4 1.5s linear infinite 0.9s;
+  }
+
+  @keyframes btn-anim1 {
+    0% { left: -100%; }
+    100% { left: 100%; }
+  }
+
+  @keyframes btn-anim2 {
+    0% { top: -100%; }
+    100% { top: 100%; }
+  }
+
+  @keyframes btn-anim3 {
+    0% { right: -100%; }
+    100% { right: 100%; }
+  }
+
+  @keyframes btn-anim4 {
+    0% { bottom: -100%; }
+    100% { bottom: 100%; }
+  }
+
+  .social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    background: #444;
+    color: #e6e6e6;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+
+  .social-btn:hover {
+    background: #333;
+    transform: translateY(-2px);
+  }
+
+  .social-btn ion-icon {
+    font-size: 1.2rem;
+    color: #ccc;
+  }
+</style>
+
+
+
+</article>
+
     </div>
   </main>
 
