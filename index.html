@@ -50,13 +50,13 @@
       <div class="sidebar-info">
 
         <figure class="avatar-box">
-          <img src="./assets/blacklogo.png" alt="Samir-Paudel" width="60" style="filter: grayscale(100%);">
+          <img src="./assets/left_horse.jpg" alt="Samir-Paudel" width="60" style="filter: grayscale(100%); border-radius: 20%;">
         </figure>
 
         <div class="info-content">
           <h1 class="name" title="Richard hanrick">Samir Paudel</h1>
 
-          <p class="title">Data Scientist</p>
+            <p class="title">Last updated: Jul 2025</p>
         </div>
 
         <button class="info_more-btn" data-sidebar-btn>
@@ -220,32 +220,119 @@
 
       <article class="about  active" data-page="about">
 
-        <header>
+        <header>  
           <h2 class="h2 article-title">About me</h2>
         </header>
 
         <section class="about-text">
           <p>
-            I am human.
-            <br>
-            A computer science student from Nepal. 
+        I’m a computer science student from Nepal, <br>nearing the end of my degree. 
           </p>
         
           <p>
-            I build simple things with neural networks.  
-            <br> slowly. with errors. but with hope.  
-            <br> Football gives me space to forget, and sometimes, to feel.
-            <br>
-<a href="https://www.goodreads.com/quotes/214662-hope-begins-in-the-dark-the-stubborn-hope-that-if" target="_blank" rel="noopener noreferrer" style="color: black; text-decoration: none;">
-  <blockquote style="border-left: 4px solid #5b5477; padding-left: 10px; margin: 10px 0; font-style: italic;">
-    I feel it when Anne Lamott said, <strong><em>"hope begins in the dark</em></strong>, the stubborn hope that if you just show up and try to do the right thing, <strong><em>the dawn will come</em></strong>. you wait and watch and work:<strong><em> you don't give up</em></strong>
-  </blockquote>
-</a>
+        I build simple things with neural networks mostly enjoy visualizing the maths.  
+        <br>i’m open to work and collaboration.
           </p>
         </section>
-        
+<!-- Quotes Section -->
+<div class="quote-section">
+  <div class="quote-card">
+    <img src="https://arsentech.github.io/source-codes/icons/quote.svg" alt="quote" class="quote-icon" width="40" height="40">
+    <div class="quote-content">
+      <!-- <h3 class="quote-title">Random Wisdom from Great Minds</h3> -->
+      <p id="quote" class="quote-text"></p>
+      <p id="author" class="quote-author"></p>
+    </div>
+  </div>
+</div>
 
-        
+<style>
+  .quote-section {
+    display: flex;
+    justify-content: left;
+    align-items: flex-start;
+    margin: 1.5rem 0;
+  }
+
+  .quote-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #fff;
+    border: 1.5px solid #222;
+    border-radius: 10px;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .quote-icon {
+    flex-shrink: 0;
+    /* margin-top: 2px; */
+    width: 32px;
+    height: 25px;
+    filter: grayscale(100%) brightness(0.6);
+  }
+
+  .quote-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .quote-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+    color: #222;
+  }
+
+  .quote-text {
+    font-size: 15px;
+    color: #222;
+    margin-bottom: 0.4rem;
+    font-weight: 300;
+  }
+
+  .quote-author {
+    font-size: 0.9rem;
+    color: #444;
+    font-style: italic;
+    font-weight: 400;
+    text-align: right;  
+  }
+
+  @media (max-width: 500px) {
+
+    .quote-icon {
+      margin-top: 0;
+      width: 18px;
+      height: 18px;
+    }
+
+
+  }
+</style>
+
+<script>
+  const author = document.getElementById("author");
+  const quoteElem = document.getElementById("quote");
+
+  async function getQuote() {
+    const api = await fetch("https://quoteslate.vercel.app/api/quotes/random");
+    return await api.json();
+  }
+
+  async function showQuote() {
+    const quote = await getQuote();
+    quoteElem.textContent = quote.quote;
+    author.innerHTML = `&mdash; ${quote.author}`;
+  }
+
+  showQuote();
+</script>
+
 
         <!--
           - service
@@ -256,39 +343,6 @@
           <h3 class="h3 service-title">What I'm actually into</h3>
 
           <ul class="service-list">
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-            <img src="./assets/icon-python.svg" alt="Python icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-            <h4 class="h4 service-item-title">Python Development</h4>
-
-            <p class="service-item-text">
-               quality automated scripts and tools for your needs.
-            </p>
-              </div>
-
-            </li>
-
-            <li class="service-item">
-
-              <div class="service-icon-box">
-            <img src="./assets/icon-design.svg" alt="Design icon" width="40">
-              </div>
-
-              <div class="service-content-box">
-            <h4 class="h4 service-item-title">Web Design</h4>
-
-            <p class="service-item-text">
-              simple and modern web services tailored to your needs.
-            </p>
-              </div>
-
-            </li>
-
             <li class="service-item">
 
               <div class="service-icon-box">
@@ -299,11 +353,44 @@
             <h4 class="h4 service-item-title">Machine Learning</h4>
 
             <p class="service-item-text">
-              simple stuffs with Neural Networks as your need.
+               honestly, who doesn’t love it?
             </p>
               </div>
 
             </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+            <img src="./assets/icon-llm.svg" alt="LLM icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">LLM Fine-Tuning & Post-Training</h4>
+
+            <p class="service-item-text">
+                 i fine tune llms for precise, custom ai solutions.
+            </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+            <img src="./assets/icon-mlops.svg" alt="MLOps icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">MLOps & Deployment</h4>
+
+            <p class="service-item-text">
+             I try to design and implement scalable mlops pipelines for model deployment.
+            </p>
+              </div>
+
+            </li>
+
 
             <li class="service-item">
 
@@ -314,67 +401,82 @@
               <div class="service-content-box">
             <h4 class="h4 service-item-title">Video Editing</h4>
 
-            <p class="service-item-text">Not so Professional video editing services.</p>
+            <p class="service-item-text">not for sale, just doing it for myself. </p>
               </div>  
             </li>
               
         </section>
-        <section class="ongoing-challenge">     
-          <div>
+       <h3 class="h3 service-title">Right Now !!!!</h3>
 
-            <h3 class="h3 service-title">Right Now !!!!</h3>
-            <div class="service-item github-card">
-              <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link">
-                <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData&theme=graywhite&border_radius=10" alt="365DaysOfData Repo" class="repo-image">
-                <!-- <h3 class="repo-title">#365DaysOfData</h3> -->
-                <p class="repo-description">Challenging myself to learn daily starting November 2024!</p>
-              </a>
-            </div>
-            <style>
+<div class="service-grid">
+  <!-- Card 1: 365DaysOfData -->
+  <div class="service-item github-card">
+    <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link">
+      <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData&theme=graywhite&border_radius=5" alt="365DaysOfData Repo" class="repo-image">
+      <p class="repo-description">Documenting my daily learning since November 2024.</p>
+    </a>
+  </div>
 
-              .github-card {
-                background-color: #ffffff;
-                border: 1px solid #ddd;
-                border-radius: 15px;
-                box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
-                padding: 20px;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
-              }
+  <!-- Card 2: LeetcodeDaily -->
+  <div class="service-item github-card">
+    <a href="https://github.com/paudelsamir/Coding-Interview-Preparation" target="_blank" class="repo-link">
+      <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=Coding-Interview-Preparation&theme=graywhite&border_radius=5" alt="LeetcodeDaily Repo" class="repo-image">
+      <p class="repo-description">Practicing LeetCode daily : one problem at a time, consistently.</p>
+    </a>
+  </div>
+</div>
 
-                .github-card:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
-                transition: transform 0.2s ease, box-shadow 0.2s ease;
-                }
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
 
-              .repo-link {
-                text-decoration: none;
-                color: #000;
-              }
+  .github-card {
+    /* background: #fff; */
+    /* border: 1px solid #e5e7eb; */
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    padding: 20px;
+    transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s cubic-bezier(.4,0,.2,1);
+    will-change: transform, box-shadow;
+  }
 
-              .repo-image {
-                width: 100%;
-                border-radius: 10px;
-                margin-bottom: 15px;
-                filter: grayscale(100%); /* Make the GitHub card B/W */
-              }
+  .github-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+    transform: translateY(-4px) scale(1.025);
+    border-color: #ffffff;
+  }
 
-              .repo-title {
-                font-size: 1.3;
-                font-weight: bold;
-                color: #111;
-              }
+  .repo-link {
+    text-decoration: none;
+    color: inherit;
+  }
 
-              .repo-description {
-                font-size: 0.94rem;
-                color: #0e0e0e;
-              }
+  .repo-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    filter: grayscale(60%) brightness(0.98);
+    transition: filter 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
 
-            </style>
-            
-          </div>
-        </section>
+  .github-card:hover .repo-image {
+    filter: grayscale(0%) brightness(1.03);
+    box-shadow: 0 4px 16px rgba(12,185,216,0.08);
+  }
 
+  .repo-description {
+    font-size: 14.5px;
+    color: #222;
+    font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    /* margin-top: 0.25rem; */
+  }
+</style>
 
         <div class="modal-container" data-modal-container>
 
@@ -545,6 +647,7 @@
             <li><i>Semester III:</i> <i>DSA, Computer Architecture, Computer Graphics, Numerical Method, Statistics II.</i></li>
             <li><i>Semester IV:</i> <i>AI, DBMS, Operating Systems, Theory of Computation, Computer Networks.</i></li>
             <li><i>Semester V:</i> <i>Design and Analysis of Algorithms, System Analysis and Design, Cryptography, Simulation and Modeling, Web Technology, Image Processing.</i></li>
+            <li><i>Semester VI:</i> <i>Compiler Design, Dotnet, Software Engineering, E-governance, Technical writing, E-commerce</i></li>
           </ul>
         </li>
           </ol>
@@ -812,310 +915,521 @@
 
           <ul class="filter-list">
 
-            <li class="filter-item">
-              <button class="active" data-filter-btn>All</button>
-            </li>
+        <li class="filter-item">
+          <button class="active" data-filter-btn>All</button>
+        </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>Machine Learning</button>
-            </li>
+        <li class="filter-item">
+          <button data-filter-btn>Machine Learning</button>
+        </li>
+        <li class="filter-item">
+          <button data-filter-btn>Deep Learning</button>
+        </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>Web Development</button>
-            </li>
+        <li class="filter-item">
+          <button data-filter-btn>Web Development</button>
+        </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>Python Development</button>
-            </li>
+        <li class="filter-item">
+          <button data-filter-btn>Python Development</button>
+        </li>
 
-            <li class="filter-item">
-              <button data-filter-btn>Video Editing</button>
-            </li>
+        <!-- <li class="filter-item">
+          <button data-filter-btn>Video Editing</button>
+        </li> -->
 
           </ul>
 
           <div class="filter-select-box">
 
-            <button class="filter-select" data-select>
+        <button class="filter-select" data-select>
 
-              <div class="select-value" data-selecct-value>Select category</div>
+          <div class="select-value" data-selecct-value>Select category</div>
 
-              <div class="select-icon">
-                <ion-icon name="chevron-down"></ion-icon>
-              </div>
+          <div class="select-icon">
+            <ion-icon name="chevron-down"></ion-icon>
+          </div>
 
-            </button>
+        </button>
 
-            <ul class="select-list">
+        <ul class="select-list">
 
-              <li class="select-item">
-                <button data-select-item>All</button>
-              </li>
+          <li class="select-item">
+            <button data-select-item>All</button>
+          </li>
 
-              <li class="select-item">
-                <button data-select-item>Machine Learning</button>
-              </li>
+          <li class="select-item">
+            <button data-select-item>Machine Learning</button>
+          </li>
 
-              <li class="select-item">
-                <button data-select-item>Web Development</button>
-              </li>
+          <li class="select-item">
+            <button data-select-item>Deep Learning</button>
+          </li>
 
-              <li class="select-item">
-                <button data-select-item>Python Development</button>
-              </li>
-              
-              <li class="select-item">
-                <button data-select-item>Video Editing</button>
-              </li>
+          <li class="select-item">
+            <button data-select-item>Web Development</button>
+          </li>
 
-            </ul>
+          <li class="select-item">
+            <button data-select-item>Python Development</button>
+          </li>
+          
+          <!-- <li class="select-item">
+            <button data-select-item>Video Editing</button>
+          </li> -->
+
+        </ul>
           </div>
 
           <ul class="project-list">
-                       <!-- Add this CSS for uniform figure sizes -->
-            <style>
-              .project-img {
-                width: 100%;
-                height: 200px;
-                overflow: hidden;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                border-radius: 8px;
-              }
+       <style>
+        .project-img {
+          width: 100%;
+          height: 220px;
+          overflow: hidden;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border-radius: 10px;
+          position: relative;
+          background: #fff;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          transition: transform 0.25s ease-in-out, box-shadow 0.25s;
+        }
 
-              .project-img img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-              }
-            </style>
-            <!-- Machine Learning Projects -->
-            <li class="project-item active" data-filter-item data-category="machine learning">
-              <a href="https://paudelsamir.streamlit.app/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/football.png" alt="Player Value Prediction" loading="lazy">
-                </figure>
-                <h3 class="project-title">Player Value Prediction</h3>
-                <p class="project-category">Machine Learning</p>
-              </a>
-            </li>
+        .project-item:hover .project-img {
+          /* transform: scale(1.01); */
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          filter: grayscale(100%) brightness(1.0);
+          transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .project-item:hover .project-img img {
+          filter: grayscale(20%) brightness(0.6);
+          transform: scale(1.02);
+        }
+
+        .project-item-icon-box {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          display: flex;
+          gap: 12px;
+          transform: translate(-50%, -50%) scale(0.);
+          opacity: 0;
+          pointer-events: none;
+          transition: all 0.25s ease;
+          z-index: 10;
+        }
+
+      .project-item:hover .project-item-icon-box,
+      .project-item:focus-visible .project-item-icon-box {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        .project-icon-link {
+          background: transparent;
+          border: 1.5px solid #000;
+          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.2s ease;
+          cursor: pointer;
+        }
+
+        .project-icon-link:hover {
+          background: #a7a7a7;
+          border-color: #000;
+          transform: scale(1.05);
+        }
+
+        .project-icon-link img,
+        .project-icon-link ion-icon {
+          width: 18px;
+          height: 18px;
+          filter: brightness(0) grayscale(1);
+          /* transition: filter 0.2s; */
+        }
+
+        .project-icon-link:hover img
+        .project-icon-link:hover ion-icon{
+          filter: brightness(5) grayscale(0) invert(1);
+        }
+        @media (hover: none) and (pointer: coarse) {
+        .project-item-icon-box {
+          opacity: 0.6 !important;
+          pointer-events: auto;
+          transform: translate(-50%, -50%) scale(1) !important;
+        }
+
+        .project-img img {
+          filter: grayscale(20%) brightness(0.6) !important;
+          transform: scale(1.02) !important;
+        }
+
+        .project-img {
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+        }
+      }
+
+      </style>
+
+        <!-- Machine Learning Projects -->
+        <li class="project-item active" data-filter-item data-category="machine learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://paudelsamir.streamlit.app/" class="project-icon-link" target="_blank" title="Live Demo">
+            <img src="./assets/icon-click.svg" alt="Live Link">
+          </a>
+          <a href="https://github.com/paudelsamir/Player-Value-Prediction" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/football.png" alt="Player Value Prediction" loading="lazy">
+            </figure>
+            <h3 class="project-title">Player Value Prediction</h3>
+            <p class="project-category">Machine Learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="machine learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://movie-recommender-samir.streamlit.app/" class="project-icon-link" target="_blank" title="Live Demo">
+            <img src="./assets/icon-click.svg" alt="Live Link">
+          </a>
+          <a href="https://github.com/paudelsamir/movie-recommender" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/movie.png" alt="Movie Recommender" loading="lazy">
+            </figure>
+            <h3 class="project-title">Movie Recommender System</h3>
+            <p class="project-category">Machine Learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="machine learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://cat-vs-dog-classifier.streamlit.app/" class="project-icon-link" target="_blank" title="Live Demo">
+            <img src="./assets/icon-click.svg" alt="Live Link">
+          </a>
+          <a href="https://github.com/paudelsamir/cat-vs-dog-classifier" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/catdog.png" alt="Cat vs Dog Classifier" loading="lazy">
+            </figure>
+            <h3 class="project-title">Cat vs Dog Classifier</h3>
+            <p class="project-category">Machine Learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="machine learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://github.com/paudelsamir/EDA-Projects" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/eda.png" alt="EDA Projects Collection" loading="lazy">
+            </figure>
+            <h3 class="project-title">EDA Projects Collection</h3>
+            <p class="project-category">Machine Learning</p>
+          </div>
+        </li>
+
+        <!-- Deep Learning Projects -->
+        <!-- Deep Learning Projects -->
+        <li class="project-item active" data-filter-item data-category="deep learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://guess-footballer-with-eyes.streamlit.app/" class="project-icon-link" target="_blank" title="Live Demo">
+                  <img src="./assets/icon-click.svg" alt="Live Demo">
+                </a>
+                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/01-Image-Classification/Guess-The-Footballer-By-Eyes" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/guess-eyes.png" alt="Guess The Footballer By Eyes" loading="lazy">
+            </figure>
+            <h3 class="project-title">Guess The Footballer By Eyes</h3>
+            <p class="project-category">Deep learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="deep learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://seq2seq-chatbot-samir.streamlit.app" class="project-icon-link" target="_blank" title="Live Demo">
+                  <img src="./assets/icon-click.svg" alt="Live Demo">
+                </a>
+                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/02-Natural-Language-Processing/seq2seq-charbot" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/seq2seq-chatbot.png" alt="Seq2Seq Chatbot" loading="lazy">
+            </figure>
+            <h3 class="project-title">Seq2Seq Chatbot</h3>
+            <p class="project-category">Deep learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="deep learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch/let-s-build-gpt-from-scratch-in-code-spelled-out.ipynb" class="project-icon-link" target="_blank" title="Notebook">
+                  <img src="./assets/icon-click.svg" alt="Notebook">
+                </a>
+                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/gpt-scratch.png" alt="GPT from Scratch" loading="lazy">
+            </figure>
+            <h3 class="project-title">GPT from Scratch</h3>
+            <p class="project-category">Deep learning</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="deep learning">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://image-captioning-samir.streamlit.app" class="project-icon-link" target="_blank" title="Live Demo">
+                  <img src="./assets/icon-click.svg" alt="Live Demo">
+                </a>
+                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/03-Image-Captioning" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/image-captioning.png" alt="Image Captioning" loading="lazy">
+            </figure>
+            <h3 class="project-title">Image Captioning</h3>
+            <p class="project-category">Deep learning</p>
+          </div>
+        </li>
+
+
+        <!-- Web Development Projects -->
+        <li class="project-item active" data-filter-item data-category="web development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://spotify-profile-233.herokuapp.com/" class="project-icon-link" target="_blank" title="Live Demo">
+            <img src="./assets/icon-click.svg" alt="Live Link">
+          </a>
+          <a href="https://github.com/paudelsamir/spotify-clone" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/spotify.png" alt="Spotify Clone" loading="lazy">
+            </figure>
+            <h3 class="project-title">Spotify Clone</h3>
+            <p class="project-category">Web Development</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="web development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+          <a href="https://netflix-clone.herokuapp.com/" class="project-icon-link" target="_blank" title="Live Demo">
+            <img src="./assets/icon-click.svg" alt="Live Link">
+          </a>
+          <a href="https://github.com/paudelsamir/netflix-clone" class="project-icon-link" target="_blank" title="GitHub Repo">
+            <img src="./assets/icon-github.svg" alt="GitHub Link">
+          </a>
+              </div>
+              <img src="./assets/images/netflix.png" alt="Netflix Clone" loading="lazy">
+            </figure>
+            <h3 class="project-title">Netflix Clone</h3>
+            <p class="project-category">Web Development</p>
+          </div>
+        </li>
         
-            <li class="project-item active" data-filter-item data-category="machine learning">
-              <a href="https://movie-recommender-samir.streamlit.app/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/movie.png" alt="Movie Recommender" loading="lazy">
-                </figure>
-                <h3 class="project-title">Movie Recommender System</h3>
-                <p class="project-category">Machine Learning</p>
-              </a>
-            </li>
+        <!-- Python Development Projects -->
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2006-Blackjack%20Project/blackjack.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/blackjack.png" alt="Blackjack Game" loading="lazy">
+            </figure>
+            <h3 class="project-title">Blackjack Game</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
 
-            <li class="project-item active" data-filter-item data-category="machine learning">
-              <a href="https://cat-vs-dog-classifier.streamlit.app/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/catdog.png" alt="Cat vs Dog Classifier" loading="lazy">
-                </figure>
-                <h3 class="project-title">Cat vs Dog Classifier</h3>
-                <p class="project-category">Machine Learning</p>
-              </a>
-            </li>
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2020-%20Snake%20Game%20Project/snake.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/snakegame.png" alt="Snake Game" loading="lazy">
+            </figure>
+            <h3 class="project-title">AI Snake Game</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
 
-            <li class="project-item active" data-filter-item data-category="machine learning">
-              <a href="https://github.com/paudelsamir/EDA-Projects">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/eda.png" alt="EDA Projects Collection" loading="lazy">
-                </figure>
-                <h3 class="project-title">EDA Projects Collection</h3>
-                <p class="project-category">Machine Learning</p>
-              </a>
-            </li>
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2007-Hangman%20Project/hangman.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/hangman.png" alt="Hangman Game" loading="lazy">
+            </figure>
+            <h3 class="project-title">Hangman Game</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
 
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2008-Caesar%20Cyphers%20And%20function%20Parameters/caesar-cyphers.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/cipher.png" alt="Caesar Cipher" loading="lazy">
+            </figure>
+            <h3 class="project-title">Caesar Cipher</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2010-Building%20Calculator%20Using%20Function%20Parameters/calculator.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/calc.png" alt="Calculator with Functions" loading="lazy">
+            </figure>
+            <h3 class="project-title">Calculator with Functions</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2012-%20Scope%20&%20Number%20Guessing%20Game/number_guessing_game.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/number.png" alt="Number Guessing Game" loading="lazy">
+            </figure>
+            <h3 class="project-title">Number Guessing Game</h3>
+            <p class="project-category">Python Development</p>
+          </div>  
+        </li>
+
+        <li class="project-item active" data-filter-item data-category="python development">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2014-Higher%20Lower%20Game%20Project/game.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                  <img src="./assets/icon-github.svg" alt="GitHub Link">
+                </a>
+              </div>
+              <img src="./assets/images/high_low.png" alt="Higher Lower Game" loading="lazy">
+            </figure>
+            <h3 class="project-title">Higher Lower Game</h3>
+            <p class="project-category">Python Development</p>
+          </div>
+        </li>
+          <li class="project-item active" data-filter-item data-category="python development">
+            <div tabindex="0">
+              <figure class="project-img">
+                <div class="project-item-icon-box">
+                  <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2015-%20Building%20%20Simple%20Coffee%20Machine/coffee_machine.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                    <img src="./assets/icon-github.svg" alt="GitHub Link">
+                  </a>
+                </div>
+                <img src="./assets/images/coffee.jpg" alt="Simple Coffee Machine" loading="lazy">
+              </figure>
+              <h3 class="project-title">Simple Coffee Machine</h3>
+              <p class="project-category">Python Development</p>
+            </div>
+          </li>
+          <li class="project-item active" data-filter-item data-category="python development">
+            <div tabindex="0">
+              <figure class="project-img">
+                <div class="project-item-icon-box">
+                  <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2017-%20The%20quiz%20project/main.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                    <img src="./assets/icon-github.svg" alt="GitHub Link">
+                  </a>
+                </div>
+                <img src="./assets/images/quiz.png" alt="Quiz Application" loading="lazy">
+              </figure>
+              <h3 class="project-title">Quiz Application</h3>
+              <p class="project-category">Python Development</p>
+            </div>
+          </li>
+
+          <li class="project-item active" data-filter-item data-category="python development">
+            <div tabindex="0">
+              <figure class="project-img">
+                <div class="project-item-icon-box">
+                  <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2018-%20Turtle%20and%20GUI/turtle_race.py" class="project-icon-link" target="_blank" title="GitHub Repo">
+                    <img src="./assets/icon-github.svg" alt="GitHub Link">
+                  </a>
+                </div>
+                <img src="./assets/images/turtle.png" alt="Turtle & GUI" loading="lazy">
+              </figure>
+              <h3 class="project-title">Turtle & GUI</h3>
+              <p class="project-category">Python Development</p>
+            </div>
+          </li> 
         
-            <!-- Web Development Projects -->
-            <li class="project-item active" data-filter-item data-category="web development">
-              <a href="https://spotify-profile-233.herokuapp.com/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/spotify.png" alt="Spotify Clone" loading="lazy">
-                </figure>
-                <h3 class="project-title">Spotify Clone</h3>
-                <p class="project-category">Web Development</p>
-              </a>
-            </li>
-        
-            <li class="project-item active" data-filter-item data-category="web development">
-              <a href="https://netflix-clone.herokuapp.com/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/netflix.png" alt="Netflix Clone" loading="lazy">
-                </figure>
-                <h3 class="project-title">Netflix Clone</h3>
-                <p class="project-category">Web Development</p>
-              </a>
-            </li>
-        
-            <!-- Python Development Projects -->
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2011-%20The%20Blackjack%20Capstone%20Project/blackjack.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/blackjack.png" alt="Blackjack Game" loading="lazy">
-                </figure>
-                <h3 class="project-title">Blackjack Game</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-        
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2020-%20Snake%20Game%20Project/snake.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/snakegame.png" alt="Snake Game" loading="lazy">
-                </figure>
-                <h3 class="project-title">AI Snake Game</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-            <!-- Additional Python Development Projects -->
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2007-Hangman%20Project/hangman.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/hangman.png" alt="Hangman Game" loading="lazy">
-                </figure>
-                <h3 class="project-title">Hangman Game</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2008-Caesar%20Cyphers%20And%20function%20Parameters/caesar-cyphers.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/cipher.png" alt="Caesar Cipher" loading="lazy">
-                </figure>
-                <h3 class="project-title">Caesar Cipher</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2010-Building%20Calculator%20Using%20Function%20Parameters/calculator.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/calc.png" alt="Calculator with Functions" loading="lazy">
-                </figure>
-                <h3 class="project-title">Calculator with Functions</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2012-%20Scope%20&%20Number%20Guessing%20Game/number_guessing_game.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/number.png" alt="Number Guessing Game" loading="lazy">
-                </figure>
-                <h3 class="project-title">Number Guessing Game</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2014-Higher%20Lower%20Game%20Project/game.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/high_low.png" alt="Higher Lower Game" loading="lazy">
-                </figure>
-                <h3 class="project-title">Higher Lower Game</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2015-%20Building%20%20Simple%20Coffee%20Machine/coffee_machine.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/coffee.png" alt="Simple Coffee Machine" loading="lazy">
-                </figure>
-                <h3 class="project-title">Simple Coffee Machine</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2017-%20The%20quiz%20project/main.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/quiz.png" alt="Quiz Application" loading="lazy">
-                </figure>
-                <h3 class="project-title">Quiz Application</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-
-            <li class="project-item active" data-filter-item data-category="python development">
-              <a href="https://github.com/paudelsamir/python-mastery/blob/main/Day%2018-%20Turtle%20and%20GUI/turtle_race.py">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/turtle.png" alt="Turtle & GUI" loading="lazy">
-                </figure>
-                <h3 class="project-title">Turtle & GUI</h3>
-                <p class="project-category">Python Development</p>
-              </a>
-            </li>
-        
-        
-            <!-- Video Editing Coming Soon -->
-            <li class="project-item active" data-filter-item data-category="video editing">
-              <a href="https://www.koalastothemax.com/">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="construct-outline"></ion-icon>
-                  </div>
-                  <img src="./assets/images/video.png" alt="Video Projects" loading="lazy">
-                </figure>
-                <h3 class="project-title">Video Projects</h3>
-                <p class="project-category">Video Editing (Coming Soon)</p>
-              </a>
-            </li>
+        <!-- Video Editing Projects (Coming Soon) -->
+        <li class="project-item active" data-filter-item data-category="video editing">
+          <div tabindex="0">
+            <figure class="project-img">
+              <div class="project-item-icon-box">
+                <a href="https://www.koalastothemax.com/" class="project-icon-link" target="_blank" title="Preview">
+                  <img src="./assets/icon-video.svg" alt="Video Icon">
+                </a>
+              </div>
+              <img src="./assets/images/video.png" alt="Video Projects" loading="lazy">
+            </figure>
+            <h3 class="project-title">Video Projects</h3>
+            <p class="project-category">Video Editing (Coming Soon)</p>
+          </div>
+        </li>
         
           </ul>
         </section>
@@ -1174,33 +1488,45 @@
         </head>
         <body>
         
+        <!-- Gallery Box Area -->
         <div class="box-area-unique">
-            <div class="box-unique active-unique" style="overflow: hidden;">
-            <img src="./assets/images/family.jpg" alt="Family" style="object-fit: cover; object-position: top; width: 100%; height: 100%; filter: grayscale(100%);">
-          <!-- <i class="fa-solid fa-person-walking"></i> -->
-            <!-- <h2>Familia</h2> -->
-            </div>
-            <div class="box-unique">
-          <img src="./assets/godawari.png" alt="Vibing Hard" style="filter: grayscale(100%);">
-          <!-- <i class="fa-solid fa-hand-rock"></i> -->
-          <!-- <h2>Vibing Hard</h2> -->
-            </div>
-            <div class="box-unique">
-          <img src="./assets/images/bhaktapur.png" alt="Bhaktapur" style="filter: grayscale(100%);">
-          <!-- <i class="fa-solid fa-tree"></i> -->
-          <!-- <h2>Bhaktapur</h2> -->
-            </div>
-            <div class="box-unique">
-          <img src="./assets/images/thisisme.png" alt="Chandragiri" style="filter: grayscale(100%);">
-          <!-- <i class="fa-solid fa-water"></i> -->
-          <!-- <h2>Chandragiri</h2> -->
-            </div>
-           <div class="box-unique">
-          <img src="./assets/images/friends_patan.png" alt="Patan Durbar" style="filter: grayscale(100%);">
-          <!-- <i class="fa-solid fa-person-walking"></i> -->
-          <!-- <h2>Patan</h2> -->
-            </div>
+          <!-- Horse Ride -->
+          <div class="box-unique">
+            <img src="./assets/images/horse_ride.jpg" alt="Vibing Hard" style="filter: grayscale(100%);">
+            <i class="fa-solid fa-hand-rock gallery-icon"></i>
+            <!-- <h2>Vibing Hard</h2> -->
+          </div>
+          <!-- Sidelook -->
+          <div class="box-unique">
+            <img src="./assets/images/sidelook.jpg" alt="Family" style="filter: grayscale(100%);">
+            <i class="fa-solid fa-person-walking gallery-icon"></i>
+            <!-- <h2>Slide to explore more</h2> -->
+          </div>
+          <!-- Typing (active) -->
+          <div class="box-unique active-unique">
+            <img src="./assets/images/typing.png" alt="Typing" style="filter: grayscale(100%);">
+            <i class="fa-solid fa-keyboard gallery-icon"></i>
+            <!-- <h2>Typing Speed</h2> -->
+          </div>
+          <!-- Temple -->
+          <div class="box-unique">
+            <img src="./assets/images/temple.jpg" alt="Chandragiri" style="filter: grayscale(100%);">
+            <i class="fa-solid fa-landmark gallery-icon"></i>
+            <!-- <h2>Chandragiri</h2> -->
+          </div>
+          <!-- Skylook -->
+          <div class="box-unique">
+            <img src="./assets/images/skylook.jpg" alt="Patan Durbar" style="filter: grayscale(100%);">
+            <i class="fa-solid fa-water gallery-icon"></i>
+            <!-- <h2>Patan</h2> -->
+          </div>
         </div>
+        <style>
+          .gallery-icon {
+            color: #222 !important;
+            filter: grayscale(100%) brightness(0.7) !important;
+          }
+        </style>
   
         
         <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
