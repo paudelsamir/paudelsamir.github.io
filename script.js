@@ -378,7 +378,6 @@ document.addEventListener("DOMContentLoaded", function () {
     { src: './assets/Gallery/7_hiking.jpeg', alt: 'Hiking Crew', date: 'July 19, 2024' },
     { src: './assets/Gallery/8_hiking.jpeg', alt: 'Slope Shot', date: 'June 10, 2024' },
     { src: './assets/Gallery/9_buffon.jpeg', alt: 'Buffon Meetup', date: 'March 28, 2024' },
-    { src: './assets/Gallery/10_revamp.jpeg', alt: 'Revamp Project', date: 'February 18, 2024' },
     { src: './assets/Gallery/11_flagpoint.jpg', alt: 'Flagpoint Lookout', date: 'January 11, 2024' },
     { src: './assets/Gallery/11_godawari.jpeg', alt: 'Godawari Walk', date: 'January 05, 2024' },
     { src: './assets/Gallery/12_swambhu.jpeg', alt: 'Swambhu Rituals', date: 'April 16, 2024' },
