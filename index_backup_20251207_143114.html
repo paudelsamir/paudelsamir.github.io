@@ -56,77 +56,8 @@
         <div class="info-content">
           <h1 class="name" title="Richard hanrick">Samir Paudel</h1>
 
-            <div class="open-to-work-badge">
-              <span class="status-indicator"></span>
-              <span class="status-text">Open to work</span>
-            </div>
+            <p class="title">Last updated: Jul 2025</p>
         </div>
-
-        <style>
-          .info-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-          }
-
-          .open-to-work-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: #f3f4f6;
-            padding: 6px 14px;
-            border-radius: 8px;
-            margin-top: 2px;
-          }
-
-          .status-indicator {
-            width: 8px;
-            height: 8px;
-            background: #10b981;
-            border-radius: 50%;
-            animation: pulse-scale 1.5s ease-in-out infinite;
-            box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-          }
-
-          .status-text {
-            font-size: 0.75rem;
-            color: #9ca3af;
-            font-weight: 400;
-          }
-
-          @keyframes pulse-scale {
-            0%, 100% {
-              transform: scale(1);
-              opacity: 1;
-              box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
-            }
-            50% {
-              transform: scale(1.2);
-              opacity: 0.8;
-              box-shadow: 0 0 8px 4px rgba(16, 185, 129, 0.4);
-            }
-          }
-
-          @media (max-width: 580px) {
-            .info-content {
-              align-items: flex-start;
-              text-align: left;
-            }
-
-            .info-content .name {
-              font-size: 1.5rem !important;
-            }
-
-            .status-text {
-              font-size: 0.75rem;
-            }
-
-            .open-to-work-badge {
-              padding: 5px 12px;
-            }
-          }
-        </style>
 
         <button class="info_more-btn" data-sidebar-btn>
           <span>Show Contacts</span>
@@ -233,11 +164,6 @@
 
     <!-- third separator -->
     <div class="separator"></div>
-
-    <!-- Last updated timestamp -->
-    <div class="last-updated">
-      <p style="font-size: 0.75rem; color: #9ca3af; text-align: center; margin-top: 0.75rem;">Last updated: Jul 2025</p>
-    </div>
   </div>
   
 
@@ -300,7 +226,7 @@
 
         <section class="about-text">
           <p>
-        I’m a CS student from Nepal, <br>nearing the end of my degree. 
+        I’m a computer science student from Nepal, <br>nearing the end of my degree. 
           </p>
         
           <p>
@@ -308,6 +234,24 @@
         <br>i’m open to work and collaboration.
           </p>
         </section>
+
+        <!-- GitHub Contribution Chart -->
+        <div class="github-contribution-section">
+          <h3 class="h3 service-title">My GitHub Contributions</h3>
+          <div class="contribution-graph">
+            <a href="https://github.com/paudelsamir" target="_blank">
+              <img src="https://ghchart.rshah.org/4b5563/paudelsamir" alt="Samir's GitHub Contribution Graph" style="width: 100%; border-radius: 10px; filter: grayscale(100%); transition: filter 0.3s ease;">
+            </a>
+          </div>
+        </div>
+        <style>
+          .contribution-graph img:hover {
+            filter: grayscale(0%);
+          }
+          .github-contribution-section {
+            margin-bottom: 2rem;
+          }
+        </style>
 
 <!-- Quotes Section -->
 <div class="quote-section">
@@ -379,10 +323,6 @@
   }
 
   @media (max-width: 500px) {
-    .quote-card {
-      padding: 0.9rem 1rem;
-      border-radius: 8px;
-    }
 
     .quote-icon {
       margin-top: 0;
@@ -390,14 +330,7 @@
       height: 18px;
     }
 
-    .quote-text {
-      font-size: 0.88rem;
-      line-height: 1.5;
-    }
 
-    .quote-author {
-      font-size: 0.8rem;
-    }
   }
 </style>
 
@@ -424,172 +357,145 @@
           - service
         -->
 
-        <!-- What I'm Actually Into Section -->
         <section class="service">
-          <h3 class="h3 service-title">What I'm Actually Into</h3>
 
-          <div class="skills-grid">
-            <div class="skill-card">
-              <div class="skill-icon-box">
-                <img src="./assets/icon-design.svg" alt="Deep Learning icon" width="40">
-              </div>
-              <div class="skill-content">
-                <h4 class="h4 skill-title">Deep Learning & AI</h4>
-                <p class="skill-text">
-                  building neural networks for computer vision and nlp tasks. i enjoy experimenting with architectures
-                </p>
-              </div>
-            </div>
+          <h3 class="h3 service-title">What I'm actually into</h3>
 
-            <div class="skill-card">
-              <div class="skill-icon-box">
-                <img src="./assets/icon-mlops.svg" alt="ML Engineering icon" width="40">
+          <ul class="service-list">
+            <li class="service-item">
+
+              <div class="service-icon-box">
+            <img src="./assets/icon-ml.svg" alt="Machine Learning icon" width="40">
               </div>
-              <div class="skill-content">
-                <h4 class="h4 skill-title">ML Engineering & Deployment</h4>
-                <p class="skill-text">
-                  designing scalable ml pipelines, model optimization, and deploying ai systems to production environments
-                </p>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">Machine Learning</h4>
+
+            <p class="service-item-text">
+               honestly, who doesn’t love it?
+            </p>
               </div>
-            </div>
-          </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+            <img src="./assets/icon-llm.svg" alt="LLM icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">LLM Fine-Tuning & Post-Training</h4>
+
+            <p class="service-item-text">
+                 i fine tune llms for precise, custom ai solutions.
+            </p>
+              </div>
+
+            </li>
+
+            <li class="service-item">
+
+              <div class="service-icon-box">
+            <img src="./assets/icon-mlops.svg" alt="MLOps icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">MLOps & Deployment</h4>
+
+            <p class="service-item-text">
+             I try to design and implement scalable mlops pipelines for model deployment.
+            </p>
+              </div>
+
+            </li>
+
+
+            <li class="service-item">
+
+            <div class="service-icon-box">
+            <img src="./assets/icon-video.svg" alt="Video editing icon" width="40">
+              </div>
+
+              <div class="service-content-box">
+            <h4 class="h4 service-item-title">Video Editing</h4>
+
+            <p class="service-item-text">not for sale, just doing it for myself. </p>
+              </div>  
+            </li>
+              
         </section>
+       <h3 class="h3 service-title">Right Now !!!!</h3>
 
-        <style>
-          .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-top: 1.5rem;
-          }
+<div class="service-grid">
+  <!-- Card 1: 365DaysOfData -->
+  <div class="service-item github-card">
+    <a href="https://github.com/paudelsamir/365DaysOfData" target="_blank" class="repo-link">
+      <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=365DaysOfData&theme=graywhite&border_radius=5" alt="365DaysOfData Repo" class="repo-image">
+      <p class="repo-description">Documenting my daily learning since November 2024.</p>
+    </a>
+  </div>
 
-          .skill-card {
-            background: #f8f9fa;
-            border-radius: 16px;
-            padding: 1.75rem;
-            display: flex;
-            gap: 1.25rem;
-            align-items: flex-start;
-            transition: all 0.3s ease;
-            border: 1px solid #e5e7eb;
-          }
+  <!-- Card 2: LeetcodeDaily -->
+  <div class="service-item github-card">
+    <a href="https://github.com/paudelsamir/Coding-Interview-Preparation" target="_blank" class="repo-link">
+      <img src="https://github-readme-stats.vercel.app/api/pin/?username=paudelsamir&repo=Coding-Interview-Preparation&theme=graywhite&border_radius=5" alt="LeetcodeDaily Repo" class="repo-image">
+      <p class="repo-description">Practicing LeetCode daily : one problem at a time, consistently.</p>
+    </a>
+  </div>
+</div>
 
-          .skill-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-            border-color: #d1d5db;
-          }
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
 
-          .skill-icon-box {
-            flex-shrink: 0;
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-          }
+  .github-card {
+    /* background: #fff; */
+    /* border: 1px solid #e5e7eb; */
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    padding: 20px;
+    transition: box-shadow 0.18s cubic-bezier(.4,0,.2,1), transform 0.18s cubic-bezier(.4,0,.2,1);
+    will-change: transform, box-shadow;
+  }
 
-          .skill-icon-box img {
-            width: 32px;
-            height: 32px;
-            filter: grayscale(20%);
-          }
+  .github-card:hover {
+    box-shadow: 0 6px 24px rgba(0,0,0,0.10), 0 1.5px 4px rgba(0,0,0,0.04);
+    transform: translateY(-4px) scale(1.025);
+    border-color: #ffffff;
+  }
 
-          .skill-content {
-            flex: 1;
-          }
+  .repo-link {
+    text-decoration: none;
+    color: inherit;
+  }
 
-          .skill-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #1f2937;
-            margin-bottom: 0.5rem;
-            line-height: 1.4;
-          }
+  .repo-image {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    filter: grayscale(60%) brightness(0.98);
+    transition: filter 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
 
-          .skill-text {
-            font-size: 0.95rem;
-            color: #4b5563;
-            line-height: 1.6;
-            margin: 0;
-          }
+  .github-card:hover .repo-image {
+    filter: grayscale(0%) brightness(1.03);
+    box-shadow: 0 4px 16px rgba(12,185,216,0.08);
+  }
 
-          @media (max-width: 768px) {
-            .skills-grid {
-              grid-template-columns: 1fr;
-              gap: 1rem;
-              margin-top: 1rem;
-            }
-
-            .skill-card {
-              padding: 1.25rem;
-              border-radius: 12px;
-              gap: 1rem;
-            }
-
-            .skill-icon-box {
-              width: 44px;
-              height: 44px;
-            }
-
-            .skill-icon-box img {
-              width: 28px;
-              height: 28px;
-            }
-
-            .skill-title {
-              font-size: 1.05rem;
-              margin-bottom: 0.4rem;
-            }
-
-            .skill-text {
-              font-size: 0.88rem;
-              line-height: 1.5;
-            }
-
-            .service-title {
-              font-size: 1.3rem !important;
-            }
-          }
-        </style>
-
-        <!-- GitHub Contribution Chart -->
-        <div class="github-contribution-section">
-          <h3 class="h3 service-title">Github Activities</h3>
-          <div class="contribution-graph">
-            <a href="https://github.com/paudelsamir" target="_blank">
-              <img src="https://ghchart.rshah.org/4b5563/paudelsamir" alt="Samir's GitHub Contribution Graph" style="width: 100%; border-radius: 10px; filter: grayscale(100%); transition: filter 0.3s ease;">
-            </a>
-          </div>
-        </div>
-        <style>
-          .contribution-graph img:hover {
-            filter: grayscale(0%);
-          }
-          .github-contribution-section {
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-          }
-
-          @media (max-width: 768px) {
-            .github-contribution-section {
-              margin-top: 1.25rem;
-              margin-bottom: 1.5rem;
-            }
-
-            .contribution-graph img {
-              border-radius: 8px !important;
-            }
-          }
-          .github-contribution-section {
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-          }
-        </style>
+  .repo-description {
+    font-size: 14.5px;
+    color: #222;
+    font-family: 'Poppins', 'Inter', Arial, sans-serif;
+    letter-spacing: 0.01em;
+    /* margin-top: 0.25rem; */
+  }
+</style>
 
         <div class="modal-container" data-modal-container>
 
@@ -752,190 +658,241 @@
 
         <li class="timeline-item">
           <h4 class="h4 timeline-item-title">Patan Multiple Campus, Lalitpur</h4>
-          <span class="timeline-date">2023 — Present</span>
-          <p class="timeline-text">Bachelor Degree – CSIT</p>
+          <span>2023 — Present</span>
+          <p class="timeline-text">Bachelor Degree - CSIT</p>
           <ul class="semester-details">
-            <li><strong>Semester I:</strong> C Programming, Digital Logic, Physics, Mathematics I, IIT.</li>
-            <li><strong>Semester II:</strong> OOP, Discrete Structure, Microprocessor, Mathematics II, Statistics I.</li>
-            <li><strong>Semester III:</strong> DSA, Computer Architecture, Computer Graphics, Numerical Method, Statistics II.</li>
-            <li><strong>Semester IV:</strong> AI, DBMS, Operating Systems, Theory of Computation, Computer Networks.</li>
-            <li><strong>Semester V:</strong> Design and Analysis of Algorithms, System Analysis and Design, Cryptography, Simulation and Modeling, Web Technology, Image Processing.</li>
-            <li><strong>Semester VI:</strong> Compiler Design, Dotnet, Software Engineering, E-governance, Technical writing, E-commerce.</li>
-            <li><strong>Semester VII:</strong> Java, Data Warehousing and Data Mining, Principles of Management, Project Work.</li>
+            <li><i>Semester I:</i> <i>C Programming, Digital Logic, Physics, Mathematics I, IIT.</i></li>
+            <li><i>Semester II:</i> <i>OOP, Discrete Structure, Microprocessor, Mathematics II, Statistics I.</i></li>
+            <li><i>Semester III:</i> <i>DSA, Computer Architecture, Computer Graphics, Numerical Method, Statistics II.</i></li>
+            <li><i>Semester IV:</i> <i>AI, DBMS, Operating Systems, Theory of Computation, Computer Networks.</i></li>
+            <li><i>Semester V:</i> <i>Design and Analysis of Algorithms, System Analysis and Design, Cryptography, Simulation and Modeling, Web Technology, Image Processing.</i></li>
+            <li><i>Semester VI:</i> <i>Compiler Design, Dotnet, Software Engineering, E-governance, Technical writing, E-commerce</i></li>
           </ul>
         </li>
           </ol>
         </section>
 
-        <!-- Skills Section -->
-        <section class="skills-section">
-          <h3 class="h3 skills-title">Skills & Tools</h3>
-
-          <!-- Skills Grid Container -->
-          <div class="skills-grid-container">
-            <!-- ML/LLMs -->
-            <div class="skill-category">
-              <h4 class="skill-category-title">ML/LLMs</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">Transformers</span>
-                <span class="skill-tag">BERT</span>
-                <span class="skill-tag">GPT</span>
-                <span class="skill-tag">T5</span>
-                <span class="skill-tag">Fine-tuning</span>
-                <span class="skill-tag">LoRA</span>
-                <span class="skill-tag">QLoRA</span>
-                <span class="skill-tag">PEFT</span>
-                <span class="skill-tag">Unsloth</span>
-                <span class="skill-tag">Axolotl</span>
-                <span class="skill-tag">LangChain</span>
-                <span class="skill-tag">LangGraph</span>
-                <span class="skill-tag">LlamaIndex</span>
-                <span class="skill-tag">RAG</span>
-                <span class="skill-tag">RAG Evaluation</span>
+        <section class="skills">
+          <h3 class="h3 skills-title">Skills</h3>
+          <div class="skills-grid">
+            <!-- general development -->
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Web Development</h5>
+                <span class="skill-percentage">65%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 65%;"></div>
               </div>
             </div>
 
-            <!-- Data & Backend -->
-            <div class="skill-category">
-              <h4 class="skill-category-title">Data & Backend</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">FastAPI</span>
-                <span class="skill-tag">Streamlit</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">VectorDBs</span>
-                <span class="skill-tag">Chroma</span>
-                <span class="skill-tag">FAISS</span>
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">NumPy</span>
-                <span class="skill-tag">Plotly</span>
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Data Analysis</h5>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
               </div>
             </div>
 
-            <!-- Deployment & DevOps -->
-            <div class="skill-category">
-              <h4 class="skill-category-title">Deployment & DevOps</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Linux</span>
-                <span class="skill-tag">Git</span>
-                <span class="skill-tag">GitHub</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">ECS</span>
-                <span class="skill-tag">Lambda</span>
-                <span class="skill-tag">Vercel</span>
-                <span class="skill-tag">Render</span>
-                <span class="skill-tag">HF Spaces</span>
-                <span class="skill-tag">Kafka</span>
-                <span class="skill-tag">Apache Airflow</span>
-                <span class="skill-tag">Snowflake</span>
-                <span class="skill-tag">Microservices</span>
+            <!-- machine learning / deep learning -->
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Machine Learning</h5>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
               </div>
             </div>
 
-            <!-- No-Code/Low-Code -->
-            <div class="skill-category">
-              <h4 class="skill-category-title">No-Code/Low-Code</h4>
-              <div class="skill-tags">
-                <span class="skill-tag">Bubble.io</span>
-                <span class="skill-tag">Glide</span>
-                <span class="skill-tag">Zapier</span>
-                <span class="skill-tag">Xano</span>
-                <span class="skill-tag">Airtable</span>
-                <span class="skill-tag">n8n</span>
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Deep Neural Networks</h5>
+                <span class="skill-percentage">50%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 50%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Optimization & Regularization</h5>
+                <span class="skill-percentage">20%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Sequence Modeling</h5>
+                <span class="skill-percentage">15%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 15%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Transformers</h5>
+                <span class="skill-percentage">15%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 15%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Generative Models</h5>
+                <span class="skill-percentage">10%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 10%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Computer Vision</h5>
+                <span class="skill-percentage">20%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 20%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">NLP</h5>
+                <span class="skill-percentage">40%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 40%;"></div>
               </div>
             </div>
           </div>
-
-          <style>
-            .skills-section {
-              margin-top: 2rem;
-            }
-
-            .skills-grid-container {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-              gap: 1.5rem;
-              margin-top: 1rem;
-            }
-
-            .skill-category {
-              background: #ffffff;
-              padding: 1.25rem 1rem;
-              border-radius: 10px;
-              border: 1px solid #e5e7eb;
-              box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-              transition: all 0.3s ease;
-            }
-
-            .skill-category:hover {
-              border-color: #d1d5db;
-              box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-            }
-
-            .skill-category-title {
-              font-size: 0.9rem;
-              font-weight: 700;
-              color: #111827;
-              margin-bottom: 0.85rem;
-              text-transform: capitalize;
-              letter-spacing: -0.3px;
-            }
-
-            .skill-tags {
-              display: flex;
-              flex-wrap: wrap;
-              gap: 0.45rem;
-              row-gap: 0.5rem;
-            }
-
-            .skill-tag {
-              display: inline-block;
-              background: #f9fafb;
-              color: #374151;
-              padding: 0.35rem 0.7rem;
-              border-radius: 5px;
-              font-size: 0.75rem;
-              font-weight: 500;
-              border: 1px solid #e5e7eb;
-              transition: all 0.2s ease;
-              white-space: nowrap;
-            }
-
-            .skill-tag:hover {
-              background: #fff;
-              border-color: #9ca3af;
-              color: #1f2937;
-              box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            }
-
-            @media (max-width: 768px) {
-              .skills-grid-container {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-              }
-
-              .skill-category {
-                padding: 1.5rem;
-              }
-
-              .skill-category-title {
-                font-size: 0.95rem;
-              }
-
-              .skill-tags {
-                gap: 0.5rem;
-                row-gap: 0.65rem;
-              }
-
-              .skill-tag {
-                font-size: 0.78rem;
-                padding: 0.35rem 0.85rem;
-              }
-            }
-          </style>
         </section>
+
+        <section class="tools">
+            <h3 class="h3 tools-title" style="margin-top: 20px;">Tools Used</h3>
+          <div class="skills-grid">
+            <!-- programming / tools -->
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">C++</h5>
+                <span class="skill-percentage">40%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 40%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Python</h5>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Version Control (Git/GitHub)</h5>
+                <span class="skill-percentage">90%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">AWS</h5>
+                <span class="skill-percentage">70%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 70%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Linux</h5>
+                <span class="skill-percentage">60%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 60%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">PyTorch</h5>
+                <span class="skill-percentage">70%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 70%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Scikit-Learn</h5>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">TensorFlow</h5>
+                <span class="skill-percentage">80%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 80%;"></div>
+              </div>
+            </div>
+
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Davinci Resolve</h5>
+                <span class="skill-percentage">60%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 60%;"></div>
+              </div>
+            </div>
+
+            <div class="skills-card">
+              <div class="skill-header">
+                <h5 class="h5">Blender</h5>
+                <span class="skill-percentage">30%</span>
+              </div>
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 30%;"></div>
+              </div>
+            </div>
+          </div>
+        </section>  
+        
+        <div style="margin-top: 2rem;"></div> <!-- Added gap before the section -->
+        <div class="skills-disclaimer" style="display: flex; align-items: center; margin-bottom: 1rem; font-size: 0.85rem; color: #555; font-style: italic;">
+          <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+            <ion-icon name="information-circle-outline" style="margin-right: 8px; font-size: 1.2rem; color: #000;"></ion-icon>
+            <span>Percentages represent my confidence level, not perfection. Always improving!</span>
+          <hr style="flex-grow: 1; margin-right: 8px; border: none; border-top: 1px solid #ccc;">
+        </div>
 
       </article>
 
@@ -967,11 +924,11 @@
         </li>
 
         <li class="filter-item">
-          <button data-filter-btn>GenAI</button>
+          <button data-filter-btn>Web Development</button>
         </li>
 
         <li class="filter-item">
-          <button data-filter-btn>Others</button>
+          <button data-filter-btn>Python Development</button>
         </li>
 
         <!-- <li class="filter-item">
@@ -1007,11 +964,11 @@
           </li>
 
           <li class="select-item">
-            <button data-select-item>GenAI</button>
+            <button data-select-item>Web Development</button>
           </li>
 
           <li class="select-item">
-            <button data-select-item>Others</button>
+            <button data-select-item>Python Development</button>
           </li>
           
           <!-- <li class="select-item">
@@ -1125,77 +1082,7 @@
 
       </style>
 
-        <!-- cineRank - Movie Ranker -->
-        <li class="project-item active" data-filter-item data-category="genai">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-                <a href="https://cine-rank.vercel.app" class="project-icon-link" target="_blank" title="Live Demo">
-                  <img src="./assets/icon-click.svg" alt="Live Demo">
-                </a>
-              </div>
-              <img src="./assets/images/cine-rank.png" alt="cineRank - Movie Ranker" loading="lazy" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
-            </figure>
-            <h3 class="project-title">cineRank - Movie Ranker</h3>
-            <p class="project-category">Machine Learning</p>
-          </div>
-        </li>
-
-        <!-- Choose Your Own Adventure -->
-        <li class="project-item active" data-filter-item data-category="genai">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/Choose-Your-Own-Adventure" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-                <a href="https://github.com/paudelsamir/Choose-Your-Own-Adventure" class="project-icon-link" target="_blank" title="Project Demo">
-                  <img src="./assets/icon-click.svg" alt="Demo">
-                </a>
-              </div>
-              <img src="./assets/images/choose-adventure.png" alt="Choose Your Own Adventure" loading="lazy" style="background: linear-gradient(135deg, #1f1f1f 0%, #3d3d3d 100%);">
-            </figure>
-            <h3 class="project-title">Choose Your Own Adventure</h3>
-            <p class="project-category">Machine Learning</p>
-          </div>
-        </li>
-
-        <!-- Projects-Based-GenAI -->
-        <li class="project-item active" data-filter-item data-category="genai">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/gen-ai.png" alt="Projects-Based-GenAI" loading="lazy" style="background: linear-gradient(135deg, #0d0d0d 0%, #2d2d2d 100%); width: 100%; height: 220px;">
-            </figure>
-            <h3 class="project-title">Projects-Based-GenAI</h3>
-            <p class="project-category">Deep learning</p>
-          </div>
-        </li>
-
-        <!-- Project-Based-AgenticAI -->
-        <li class="project-item active" data-filter-item data-category="genai">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/agentic-ai.png" alt="Project-Based-AgenticAI" loading="lazy" style="background: linear-gradient(135deg, #222 0%, #444 100%); width: 100%; height: 220px;">
-            </figure>
-            <h3 class="project-title">Project-Based-AgenticAI</h3>
-            <p class="project-category">Deep learning</p>
-          </div>
-        </li>
-
-        <!-- Player Value Prediction -->
+        <!-- Machine Learning Projects -->
         <li class="project-item active" data-filter-item data-category="machine learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1214,7 +1101,6 @@
           </div>
         </li>
 
-        <!-- Movie Recommender System -->
         <li class="project-item active" data-filter-item data-category="machine learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1233,7 +1119,6 @@
           </div>
         </li>
 
-        <!-- Cat vs Dog Classifier -->
         <li class="project-item active" data-filter-item data-category="machine learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1252,7 +1137,6 @@
           </div>
         </li>
 
-        <!-- EDA Projects Collection -->
         <li class="project-item active" data-filter-item data-category="machine learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1268,23 +1152,8 @@
           </div>
         </li>
 
-        <!-- Mini GenAI Projects Collection -->
-        <li class="project-item active" data-filter-item data-category="genai">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/gen-ai.png" alt="Mini GenAI Projects Collection" loading="lazy" style="background: linear-gradient(135deg, #0d0d0d 0%, #2d2d2d 100%);">
-            </figure>
-            <h3 class="project-title">Mini GenAI Projects Collection</h3>
-            <p class="project-category">Deep learning</p>
-          </div>
-        </li>
-
-        <!-- Guess The Footballer By Eyes -->
+        <!-- Deep Learning Projects -->
+        <!-- Deep Learning Projects -->
         <li class="project-item active" data-filter-item data-category="deep learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1303,7 +1172,6 @@
           </div>
         </li>
 
-        <!-- Seq2Seq Chatbot -->
         <li class="project-item active" data-filter-item data-category="deep learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1322,7 +1190,6 @@
           </div>
         </li>
 
-        <!-- GPT from Scratch -->
         <li class="project-item active" data-filter-item data-category="deep learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1341,7 +1208,6 @@
           </div>
         </li>
 
-        <!-- Image Captioning -->
         <li class="project-item active" data-filter-item data-category="deep learning">
           <div tabindex="0">
             <figure class="project-img">
@@ -1360,21 +1226,9 @@
           </div>
         </li>
 
-        <!-- Others Card in All View -->
-        <li class="project-item active others-showcase" data-filter-item data-category="all" onclick="filterByCategory('others')" style="cursor: pointer;">
-          <div tabindex="0">
-            <figure class="project-img" style="background: linear-gradient(135deg, #1a1a1a 0%, #333333 100%); display: flex; align-items: center; justify-content: center;">
-              <div class="project-item-icon-box" style="opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto;">
-                <ion-icon name="arrow-forward-outline" style="width: 48px; height: 48px; color: #ffffff;"></ion-icon>
-              </div>
-            </figure>
-            <h3 class="project-title">Explore More</h3>
-            <p class="project-category">Others - Personal Projects</p>
-          </div>
-        </li>
 
         <!-- Web Development Projects -->
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="web development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1388,11 +1242,11 @@
               <img src="./assets/images/spotify.png" alt="Spotify Clone" loading="lazy">
             </figure>
             <h3 class="project-title">Spotify Clone</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Web Development</p>
           </div>
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="web development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1406,12 +1260,12 @@
               <img src="./assets/images/netflix.png" alt="Netflix Clone" loading="lazy">
             </figure>
             <h3 class="project-title">Netflix Clone</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Web Development</p>
           </div>
         </li>
         
         <!-- Python Development Projects -->
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1422,11 +1276,11 @@
               <img src="./assets/images/blackjack.png" alt="Blackjack Game" loading="lazy">
             </figure>
             <h3 class="project-title">Blackjack Game</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1437,11 +1291,11 @@
               <img src="./assets/images/snakegame.png" alt="Snake Game" loading="lazy">
             </figure>
             <h3 class="project-title">AI Snake Game</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1452,11 +1306,11 @@
               <img src="./assets/images/hangman.png" alt="Hangman Game" loading="lazy">
             </figure>
             <h3 class="project-title">Hangman Game</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1467,11 +1321,11 @@
               <img src="./assets/images/cipher.png" alt="Caesar Cipher" loading="lazy">
             </figure>
             <h3 class="project-title">Caesar Cipher</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1482,10 +1336,10 @@
               <img src="./assets/images/calc.png" alt="Calculator with Functions" loading="lazy">
             </figure>
             <h3 class="project-title">Calculator with Functions</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1496,11 +1350,11 @@
               <img src="./assets/images/number.png" alt="Number Guessing Game" loading="lazy">
             </figure>
             <h3 class="project-title">Number Guessing Game</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>  
         </li>
 
-        <li class="project-item" data-filter-item data-category="others">
+        <li class="project-item active" data-filter-item data-category="python development">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1511,10 +1365,10 @@
               <img src="./assets/images/high_low.png" alt="Higher Lower Game" loading="lazy">
             </figure>
             <h3 class="project-title">Higher Lower Game</h3>
-            <p class="project-category">Others</p>
+            <p class="project-category">Python Development</p>
           </div>
         </li>
-          <li class="project-item" data-filter-item data-category="others">
+          <li class="project-item active" data-filter-item data-category="python development">
             <div tabindex="0">
               <figure class="project-img">
                 <div class="project-item-icon-box">
@@ -1525,10 +1379,10 @@
                 <img src="./assets/images/coffee.jpg" alt="Simple Coffee Machine" loading="lazy">
               </figure>
               <h3 class="project-title">Simple Coffee Machine</h3>
-              <p class="project-category">Others</p>
+              <p class="project-category">Python Development</p>
             </div>
           </li>
-          <li class="project-item" data-filter-item data-category="others">
+          <li class="project-item active" data-filter-item data-category="python development">
             <div tabindex="0">
               <figure class="project-img">
                 <div class="project-item-icon-box">
@@ -1539,11 +1393,11 @@
                 <img src="./assets/images/quiz.png" alt="Quiz Application" loading="lazy">
               </figure>
               <h3 class="project-title">Quiz Application</h3>
-              <p class="project-category">Others</p>
+              <p class="project-category">Python Development</p>
             </div>
           </li>
 
-          <li class="project-item" data-filter-item data-category="others">
+          <li class="project-item active" data-filter-item data-category="python development">
             <div tabindex="0">
               <figure class="project-img">
                 <div class="project-item-icon-box">
@@ -1554,12 +1408,12 @@
                 <img src="./assets/images/turtle.png" alt="Turtle & GUI" loading="lazy">
               </figure>
               <h3 class="project-title">Turtle & GUI</h3>
-              <p class="project-category">Others</p>
+              <p class="project-category">Python Development</p>
             </div>
           </li> 
         
-        <!-- Video Editing Projects -->
-        <li class="project-item" data-filter-item data-category="others">
+        <!-- Video Editing Projects (Coming Soon) -->
+        <li class="project-item active" data-filter-item data-category="video editing">
           <div tabindex="0">
             <figure class="project-img">
               <div class="project-item-icon-box">
@@ -1570,304 +1424,16 @@
               <img src="./assets/images/video.png" alt="Video Projects" loading="lazy">
             </figure>
             <h3 class="project-title">Video Projects</h3>
-            <p class="project-category">Video Editing</p>
-          </div>
-        </li>
-
-        <!-- Super Minimal Projects -->
-        <li class="project-item" data-filter-item data-category="others">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/01-Python-Basics" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/python-basics.png" alt="Python Basics Learning" loading="lazy" style="background: linear-gradient(135deg, #000 0%, #333 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-            </figure>
-            <h3 class="project-title">Python Basics</h3>
-            <p class="project-category">Learning Projects</p>
-          </div>
-        </li>
-
-        <li class="project-item" data-filter-item data-category="others">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/02-Data-Structures" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/data-structures.png" alt="Data Structures Learning" loading="lazy" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-            </figure>
-            <h3 class="project-title">Data Structures</h3>
-            <p class="project-category">Learning Projects</p>
-          </div>
-        </li>
-
-        <li class="project-item" data-filter-item data-category="others">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/03-OOP-Concepts" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/oop-concepts.png" alt="OOP Concepts Learning" loading="lazy" style="background: linear-gradient(135deg, #222 0%, #444 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-            </figure>
-            <h3 class="project-title">OOP Concepts</h3>
-            <p class="project-category">Learning Projects</p>
-          </div>
-        </li>
-
-        <li class="project-item" data-filter-item data-category="others">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/04-Web-Scraping" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/web-scraping.png" alt="Web Scraping Learning" loading="lazy" style="background: linear-gradient(135deg, #0d0d0d 0%, #333 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-            </figure>
-            <h3 class="project-title">Web Scraping</h3>
-            <p class="project-category">Learning Projects</p>
-          </div>
-        </li>
-
-        <li class="project-item" data-filter-item data-category="others">
-          <div tabindex="0">
-            <figure class="project-img">
-              <div class="project-item-icon-box">
-                <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/05-API-Integration" class="project-icon-link" target="_blank" title="GitHub Repo">
-                  <img src="./assets/icon-github.svg" alt="GitHub Link">
-                </a>
-              </div>
-              <img src="./assets/images/api-integration.png" alt="API Integration Learning" loading="lazy" style="background: linear-gradient(135deg, #1f1f1f 0%, #3d3d3d 100%); display: flex; align-items: center; justify-content: center; font-size: 2rem;">
-            </figure>
-            <h3 class="project-title">API Integration</h3>
-            <p class="project-category">Learning Projects</p>
+            <p class="project-category">Video Editing (Coming Soon)</p>
           </div>
         </li>
         
           </ul>
         </section>
 
-        <!-- Featured GitHub Repos Section -->
-        <section class="featured-repos-portfolio">
-          <h3 class="h3">Featured GitHub Repositories</h3>
-          
-          <ul class="featured-repos-list" id="featured-repos-list">
-            <!-- Repos will be fetched dynamically from GitHub API -->
-          </ul>
-        </section>
-
       </article>
 
-      <!-- GenAI Projects Section -->
-      <article class="genai-projects" data-page="genai">
 
-        <header>
-          <h2 class="h2 article-title">GenAI Projects</h2>
-        </header>
-
-        <section class="genai-projects-section">
-          <ul class="genai-projects-list">
-            <!-- cineRank - Movie Ranker -->
-            <li class="genai-project-item">
-              <div tabindex="0">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis" class="project-icon-link" target="_blank" title="GitHub Repo">
-                      <img src="./assets/icon-github.svg" alt="GitHub Link">
-                    </a>
-                    <a href="https://cine-rank.vercel.app" class="project-icon-link" target="_blank" title="Live Demo">
-                      <img src="./assets/icon-click.svg" alt="Live Demo">
-                    </a>
-                  </div>
-                  <img src="./assets/images/cine-rank.png" alt="cineRank - Movie Ranker" loading="lazy" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
-                </figure>
-                <h3 class="project-title">cineRank - Movie Ranker</h3>
-                <p class="project-category">GenAI</p>
-              </div>
-            </li>
-
-            <!-- Choose Your Own Adventure -->
-            <li class="genai-project-item">
-              <div tabindex="0">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <a href="https://github.com/paudelsamir/Choose-Your-Own-Adventure" class="project-icon-link" target="_blank" title="GitHub Repo">
-                      <img src="./assets/icon-github.svg" alt="GitHub Link">
-                    </a>
-                    <a href="https://github.com/paudelsamir/Choose-Your-Own-Adventure" class="project-icon-link" target="_blank" title="Project Demo">
-                      <img src="./assets/icon-click.svg" alt="Demo">
-                    </a>
-                  </div>
-                  <img src="./assets/images/choose-adventure.png" alt="Choose Your Own Adventure" loading="lazy" style="background: linear-gradient(135deg, #1f1f1f 0%, #3d3d3d 100%);">
-                </figure>
-                <h3 class="project-title">Choose Your Own Adventure</h3>
-                <p class="project-category">GenAI</p>
-              </div>
-            </li>
-
-            <!-- Projects-Based-GenAI -->
-            <li class="genai-project-item">
-              <div tabindex="0">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI" class="project-icon-link" target="_blank" title="GitHub Repo">
-                      <img src="./assets/icon-github.svg" alt="GitHub Link">
-                    </a>
-                  </div>
-                  <img src="./assets/images/gen-ai.png" alt="Projects-Based-GenAI" loading="lazy" style="background: linear-gradient(135deg, #0d0d0d 0%, #2d2d2d 100%);">
-                </figure>
-                <h3 class="project-title">Projects-Based-GenAI</h3>
-                <p class="project-category">GenAI</p>
-              </div>
-            </li>
-
-            <!-- Project-Based-AgenticAI -->
-            <li class="genai-project-item">
-              <div tabindex="0">
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI" class="project-icon-link" target="_blank" title="GitHub Repo">
-                      <img src="./assets/icon-github.svg" alt="GitHub Link">
-                    </a>
-                  </div>
-                  <img src="./assets/images/agentic-ai.png" alt="Project-Based-AgenticAI" loading="lazy" style="background: linear-gradient(135deg, #222 0%, #444 100%);">
-                </figure>
-                <h3 class="project-title">Project-Based-AgenticAI</h3>
-                <p class="project-category">GenAI</p>
-              </div>
-            </li>
-          </ul>
-
-          <style>
-            .genai-projects {
-              margin-top: 3rem;
-              margin-bottom: 3rem;
-            }
-
-            .genai-projects-list {
-              display: grid;
-              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-              gap: 2rem;
-              list-style: none;
-              padding: 0;
-              margin-top: 2rem;
-            }
-
-            .genai-project-item {
-              display: flex;
-              flex-direction: column;
-            }
-
-            .genai-project-item .project-img {
-              width: 100%;
-              height: 220px;
-              overflow: hidden;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              border-radius: 10px;
-              position: relative;
-              background: #fff;
-              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-              transition: transform 0.25s ease-in-out, box-shadow 0.25s;
-            }
-
-            .genai-project-item:hover .project-img {
-              box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-            }
-
-            .genai-project-item .project-img img {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              filter: grayscale(100%) brightness(1.0);
-              transition: filter 0.3s ease, transform 0.3s ease;
-            }
-
-            .genai-project-item:hover .project-img img {
-              filter: grayscale(20%) brightness(0.6);
-              transform: scale(1.02);
-            }
-
-            .genai-project-item .project-item-icon-box {
-              position: absolute;
-              display: flex;
-              flex-direction: column;
-              gap: 0.5rem;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%) scale(0);
-              opacity: 0;
-              z-index: 2;
-              transition: all 0.25s ease;
-            }
-
-            .genai-project-item:hover .project-item-icon-box {
-              opacity: 1;
-              transform: translate(-50%, -50%) scale(1);
-            }
-
-            .genai-project-item .project-icon-link {
-              background: transparent;
-              border: 1.5px solid #000;
-              border-radius: 50%;
-              width: 36px;
-              height: 36px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              transition: all 0.2s ease;
-              cursor: pointer;
-            }
-
-            .genai-project-item .project-icon-link:hover {
-              background: #a7a7a7;
-              border-color: #000;
-              transform: scale(1.05);
-            }
-
-            .genai-project-item .project-icon-link img {
-              width: 18px;
-              height: 18px;
-              filter: brightness(0) grayscale(1);
-            }
-
-            .genai-project-item .project-title {
-              margin-top: 1rem;
-              font-size: 0.95rem;
-              font-weight: 600;
-              color: #1a1a1a;
-            }
-
-            .genai-project-item .project-category {
-              font-size: 0.8rem;
-              color: var(--vegas-gold);
-              font-weight: 500;
-              margin-top: 0.25rem;
-            }
-
-            @media (max-width: 768px) {
-              .genai-projects-list {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-              }
-            }
-
-            @media (max-width: 480px) {
-              .genai-projects-list {
-                grid-template-columns: 1fr;
-              }
-            }
-          </style>
-        </section>
-
-      </article>
 
       <article class="blog" data-page="blog">
         <header>
