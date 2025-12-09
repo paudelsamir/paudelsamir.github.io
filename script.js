@@ -84,8 +84,8 @@ const filterFunc = function (selectedValue) {
     const itemCategory = filterItems[i].dataset.category;
 
     if (selectedValue === "all") {
-      // Show all items that have "all" or "machine learning" or "deep learning" categories (not "others")
-      if (itemCategory === "all" || itemCategory === "machine learning" || itemCategory === "deep learning") {
+      // Show all items except "others" category
+      if (itemCategory !== "others") {
         filterItems[i].classList.add("active");
       } else {
         filterItems[i].classList.remove("active");
@@ -98,7 +98,7 @@ const filterFunc = function (selectedValue) {
         filterItems[i].classList.remove("active");
       }
     } else if (selectedValue === itemCategory) {
-      // Show items that match selected category (machine learning, deep learning)
+      // Show items that match selected category
       filterItems[i].classList.add("active");
     } else {
       filterItems[i].classList.remove("active");
@@ -174,167 +174,237 @@ const pages = document.querySelectorAll("[data-page]");
 for (let i = 0; i < navigationLinks.length; i++) {
   navigationLinks[i].addEventListener("click", function () {
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
+    for (let j = 0; j < pages.length; j++) {
+      if (this.innerHTML.toLowerCase() === pages[j].dataset.page) {
+        pages[j].classList.add("active");
+        navigationLinks[j].classList.add("active");
         window.scrollTo(0, 0);
       } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
+        pages[j].classList.remove("active");
+        navigationLinks[j].classList.remove("active");
       }
     }
 
   });
 }
 
-// JavaScript
+// JavaScript - Dark mode toggle
 const toggleButton = document.getElementById('toggle-button');
 const body = document.body;
 
-// Check if a dark mode preference is stored in LocalStorage
-const isDarkMode = localStorage.getItem('darkMode');
+if (toggleButton) {
+  // Check if a dark mode preference is stored in LocalStorage
+  const isDarkMode = localStorage.getItem('darkMode');
 
-// Set the initial toggle state based on the stored preference
-toggleButton.checked = isDarkMode === 'true';
-body.classList.toggle('dark-theme', toggleButton.checked);
+  // Set the initial toggle state based on the stored preference
+  toggleButton.checked = isDarkMode === 'true';
+  body.classList.toggle('dark-theme', toggleButton.checked);
 
-toggleButton.addEventListener('click', () => {
-  const isDarkModeActive = body.classList.contains('dark-theme');
-  
-  // Toggle the class and store the dark mode preference in LocalStorage
-  body.classList.toggle('dark-theme', !isDarkModeActive);
-  localStorage.setItem('darkMode', !isDarkModeActive);
-});
+  toggleButton.addEventListener('click', () => {
+    const isDarkModeActive = body.classList.contains('dark-theme');
+    
+    // Toggle the class and store the dark mode preference in LocalStorage
+    body.classList.toggle('dark-theme', !isDarkModeActive);
+    localStorage.setItem('darkMode', !isDarkModeActive);
+  });
+}
 
 
 document.addEventListener("DOMContentLoaded", function () {
-  const mediumUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@paudelsamir";
-
-  fetch(mediumUrl)
-      .then(response => response.json())
-      .then(data => {
-          const postsContainer = document.getElementById("medium-posts");
-          let postsHtml = "";
-
-          data.items.slice(0, 6).forEach(post => { // fetch only the latest 6 posts
-              let postImage = post.thumbnail || "./assets/images/default-thumbnail.jpg"; // fallback image
-              let postDate = new Date(post.pubDate).toDateString(); // format date
-
-              postsHtml += `
-                  <li class="blog-post-item">
-                      <a href="${post.link}" target="_blank">
-                          <figure class="blog-banner-box">
-                              <img src="${postImage}" alt="${post.title}" loading="lazy">
-                          </figure>
-
-                          <div class="blog-content">
-                              <div class="blog-meta">
-                                  <p class="blog-category">Medium Blog</p>
-                                  <span class="dot"></span>
-                                  <time datetime="${post.pubDate}">${postDate}</time>
-                              </div>
-
-                              <h3 class="h3 blog-item-title">${post.title}</h3>
-                              <p class="blog-text">${post.description.substring(0, 100)}...</p>
-                          </div>
-                      </a>
-                  </li>
-              `;
-          });
-
-          postsContainer.innerHTML = postsHtml;
-      })
-      .catch(error => console.error("Error fetching Medium RSS feed:", error));
-
-  // Fetch Featured Repositories from GitHub API
-  const repoList = [
-    { owner: "paudelsamir", repo: "365DaysOfData" },
-    { owner: "paudelsamir", repo: "Coding-Interview-Preparation" }
-  ];
-
-  const reposContainer = document.getElementById("featured-repos-list");
+  console.log("DOMContentLoaded event fired");
   
-  if (!reposContainer) {
-    console.warn("Featured repos container not found");
-  } else {
-    let reposHtml = "";
-    let loadedRepos = 0;
+  // Set category tags based on data-category attribute
+  const allFilterItems = document.querySelectorAll("[data-filter-item]");
+  
+  allFilterItems.forEach(item => {
+    const category = item.dataset.category;
+    const categoryElement = item.querySelector(".project-category");
+    
+    if (categoryElement && category) {
+      // Convert data-category value to display text (e.g., "machine learning" -> "Machine Learning")
+      const categoryText = category
+        .split(" ")
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ");
+      
+      categoryElement.textContent = categoryText;
+    }
+  });
 
-    repoList.forEach(({ owner, repo }) => {
-      fetch(`https://api.github.com/repos/${owner}/${repo}`)
+  // Fetch and display Medium blog posts
+  console.log("Starting Medium blog fetch...");
+  const mediumUrl = "https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@paudelsamir";
+  const postsContainer = document.getElementById("medium-posts");
+  
+  console.log("Posts container found:", postsContainer ? "Yes" : "No");
+  
+  if (postsContainer) {
+    fetch(mediumUrl)
         .then(response => {
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
+          console.log("Response status:", response.status);
+          if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
           return response.json();
         })
         .then(data => {
-          if (data.message === "Not Found") {
-            console.error(`Repository ${owner}/${repo} not found`);
-            loadedRepos++;
-            if (loadedRepos === repoList.length) {
-              if (!reposHtml.trim()) {
-                reposContainer.innerHTML = "<p>Unable to load repositories. Please try again later.</p>";
-              } else {
-                reposContainer.innerHTML = reposHtml;
+          console.log("Data received:", data);
+          
+          if (data.items && data.items.length > 0) {
+            console.log("Number of posts available:", data.items.length);
+            
+            // Store all posts for pagination
+            let allPosts = data.items;
+            let postsToShow = 4;
+            let currentIndex = 0;
+            
+            // Function to render posts
+            function renderPosts(startIndex, count) {
+              let postsHtml = "";
+              const endIndex = Math.min(startIndex + count, allPosts.length);
+              
+              for (let i = startIndex; i < endIndex; i++) {
+                const post = allPosts[i];
+                console.log(`Processing post ${i + 1}:`, post.title);
+                
+                // Try to extract image from description HTML
+                let postImage = null;
+                const imgRegex = /<img[^>]+src="([^">]+)"/;
+                const descMatch = post.description.match(imgRegex);
+                
+                if (descMatch && descMatch[1]) {
+                  postImage = descMatch[1];
+                  console.log(`Found image in description for post ${i + 1}:`, postImage);
+                } else if (post.thumbnail && post.thumbnail.trim()) {
+                  postImage = post.thumbnail;
+                  console.log(`Found thumbnail for post ${i + 1}:`, postImage);
+                } else {
+                  // Fallback to horse image
+                  postImage = "./assets/left_horse.jpg";
+                  console.log(`No image found, using fallback for post ${i + 1}`);
+                }
+                
+                let postDate = new Date(post.pubDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                
+                // Extract categories/tags from the post (only 1 for shorter keywords)
+                let categories = post.categories && post.categories.length > 0 
+                    ? `<span class="blog-category">${post.categories[0].replace(/-/g, ' ')}</span>`
+                    : '<span class="blog-category">Article</span>';
+
+                postsHtml += `
+                    <li class="blog-post-item">
+                        <a href="${post.link}" target="_blank" rel="noopener noreferrer">
+                            <figure class="blog-banner-box">
+                                <img src="${postImage}" alt="${post.title}" loading="lazy" onerror="this.src='./assets/left_horse.jpg'">
+                            </figure>
+
+                            <div class="blog-content">
+                                <h3 class="blog-item-title">${post.title}</h3>
+                                
+                                <div class="blog-categories-row">
+                                    ${categories}
+                                </div>
+                                
+                                <div class="blog-footer">
+                                    <time datetime="${post.pubDate}">${postDate}</time>
+                                    <span class="read-more">Read More →</span>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                `;
               }
+              
+              return postsHtml;
             }
-            return;
-          }
-
-          const stars = data.stargazers_count || 0;
-          const forks = data.forks_count || 0;
-          const language = data.language || "N/A";
-          const description = data.description || "No description available";
-          const url = data.html_url;
-          const name = data.name;
-
-          const repoCard = `
-            <li class="repo-card">
-              <div class="repo-header">
-                <h3 class="repo-title">
-                  <a href="${url}" target="_blank" title="View on GitHub">
-                    <ion-icon name="logo-github" class="repo-icon"></ion-icon> ${name}
-                  </a>
-                </h3>
-              </div>
-              <p class="repo-description">${description}</p>
-              ${language !== "N/A" ? `<span class="repo-language">📝 ${language}</span>` : ""}
-              <div class="repo-stats">
-                <div class="repo-stat">
-                  <ion-icon name="star"></ion-icon>
-                  <span>${stars} Stars</span>
-                </div>
-                <div class="repo-stat">
-                  <ion-icon name="git-branch"></ion-icon>
-                  <span>${forks} Forks</span>
-                </div>
-              </div>
-            </li>
-          `;
-
-          reposHtml += repoCard;
-          loadedRepos++;
-
-          console.log(`Loaded ${name} (${loadedRepos}/${repoList.length})`);
-
-          if (loadedRepos === repoList.length) {
-            console.log("All repos loaded, updating DOM");
-            reposContainer.innerHTML = reposHtml;
+            
+            // Render initial 4 posts
+            let initialHtml = renderPosts(0, postsToShow);
+            postsContainer.innerHTML = initialHtml;
+            currentIndex = postsToShow;
+            
+            // Add Load More button if there are more posts
+            if (allPosts.length > postsToShow) {
+              const loadMoreBtn = document.createElement('button');
+              loadMoreBtn.id = 'load-more-posts';
+              loadMoreBtn.textContent = 'Load More Posts';
+              loadMoreBtn.className = 'load-more-btn';
+              
+              const blogSection = postsContainer.closest('.blog-posts');
+              blogSection.appendChild(loadMoreBtn);
+              
+              loadMoreBtn.addEventListener('click', function() {
+                console.log(`Loading more posts from index ${currentIndex}`);
+                const moreHtml = renderPosts(currentIndex, postsToShow);
+                
+                // Create temporary container to hold new items
+                const tempContainer = document.createElement('div');
+                tempContainer.innerHTML = moreHtml;
+                
+                // Append new items before the button
+                while (tempContainer.firstChild) {
+                  postsContainer.appendChild(tempContainer.firstChild);
+                }
+                
+                currentIndex += postsToShow;
+                
+                // Hide button if no more posts
+                if (currentIndex >= allPosts.length) {
+                  loadMoreBtn.style.display = 'none';
+                }
+              });
+            }
+            
+            console.log("Initial posts rendered successfully");
+          } else {
+            console.log("No items found in data");
+            postsContainer.innerHTML = '<li style="color: #999; padding: 2rem; text-align: center;">No blog posts found.</li>';
           }
         })
         .catch(error => {
-          console.error(`Error fetching repo ${owner}/${repo}:`, error);
-          loadedRepos++;
-          if (loadedRepos === repoList.length) {
-            if (!reposHtml.trim()) {
-              reposContainer.innerHTML = "<p>Error loading repositories</p>";
-            } else {
-              reposContainer.innerHTML = reposHtml;
-            }
-          }
+          console.error("Error fetching Medium RSS feed:", error);
+          postsContainer.innerHTML = '<li style="color: #999; padding: 2rem; text-align: center;">Failed to load blog posts. Please try again later.</li>';
         });
+  }
+
+  const galleryImages = [
+    { src: './assets/Gallery/1_typing_.png', alt: 'Typing in Kathmandu', date: 'September 08, 2025' },
+    { src: './assets/Gallery/2_selfie_hiking.jpg', alt: 'Selfie Hiking', date: 'August 27, 2025' },
+    { src: './assets/Gallery/3_chitwan.jpeg', alt: 'Chitwan Eco-Tour', date: 'July 21, 2025' },
+    { src: './assets/Gallery/4_hiking.jpeg', alt: 'Mountain Trail', date: 'June 12, 2025' },
+    { src: './assets/Gallery/5_basantapur.jpeg', alt: 'Basantapur Vibes', date: 'May 04, 2025' },
+    { src: './assets/Gallery/5_horse_ride.jpg', alt: 'Horse Ride', date: 'April 18, 2025' },
+    { src: './assets/Gallery/6_dadama.jpeg', alt: 'Dadama Waterfall', date: 'September 14, 2024' },
+    { src: './assets/Gallery/6_sidelook.jpg', alt: 'Sidelook Portrait', date: 'August 30, 2024' },
+    { src: './assets/Gallery/6_skylook.jpg', alt: 'Skylook Panorama', date: 'August 05, 2024' },
+    { src: './assets/Gallery/7_hiking.jpeg', alt: 'Hiking Crew', date: 'July 19, 2024' },
+    { src: './assets/Gallery/8_hiking.jpeg', alt: 'Slope Shot', date: 'June 10, 2024' },
+    { src: './assets/Gallery/9_buffon.jpeg', alt: 'Buffon Meetup', date: 'March 28, 2024' },
+    { src: './assets/Gallery/10_revamp.jpeg', alt: 'Revamp Project', date: 'February 18, 2024' },
+    { src: './assets/Gallery/11_flagpoint.jpg', alt: 'Flagpoint Lookout', date: 'January 11, 2024' },
+    { src: './assets/Gallery/11_godawari.jpeg', alt: 'Godawari Walk', date: 'January 05, 2024' },
+    { src: './assets/Gallery/12_swambhu.jpeg', alt: 'Swambhu Rituals', date: 'April 16, 2024' },
+    { src: './assets/Gallery/13_dashain.jpeg', alt: 'Dashain Fest', date: 'November 02, 2024' },
+    { src: './assets/Gallery/14_hero_sanako.jpeg', alt: 'Hero Sanako', date: 'July 14, 2015' },
+    { src: './assets/Gallery/15_vai_ra_ma.png', alt: 'Vai Ra Ma', date: 'October 11, 2014' },
+    { src: './assets/Gallery/16_me_2015.jpeg', alt: 'Throwback 2015', date: 'December 20, 2014' }
+  ];
+
+  const galleryGrid = document.getElementById('gallery-grid');
+
+  if (galleryGrid && galleryImages.length > 0) {
+    const fragment = document.createDocumentFragment();
+
+    galleryImages.forEach(image => {
+      const card = document.createElement('div');
+      card.className = 'gallery-item';
+
+      card.innerHTML = `
+        <img src="${image.src}" alt="${image.alt}" loading="lazy">
+        <div class="gallery-date">${image.date}</div>
+      `;
+
+      fragment.appendChild(card);
     });
+
+    galleryGrid.appendChild(fragment);
   }
 });
