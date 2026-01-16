@@ -1,0 +1,29 @@
+# robots.txt for samirpaudel.me
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /resume.pdf
+
+
+# Disallow unnecessary files
+Disallow: /assets/*.map
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /.*\.env*
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://samirpaudel.me/sitemap.xml
+
+# Crawl-delay (optional, be nice to crawlers)
+Crawl-delay: 1
+
+# Allow major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /

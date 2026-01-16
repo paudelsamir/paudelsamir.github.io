@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Home Page -->
+  <url>
+    <loc>https://samirpaudel.me/</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Portfolio/Projects Section -->
+  <url>
+    <loc>https://samirpaudel.me/#portfolio</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>bi-weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Resume Section -->
+  <url>
+    <loc>https://samirpaudel.me/#resume</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Blog Section -->
+  <url>
+    <loc>https://samirpaudel.me/#blog</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Contact Section -->
+  <url>
+    <loc>https://samirpaudel.me/#contact</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- About Section -->
+  <url>
+    <loc>https://samirpaudel.me/#about</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Resume PDF -->
+  <url>
+    <loc>https://samirpaudel.me/resume.pdf</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <!-- Featured Projects with Images -->
+  <url>
+    <loc>https://samirpaudel.me/#portfolio</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>bi-weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/cinerank.png</image:loc>
+      <image:title>cineRank - Movie Ranker Project</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/football.png</image:loc>
+      <image:title>Player Value Prediction Project</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/movie.png</image:loc>
+      <image:title>Movie Recommender System</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/catdog.png</image:loc>
+      <image:title>Cat vs Dog Classifier</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/guess-eyes.png</image:loc>
+      <image:title>Guess The Footballer By Eyes</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/seq2seq-chatbot.png</image:loc>
+      <image:title>Seq2Seq Chatbot Project</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/gpt-scratch.png</image:loc>
+      <image:title>GPT from Scratch Implementation</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://paudelsamir.github.io/assets/images/image-captioning.png</image:loc>
+      <image:title>Image Captioning Project</image:title>
+    </image:image>
+  </url>
+
+  <!-- External Project Links (for discovery) -->
+  <url>
+    <loc>https://github.com/paudelsamir</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://github.com/paudelsamir/365DaysOfData</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://medium.com/@paudelsamir</loc>
+    <lastmod>2026-01-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>
