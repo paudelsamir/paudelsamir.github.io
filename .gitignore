@@ -1,0 +1,40 @@
+# Jekyll
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Python
+.venv/
+venv/
+*.pyc
+__pycache__/
+*.egg-info/
+.pytest_cache/
+
+# Dependencies
+node_modules/
+Gemfile.lock
+
+# OS
+.DS_Store
+.directory
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build
+dist/
+build/
+
+# Unused/Deprecated
+v1/
+vendor/
+comingsoon/
+old/
+public/
+
+information.md

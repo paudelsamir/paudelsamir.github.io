@@ -1,0 +1,86 @@
+title: samir paudel — digital garden
+description: AI/ML Developer's digital garden and wiki
+url: https://paudelsamir.github.io
+baseurl: ""
+
+# Jekyll Configuration
+permalink: /:slug/
+markdown: kramdown
+theme: null
+highlighter: rouge
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  hard_wrap: false
+  toc_levels: 1..6
+  show_warnings: true
+  enable_coderay: true
+  parse_span_html: true
+  parse_block_html: true
+
+# Collections
+collections:
+  home:
+    output: true
+    permalink: /:slug/
+  tech:
+    output: true
+    permalink: /tech/:slug/
+  life:
+    output: true
+    permalink: /life/:slug/
+  meta:
+    output: true
+    permalink: /meta/:slug/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "home"
+    values:
+      layout: "default"
+      category: home
+  - scope:
+      path: ""
+      type: "tech"
+    values:
+      layout: "default"
+      category: tech
+  - scope:
+      path: ""
+      type: "life"
+    values:
+      layout: "default"
+      category: life
+  - scope:
+      path: ""
+      type: "meta"
+    values:
+      layout: "default"
+      category: meta
+
+# Build settings
+exclude:
+  - .venv
+  - node_modules
+  - .git
+  - .gitignore
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .directory
+  - vendor
+  - v1
+  - _life/challenges
+
+include:
+  - .htaccess
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jemoji
