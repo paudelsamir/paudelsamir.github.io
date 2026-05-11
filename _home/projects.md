@@ -26,7 +26,7 @@ category: home
 </style>
 <div class="projects-grid-fullstack">
   <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/meantrainer_landing_page.png" alt="MeanTrainer" style="width: 100%; height: 200px; object-fit: cover;">
+    <img src="/assets/images/meantrainer_landing_page.jpg" alt="MeanTrainer" style="width: 100%; height: 200px; object-fit: cover;">
     <div style="padding: 1.5rem;">
       <h4 style="margin: 0 0 0.5rem 0;">MeanTrainer</h4>
       <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">ai-powered fitness assistant. personalized workouts and nutrition guidance.</p>
@@ -36,7 +36,7 @@ category: home
   </div>
 
   <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/nyayak_landing_page.png" alt="Nyayak" style="width: 100%; height: 200px; object-fit: cover;">
+    <img src="/assets/images/nyayak_landing_page.jpg" alt="Nyayak" style="width: 100%; height: 200px; object-fit: cover;">
     <div style="padding: 1.5rem;">
       <h4 style="margin: 0 0 0.5rem 0;">Nyayak</h4>
       <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">AI-powered legal navigation platform for Nepal with legal guidance, lawyer discovery, and court navigation</p>

@@ -4,26 +4,22 @@ title: Contact
 category: meta
 ---
 
-# contact
+# Get in Touch
 
-if any of this resonates with you, feel free to reach out. my virtual door is always open for interesting conversations.
+I ❤️ to talk with peoples.
 
-## Email
+## Quick Contact
 
-samirpaudel2005@gmail.com
+- **Email**: [samirpaudel2005@gmail.com](mailto:samirpaudel2005@gmail.com)
+- **WhatsApp**: [+977 98620 93072](https://wa.me/9779862093072)
 
-## Direct
+## Find Me Online
 
-- WhatsApp: https://wa.me/+9779862093072
-- Calendar: https://cal.com/paudelsamir/quick
+- **GitHub**: [@paudelsamir](https://github.com/paudelsamir)
+- **Twitter**: [@samireey](https://twitter.com/samireey)
+- **LinkedIn**: [paudelsamir](https://www.linkedin.com/in/paudelsamir)
+- **Medium**: [@paudelsamir](https://medium.com/@paudelsamir)
 
-## Social
+## Location / Meetup
 
-- GitHub: https://github.com/paudelsamir
-- X/Twitter: https://twitter.com/samireey
-- LinkedIn: https://www.linkedin.com/in/paudelsamir
-- Medium: https://medium.com/@paudelsamir
-
-## Location
-
-Kathmandu, Nepal (NST, UTC+5:45)
+Based in Kathmandu, Nepal (NST, UTC+5:45) — [schedule a meetup](https://cal.com/paudelsamir/quick)

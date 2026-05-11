@@ -1,24 +1,19 @@
-# robots.txt for samirpaudel.me
+# robots.txt for paudelsamir.github.io
 User-agent: *
 Allow: /
-Allow: /index.html
-Allow: /resume.pdf
 
-
-# Disallow unnecessary files
-Disallow: /assets/*.map
-Disallow: /node_modules/
+# Disallow unnecessary files/folders
 Disallow: /.git/
-Disallow: /.*\.env*
-Disallow: /assets/
+Disallow: /.venv/
+Disallow: /.env*
+Disallow: /vendor/
+Disallow: */.map
 
-# Sitemap location
-Sitemap: https://samirpaudel.me/sitemap.xml
+Sitemap: https://paudelsamir.github.io/sitemap.xml
+Sitemap: https://paudelsamir.github.io/feed.xml
 
-# Crawl-delay (optional, be nice to crawlers)
 Crawl-delay: 1
 
-# Allow major search engines
 User-agent: Googlebot
 Allow: /
 

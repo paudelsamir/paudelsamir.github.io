@@ -4,13 +4,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>samir paudel — digital garden</title>
+    <meta name="description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 20 }}">
+    <meta name="theme-color" content="#2e5f57">
+    <title>{% if page.title %}{{ page.title }} - Samir Paudel{% else %}Samir Paudel - Digital Garden{% endif %}</title>
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <link rel="alternate" type="application/atom+xml" href="{{ site.url }}/feed.xml">
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} - Samir Paudel{% else %}Samir Paudel - Digital Garden{% endif %}">
+    <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 20 }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - Samir Paudel{% else %}Samir Paudel - Digital Garden{% endif %}">
+    <meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 20 }}">
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap"
         rel="stylesheet">
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Samir Paudel",
+        "url": "{{ site.url }}",
+        "sameAs": [
+            "https://github.com/paudelsamir",
+            "https://twitter.com/samireey",
+            "https://www.linkedin.com/in/paudelsamir",
+            "https://medium.com/@paudelsamir"
+        ],
+        "email": "samirpaudel2005@gmail.com",
+        "jobTitle": "AI/ML Developer",
+        "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Web Development", "Linux"]
+    }
+    </script>
 </head>
 
 <body class="light">
@@ -40,7 +71,7 @@
                     <kbd>⌘K</kbd>
                 </button>
 
-                <a href="/public/portfolio.html" aria-label="Portfolio"
+                <a href="/portfolio/" aria-label="Portfolio"
                     style="margin-left: 4px; display: flex; align-items: center; text-decoration: none;">
                     <img src="/assets/blacklogo.png" alt="Logo" class="logo-img light-logo"
                         style="height: 32px; width: auto; border-radius: 2px;">

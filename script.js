@@ -2,6 +2,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const loadingBar = document.getElementById('loading-bar');
     const mainContent = document.getElementById('main-content');
 
+    // Cross-browser scroll root accessor used by TOC and mobile helpers
+    const getPageScrollRoot = () => document.scrollingElement || document.documentElement;
+
     /* =========================================================================
        1. Theme Management
        ========================================================================= */
@@ -151,6 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const h2s = Array.from(document.querySelectorAll('.center-reading-column h2'));
         let activeH2s = {};
+        const h2Elements = {}; // Map ID to element
         const tocObserverOptions = { root: null, rootMargin: '-80px 0px -60% 0px', threshold: 0 };
 
         const updateMobileTocState = () => {
@@ -164,9 +168,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 fabText.textContent = activeLabel;
             }
 
-            const scrollRoot = mainContent || document.documentElement;
-            const maxScroll = scrollRoot.scrollHeight - scrollRoot.clientHeight;
-            const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollRoot.scrollTop / maxScroll)) : 0;
+            const scrollRoot = getPageScrollRoot();
+            const scrollTop = window.pageYOffset || scrollRoot.scrollTop || document.documentElement.scrollTop || 0;
+            const maxScroll = Math.max(document.documentElement.scrollHeight, scrollRoot.scrollHeight) - window.innerHeight;
+            const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
             mobileBtn.style.setProperty('--toc-progress', progress.toFixed(4));
 
             const mobilePanel = document.getElementById('mobile-toc-panel');
@@ -191,7 +196,30 @@ document.addEventListener('DOMContentLoaded', () => {
             entries.forEach(entry => { activeH2s[entry.target.id] = entry.isIntersecting; });
             const currentlyVisibleIds = Object.keys(activeH2s).filter(id => activeH2s[id]);
             if (currentlyVisibleIds.length > 0) {
-                updateTocHighlight(currentlyVisibleIds[0]);
+                const middleOfViewport = window.innerHeight / 2;
+                // Find the first heading that appears below the middle
+                let selectedId = null;
+                for (let id of currentlyVisibleIds) {
+                    const top = h2Elements[id].getBoundingClientRect().top;
+                    if (top > middleOfViewport) {
+                        selectedId = id;
+                        break;
+                    }
+                }
+                // If no heading below middle, use the topmost one
+                if (!selectedId) {
+                    let topmost = currentlyVisibleIds[0];
+                    let topmostTop = h2Elements[topmost].getBoundingClientRect().top;
+                    currentlyVisibleIds.forEach(id => {
+                        const top = h2Elements[id].getBoundingClientRect().top;
+                        if (top < topmostTop) {
+                            topmostTop = top;
+                            topmost = id;
+                        }
+                    });
+                    selectedId = topmost;
+                }
+                updateTocHighlight(selectedId);
             }
         }, tocObserverOptions);
 
@@ -202,6 +230,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 rightSidebar.classList.remove('no-headings');
                 h2s.forEach(h2 => {
                     if (!h2.id) h2.id = h2.textContent.trim().toLowerCase().replace(/\s+/g, '-');
+                    h2Elements[h2.id] = h2;
                     h2Observer.observe(h2);
 
                     const li = document.createElement('li');
@@ -220,23 +249,100 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 // Build or refresh mobile TOC panel
                 buildMobileToc();
+                // Add heading permalinks (hash) for easy sharing
+                addHeadingPermalinks();
                 updateMobileTocState();
             }
         }
+
+        // Add small hash anchors to headings for quick linking/copying
+        function addHeadingPermalinks() {
+            const headingSelector = '.center-reading-column h2, .center-reading-column h3, .center-reading-column h4, .center-reading-column h5, .center-reading-column h6';
+            const headings = Array.from(document.querySelectorAll(headingSelector));
+            headings.forEach(h => {
+                if (!h.id) {
+                    h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9\s\-]/g, '').replace(/\s+/g, '-');
+                }
+
+                // If anchor already exists, skip
+                if (h.querySelector('.heading-anchor')) return;
+
+                const anchor = document.createElement('button');
+                anchor.className = 'heading-anchor';
+                anchor.setAttribute('type', 'button');
+                anchor.setAttribute('aria-label', `Copy link to ${h.id}`);
+                anchor.innerHTML = '⧉';
+
+                anchor.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const fullUrl = window.location.origin + window.location.pathname.replace(/\/$/, '') + `#${h.id}`;
+
+                    const showCopiedToast = () => {
+                        const toast = document.createElement('div');
+                        toast.className = 'permalink-copied';
+                        toast.textContent = 'Copied';
+                        document.body.appendChild(toast);
+                        setTimeout(() => toast.classList.add('visible'), 10);
+                        setTimeout(() => {
+                            toast.classList.remove('visible');
+                            setTimeout(() => toast.remove(), 280);
+                        }, 1500);
+                    };
+
+                    const fallbackCopy = (text) => {
+                        try {
+                            const ta = document.createElement('textarea');
+                            ta.value = text;
+                            ta.setAttribute('readonly', '');
+                            ta.style.position = 'absolute';
+                            ta.style.left = '-9999px';
+                            document.body.appendChild(ta);
+                            ta.select();
+                            document.execCommand('copy');
+                            ta.remove();
+                        } catch (err) {
+                            // ignore
+                        }
+                    };
+
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(fullUrl).then(() => {
+                            showCopiedToast();
+                        }).catch(() => {
+                            fallbackCopy(fullUrl);
+                            showCopiedToast();
+                        });
+                    } else {
+                        fallbackCopy(fullUrl);
+                        showCopiedToast();
+                    }
+                });
+
+                // Append anchor after heading text
+                h.appendChild(anchor);
+            });
+        };
 
         mainContent.onscroll = () => {
             updateMobileTocState();
         };
 
+        window.onscroll = () => {
+            updateMobileTocState();
+        };
+
         // Re-bind all internal links for dynamic loading
         document.querySelectorAll('a[href^="/"]').forEach(link => {
-            // Skip external links or non-page links if any
+            // Skip external protocol-relative links
             if (link.getAttribute('href').startsWith('//')) return;
 
             link.onclick = (e) => {
                 e.preventDefault();
                 const url = link.getAttribute('href');
+
+                // Collapse sidebar on mobile for cleaner reading
                 collapseSidebarMobile();
+
                 if (url !== window.location.pathname) {
                     loadPage(url);
                 }
@@ -365,7 +471,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.dataset.mobileTocEscBound = 'true';
         }
 
-        const scrollRoot = mainContent || document.documentElement;
+        const scrollRoot = getPageScrollRoot();
         const maxScroll = scrollRoot.scrollHeight - scrollRoot.clientHeight;
         const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollRoot.scrollTop / maxScroll)) : 0;
         mobileBtn.style.setProperty('--toc-progress', progress.toFixed(4));
@@ -427,14 +533,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile UX: tap outside the sidebar to close it.
     document.addEventListener('click', (e) => {
         if (!isMobileViewport()) return;
+
+        // If we just toggled the sidebar programmatically from a meta/breadcrumb
+        // click, ignore this outside-click handler for a short moment so we don't
+        // immediately re-collapse it.
+        if (document._justToggledSidebar) return;
+
         if (leftSidebar.classList.contains('collapsed')) return;
 
         const clickedInsideSidebar = leftSidebar.contains(e.target);
-        const clickedSidebarToggle = sidebarToggle.contains(e.target);
+        const clickedSidebarToggle = sidebarToggle && sidebarToggle.contains(e.target);
         if (clickedInsideSidebar || clickedSidebarToggle) return;
 
         collapseSidebarMobile();
     });
+
+
 
     /* =========================================================================
        4. File Tree Folder Toggle Logic
@@ -490,9 +604,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const folderToggle = document.querySelector(`.tree-item.is-folder[data-folder="${folderId}"]`);
             const childrenContainer = document.getElementById(folderId);
 
-            if (leftSidebar.classList.contains('collapsed')) {
-                leftSidebar.classList.remove('collapsed');
-            }
+            // Toggle sidebar when breadcrumbs are clicked (open/close)
+            // prevent the outside-click handler from closing right after
+            document._justToggledSidebar = true;
+            setTimeout(() => { document._justToggledSidebar = false; }, 120);
+            leftSidebar.classList.toggle('collapsed');
 
             if (folderToggle && !folderToggle.classList.contains('expanded')) {
                 folderToggle.classList.add('expanded');

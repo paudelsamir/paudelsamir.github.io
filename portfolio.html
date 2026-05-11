@@ -1,6 +1,3 @@
----
-permalink: /portfolio/
----
 <!DOCTYPE html>
 <html lang="en">
 
@@ -97,9 +94,9 @@ permalink: /portfolio/
 
       <div class="sidebar-info sidebar-info-header-container">
 
-        <figure class="avatar-box" style="width: 120px; height: 120px; padding: 0; margin: 0;">
-          <img src="/assets/left_horse.jpg" alt="Samir-Paudel" width="120" height="120" loading="lazy"
-            style="filter: grayscale(100%); border-radius: 20%; object-fit: cover; display: block; width: 100%; height: 100%;">
+        <figure class="avatar-box">
+          <img src="/assets/left_horse.jpg" alt="Samir-Paudel" width="60"
+            style="filter: grayscale(100%); border-radius: 20%;">
           <div class="flag-badge">
             🇳🇵
           </div>
@@ -334,7 +331,11 @@ permalink: /portfolio/
           </li>
 
           <li class="navbar-item">
-            <a class="navbar-link" href="/about/">Wiki</a>
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <a class="navbar-link" href="/">Wiki</a>
           </li>
 
 
@@ -1665,6 +1666,29 @@ permalink: /portfolio/
             <!-- Super Minimal Projects -->
 
           </ul>
+        </section>
+
+      </article>
+
+      <!-- Blog Section -->
+      <article class="blog" data-page="blog">
+        <header>
+          <h2 class="h2 article-title">Blogs</h2>
+        </header>
+
+        <section class="blog-posts">
+          <ul class="blog-posts-list" id="medium-posts">
+            <!-- Blog posts will be dynamically fetched from Medium RSS feed -->
+          </ul>
+        </section>
+
+        <!-- Gallery Section -->
+        <section class="gallery-section" id="gallery">
+          <header>
+            <h2 class="h2 article-title">Gallery</h2>
+          </header>
+
+          <div class="gallery-container" id="gallery-grid"></div>
         </section>
 
       </article>

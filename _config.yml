@@ -1,5 +1,5 @@
-title: samir paudel — digital garden
-description: AI/ML Developer's digital garden and wiki
+title: Wiki - Samir Paudel
+description: Samir's wiki and portfolio.
 url: https://paudelsamir.github.io
 baseurl: ""
 
@@ -26,13 +26,13 @@ collections:
     permalink: /:slug/
   tech:
     output: true
-    permalink: /tech/:slug/
+    permalink: /:slug/
   life:
     output: true
-    permalink: /life/:slug/
+    permalink: /:slug/
   meta:
     output: true
-    permalink: /meta/:slug/
+    permalink: /:slug/
 
 # Defaults
 defaults:
