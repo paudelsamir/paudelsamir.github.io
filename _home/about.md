@@ -20,7 +20,7 @@ alternatively, just drop me a quick [mail](mailto:samirpaudel2005@gmail.com) or 
 
 I've built a decent [typing speed](https://monkeytype.com/profile/paudelsamir), so I'll be writing more from now on.
 
-if you wanna ==hire me==, check out my [projects](/projects/) and [resume](https://paudelsamir.github.io/resume.pdf).
+if you wanna ==hire me==, check out my [projects](/projects/) and [resume](/resume).
 
 ## realizations so far
 

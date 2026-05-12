@@ -1,0 +1,339 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%  Samir Paudel  |  Resume  |  March 2026
+%  Compile:  pdflatex samir_paudel_resume_mar2026.tex
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10.5pt, a4paper]{article}
+
+% ── Page geometry ────────────────────────────────────
+\usepackage[top=0.55in, bottom=0.50in, left=0.65in, right=0.65in]{geometry}
+
+% ── Encoding ─────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% ── Core packages ────────────────────────────────────
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amsmath}
+
+% ── Colours ──────────────────────────────────────────
+\definecolor{navy}{HTML}{1B3A6B}
+\definecolor{link}{HTML}{1A56DB}
+\definecolor{mid} {HTML}{3D3D3D}
+
+% ── Hyperlinks ───────────────────────────────────────
+\hypersetup{colorlinks=true, urlcolor=link, linkcolor=link}
+
+% ── Section headings ─────────────────────────────────
+\titleformat{\section}
+  {\normalsize\scshape\bfseries\color{navy}}
+  {}{0em}{}
+  [{\color{navy}\vspace{2pt}\hrule height 0.5pt\vspace{1pt}}]
+\titlespacing{\section}{0pt}{10pt}{5pt}
+
+% ── Lists ────────────────────────────────────────────
+\setlist[itemize]{
+  leftmargin = 1.35em,
+  itemsep    = 1.2pt,
+  topsep     = 2.5pt,
+  parsep     = 0pt,
+  label      = {\small\textbullet}
+}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+\renewcommand{\arraystretch}{1.0}
+
+% ── Entry row helper ─────────────────────────────────
+\newcommand{\entryrow}[2]{%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & \textit{\small #2}
+  \end{tabularx}}
+
+% ── Project heading helper ───────────────────────────
+\newcommand{\proj}[3]{%
+  \vspace{1pt}%
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1}\enspace{\small\color{mid}\textit{#2}} & {\small #3}
+  \end{tabularx}\vspace{0pt}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\pagestyle{empty}
+
+%% ─────────────────────────────────────────────────
+%%  HEADER
+%% ─────────────────────────────────────────────────
+\begin{center}
+  {\LARGE\bfseries\color{navy} Samir Paudel}\\[5pt]
+  {\small
+    Lalitpur, Nepal\enspace\textbar\enspace
+    \href{mailto:samirpaudel2005@gmail.com}{samirpaudel2005@gmail.com}\enspace\textbar\enspace
+    +977-9862093072\enspace\textbar\enspace
+    \href{https://samirpaudel.me}{samirpaudel.me}
+  }\\[2pt]
+  {\small
+    \href{https://linkedin.com/in/paudelsamir}{linkedin.com/in/paudelsamir}
+    \enspace\textbar\enspace
+    \href{https://github.com/paudelsamir}{github.com/paudelsamir}
+    \enspace\textbar\enspace
+    \href{https://twitter.com/samireey}{@samireey}
+  }
+\end{center}
+
+\vspace{2pt}
+
+%% ─────────────────────────────────────────────────
+%%  SKILLS
+%% ─────────────────────────────────────────────────
+\section{Skills \& Tools}
+
+\begin{tabularx}{\linewidth}{@{} >{\bfseries\small}p{2.55cm} @{\hspace{6pt}} X @{}}
+  ML / LLMs         & PyTorch, Transformers (BERT, GPT, T5), Fine-tuning with
+                      LoRA / QLoRA / PEFT (unsloth, axolotl), LangChain,
+                      LangGraph, LlamaIndex, RAG Pipelines \& Evaluation \\[3pt]
+  Data / Backend    & FastAPI, Streamlit, SQL, VectorDBs (ChromaDB, FAISS),                       Convex, 
+                      Scikit-learn, Pandas, NumPy, Plotly \\[3pt]
+  Full-Stack        & Next.js 14, TypeScript, Clerk Auth,
+                      shadcn/ui, Tailwind CSS \\[3pt]
+  DevOps/Cloud      & Docker, Linux (2+ yrs daily), Git, GitHub,
+                      AWS (ECS, Lambda), Vercel, Render, HF Spaces;
+                      familiarity with Kafka, Apache Airflow, Snowflake,
+                      microservice architectures \\[3pt]
+  No-Code           & Bubble.io, Glide, Zapier, Xano, Airtable, n8n \\
+\end{tabularx}
+
+%% ─────────────────────────────────────────────────
+%%  EXPERIENCE
+%% ─────────────────────────────────────────────────
+\section{Experience}
+
+\entryrow{Independent AI/ML Developer}{2023 -- Present}\\[-3pt]
+{\small\color{mid}%
+  \href{https://github.com/paudelsamir/365DaysOfData}{365DaysOfData}
+  --- Self-directed, open-source}
+
+\begin{itemize}
+  \item Designed and deployed \textbf{10+ end-to-end ML/AI projects} from ideation to
+        production, spanning NLP pipelines, recommender systems, and LLM-powered applications.
+  \item Built \textbf{more than 5 RAG systems} (LangChain, ChromaDB, FAISS) integrated with Ollama,
+        Hugging Face, OpenAI, and Anthropic APIs; developed multi-agent workflows
+        with LangGraph, evaluated via LangSmith and DeepEval.
+  \item Deployed \textbf{9+ Streamlit applications} to production; migrated frontends to
+        Vercel with Render backend; all projects published with reproducible code.
+\end{itemize}
+
+%% ─────────────────────────────────────────────────
+%%  EDUCATION
+%% ─────────────────────────────────────────────────
+\section{Education}
+
+\entryrow{Bachelor of Computer Science (CSIT)}{2022 -- 2026 (Expected)}\\[-3pt]
+{\small\color{mid}Patan Multiple Campus, Lalitpur}
+
+\vspace{6pt}
+
+\entryrow{Secondary Education --- Science}{2020 -- 2022}\\[-3pt]
+{\small\color{mid}Kalika Manavgyan Secondary School, Rupandehi}
+
+%% ─────────────────────────────────────────────────
+%%  PROJECTS
+%% ─────────────────────────────────────────────────
+\section{Projects}
+
+%% ── Nyayak ───────────────────────────────────────
+\proj{Nyayak }
+     {--- Full stack AI application(FYP)}
+     {\href{https://github.com/paudelsamir/nyayak}{Code}}
+
+\begin{itemize}
+  \item Four-module legal assistant platform for nepal: \textbf{AI chatbot} , grounded on
+        Nepal's Constitution 2072 via ChromaDB; \textbf{lawyer marketplace}
+        with content-based scoring (category match, bio TF, availability);
+        \textbf{court navigator} via Dijkstra's shortest path across 77
+        districts; \textbf{forum} with PageRank reputation and DFS thread traversal.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── MeanTrainer ──────────────────────────────────
+\proj{MeanTrainer}
+     {--- Full-Stack GenAI Application}
+     {\href{https://github.com/paudelsamir/meantrainer}{Code}
+      \enspace\textbar\enspace
+      \href{https://meantrainer.vercel.app/}{Live}}
+
+\begin{itemize}
+  \item AI fitness web app that runs a \textbf{Vapi voice interview} to capture the user's
+        health profile, then generates a personalized weekly gym plan and diet plan
+        via \textbf{Google Gemini}; programs stored in \textbf{Convex DB} with
+        Clerk authentication (GitHub, Google, email).
+\end{itemize}
+
+\vspace{4pt}
+
+
+%% ── cineRank ─────────────────────────────────────
+\proj{cineRank --- Movie Ranker App}
+     {--- NLP \& Sentiment Analysis}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis}{Code}
+      \enspace\textbar\enspace
+      \href{https://cine-rank.vercel.app}{Live}}
+
+\begin{itemize}
+  \item Fine-tuned \textbf{BERT} on IMDb reviews achieving \textbf{92\% sentiment accuracy};
+        deployed a full-stack leaderboard on Vercel with watchlist features.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Football ─────────────────────────────────────
+\proj{Football Player Market Value Prediction}
+     {--- ML Pipeline}
+     {\href{https://github.com/paudelsamir/Player-Value-Prediction}{Code}
+      \enspace\textbar\enspace
+      \href{https://paudelsamir.streamlit.app/}{Live}}
+
+\begin{itemize}
+  \item Scraped and cleaned \textbf{18,000+ records} from Sofifa; engineered \textbf{50+ features};
+        trained GradientBoost achieving \textbf{94\% accuracy}. one of my first ml projects.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Choose Your Own Adventure ────────────────────
+\proj{Choose Your Own Adventure}
+     {--- GenAI Application}
+     {\href{https://github.com/paudelsamir/Choose-Your-Own-Adventure}{Code}}
+
+\begin{itemize}
+  \item LLM-driven interactive fiction with dynamic branching narratives,
+        choice-based progression, and visual story mapping.
+\end{itemize}
+
+\vspace{4pt}
+
+
+%% ── Movie Recommender ────────────────────────────
+\proj{Movie Recommender System}
+     {--- Recommender System}
+     {\href{https://github.com/paudelsamir/movie-recommender}{Code}
+      \enspace\textbar\enspace
+      \href{https://movie-recommender-samir.streamlit.app/}{Live}}
+
+\begin{itemize}
+  \item Content-based recommender using \textbf{TF-IDF and cosine similarity}
+        on a 5,000-movie TMDB dataset with search-by-title functionality.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Guess Footballer ─────────────────────────────
+\proj{Guess The Footballer By Eyes}
+     {--- Computer Vision}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/01-Image-Classification/Guess-The-Footballer-By-Eyes}{Code}
+      \enspace\textbar\enspace
+      \href{https://guess-footballer-with-eyes.streamlit.app/}{Live}}
+
+\begin{itemize}
+  \item \textbf{ResNet18} classifier trained on footballer eye crops achieving \textbf{70\% accuracy};
+        deployed as an interactive Streamlit game with AI opponent and scoring.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Image Captioning ─────────────────────────────
+\proj{Image Captioning}
+     {--- Computer Vision}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/03-Image-Captioning}{Code}
+      \enspace\textbar\enspace
+      \href{https://image-captioning-samir.streamlit.app}{Live}}
+
+\begin{itemize}
+  \item \textbf{ResNet-18} encoder + Transformer decoder pipeline achieving \textbf{BLEU-4: 0.18};
+        deployed on Streamlit.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Seq2Seq Chatbot ──────────────────────────────
+\proj{Seq2Seq Chatbot with Attention}
+     {--- Seq2Seq NLP}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/02-Natural-Language-Processing/seq2seq-charbot}{Code}
+      \enspace\textbar\enspace
+      \href{https://seq2seq-chatbot-samir.streamlit.app}{Live}}
+
+\begin{itemize}
+  \item Encoder-decoder with \textbf{Luong attention} in PyTorch trained on the
+        Cornell Movie-Dialogs Corpus; deployed on Streamlit.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── GPT from Scratch ─────────────────────────────
+\proj{GPT from Scratch}
+     {--- LLM Foundations}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch}{Code}}
+
+\begin{itemize}
+  \item Full transformer architecture in PyTorch: bigram model, multi-head self-attention,
+        positional encoding, and GPT blocks built from first principles.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Collections ──────────────────────────────────
+\proj{GenAI Mini Projects Collection}
+     {--- RAG, Fine-tuning, Agents}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI}{Code}}
+
+\begin{itemize}
+  \item Cat vs Dog (VGG16, \textbf{95\%}), LLaMA / Gemma2-9B fine-tuning with QLoRA \&
+        Unsloth, RAG evaluation (MLflow), voice cloning, text-to-image,
+        Bhagavad Gita expert chatbot.
+\end{itemize}
+
+\vspace{4pt}
+
+\proj{Agentic AI Mini Projects Collection}
+     {--- LangGraph, LangChain}
+     {\href{https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI}{Code}}
+
+\begin{itemize}
+  \item Single/multi-agent reasoning, tool-augmented memory chat, multi-agent debate,
+        custom MCP implementation from scratch, persona-based agent design.
+\end{itemize}
+
+\vspace{4pt}
+
+%% ── Others ───────────────────────────────────────
+\proj{12 Additional Mini-Projects}
+     {--- Web Apps, Games, CLI Tools}
+     {\href{https://paudelsamir.github.io/projects\#others}{paudelsamir.github.io/projects\#others}}
+
+\begin{itemize}
+  \item Spotify Clone, Netflix Clone, Blackjack, Snake, Hangman, Caesar Cipher,
+        Calculator, Coffee Machine, Quiz App, Turtle \& GUI, and more ---
+        all open-source on GitHub.
+\end{itemize}
+
+%% ─────────────────────────────────────────────────
+%%  LANGUAGES
+%% ─────────────────────────────────────────────────
+\section{Languages}
+
+\begin{tabularx}{\linewidth}{@{} X X X @{}}
+  \textbf{Nepali} --- Native &
+  \textbf{English} --- Fluent  &
+  \textbf{Spanish/German} --- Beginner \\
+\end{tabularx}
+
+\vspace{6pt}
+{\footnotesize\color{mid}\textit{Last updated: March 2026}}
+
+\end{document}
