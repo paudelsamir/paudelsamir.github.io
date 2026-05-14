@@ -1,7 +1,6 @@
 source "https://rubygems.org"
 
-# Local development: 3.4.8 | GitHub Pages deployment: 3.1.6 via Actions
-ruby File.read('.ruby-version').strip
+ruby "3.1.6"
 
 gem "jekyll", "~> 4.2"
 gem "jekyll-feed", "~> 0.16"
