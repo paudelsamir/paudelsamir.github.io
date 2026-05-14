@@ -17,7 +17,7 @@ here are some i'd like to try:
 - [cold shower][cold-shower-story]
 - [meditation][meditation-milestone]
 - [journal][why-i-journal]
-- [deep work session * 2][deep-work-experiment]
+- [deep work sessions with no distractions][deep-work-experiment]
 
 <!-- VERIFIED MIXED BACKLINKS -->
 [grit-app]: https://f-droid.org/packages/com.shub39.grit/

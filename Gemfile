@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
-ruby "3.1.6"
+# Uses .ruby-version file for flexibility across environments
+ruby File.read('.ruby-version').strip
 
 gem "jekyll", "~> 4.2"
 gem "jekyll-feed", "~> 0.16"

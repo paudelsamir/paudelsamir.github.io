@@ -11,7 +11,7 @@ hey my name's [Samir](/portfolio/), I'm based in Nepal.
 
 I've built a decent [typing speed](https://monkeytype.com/profile/paudelsamir), so i am writing this wiki to document my journey toward my [personal renaissance](https://www.artofmanliness.com/skills/manly-know-how/how-to-be-a-renaissance-man/)
  
-i am learning and [building](/projects/), but more importantly, i am building myself guided by my [***values***](/values/) and [***habits***](/habits/).
+i am learning and [building](/projects/), but more importantly, i am building myself guided by my [**values**](/values/) and [**habits**](/habits/).
 
 i’ve noticed a pattern in my learning style: i tend to operate as a [generalist](https://en.wikipedia.org/wiki/Jack_of_all_trades#Origins)  rather than a specialist.
 
