@@ -73,7 +73,6 @@ exclude:
   - .directory
   - vendor
   - v1
-  - _life/challenges
 
 include:
   - .htaccess

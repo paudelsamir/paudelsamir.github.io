@@ -5,6 +5,91 @@ document.addEventListener('DOMContentLoaded', () => {
     // Cross-browser scroll root accessor used by TOC and mobile helpers
     const getPageScrollRoot = () => document.scrollingElement || document.documentElement;
 
+    const escapeHtml = (value) => value
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+
+    const processInlineMarkup = (root = document.body) => {
+        if (!root) return;
+
+        const textNodes = [];
+        const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+            acceptNode: (node) => {
+                if (!node.nodeValue || !/[+^~=]/.test(node.nodeValue)) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+
+                const parentElement = node.parentElement;
+                if (!parentElement) return NodeFilter.FILTER_REJECT;
+
+                if (parentElement.closest('script, style, code, pre, textarea, kbd, samp, mark, ins, sup, sub')) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+
+                return NodeFilter.FILTER_ACCEPT;
+            },
+        });
+
+        let currentNode = walker.nextNode();
+        while (currentNode) {
+            textNodes.push(currentNode);
+            currentNode = walker.nextNode();
+        }
+
+        textNodes.forEach((node) => {
+            const rawText = node.nodeValue;
+            let converted = escapeHtml(rawText);
+
+            converted = converted.replace(/\+\+([^\+\n]+?)\+\+/g, '<ins>$1</ins>');
+            converted = converted.replace(/==([^=\n]+?)==/g, '<mark>$1</mark>');
+            converted = converted.replace(/\^([^\^\n]+?)\^/g, '<sup>$1</sup>');
+            converted = converted.replace(/~([^~\n]+?)~/g, '<sub>$1</sub>');
+
+            if (converted === escapeHtml(rawText)) return;
+
+            const wrapper = document.createElement('span');
+            wrapper.innerHTML = converted;
+            node.parentNode.replaceChild(wrapper, node);
+            while (wrapper.firstChild) {
+                wrapper.parentNode.insertBefore(wrapper.firstChild, wrapper);
+            }
+            wrapper.remove();
+        });
+    };
+
+    const openLinksInNewTabs = (root = document) => {
+        root.querySelectorAll('a[href]').forEach((link) => {
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            const normalizedHref = href.trim().toLowerCase();
+            if (normalizedHref.startsWith('#') || normalizedHref.startsWith('javascript:')) return;
+            if (link.hasAttribute('download')) return;
+
+            link.setAttribute('target', '_blank');
+            const relValues = new Set((link.getAttribute('rel') || '').split(/\s+/).filter(Boolean));
+            relValues.add('noopener');
+            relValues.add('noreferrer');
+            link.setAttribute('rel', Array.from(relValues).join(' '));
+        });
+    };
+
+    openLinksInNewTabs();
+    processInlineMarkup();
+
+    const linkObserver = new MutationObserver(() => {
+        openLinksInNewTabs();
+        processInlineMarkup();
+    });
+
+    linkObserver.observe(document.body, {
+        childList: true,
+        subtree: true,
+    });
+
     /* =========================================================================
        1. Theme Management
        ========================================================================= */

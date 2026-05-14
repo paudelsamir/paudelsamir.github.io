@@ -4,35 +4,23 @@ title: Intro
 category: home
 ---
 
-# about me
+# About me !!
+
 ## intro
-hey my name's [Samir](/portfolio/),
+hey my name's [Samir](/portfolio/), I'm based in Nepal.
 
-i'm based in Nepal, and my goofy dream is to ride across all 77 districts here.
+I've built a decent [typing speed](https://monkeytype.com/profile/paudelsamir), so i am writing this wiki to document my journey toward my [personal renaissance](https://www.artofmanliness.com/skills/manly-know-how/how-to-be-a-renaissance-man/)
+ 
+i am learning and [building](/projects/), but more importantly, i am building myself guided by my [***values***](/values/) and [***habits***](/habits/).
 
-i am learning and [building](/projects/) but more than that i want to build myself guided by [core beliefs](/beliefs/), [habits](/habits/), and [values](/values/)
+i’ve noticed a pattern in my learning style: i tend to operate as a [generalist](https://en.wikipedia.org/wiki/Jack_of_all_trades#Origins)  rather than a specialist.
 
-I am techy guy using [linux](https://github.com/paudelsamir/dotfiles) for a while now.
+so right now, i’m trying balancing the [explore/exploit trade-off](https://fs.blog/explore-or-exploit/) - exploring as much as i can to find where to build depth
 
-I use a bunch of different platforms to stay in touch, so I've put all my contact info on my [contact](../_meta/contact.md) page.
+I love to talk with people so use a bunch of different platforms to stay in touch, so I've put all my contact info on my [contact](/contact/) page.
 
-alternatively, just drop me a quick [mail](mailto:samirpaudel2005@gmail.com) or [a message](https://wa.me/+9779862093072).
+and yeah, i am ==open to work==. you can check out my [projects](/projects/) and [resume](/resume) , or peek at my [now](/now/) page (it’s a quick look at what i’m focused on at this exact moment)
 
-I've built a decent [typing speed](https://monkeytype.com/profile/paudelsamir), so I'll be writing more from now on.
-
-if you wanna ==hire me==, check out my [projects](/projects/) and [resume](/resume).
-
-## realizations so far
-
-i just turned 21 this February, and i've picked up a few things so far. <br> *(this list will keep growing.)*
-
-1. every second counts
-2. keep your energy up, always
+if you think we can build something great together, drop me a [mail](mailto:samirpaudel2005@gmail.com) or [a message via whatsapp](https://wa.me/+9779862093072).
 
 
-## outro
-i'm trying to narrow my focus by exploring as much as i can. 
-
-to this point, exploring & expanding the knowledge hasn't yielded tangible results yet, but the dopamine hits are real.
-
-here's the [now](/now/) page, inspired by [nownownow.com](https://nownownow.com)
