@@ -23,6 +23,9 @@ jobs:
         with:
           ruby-version: 3.4.1
           bundler-cache: true
+
+      - name: Clean build output
+        run: rm -rf _site .jekyll-cache
       
       - name: Build with Jekyll
         run: bundle exec jekyll build
