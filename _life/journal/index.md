@@ -7,6 +7,4 @@ permalink: /journal/
 
 
 ## Archive
-- 2024
-- 2023
-- 2022
+- 2025

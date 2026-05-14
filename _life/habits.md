@@ -5,7 +5,7 @@ trying to build small rituals that keep me steady.
 i use [grit][grit-app] to track my habits. it's been solid so far.
 
 habits i've been keeping so far:
-- workouts
+- workoutssss
 - no sugar
 - enough sleep
 - daily walks

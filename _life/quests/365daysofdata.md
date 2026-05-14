@@ -1,3 +1,11 @@
+---
+layout: default
+title: 365 Days of Data
+category: life
+permalink: /quests/365daysofdata/
+---
+
+# 365 Days of Data
 
 A year long journey from 2024-12-14 → 2025-12-14 with Data Science, AI, Machine learning and Deep learning.
 
@@ -20,6 +28,7 @@ A year long journey from 2024-12-14 → 2025-12-14 with Data Science, AI, Machin
  
 
 ## Progress
+
 | Days | Date               | Topics                      | Resources    |
 |------|--------------------|-----------------------------|--------------|
 | [Day1](#day-01-basics-of-linear-algebra) |2024‑12‑14 |Basics of Linear Algebra  | [3blue1brown](https://www.3blue1brown.com/topics/linear-algebra) |

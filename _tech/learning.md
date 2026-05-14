@@ -5,6 +5,6 @@ category: tech
 ---
 
 # learning
-i recently found the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) (the 20/80 rule) highly effective for narrowing my focus.
+i recently found the [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) (the 20/80 rule) highly effective.
 
 ## links

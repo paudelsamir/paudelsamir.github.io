@@ -175,7 +175,7 @@
                         <div class="tree-children" id="life-children" style="display:block;">
                                                         {% assign life_docs = site.life | sort: "order" %}
                                                         {% for doc in life_docs %}
-                                                            {% unless doc.path contains 'journal/' or doc.path contains 'challenges/' %}
+                                                            {% unless doc.path contains 'journal/' or doc.path contains 'challenges/' or doc.path contains 'quests/' %}
                                                                 <a href="{{ doc.url }}"
                                                                         class="tree-item is-link{% if page.url == doc.url %} active{% endif %}">
                                                                         {{ doc.slug | replace: "-", " " }}
@@ -183,8 +183,8 @@
                                                             {% endunless %}
                                                         {% endfor %}
 
-                                                        <!-- Challenges folder -->
-                                                        <div class="tree-item is-folder tree-item-nested" data-folder="challenges-children">
+                                                        <!-- Quests folder -->
+                                                        <div class="tree-item is-folder tree-item-nested" data-folder="quests-children">
                                                                 <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                                                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                                                         <polyline points="9 18 15 12 9 6"></polyline>
@@ -194,17 +194,10 @@
                                                                         <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
                                                                         </path>
                                                                 </svg>
-                                                                <span>challenges</span>
+                                                                <span>quests</span>
                                                         </div>
-                                                        <div class="tree-children tree-children-nested" id="challenges-children" style="display:none;">
-                                                                {% assign challenge_docs = site.life | sort: "order" %}
-                                                                {% for doc in challenge_docs %}
-                                                                    {% if doc.path contains 'challenges/' %}
-                                                                        <a href="{{ doc.url }}" class="tree-item is-link tree-item-nested{% if page.url == doc.url %} active{% endif %}">
-                                                                            {{ doc.slug | replace: "-", " " }}
-                                                                        </a>
-                                                                    {% endif %}
-                                                                {% endfor %}
+                                                        <div class="tree-children tree-children-nested" id="quests-children" style="display:block;">
+                                                                <a href="/quests/365daysofdata/" class="tree-item is-link tree-item-nested{% if page.url == '/quests/365daysofdata/' %} active{% endif %}">365days of data</a>
                                                         </div>
 
                             <div class="tree-item is-folder tree-item-nested" data-folder="journal-children">

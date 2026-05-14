@@ -38,6 +38,8 @@ old/
 public/
 
 # Reference/Test files
+_meta/format.md
+
 information.md
 comingsoon/
 _life/2005.md

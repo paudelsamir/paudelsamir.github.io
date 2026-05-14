@@ -29,7 +29,7 @@ collections:
     permalink: /:slug/
   life:
     output: true
-    permalink: /:slug/
+    permalink: /:path/
   meta:
     output: true
     permalink: /:slug/

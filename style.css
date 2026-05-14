@@ -1890,6 +1890,14 @@ body.mobile-toc-open {
         display: flex;
     }
 
+    .garden-flow table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
     /* Reduce large top spacing and make project cards more compact on small screens */
     .garden-flow h1 {
         margin-top: 1rem;
