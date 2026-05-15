@@ -384,14 +384,6 @@
     <div id="sidebar-resizer"></div>
 
 
-    <script>
-        const sitePages = [
-            {% for item in site.documents %}
-        { title: {{ item.title | default: item.slug | jsonify }}, url: {{ site.baseurl | append: item.url | jsonify }} },
-            {% endfor %}
-        ];
-    </script>
-
     <script src="/script.js"></script>
     {% include link-previews.html wrapperQuerySelector=".garden-flow" %}
 </body>

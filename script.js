@@ -31,18 +31,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 return NodeFilter.FILTER_ACCEPT;
             },
-        });
+    });
 
-        let currentNode = walker.nextNode();
-        while (currentNode) {
-            textNodes.push(currentNode);
-            currentNode = walker.nextNode();
-        }
+        let node;
+        while (node = walker.nextNode()) textNodes.push(node);
 
         textNodes.forEach((node) => {
             const rawText = node.nodeValue;
             let converted = escapeHtml(rawText);
-
             converted = converted.replace(/\+\+([^\+\n]+?)\+\+/g, '<ins>$1</ins>');
             converted = converted.replace(/==([^=\n]+?)==/g, '<mark>$1</mark>');
             converted = converted.replace(/\^([^\^\n]+?)\^/g, '<sup>$1</sup>');
@@ -475,8 +471,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         fallbackCopy(fullUrl);
                         showCopiedToast();
-                    }
-                });
+        }
+    });
 
                 // Append anchor after heading text
                 h.appendChild(anchor);
@@ -831,34 +827,78 @@ document.addEventListener('DOMContentLoaded', () => {
     const cmdKBtn = document.getElementById('cmd-k-btn');
     const searchInput = document.getElementById('palette-search');
     const paletteLinksContainer = document.getElementById('palette-links');
+    const paletteFooter = document.querySelector('.palette-footer');
 
     let searchDB = [];
-    if (typeof sitePages !== 'undefined') {
-        searchDB = sitePages;
-    }
+    let searchIndexLoaded = false;
+    let listItems = [];
+    let selectedIndex = 0;
 
-    const buildPalette = (items) => {
+    const loadSearchIndex = async () => {
+        if (searchIndexLoaded) return;
+        try {
+            const res = await fetch('/search.json');
+            searchDB = await res.json();
+            searchIndexLoaded = true;
+        } catch (e) {
+            searchDB = [];
+        }
+    };
+
+    const highlightMatch = (text, query) => {
+        if (!query) return text;
+        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+        return text.replace(regex, '<mark>$1</mark>');
+    };
+
+    const getExcerpt = (content, query) => {
+        if (!query || !content) return content ? content.slice(0, 120) + '...' : '';
+        const idx = content.toLowerCase().indexOf(query.toLowerCase());
+        if (idx === -1) return content.slice(0, 120) + '...';
+        const start = Math.max(0, idx - 60);
+        const end = Math.min(content.length, idx + query.length + 80);
+        let excerpt = (start > 0 ? '...' : '') + content.slice(start, end) + (end < content.length ? '...' : '');
+        return excerpt;
+    };
+
+    const buildPalette = (items, query) => {
         if (!paletteLinksContainer) return;
         paletteLinksContainer.innerHTML = '';
         items.forEach(item => {
             const li = document.createElement('li');
             const button = document.createElement('button');
             button.className = 'palette-link-item';
+            button.dataset.url = item.url;
+
+            const titleDiv = document.createElement('div');
+            titleDiv.style.display = 'flex';
+            titleDiv.style.alignItems = 'center';
+            titleDiv.style.gap = '8px';
+            titleDiv.style.width = '100%';
 
             const titleSpan = document.createElement('span');
             titleSpan.style.fontWeight = '500';
-            titleSpan.style.minWidth = '120px';
-            titleSpan.textContent = item.title;
+            titleSpan.style.flex = '1';
+            titleSpan.innerHTML = query ? highlightMatch(item.title, query) : item.title;
 
-            button.dataset.url = item.url;
+            const badge = document.createElement('span');
+            badge.className = 'palette-badge';
+            badge.textContent = item.category || 'page';
 
-            button.appendChild(titleSpan);
+            titleDiv.appendChild(titleSpan);
+            titleDiv.appendChild(badge);
+
+            const excerptDiv = document.createElement('div');
+            excerptDiv.className = 'palette-excerpt';
+            const excerpt = getExcerpt(item.content || item.excerpt || '', query);
+            excerptDiv.innerHTML = query ? highlightMatch(excerpt, query) : excerpt;
+
+            button.appendChild(titleDiv);
+            button.appendChild(excerptDiv);
 
             button.addEventListener('click', () => {
                 closePalette();
-                if (item.url !== window.location.pathname) {
-                    loadPage(item.url);
-                }
+                if (item.url !== window.location.pathname) loadPage(item.url);
             });
 
             li.appendChild(button);
@@ -866,15 +906,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    if (paletteLinksContainer) buildPalette(searchDB);
-    let listItems = paletteLinksContainer ? Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item')) : [];
-    let selectedIndex = 0;
-
     const scrollPaletteItemIntoView = (index) => {
         const item = listItems[index];
-        if (item) {
-            item.scrollIntoView({ block: 'nearest' });
-        }
+        if (item) item.scrollIntoView({ block: 'nearest' });
     };
 
     const setSelectedPaletteItem = (index) => {
@@ -885,11 +919,12 @@ document.addEventListener('DOMContentLoaded', () => {
         scrollPaletteItemIntoView(selectedIndex);
     };
 
-    const openPalette = () => {
+    const openPalette = async () => {
         if (dialog) {
             dialog.showModal();
             if (searchInput) {
                 searchInput.value = '';
+                await loadSearchIndex();
                 filterPalette('');
                 searchInput.focus();
             }
@@ -904,26 +939,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (lowerQuery.length > 0) {
             filteredDB = searchDB.filter(item =>
-                item.title.toLowerCase().includes(lowerQuery) || item.url.toLowerCase().includes(lowerQuery)
-            );
+                item.title.toLowerCase().includes(lowerQuery) ||
+                (item.content && item.content.toLowerCase().includes(lowerQuery)) ||
+                item.url.toLowerCase().includes(lowerQuery)
+            ).slice(0, 30);
+        } else {
+            filteredDB = searchDB.slice(0, 20);
         }
 
-        buildPalette(filteredDB);
-        if (paletteLinksContainer) {
-            listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
+        if (paletteFooter) {
+            const count = filteredDB.length;
+            const total = searchDB.length;
+            paletteFooter.innerHTML = lowerQuery
+                ? `<span>${count} of ${total} pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>`
+                : `<span>${total} pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>`;
+        }
 
-            if (listItems.length > 0) {
-                const currentPathIndex = listItems.findIndex(item => item.dataset.url === window.location.pathname);
-                setSelectedPaletteItem(currentPathIndex >= 0 ? currentPathIndex : 0);
-            }
+        buildPalette(filteredDB, lowerQuery);
+        listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
+        if (listItems.length > 0) {
+            const currentPathIndex = listItems.findIndex(item => item.dataset.url === window.location.pathname);
+            setSelectedPaletteItem(currentPathIndex >= 0 ? currentPathIndex : 0);
         }
     };
 
-    const getVisibleItems = () => listItems;
-
     if (cmdKBtn) cmdKBtn.addEventListener('click', openPalette);
 
-    // Close palette on outside click.
     document.addEventListener('click', (e) => {
         if (!dialog || !dialog.open) return;
         if (!dialog.contains(e.target) && cmdKBtn && !cmdKBtn.contains(e.target)) {
@@ -933,13 +974,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (dialog) {
         dialog.addEventListener('click', (e) => {
-            if (e.target === dialog) {
-                closePalette();
-            }
+            if (e.target === dialog) closePalette();
         });
     }
 
-    if (searchInput) searchInput.addEventListener('input', (e) => filterPalette(e.target.value));
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => filterPalette(e.target.value));
+        searchInput.addEventListener('focus', () => filterPalette(searchInput.value));
+    }
 
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
@@ -948,53 +990,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (dialog && dialog.open) {
-            const visibleItems = getVisibleItems();
-            if (visibleItems.length === 0) return;
-
             if (e.key === 'ArrowDown') {
                 e.preventDefault();
                 setSelectedPaletteItem(selectedIndex + 1);
-            }
-            else if (e.key === 'ArrowUp') {
+            } else if (e.key === 'ArrowUp') {
                 e.preventDefault();
                 setSelectedPaletteItem(selectedIndex - 1);
-            }
-            else if (e.key === 'Enter') {
+            } else if (e.key === 'Enter') {
                 e.preventDefault();
-                visibleItems[selectedIndex].click();
-            }
-            else if (e.key === 'Escape') {
+                listItems[selectedIndex]?.click();
+            } else if (e.key === 'Escape') {
                 closePalette();
             }
         }
     });
 
-    /* =========================================================================
-        Image Lightbox - click for fullscreen
-       ========================================================================= */
-    const lightboxOverlay = document.createElement('div');
-    lightboxOverlay.className = 'img-lightbox-overlay';
-    document.body.appendChild(lightboxOverlay);
-    const lightboxImg = document.createElement('img');
-    lightboxOverlay.appendChild(lightboxImg);
-
-    const openLightbox = (src) => { lightboxImg.src = src; lightboxOverlay.classList.add('active'); };
-    const closeLightbox = () => { lightboxOverlay.classList.remove('active'); lightboxImg.src = ''; };
-
-    document.addEventListener('click', (e) => {
-        const img = e.target.closest('#main-content img');
-        if (!img) return;
-        e.preventDefault();
-        openLightbox(img.src);
-    });
-
-    lightboxOverlay.addEventListener('click', (e) => {
-        if (e.target === lightboxOverlay) closeLightbox();
-    });
-
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
 });
