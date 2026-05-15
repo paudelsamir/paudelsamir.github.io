@@ -1,0 +1,33 @@
+{% assign branch_id = include.id %}
+{% assign branch_label = include.label %}
+{% assign branch_url = include.url %}
+{% assign branch_open = include.open %}
+{% assign branch_active = include.active %}
+
+<div class="tree-branch{% if branch_open %} is-open{% endif %}" data-folder="{{ branch_id }}">
+  <div class="tree-branch-row">
+    <button
+      type="button"
+      class="tree-branch-toggle"
+      aria-expanded="{% if branch_open %}true{% else %}false{% endif %}"
+      aria-controls="{{ branch_id }}"
+      aria-label="Toggle {{ branch_label }}"
+    >
+      <svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <polyline points="9 18 15 12 9 6"></polyline>
+      </svg>
+    </button>
+    <a
+      href="{{ branch_url | relative_url }}"
+      class="tree-branch-link{% if branch_active %} active{% endif %}"
+    >
+      <svg class="folder-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <span>{{ branch_label }}</span>
+    </a>
+  </div>
+  <div class="tree-children tree-children-nested{% if branch_open %} is-open{% endif %}" id="{{ branch_id }}">
+    {{ include.children }}
+  </div>
+</div>

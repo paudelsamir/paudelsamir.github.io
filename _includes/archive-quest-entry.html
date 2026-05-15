@@ -1,0 +1,50 @@
+{% assign quest = include.quest %}
+{% capture tp_meta %}
+  {% if quest.status %}{{ quest.status }}{% endif %}
+  {% if quest.started %} · {{ quest.started }}{% endif %}
+  {% if quest.ended %} → {{ quest.ended }}{% endif %}
+  {% if quest["min-read"] %} · {{ quest["min-read"] }} min{% endif %}
+{% endcapture %}
+
+<article class="bi-entry">
+  <div class="bi-entry-inner">
+    <div class="bi-entry-meta">
+      {% if quest.status %}
+        <span class="bi-tag bi-tag--{{ quest.status }}">{{ quest.status }}</span>
+        <span class="sep" aria-hidden="true">·</span>
+      {% endif %}
+      {% if quest.started %}
+        <time datetime="{{ quest.started }}">{{ quest.started }}</time>
+      {% endif %}
+      {% if quest.ended %}
+        <span class="sep" aria-hidden="true">→</span>
+        <span>{{ quest.ended }}</span>
+      {% endif %}
+      {% if quest["min-read"] %}
+        <span class="sep" aria-hidden="true">·</span>
+        <span>{{ quest["min-read"] }} min read</span>
+      {% endif %}
+      {% if quest["words"] %}
+        <span class="sep" aria-hidden="true">·</span>
+        <span>{{ quest["words"] }} words</span>
+      {% endif %}
+    </div>
+
+    <h2 class="bi-entry-title" id="{{ quest.slug | default: quest.title | slugify }}">
+      <a
+        class="bi-post-link"
+        href="{{ quest.url | relative_url }}"
+        data-tp-title="{{ quest.title | escape }}"
+        data-tp-meta="{{ tp_meta | strip }}"
+      >{{ quest.title }}</a>
+    </h2>
+
+    {% if quest.tags and quest.tags.size > 0 %}
+      <div class="bi-entry-tags" aria-label="Topics">
+        {% for tag in quest.tags %}
+          <span class="bi-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

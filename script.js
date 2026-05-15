@@ -64,12 +64,28 @@ document.addEventListener('DOMContentLoaded', () => {
         root.querySelectorAll('a[href]').forEach((link) => {
             const href = link.getAttribute('href');
             if (!href) return;
-
-            const normalizedHref = href.trim().toLowerCase();
-            if (normalizedHref.startsWith('#') || normalizedHref.startsWith('javascript:')) return;
+            const normalizedHref = href.trim();
+            if (normalizedHref.startsWith('#') || normalizedHref.toLowerCase().startsWith('javascript:')) return;
             if (link.hasAttribute('download')) return;
 
-            link.setAttribute('target', '_blank');
+            // Only open truly external links in a new tab. Relative and same-origin
+            // links (including absolute links that share the same origin) should
+            // continue to open in the same tab so the site's AJAX loader can
+            // intercept them.
+            let isExternal = false;
+            try {
+                const urlObj = new URL(normalizedHref, window.location.origin);
+                isExternal = urlObj.origin !== window.location.origin;
+            } catch (e) {
+                // If URL construction fails, treat as relative/internal link
+                isExternal = false;
+            }
+
+            if (!isExternal) return;
+
+            // Mark external links visually for dotted underline and open in new tab
+            link.classList.add('external-link');
+            if (!link.hasAttribute('target')) link.setAttribute('target', '_blank');
             const relValues = new Set((link.getAttribute('rel') || '').split(/\s+/).filter(Boolean));
             relValues.add('noopener');
             relValues.add('noreferrer');
@@ -80,9 +96,39 @@ document.addEventListener('DOMContentLoaded', () => {
     openLinksInNewTabs();
     processInlineMarkup();
 
+    // Remove external-link marker from icon-only anchors (social icons, logos)
+    const tidyExternalLinkIcons = () => {
+        document.querySelectorAll('a.external-link').forEach(a => {
+            // If anchor contains no visible text and only icon-like children (img or svg), don't style as external
+            const text = a.textContent.replace(/\s+/g, '');
+            if (text.length > 0) return;
+
+            const children = Array.from(a.children);
+            if (children.length === 0) {
+                // no element children, but no text either — leave it alone
+                return;
+            }
+
+            const allIcons = children.every(ch => {
+                const tag = ch.tagName && ch.tagName.toLowerCase();
+                if (tag === 'img' || tag === 'svg') return true;
+                // some icon wrappers may contain an svg inside
+                if (ch.querySelector && ch.querySelector('svg')) return true;
+                // allow visually-hidden helper spans
+                if (ch.classList && /sr-|visually-hidden/.test(ch.className)) return true;
+                return false;
+            });
+
+            if (allIcons) a.classList.remove('external-link');
+        });
+    };
+
+    tidyExternalLinkIcons();
+
     const linkObserver = new MutationObserver(() => {
         openLinksInNewTabs();
         processInlineMarkup();
+        tidyExternalLinkIcons();
     });
 
     linkObserver.observe(document.body, {
@@ -100,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    const applyTheme = (isDark) => {
+    function applyTheme(isDark) {
         const lightLogo = document.querySelector('.light-logo');
         const darkLogo = document.querySelector('.dark-logo');
         if (isDark) {
@@ -122,11 +168,13 @@ document.addEventListener('DOMContentLoaded', () => {
         applyTheme(true);
     }
 
-    themeToggle.addEventListener('click', () => {
-        const isDark = !document.body.classList.contains('dark');
-        applyTheme(isDark);
-        localStorage.setItem('theme', isDark ? 'dark' : 'light');
-    });
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const isDark = !document.body.classList.contains('dark');
+            applyTheme(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+    }
 
     /* =========================================================================
        2. Sidebar Toggle
@@ -146,8 +194,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('mobile-toc-open');
     };
 
-    const syncMobileSidebarState = () => {
-        const sidebarOpen = !leftSidebar.classList.contains('collapsed');
+    function syncMobileSidebarState() {
+        const sidebarOpen = leftSidebar && !leftSidebar.classList.contains('collapsed');
         if (isMobileViewport() && sidebarOpen) {
             document.body.classList.add('mobile-sidebar-open');
             closeMobileToc();
@@ -156,44 +204,118 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const collapseSidebarMobile = () => {
-        if (isMobileViewport() && !leftSidebar.classList.contains('collapsed')) {
+    function collapseSidebarMobile() {
+        if (isMobileViewport() && leftSidebar && !leftSidebar.classList.contains('collapsed')) {
             leftSidebar.classList.add('collapsed');
             syncMobileSidebarState();
         }
     };
 
-    sidebarToggle.addEventListener('click', () => {
-        leftSidebar.classList.toggle('collapsed');
-        syncMobileSidebarState();
-    });
-
-    const sidebarBackdrop = document.getElementById('sidebar-backdrop');
-    if (sidebarBackdrop) {
-        sidebarBackdrop.addEventListener('click', () => {
-            leftSidebar.classList.add('collapsed');
+    if (sidebarToggle && leftSidebar) {
+        sidebarToggle.addEventListener('click', () => {
+            leftSidebar.classList.toggle('collapsed');
             syncMobileSidebarState();
         });
-    }
 
-    if (isMobileViewport()) {
-        leftSidebar.classList.add('collapsed');
+        const sidebarBackdrop = document.getElementById('sidebar-backdrop');
+        if (sidebarBackdrop) {
+            sidebarBackdrop.addEventListener('click', () => {
+                leftSidebar.classList.add('collapsed');
+                syncMobileSidebarState();
+            });
+        }
+
+        if (isMobileViewport()) {
+            leftSidebar.classList.add('collapsed');
+        }
+        syncMobileSidebarState();
     }
-    syncMobileSidebarState();
 
     /* =========================================================================
        3. Dynamic Page Loading Logic
        ========================================================================= */
-    const initPage = () => {
+    
+    // Shared TOC state and helpers
+    let activeHeadings = {};
+    let headingElements = {};
+    const tocObserverOptions = { root: null, rootMargin: '-80px 0px -60% 0px', threshold: 0 };
+
+    function updateMobileTocState() {
+        const mobileBtn = document.getElementById('mobile-toc-button');
+        const tocContainer = document.getElementById('toc-links');
+        if (!mobileBtn || !tocContainer) return;
+        const activeLink = tocContainer.querySelector('a.active');
+        const activeLabel = activeLink ? activeLink.textContent.trim() : 'On this page';
+        const fabText = mobileBtn.querySelector('.mobile-toc-fab-text');
+        if (fabText) fabText.textContent = activeLabel;
+
+        const scrollRoot = getPageScrollRoot();
+        const scrollTop = window.pageYOffset || scrollRoot.scrollTop || document.documentElement.scrollTop || 0;
+        const maxScroll = Math.max(document.documentElement.scrollHeight, scrollRoot.scrollHeight) - window.innerHeight;
+        const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
+        mobileBtn.style.setProperty('--toc-progress', progress.toFixed(4));
+
+        const mobilePanel = document.getElementById('mobile-toc-panel');
+        if (mobilePanel) {
+            const mobileLinks = Array.from(mobilePanel.querySelectorAll('.mobile-toc-sheet-links a'));
+            mobileLinks.forEach(link => {
+                const shouldBeActive = activeLink && link.getAttribute('href') === activeLink.getAttribute('href');
+                link.classList.toggle('active', Boolean(shouldBeActive));
+            });
+        }
+    }
+
+    function updateTocHighlight(id) {
+        const tocContainer = document.getElementById('toc-links');
+        if (!tocContainer) return;
+        tocContainer.querySelectorAll('a').forEach(link => link.classList.remove('active'));
+        const activeTocLink = tocContainer.querySelector(`a[data-target-id="${id}"]`);
+        if (activeTocLink) activeTocLink.classList.add('active');
+        updateMobileTocState();
+    }
+
+    const headingObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => { activeHeadings[entry.target.id] = entry.isIntersecting; });
+        const currentlyVisibleIds = Object.keys(activeHeadings).filter(id => activeHeadings[id]);
+        if (currentlyVisibleIds.length > 0) {
+            const middleOfViewport = window.innerHeight / 2;
+            let selectedId = null;
+            for (let id of currentlyVisibleIds) {
+                if (!headingElements[id]) continue;
+                const top = headingElements[id].getBoundingClientRect().top;
+                if (top > middleOfViewport) { selectedId = id; break; }
+            }
+            if (!selectedId) {
+                let topmost = currentlyVisibleIds[0];
+                let topmostTop = headingElements[topmost] ? headingElements[topmost].getBoundingClientRect().top : 9999;
+                currentlyVisibleIds.forEach(id => {
+                    if (!headingElements[id]) return;
+                    const top = headingElements[id].getBoundingClientRect().top;
+                    if (top < topmostTop) { topmostTop = top; topmost = id; }
+                });
+                selectedId = topmost;
+            }
+            updateTocHighlight(selectedId);
+        }
+    }, tocObserverOptions);
+
+    function initPage() {
+        // Ensure file-tree handlers are (re)initialized for current DOM
+        if (typeof initFileTree === 'function') initFileTree();
+        if (window.initLinkPreviews) try{ window.initLinkPreviews(); }catch(e){}
+
         const currentPath = window.location.pathname;
 
         // Update active tree link
-        let activeTreeLink = document.querySelector(`.tree-item.is-link[href="${currentPath}"]`);
+        let activeTreeLink = document.querySelector(`.tree-item.is-link[href="${currentPath}"], .tree-branch-link[href="${currentPath}"]`);
         if (!activeTreeLink && currentPath === '/') {
-            activeTreeLink = document.querySelector(`.tree-item.is-link[href="/intro/"]`);
+            activeTreeLink = document.querySelector(`.tree-item.is-link[href="/about/"]`);
+        }
+        if (!activeTreeLink && currentPath.includes('/blogs/')) {
+            activeTreeLink = document.querySelector('.tree-item.is-link[href="/blogs/"]');
         }
 
-        document.querySelectorAll('.tree-item.is-link').forEach(link => link.classList.remove('active'));
+        document.querySelectorAll('.tree-item.is-link, .tree-branch-link').forEach(link => link.classList.remove('active'));
         if (activeTreeLink) {
             activeTreeLink.classList.add('active');
 
@@ -201,8 +323,22 @@ document.addEventListener('DOMContentLoaded', () => {
             let treeContainer = activeTreeLink.closest('.tree-children');
 
             while (treeContainer) {
-                treeContainer.style.display = 'block';
+                treeContainer.classList.add('is-open');
                 const folderId = treeContainer.id;
+                const branch = treeContainer.parentElement
+                    ? treeContainer.parentElement.closest('.tree-branch')
+                    : null;
+                if (branch) {
+                    branch.classList.add('is-open');
+                    const toggle = branch.querySelector('.tree-branch-toggle');
+                    if (toggle) toggle.setAttribute('aria-expanded', 'true');
+                    const label = branch.querySelector('.tree-branch-link span');
+                    const folderName = label ? label.textContent.trim() : folderId;
+                    breadcrumbs.unshift({ label: folderName, folderId });
+                    treeContainer = branch.parentElement ? branch.parentElement.closest('.tree-children') : null;
+                    continue;
+                }
+
                 const folderToggle = treeContainer.parentElement
                     ? treeContainer.parentElement.querySelector(`.tree-item.is-folder[data-folder="${folderId}"]`)
                     : null;
@@ -232,118 +368,57 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
 
-        // Right TOC logic based on actual page content
-        const tocContainer = document.getElementById('toc-links');
-        const rightSidebar = document.querySelector('.right-sidebar');
-        if (tocContainer) tocContainer.innerHTML = ''; // Clear old TOC
+        function populateToc() {
+            const tocContainer = document.getElementById('toc-links');
+            const rightSidebar = document.querySelector('.right-sidebar');
+            if (!tocContainer || !rightSidebar) return;
 
-        const h2s = Array.from(document.querySelectorAll('.center-reading-column h2'));
-        let activeH2s = {};
-        const h2Elements = {}; // Map ID to element
-        const tocObserverOptions = { root: null, rootMargin: '-80px 0px -60% 0px', threshold: 0 };
+            tocContainer.innerHTML = ''; // Clear old TOC
+            activeHeadings = {};
+            headingElements = {};
 
-        const updateMobileTocState = () => {
-            const mobileBtn = document.getElementById('mobile-toc-button');
-            if (!mobileBtn) return;
-
-            const activeLink = tocContainer ? tocContainer.querySelector('a.active') : null;
-            const activeLabel = activeLink ? activeLink.textContent.trim() : 'On this page';
-            const fabText = mobileBtn.querySelector('.mobile-toc-fab-text');
-            if (fabText) {
-                fabText.textContent = activeLabel;
-            }
-
-            const scrollRoot = getPageScrollRoot();
-            const scrollTop = window.pageYOffset || scrollRoot.scrollTop || document.documentElement.scrollTop || 0;
-            const maxScroll = Math.max(document.documentElement.scrollHeight, scrollRoot.scrollHeight) - window.innerHeight;
-            const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollTop / maxScroll)) : 0;
-            mobileBtn.style.setProperty('--toc-progress', progress.toFixed(4));
-
-            const mobilePanel = document.getElementById('mobile-toc-panel');
-            if (!mobilePanel) return;
-
-            const mobileLinks = Array.from(mobilePanel.querySelectorAll('.mobile-toc-sheet-links a'));
-            mobileLinks.forEach(link => {
-                const shouldBeActive = activeLink && link.getAttribute('href') === activeLink.getAttribute('href');
-                link.classList.toggle('active', Boolean(shouldBeActive));
+            const headings = Array.from(document.querySelectorAll('h2')).filter(h => {
+                return !h.closest('.left-sidebar, .right-sidebar, .top-header, .toc, .bi-aside');
             });
-        };
 
-        const updateTocHighlight = (id) => {
-            if (!tocContainer) return;
-            tocContainer.querySelectorAll('a').forEach(link => link.classList.remove('active'));
-            const activeTocLink = tocContainer.querySelector(`a[data-target-id="${id}"]`);
-            if (activeTocLink) activeTocLink.classList.add('active');
-            updateMobileTocState();
-        };
-
-        const h2Observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { activeH2s[entry.target.id] = entry.isIntersecting; });
-            const currentlyVisibleIds = Object.keys(activeH2s).filter(id => activeH2s[id]);
-            if (currentlyVisibleIds.length > 0) {
-                const middleOfViewport = window.innerHeight / 2;
-                // Find the first heading that appears below the middle
-                let selectedId = null;
-                for (let id of currentlyVisibleIds) {
-                    const top = h2Elements[id].getBoundingClientRect().top;
-                    if (top > middleOfViewport) {
-                        selectedId = id;
-                        break;
-                    }
-                }
-                // If no heading below middle, use the topmost one
-                if (!selectedId) {
-                    let topmost = currentlyVisibleIds[0];
-                    let topmostTop = h2Elements[topmost].getBoundingClientRect().top;
-                    currentlyVisibleIds.forEach(id => {
-                        const top = h2Elements[id].getBoundingClientRect().top;
-                        if (top < topmostTop) {
-                            topmostTop = top;
-                            topmost = id;
-                        }
-                    });
-                    selectedId = topmost;
-                }
-                updateTocHighlight(selectedId);
-            }
-        }, tocObserverOptions);
-
-        if (tocContainer && rightSidebar) {
-            if (h2s.length === 0) {
-                rightSidebar.classList.add('no-headings');
+            if (headings.length === 0) {
+                rightSidebar.classList.remove('no-headings');
+                tocContainer.innerHTML = '<li class="toc-empty">No sections on this page</li>';
             } else {
                 rightSidebar.classList.remove('no-headings');
-                h2s.forEach(h2 => {
-                    if (!h2.id) h2.id = h2.textContent.trim().toLowerCase().replace(/\s+/g, '-');
-                    h2Elements[h2.id] = h2;
-                    h2Observer.observe(h2);
+                headings.forEach(h => {
+                    if (!h.id) h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9\s\-]/g, '').replace(/\s+/g, '-');
+                    headingElements[h.id] = h;
+                    headingObserver.observe(h);
 
                     const li = document.createElement('li');
                     const a = document.createElement('a');
-                    a.href = `#${h2.id}`;
-                    a.textContent = h2.textContent;
-                    a.dataset.targetId = h2.id;
+                    a.href = `#${h.id}`;
+                    a.textContent = h.textContent;
+                    a.dataset.targetId = h.id;
 
                     a.addEventListener('click', (e) => {
                         e.preventDefault();
-                        h2.scrollIntoView({ behavior: 'smooth' });
+                        h.scrollIntoView({ behavior: 'smooth' });
                     });
 
                     li.appendChild(a);
                     tocContainer.appendChild(li);
                 });
-                // Build or refresh mobile TOC panel
                 buildMobileToc();
-                // Add heading permalinks (hash) for easy sharing
                 addHeadingPermalinks();
                 updateMobileTocState();
             }
-        }
+        };
+
+        // Initialize TOC with a slight delay to ensure DOM is settled
+        setTimeout(populateToc, 100);
 
         // Add small hash anchors to headings for quick linking/copying
         function addHeadingPermalinks() {
-            const headingSelector = '.center-reading-column h2, .center-reading-column h3, .center-reading-column h4, .center-reading-column h5, .center-reading-column h6';
-            const headings = Array.from(document.querySelectorAll(headingSelector));
+            const headings = Array.from(document.querySelectorAll('h2, h3, h4, h5, h6')).filter(h => {
+                return !h.closest('.left-sidebar, .right-sidebar, .top-header, .toc, .bi-aside');
+            });
             headings.forEach(h => {
                 if (!h.id) {
                     h.id = h.textContent.trim().toLowerCase().replace(/[^a-z0-9\s\-]/g, '').replace(/\s+/g, '-');
@@ -408,9 +483,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        mainContent.onscroll = () => {
-            updateMobileTocState();
-        };
+        if (mainContent) {
+            mainContent.onscroll = () => {
+                updateMobileTocState();
+            };
+        }
 
         window.onscroll = () => {
             updateMobileTocState();
@@ -420,6 +497,8 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('a[href^="/"]').forEach(link => {
             // Skip external protocol-relative links
             if (link.getAttribute('href').startsWith('//')) return;
+            // Skip download links and new-tab links
+            if (link.hasAttribute('download') || link.getAttribute('target') === '_blank') return;
 
             link.onclick = (e) => {
                 e.preventDefault();
@@ -433,14 +512,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
         });
-    };
+    }
 
     // Mobile TOC: polished bottom-sheet navigation for small screens
-    const buildMobileToc = () => {
-        const h1 = document.querySelector('.center-reading-column h1');
+    function buildMobileToc() {
+        const h1 = document.querySelector('.garden-flow h1') || document.querySelector('h1');
         const mainToc = document.getElementById('toc-links');
         const headingLinks = mainToc ? Array.from(mainToc.querySelectorAll('a')) : [];
-        const shouldShow = window.innerWidth <= 768 && h1;
+        const shouldShow = window.innerWidth <= 1280 && h1;
 
         let mobileBtn = document.getElementById('mobile-toc-button');
         let mobilePanel = document.getElementById('mobile-toc-panel');
@@ -502,31 +581,33 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const activeLabel = headingLinks.find(link => link.classList.contains('active'))?.textContent?.trim();
         const fabText = mobileBtn.querySelector('.mobile-toc-fab-text');
-        fabText.textContent = activeLabel || 'On this page';
+        if (fabText) fabText.textContent = activeLabel || 'On this page';
 
         const mobileLinks = mobilePanel.querySelector('.mobile-toc-sheet-links');
         const emptyState = mobilePanel.querySelector('.mobile-toc-empty');
-        mobileLinks.innerHTML = '';
-        headingLinks.forEach(a => {
-            const li = document.createElement('li');
-            const link = document.createElement('a');
-            link.href = a.getAttribute('href');
-            link.textContent = a.textContent;
-            if (a.classList.contains('active')) {
-                link.classList.add('active');
-            }
+        if (mobileLinks) {
+            mobileLinks.innerHTML = '';
+            headingLinks.forEach(a => {
+                const li = document.createElement('li');
+                const link = document.createElement('a');
+                link.href = a.getAttribute('href');
+                link.textContent = a.textContent;
+                if (a.classList.contains('active')) {
+                    link.classList.add('active');
+                }
 
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                const target = document.querySelector(targetId);
-                setOpen(false);
-                if (target) target.scrollIntoView({ behavior: 'smooth' });
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    setOpen(false);
+                    if (target) target.scrollIntoView({ behavior: 'smooth' });
+                });
+
+                li.appendChild(link);
+                mobileLinks.appendChild(li);
             });
-
-            li.appendChild(link);
-            mobileLinks.appendChild(li);
-        });
+        }
 
         if (emptyState) {
             emptyState.style.display = headingLinks.length > 0 ? 'none' : 'block';
@@ -538,8 +619,8 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         const closeBtn = mobilePanel.querySelector('.mobile-toc-close');
-        closeBtn.onclick = () => setOpen(false);
-        mobileBackdrop.onclick = () => setOpen(false);
+        if (closeBtn) closeBtn.onclick = () => setOpen(false);
+        if (mobileBackdrop) mobileBackdrop.onclick = () => setOpen(false);
 
         if (!document.body.dataset.mobileTocEscBound) {
             document.addEventListener('keydown', (e) => {
@@ -560,22 +641,37 @@ document.addEventListener('DOMContentLoaded', () => {
         const maxScroll = scrollRoot.scrollHeight - scrollRoot.clientHeight;
         const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollRoot.scrollTop / maxScroll)) : 0;
         mobileBtn.style.setProperty('--toc-progress', progress.toFixed(4));
-    };
+    }
 
-    const loadPage = async (url, { push = true } = {}) => {
+    let _loadingUrl = null;
+
+    async function loadPage(url, { push = true } = {}) {
+        if (_loadingUrl === url) return;
+        _loadingUrl = url;
+
         // Start loading bar
-        loadingBar.classList.remove('finishing');
-        loadingBar.classList.add('loading');
+        if (loadingBar) {
+            loadingBar.classList.remove('finishing');
+            loadingBar.classList.add('loading');
+        }
         mainContent.classList.add('content-swapping');
 
         try {
             const response = await fetch(url);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const html = await response.text();
             const parser = new DOMParser();
             const newDoc = parser.parseFromString(html, 'text/html');
 
             const newContent = newDoc.getElementById('main-content');
-            const newTitle = newDoc.querySelector('title').textContent;
+            const newTitle = newDoc.querySelector('title')?.textContent;
+
+            // If the page doesn't have #main-content (different layout, e.g. portfolio),
+            // fall back to full navigation
+            if (!newContent) {
+                window.location.href = url;
+                return;
+            }
 
             // Update DOM
             document.title = newTitle;
@@ -583,19 +679,22 @@ document.addEventListener('DOMContentLoaded', () => {
             if (push) window.history.pushState({}, '', url);
 
             // Finish loading
-            loadingBar.classList.add('finishing');
+            if (loadingBar) loadingBar.classList.add('finishing');
             setTimeout(() => {
-                loadingBar.classList.remove('loading', 'finishing');
-                mainContent.classList.remove('content-swapping');
+                _loadingUrl = null;
+                if (loadingBar) loadingBar.classList.remove('loading', 'finishing');
+                if (mainContent) mainContent.classList.remove('content-swapping');
                 initPage();
+                if (window.initLinkPreviews) try{ window.initLinkPreviews(); }catch(e){}
                 window.scrollTo(0, 0);
             }, 300);
 
         } catch (error) {
+            _loadingUrl = null;
             console.error('Failed to load page:', error);
-            window.location.href = url; // Fallback to normal navigation
+            window.location.href = url;
         }
-    };
+    }
 
     // Initial load
     initPage();
@@ -624,9 +723,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // immediately re-collapse it.
         if (document._justToggledSidebar) return;
 
-        if (leftSidebar.classList.contains('collapsed')) return;
+        if (leftSidebar && leftSidebar.classList.contains('collapsed')) return;
 
-        const clickedInsideSidebar = leftSidebar.contains(e.target);
+        const clickedInsideSidebar = leftSidebar && leftSidebar.contains(e.target);
         const clickedSidebarToggle = sidebarToggle && sidebarToggle.contains(e.target);
         if (clickedInsideSidebar || clickedSidebarToggle) return;
 
@@ -638,46 +737,59 @@ document.addEventListener('DOMContentLoaded', () => {
     /* =========================================================================
        4. File Tree Folder Toggle Logic
        ========================================================================= */
-    const folders = document.querySelectorAll('.tree-item.is-folder');
-    folders.forEach(folder => {
-        folder.addEventListener('click', (e) => {
-            // If the user actually clicked a link inside the folder, let the
-            // link's own handler manage navigation.
-            if (e.target.closest('a')) return;
+    function bindTreeNavigation(anchor) {
+        if (!anchor) return;
+        anchor.onclick = (e) => {
+            const href = anchor.getAttribute('href');
+            if (!href || href.startsWith('http') || href.startsWith('//') || href.startsWith('#')) return;
+            e.preventDefault();
+            if (href !== window.location.pathname) loadPage(href);
+            if (isMobileViewport()) collapseSidebarMobile();
+        };
+    }
 
-            folder.classList.toggle('expanded');
-            const targetId = folder.getAttribute('data-folder');
-            const childrenContainer = document.getElementById(targetId);
+    function initFileTree() {
+        const folders = document.querySelectorAll('.tree-item.is-folder');
+        folders.forEach(folder => folder.replaceWith(folder.cloneNode(true)));
 
-            if (folder.classList.contains('expanded')) {
-                if (childrenContainer) childrenContainer.style.display = 'block';
-            } else {
-                if (childrenContainer) childrenContainer.style.display = 'none';
-            }
+        document.querySelectorAll('.tree-item.is-folder').forEach(folder => {
+            folder.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                if (folder.classList.contains('tree-item-nested')) e.stopPropagation();
+                folder.classList.toggle('expanded');
+                const targetId = folder.getAttribute('data-folder');
+                const childrenContainer = document.getElementById(targetId);
 
-            // On small screens, if a folder expands and it only contains a
-            // single page link, open that page and collapse the sidebar for
-            // a better reading experience.
-            if (isMobileViewport() && folder.classList.contains('expanded') && childrenContainer) {
-                const childLinks = childrenContainer.querySelectorAll('.tree-item.is-link');
-                if (childLinks.length === 1) {
-                    const singleLinkAnchor = childLinks[0].querySelector('a');
-                    if (singleLinkAnchor) {
-                        const href = singleLinkAnchor.getAttribute('href');
-                        setTimeout(() => {
-                            collapseSidebarMobile();
-                            if (href && href !== window.location.pathname) {
-                                loadPage(href);
-                            }
-                        }, 150);
-                    }
+                if (folder.classList.contains('expanded')) {
+                    if (childrenContainer) childrenContainer.classList.add('is-open');
+                } else if (childrenContainer) {
+                    childrenContainer.classList.remove('is-open');
                 }
-            }
 
-            // Ensure mobile TOC and other mobile state sync when sidebar changes
-            syncMobileSidebarState();
+                syncMobileSidebarState();
+            });
         });
-    });
+
+        document.querySelectorAll('.tree-branch-toggle').forEach(toggle => {
+            toggle.replaceWith(toggle.cloneNode(true));
+        });
+
+        document.querySelectorAll('.tree-branch-toggle').forEach(toggle => {
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const branch = toggle.closest('.tree-branch');
+                const targetId = toggle.getAttribute('aria-controls');
+                const childrenContainer = targetId ? document.getElementById(targetId) : null;
+                const isOpen = branch && branch.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                if (childrenContainer) childrenContainer.classList.toggle('is-open', isOpen);
+                syncMobileSidebarState();
+            });
+        });
+
+        document.querySelectorAll('a.tree-item.is-link, a.tree-branch-link').forEach(bindTreeNavigation);
+    };
 
     const breadcrumbs = document.getElementById('breadcrumbs');
     if (breadcrumbs) {
@@ -693,14 +805,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // prevent the outside-click handler from closing right after
             document._justToggledSidebar = true;
             setTimeout(() => { document._justToggledSidebar = false; }, 120);
-            leftSidebar.classList.toggle('collapsed');
+            if (leftSidebar) leftSidebar.classList.toggle('collapsed');
 
             if (folderToggle && !folderToggle.classList.contains('expanded')) {
                 folderToggle.classList.add('expanded');
             }
 
             if (childrenContainer) {
-                childrenContainer.style.display = 'block';
+                childrenContainer.classList.add('is-open');
             }
 
             if (folderToggle) {
@@ -726,6 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const buildPalette = (items) => {
+        if (!paletteLinksContainer) return;
         paletteLinksContainer.innerHTML = '';
         items.forEach(item => {
             const li = document.createElement('li');
@@ -753,8 +866,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    buildPalette(searchDB);
-    let listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
+    if (paletteLinksContainer) buildPalette(searchDB);
+    let listItems = paletteLinksContainer ? Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item')) : [];
     let selectedIndex = 0;
 
     const scrollPaletteItemIntoView = (index) => {
@@ -773,13 +886,17 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const openPalette = () => {
-        dialog.showModal();
-        searchInput.value = '';
-        filterPalette('');
-        searchInput.focus();
+        if (dialog) {
+            dialog.showModal();
+            if (searchInput) {
+                searchInput.value = '';
+                filterPalette('');
+                searchInput.focus();
+            }
+        }
     };
 
-    const closePalette = () => { dialog.close(); };
+    const closePalette = () => { if (dialog) dialog.close(); };
 
     const filterPalette = (query) => {
         const lowerQuery = query.toLowerCase().trim();
@@ -792,41 +909,45 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         buildPalette(filteredDB);
-        listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
+        if (paletteLinksContainer) {
+            listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
 
-        if (listItems.length > 0) {
-            const currentPathIndex = listItems.findIndex(item => item.dataset.url === window.location.pathname);
-            setSelectedPaletteItem(currentPathIndex >= 0 ? currentPathIndex : 0);
+            if (listItems.length > 0) {
+                const currentPathIndex = listItems.findIndex(item => item.dataset.url === window.location.pathname);
+                setSelectedPaletteItem(currentPathIndex >= 0 ? currentPathIndex : 0);
+            }
         }
     };
 
     const getVisibleItems = () => listItems;
 
-    cmdKBtn.addEventListener('click', openPalette);
+    if (cmdKBtn) cmdKBtn.addEventListener('click', openPalette);
 
     // Close palette on outside click.
     document.addEventListener('click', (e) => {
-        if (!dialog.open) return;
-        if (!dialog.contains(e.target) && !cmdKBtn.contains(e.target)) {
+        if (!dialog || !dialog.open) return;
+        if (!dialog.contains(e.target) && cmdKBtn && !cmdKBtn.contains(e.target)) {
             closePalette();
         }
     });
 
-    dialog.addEventListener('click', (e) => {
-        if (e.target === dialog) {
-            closePalette();
-        }
-    });
+    if (dialog) {
+        dialog.addEventListener('click', (e) => {
+            if (e.target === dialog) {
+                closePalette();
+            }
+        });
+    }
 
-    searchInput.addEventListener('input', (e) => filterPalette(e.target.value));
+    if (searchInput) searchInput.addEventListener('input', (e) => filterPalette(e.target.value));
 
     document.addEventListener('keydown', (e) => {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
-            dialog.open ? closePalette() : openPalette();
+            if (dialog) dialog.open ? closePalette() : openPalette();
         }
 
-        if (dialog.open) {
+        if (dialog && dialog.open) {
             const visibleItems = getVisibleItems();
             if (visibleItems.length === 0) return;
 
@@ -845,6 +966,35 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (e.key === 'Escape') {
                 closePalette();
             }
+        }
+    });
+
+    /* =========================================================================
+        Image Lightbox - click for fullscreen
+       ========================================================================= */
+    const lightboxOverlay = document.createElement('div');
+    lightboxOverlay.className = 'img-lightbox-overlay';
+    document.body.appendChild(lightboxOverlay);
+    const lightboxImg = document.createElement('img');
+    lightboxOverlay.appendChild(lightboxImg);
+
+    const openLightbox = (src) => { lightboxImg.src = src; lightboxOverlay.classList.add('active'); };
+    const closeLightbox = () => { lightboxOverlay.classList.remove('active'); lightboxImg.src = ''; };
+
+    document.addEventListener('click', (e) => {
+        const img = e.target.closest('#main-content img');
+        if (!img) return;
+        e.preventDefault();
+        openLightbox(img.src);
+    });
+
+    lightboxOverlay.addEventListener('click', (e) => {
+        if (e.target === lightboxOverlay) closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+            closeLightbox();
         }
     });
 });

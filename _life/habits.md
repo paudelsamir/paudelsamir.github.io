@@ -1,9 +1,17 @@
+---
+layout: default
+title: habits
+category: life
+permalink: /habits/
+---
+
 # habits
 
 trying to build small rituals that keep me steady.
 
 i use [grit][grit-app] to track my habits. it's been solid so far.
 
+## right now
 habits i've been keeping so far:
 - workoutssss
 - no sugar
@@ -12,6 +20,9 @@ habits i've been keeping so far:
 - plenty of water
 - reading
 
+
+
+## planning
 here are some i'd like to try:
 - [wake up early][morning-experiment]
 - [cold shower][cold-shower-story]

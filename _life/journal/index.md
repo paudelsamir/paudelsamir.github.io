@@ -1,10 +1,8 @@
 ---
-layout: default
+layout: journal-index
 title: Journal
 category: life
 permalink: /journal/
 ---
 
-
-## Archive
-- 2025
+A timeline of years. Each year, a new chapter — written in moments, revised in reflection.

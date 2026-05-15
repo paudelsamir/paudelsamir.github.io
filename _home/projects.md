@@ -4,7 +4,7 @@ title: Projects
 category: home
 ---
 
-# projects
+# Projects
 
 25+ projects built over time. all opensource, all ideas started somewhere.
 
@@ -296,5 +296,3 @@ category: home
 </details>
 {:/nomarkdown}
 
-
-## links

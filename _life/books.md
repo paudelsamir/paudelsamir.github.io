@@ -6,6 +6,6 @@ category: life
 
 # Books
 
-Below are the books I'll be documenting on [Goodreads.](https://goodreads.com/paudelsamir)
+I started reading books about 4 months ago, and I will document them on [Goodreads](https://goodreads.com/paudelsamir).
 
-## links
+

@@ -5,8 +5,3 @@ redirect_to: /about/
 ---
 
 <meta http-equiv="refresh" content="0; url=/about/" />
-
-<section class="page-section" id="intro">
-  {% assign intro = site.home | where: "slug", "intro" | first %}
-  {{ intro.content }}
-</section>

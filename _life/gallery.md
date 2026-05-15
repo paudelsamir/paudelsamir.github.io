@@ -2,9 +2,11 @@
 layout: default
 title: Gallery
 category: life
+hide_toc: true
 ---
 
 # gallery
+
 
 <style>
 .gallery-grid {
@@ -60,6 +62,7 @@ category: life
 </style>
 
 {::nomarkdown}
+<p style="text-align:end;font-size:12px;color:var(--text-muted);margin:0 0 6px 0;">click to expand</p>
 <div class="gallery-grid">
 
 <div class="gallery-item"><img src="/assets/Gallery/1_me_2015.jpeg" alt="Me 2015"><div class="gallery-caption">Me 2015</div></div>

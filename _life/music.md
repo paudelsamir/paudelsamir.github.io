@@ -45,5 +45,3 @@ i absolutely love **[Urja][urja-album]** by **[The Elements][the-elements-profil
 [urja-album]: https://open.spotify.com/album/5HwaofIJCS5oTs4BUH70IK
 [the-elements-profile]: https://open.spotify.com/artist/3bLWp801OAckSYWrb0sgsHs
 
-
-## links

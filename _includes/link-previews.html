@@ -1,0 +1,278 @@
+<style>
+  .internal-link.has-preview { text-decoration: none; position: relative; }
+  #tooltip-wrapper {
+    position: absolute; display: none; z-index: 99999;
+    max-width: 380px; width: max-content;
+    background: var(--bg-elevated); color: var(--text-main);
+    border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+    font-size: 0.95rem; pointer-events: auto; overflow: hidden;
+  }
+  #tooltip-wrapper .tp-row { display: flex; gap: 0; flex-direction: column; }
+  #tooltip-wrapper .tp-thumb {
+    width: 100%; max-height: 160px; overflow: hidden;
+    background: var(--bg-base);
+  }
+  #tooltip-wrapper .tp-thumb img {
+    width: 100%; height: 160px; object-fit: cover; display: block;
+  }
+  #tooltip-wrapper .tp-thumb:empty { display: none; }
+  #tooltip-wrapper .tp-content { padding: 0.75rem 1rem; }
+  #tooltip-wrapper .tp-title {
+    font-weight: 600; margin: 0 0 0.2rem 0; font-size: 0.95rem;
+    line-height: 1.4; color: var(--text-main);
+  }
+  #tooltip-wrapper .tp-meta {
+    font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.3rem;
+    letter-spacing: 0.01em;
+  }
+  #tooltip-wrapper .tp-excerpt {
+    color: var(--text-muted); font-size: 0.82rem; line-height: 1.5;
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  #tooltip-wrapper .tp-empty { color: var(--text-muted); font-style: italic; font-size: 0.82rem; }
+  #tooltip-wrapper .tp-meta:not(:empty) { display: block; }
+  #tooltip-wrapper.fade-in { animation: tpFade .15s ease both; }
+  @keyframes tpFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+  @media (max-width:640px) { #tooltip-wrapper { display: none !important; } }
+</style>
+
+<div id="tooltip-wrapper" aria-hidden="true">
+  <div class="tp-row">
+    <div class="tp-thumb" aria-hidden="true"></div>
+    <div class="tp-content">
+      <div class="tp-title"></div>
+      <div class="tp-meta"></div>
+      <div class="tp-excerpt"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    const selector = '{{ include.wrapperQuerySelector | default: ".garden-flow" }}';
+    const wrapper = document.getElementById('tooltip-wrapper');
+    const tpThumb = wrapper.querySelector('.tp-thumb');
+    const tpTitle = wrapper.querySelector('.tp-title');
+    const tpExcerpt = wrapper.querySelector('.tp-excerpt');
+    const tpMeta = wrapper.querySelector('.tp-meta');
+    const cache = new Map();
+    let hideTimer = null;
+    let activeRequest = 0;
+
+    function positionTooltip(elem){
+      const rect = elem.getBoundingClientRect();
+      const scrollY = window.scrollY || window.pageYOffset;
+      const scrollX = window.scrollX || window.pageXOffset;
+
+      const prevDisplay = wrapper.style.display;
+      const prevVisibility = wrapper.style.visibility;
+      wrapper.style.visibility = 'hidden';
+      wrapper.style.display = 'block';
+      const measuredWidth = wrapper.offsetWidth || Math.min(380, window.innerWidth - 24);
+      const width = Math.min(380, measuredWidth);
+      const height = wrapper.offsetHeight || 180;
+      wrapper.style.display = prevDisplay;
+      wrapper.style.visibility = prevVisibility;
+
+      let left = scrollX + rect.left + rect.width / 2 - width / 2;
+      let top = scrollY + rect.top + rect.height + 10;
+
+      const margin = 12;
+      if (left < margin) left = margin;
+      if (left + width > window.innerWidth - margin + scrollX) left = window.innerWidth - width - margin + scrollX;
+
+      if (top + height > scrollY + window.innerHeight - margin) {
+        top = scrollY + rect.top - height - 10;
+      }
+
+      if (top < margin) top = margin;
+
+      wrapper.style.left = left + 'px';
+      wrapper.style.top = top + 'px';
+    }
+
+    function clearPreview(){
+      wrapper.style.display = 'none';
+      wrapper.classList.remove('fade-in');
+      tpTitle.textContent = '';
+      tpExcerpt.textContent = '';
+      tpMeta.textContent = '';
+      tpThumb.innerHTML = '';
+    }
+
+    function scheduleHide(){
+      window.clearTimeout(hideTimer);
+      hideTimer = window.setTimeout(clearPreview, 180);
+    }
+
+    function show(){
+      wrapper.style.display = 'block';
+      wrapper.classList.add('fade-in');
+      window.clearTimeout(hideTimer);
+    }
+
+    function trimExcerpt(text, maxLen){
+      if (!text) return '';
+      const clean = text.replace(/\s+/g, ' ').trim();
+      if (clean.length <= maxLen) return clean;
+      return clean.slice(0, maxLen).trim() + '…';
+    }
+
+    async function fetchOverview(url){
+      if (cache.has(url)) return cache.get(url);
+      try{
+        const res = await fetch(url, {credentials: 'same-origin'});
+        if (!res.ok) return null;
+        const text = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        const contentShell = doc.querySelector('.blog-shell, .quest-shell');
+        let title = '';
+        let meta = '';
+        let excerpt = '';
+        let image = null;
+
+        if (contentShell) {
+          title = (doc.querySelector('.blog-shell h1, .quest-shell h1') && doc.querySelector('.blog-shell h1, .quest-shell h1').textContent.trim()) || '';
+          const metaEl = doc.querySelector('.blog-meta, .quest-meta');
+          if (metaEl) meta = metaEl.textContent.replace(/\s+/g, ' ').trim();
+          const bodySelectors = ['.blog-body p', '.quest-body p', '.blog-shell .garden-flow p', '.quest-shell .garden-flow p', '.garden-flow p'];
+          for (const s of bodySelectors) {
+            const el = doc.querySelector(s);
+            if (el && el.textContent.trim().length > 20) {
+              excerpt = el.textContent.trim();
+              break;
+            }
+          }
+        }
+
+        if (!title) {
+          title = (doc.querySelector('h1') && doc.querySelector('h1').textContent.trim()) || doc.title || (doc.querySelector('meta[property="og:title"]') && doc.querySelector('meta[property="og:title"]').content) || '';
+        }
+        if (!excerpt) {
+          const selectors = ['article p', '.garden-flow p', 'main p', 'p'];
+          for (const s of selectors) {
+            const el = doc.querySelector(s);
+            if (el && el.textContent.trim().length > 20) {
+              excerpt = el.textContent.trim();
+              break;
+            }
+          }
+        }
+        if (!excerpt) {
+          const metaDesc = doc.querySelector('meta[name="description"]');
+          if (metaDesc) excerpt = metaDesc.content;
+        }
+        excerpt = trimExcerpt(excerpt, 220);
+
+        const og = doc.querySelector('meta[property="og:image"]') || doc.querySelector('meta[name="og:image"]');
+        if (og && og.content) image = og.content;
+        if (!image){ const img = doc.querySelector('article img, .garden-flow img, main img'); if (img && img.src) image = img.src; }
+
+        const result = {title: title || '', meta: meta || '', excerpt: excerpt || '', image: image || null};
+        cache.set(url, result);
+        return result;
+      }catch(e){ return null; }
+    }
+
+    function renderPreview(a, data){
+      const noText = a.hasAttribute('data-tp-no-text');
+      tpTitle.textContent = noText ? '' : (data.title || a.getAttribute('data-tp-title') || a.textContent.trim());
+      tpMeta.textContent = noText ? '' : (data.meta || a.getAttribute('data-tp-meta') || '');
+      tpExcerpt.textContent = noText ? '' : (data.excerpt || a.getAttribute('data-tp-excerpt') || '');
+      const content = wrapper.querySelector('.tp-content');
+      if (noText) {
+        content.style.display = 'none';
+      } else {
+        content.style.display = '';
+        if (!tpExcerpt.textContent && !tpMeta.textContent) {
+          tpExcerpt.textContent = 'Open to read.';
+        }
+      }
+
+      const imgSrc = a.getAttribute('data-tp-image');
+      if (imgSrc) {
+        tpThumb.innerHTML = '<img src="' + imgSrc.replace(/"/g, '&quot;') + '" alt="" loading="lazy" />';
+      } else {
+        tpThumb.innerHTML = '';
+      }
+
+      positionTooltip(a);
+    }
+
+    function onEnter(e){
+      const a = e.currentTarget;
+      const href = a.href;
+      const requestId = ++activeRequest;
+      window.clearTimeout(hideTimer);
+      positionTooltip(a);
+      show();
+
+      const presetTitle = a.getAttribute('data-tp-title');
+      const presetMeta = a.getAttribute('data-tp-meta');
+      const presetImage = a.getAttribute('data-tp-image');
+
+      if (presetTitle || presetImage) {
+        renderPreview(a, { title: presetTitle || '', meta: presetMeta || '', excerpt: '', image: presetImage || null });
+      } else {
+        tpTitle.textContent = 'Loading\u2026';
+        tpExcerpt.textContent = '';
+        tpMeta.textContent = '';
+        tpThumb.innerHTML = '';
+      }
+
+      if (presetTitle && presetImage) return;
+
+      const thisRequest = requestId;
+      fetchOverview(href).then(data=>{
+        if (thisRequest !== activeRequest) return;
+        if (!data) {
+          if (presetTitle) return;
+          scheduleHide();
+          return;
+        }
+        renderPreview(a, data);
+      }).catch(()=>{
+        if (!presetTitle) scheduleHide();
+      });
+    }
+
+    function hide(){ scheduleHide(); }
+
+    function setup(){
+      try{
+        const anchors = Array.from(document.querySelectorAll(selector + ' a, .garden-archive a.bi-post-link, .journal-year-link, .quest-list-link'));
+        anchors.forEach(a => {
+          try{
+            if (a.closest('.bi-aside, .left-sidebar, .right-sidebar, .toc')) return;
+            const href = a.getAttribute('href')||'';
+            if (href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) return;
+            if (href.endsWith('.pdf')) return;
+            const isRelative = href.startsWith('/') || !/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(href);
+            let sameOrigin = false;
+            try{ sameOrigin = (a.hostname === window.location.hostname); }catch(e){}
+            if (!(isRelative || sameOrigin)) return;
+
+            const clone = a.cloneNode(true);
+            a.parentNode.replaceChild(clone, a);
+
+            clone.classList.add('internal-link','has-preview');
+            clone.addEventListener('mouseenter', onEnter);
+            clone.addEventListener('mouseleave', hide);
+            clone.addEventListener('focus', onEnter);
+            clone.addEventListener('blur', hide);
+            clone.addEventListener('touchend', hide);
+          }catch(e){}
+        });
+        wrapper.addEventListener('mouseenter', function(){ window.clearTimeout(hideTimer); });
+        wrapper.addEventListener('mouseleave', hide);
+      }catch(e){}
+    }
+
+    window.initLinkPreviews = setup;
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', setup); else setup();
+  })();
+</script>

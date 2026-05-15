@@ -1,50 +1,37 @@
 module Jekyll
   module MarkdownEnhanced
-    # Convert markdown-it style syntax to HTML
-    # ^text^ -> <sup>text</sup>
-    # ~text~ -> <sub>text</sub>
-    # ++text++ -> <ins>text</ins>
-    # ==text== -> <mark>text</mark>
-    # Standalone images -> <figure> with optional captions
-    # Multiple standalone images in one paragraph -> responsive image gallery
+    # Minimal plugin: only superscript, subscript, marked, image figures/galleries, and custom containers
+
     def self.process(content)
-      # Only process if content contains HTML or special markers
-      return content unless content.include?('<') || content.include?('++') || content.include?('==') || content.include?(':::')
-      
+      return content if content.nil? || content.empty?
+
+      # Quick check for tokens we're interested in
+      unless content.include?('^') || content.include?('~') || content.include?('==') || content.include?('<img') || content.include?('[!')
+        return content
+      end
+
       content = process_superscript(content)
       content = process_subscript(content)
-      content = process_inserted(content)
       content = process_marked(content)
       content = process_images(content)
       content = process_custom_containers(content)
+
       content
     end
 
     def self.process_superscript(content)
-      # Handle superscript: ^text^
-      # Avoid matching inside code blocks and pre tags
       content.gsub(/(?<!<code)(?<!<pre)(?<!\^)\^([^\^]+?)\^(?!\^)(?!<\/code)(?!<\/pre)/m) do
         "<sup>#{$1}</sup>"
       end
     end
 
     def self.process_subscript(content)
-      # Handle subscript: ~text~
-      # Avoid matching inside code blocks
       content.gsub(/(?<!<code)(?<!~)~([^~]+?)~(?!~)(?!<\/code)/m) do
         "<sub>#{$1}</sub>"
       end
     end
 
-    def self.process_inserted(content)
-      # Handle inserted text: ++text++
-      # Simple pattern that matches ++ ... ++
-      content.gsub(/\+\+([^\+\n]+?)\+\+/m, '<ins>\1</ins>')
-    end
-
     def self.process_marked(content)
-      # Handle marked/highlighted text: ==text==
-      # Simple pattern that matches == ... ==
       content.gsub(/==([^=\n]+?)==/m, '<mark>\1</mark>')
     end
 
@@ -79,25 +66,17 @@ module Jekyll
     end
 
     def self.process_custom_containers(content)
-      # Handle custom containers with blockquote syntax: > [!NOTE]
-      # Kramdown renders these as:
-      # <blockquote>
-      #   <p>[!NOTE]
-      # Content here</p>
-      # </blockquote>
       container_types = %w[NOTE IMPORTANT CAUTION TIP WARNING INFO DANGER SUCCESS]
-      
+
       container_types.each do |type|
-        # Match the blockquote pattern with [!TYPE] at the beginning
         pattern = /<blockquote>\s*<p>\s*\[\s*!\s*#{type}\s*\](.*?)<\/p>\s*<\/blockquote>/m
-        
-        content = content.gsub(pattern) do |match|
+        content = content.gsub(pattern) do
           inner_content = $1.strip
           container_class = type.downcase
           "<div class=\"container container-#{container_class}\"><p>#{inner_content}</p></div>"
         end
       end
-      
+
       content
     end
   end
@@ -111,4 +90,3 @@ module Jekyll
     document.output = Jekyll::MarkdownEnhanced.process(document.output)
   end
 end
-

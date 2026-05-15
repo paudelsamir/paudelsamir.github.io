@@ -1,0 +1,41 @@
+---
+layout: default
+---
+
+{% assign all_years = site.life | where_exp: "doc", "doc.path contains 'journal/' and doc.slug != 'index'" | sort: "title" %}
+{% assign current = page.year | to_integer %}
+{% assign prev = null %}
+{% assign next = null %}
+{% for y in all_years %}
+  {% assign yn = y.year | to_integer %}
+  {% if yn < current %}{% assign prev = y %}{% endif %}
+  {% if yn > current and next == null %}{% assign next = y %}{% endif %}
+{% endfor %}
+
+<article class="journal-shell">
+  <header class="journal-header">
+    <div class="journal-nav">
+      <a href="/journal/" class="journal-nav-back">&larr; Journal</a>
+    </div>
+    <h1>{{ page.title }}</h1>
+  </header>
+
+  <div class="journal-body">
+    {{ content }}
+  </div>
+
+  <footer class="journal-footer">
+    <div class="journal-footer-nav">
+      {% if prev %}
+        <a href="{{ prev.url }}" class="jn-prev">&larr; {{ prev.title }}</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+      {% if next %}
+        <a href="{{ next.url }}" class="jn-next">{{ next.title }} &rarr;</a>
+      {% else %}
+        <span></span>
+      {% endif %}
+    </div>
+  </footer>
+</article>

@@ -7,6 +7,3 @@ category: tech
 # tools
 
 
-
-
-## links

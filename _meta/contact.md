@@ -19,6 +19,7 @@ I ❤️ to talk with peoples.
 - **Twitter**: [@samireey](https://twitter.com/samireey)
 - **LinkedIn**: [paudelsamir](https://www.linkedin.com/in/paudelsamir)
 - **Medium**: [@paudelsamir](https://medium.com/@paudelsamir)
+- **Chess**: [samireey](https://www.chess.com/member/samireey) — let's play a game ♟
 
 ## Location / Meetup
 

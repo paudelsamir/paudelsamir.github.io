@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+{% assign journal_years = site.life | where_exp: "doc", "doc.path contains 'journal/' and doc.slug != 'index'" | sort: "title" | reverse %}
+
+<div class="section-index journal-index">
+  <header class="section-index-header">
+    <h1>{{ page.title | default: "Journal" }}</h1>
+    {% if content != blank %}
+      <div class="section-index-lede">{{ content }}</div>
+    {% endif %}
+    {% include section-nav.html %}
+  </header>
+
+  {% if journal_years.size > 0 %}
+    <div class="journal-timeline" aria-label="Journal years">
+      {% for year in journal_years %}
+        {% assign entry_count = year.content | split: "###" | size | minus: 1 %}
+        {% if entry_count < 0 %}{% assign entry_count = 0 %}{% endif %}
+        {% capture tp_meta %}{% if entry_count > 0 %}{{ entry_count }} entr{% if entry_count == 1 %}y{% else %}ies{% endif %}{% endif %}{% endcapture %}
+        <a
+          href="{{ year.url | relative_url }}"
+          class="journal-timeline-card"
+          style="--tl-i: {{ forloop.index0 }}"
+          data-tp-title="{{ year.title | escape }}"
+          data-tp-meta="{{ tp_meta | strip }}"
+        >
+          <span class="journal-timeline-dot" aria-hidden="true">
+            <span class="journal-timeline-dot-ring"></span>
+          </span>
+          <span class="journal-timeline-body">
+            <span class="journal-timeline-year">{{ year.title }}</span>
+            <span class="journal-timeline-sub">
+              {% if entry_count > 0 %}{{ entry_count }} entr{% if entry_count == 1 %}y{% else %}ies{% endif %}{% endif %}
+            </span>
+          </span>
+          <span class="journal-timeline-arrow">&rarr;</span>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="section-empty">Add a year file at <strong>_life/journal/2025.md</strong> with <code>layout: journal-year</code>, then write under <code>## Month</code> headings.</p>
+  {% endif %}
+</div>

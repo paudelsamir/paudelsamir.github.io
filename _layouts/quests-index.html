@@ -1,0 +1,131 @@
+---
+layout: default
+---
+
+{% assign all_quests = site.life | where_exp: "doc", "doc.path contains 'quests/' and doc.slug != 'index'" | sort: "started" | reverse %}
+{% assign active_quests = all_quests | where_exp: "q", "q.status == 'active'" %}
+{% assign completed_quests = all_quests | where_exp: "q", "q.status != 'active'" %}
+
+<div class="section-index garden-archive garden-archive--quests">
+  <header class="bi-header">
+    <h1>{{ page.title | default: "Quests" }}</h1>
+
+    {% if content != blank %}
+      <div class="section-index-lede">{{ content }}</div>
+    {% endif %}
+  </header>
+
+  {% if all_quests.size > 0 %}
+    <aside class="bi-aside bi-aside--top" aria-label="Archive index">
+      <nav class="bi-nav-block">
+        <ul class="bi-nav-list">
+          {% if active_quests.size > 0 %}
+            <li>
+              <a href="#status-active">
+                <span>Active</span>
+                <span class="bi-nav-count">{{ active_quests.size }}</span>
+              </a>
+            </li>
+          {% endif %}
+          {% if completed_quests.size > 0 %}
+            <li>
+              <a href="#status-completed">
+                <span>Completed</span>
+                <span class="bi-nav-count">{{ completed_quests.size }}</span>
+              </a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    </aside>
+  {% endif %}
+
+  <div class="bi-layout">
+    <div class="bi-main">
+      {% if all_quests.size > 0 %}
+        
+        {% comment %} --- Active Quests Block --- {% endcomment %}
+        {% if active_quests.size > 0 %}
+          <section class="bi-year" id="status-active">
+            <div class="bi-year-head">
+              <h2 >Active Tracks</h2>
+              <span class="bi-year-count">{{ active_quests.size }} current</span>
+            </div>
+
+            <div class="bi-feed">
+              {% for quest in active_quests %}
+                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} → {{ quest.ended }}{% endif %}{% endcapture %}
+
+                <article class="bi-entry">
+                  <a class="bi-entry-link-cover" href="{{ quest.url | relative_url }}" aria-label="{{ quest.title }}"></a>
+                  <div class="bi-entry-inner">
+                    <div class="bi-entry-meta">
+                      <span class="bi-tag" style="background: rgba(var(--accent-rgb, 0,0,0), 0.08); font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em;">{{ quest.status }}</span>
+                      {% if quest.started %}
+                        <span class="sep" aria-hidden="true">·</span>
+                        <span>Since {{ quest.started }}</span>
+                      {% endif %}
+                    </div>
+
+                    <h2 class="bi-entry-title" id="{{ quest.slug | default: quest.title | slugify }}">
+                      <a
+                        class="bi-post-link"
+                        href="{{ quest.url | relative_url }}"
+                        data-tp-title="{{ quest.title | escape }}"
+                        data-tp-meta="{{ tp_meta | strip }}"
+                      >{{ quest.title }}</a>
+                    </h2>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+        {% comment %} --- Completed Quests Block --- {% endcomment %}
+        {% if completed_quests.size > 0 %}
+          <section class="bi-year" id="status-completed">
+            <div class="bi-year-head">
+              <h2 >Completed Ledger</h2>
+              <span class="bi-year-count">{{ completed_quests.size }} finished</span>
+            </div>
+
+            <div class="bi-feed">
+              {% for quest in completed_quests %}
+                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} → {{ quest.ended }}{% endif %}{% endcapture %}
+
+                <article class="bi-entry" style="opacity: 0.8;">
+                  <a class="bi-entry-link-cover" href="{{ quest.url | relative_url }}" aria-label="{{ quest.title }}"></a>
+                  <div class="bi-entry-inner">
+                    <div class="bi-entry-meta">
+                      <span class="bi-tag" style="opacity: 0.6; text-transform: uppercase;">{{ quest.status | default: "done" }}</span>
+                      {% if quest.started or quest.ended %}
+                        <span class="sep" aria-hidden="true">·</span>
+                        <span>{{ quest.started }}{% if quest.ended %} → {{ quest.ended }}{% endif %}</span>
+                      {% endif %}
+                    </div>
+
+                    <h2 class="bi-entry-title" id="{{ quest.slug | default: quest.title | slugify }}">
+                      <a
+                        class="bi-post-link"
+                        href="{{ quest.url | relative_url }}"
+                        data-tp-title="{{ quest.title | escape }}"
+                        data-tp-meta="{{ tp_meta | strip }}"
+                      >{{ quest.title }}</a>
+                    </h2>
+                  </div>
+                </article>
+              {% endfor %}
+            </div>
+          </section>
+        {% endif %}
+
+      {% else %}
+        <div class="bi-empty">
+          No records found. Add files under <strong>_life/quests/</strong>.
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,165 @@
+---
+layout: default
+---
+
+<style>
+  /* --- Structural & Layout System (Color Neutral) --- */
+  .quest-shell {
+    max-width: 680px;
+    margin: 0 auto;
+    /* padding: 3rem 1.5rem; Tightened from 4rem/5rem for a compact, clean look */
+    line-height: 1.6;
+  }
+
+  /* --- Information-Rich Header Block --- */
+  .quest-header {
+    margin-bottom: 2.5rem; /* Reduced to bring content up */
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 1.5rem;
+    opacity: 0.95;
+  }
+
+  .quest-header h1 {
+    font-size: 2.25rem; /* Slightly balanced for technical headers */
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  /* Structural Metadata Grid Row */
+  .quest-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 1rem; /* Tightened spacing */
+    opacity: 0.75;
+  }
+
+  .quest-meta .sep {
+    opacity: 0.4;
+    padding: 0 0.15rem;
+  }
+
+  /* Tag Array Grid */
+  .quest-tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .bi-tag {
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 0.15rem 0.5rem; 
+    border: 1px solid currentColor;
+    border-radius: 3px;
+    opacity: 0.8;
+  }
+
+  /* --- Professional Reading System --- */
+  .quest-body {
+    font-size: 1.125rem;
+    line-height: 1.85;
+  }
+
+  .quest-body p {
+    margin-bottom: 1.5rem; /* Balanced lower paragraph spacing */
+  }
+
+  /* Clean headings hierarchy */
+  .quest-body h2, .quest-body h3, .quest-body h4 {
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 2.2rem; /* Reduced margin to keep elements connected */
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .quest-body h2 { font-size: 1.65rem; }
+  .quest-body h3 { font-size: 1.35rem; }
+
+  /* Monospaced Code Blocks */
+  .quest-body pre, .quest-body code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+  }
+
+  .quest-body pre {
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    /* padding: 1rem; Tightened box spacing */
+    overflow-x: auto;
+    white-space: pre;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin: 1.5rem 0;
+    opacity: 0.95;
+  }
+
+  /* Visible scrollbar styling for code blocks */
+  .quest-body pre { scrollbar-width: thin; scrollbar-color: rgba(0,0,0,0.2) transparent; }
+  .quest-body pre::-webkit-scrollbar { height: 8px; }
+  .quest-body pre::-webkit-scrollbar-track { background: transparent; }
+  .quest-body pre::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.18); border-radius:6px; }
+
+  /* Elegant Pull Quotes / Logs */
+  .quest-body blockquote {
+    border-left: 3px solid currentColor;
+    margin: 1.75rem 0;
+    padding-left: 1.25rem;
+    font-style: italic;
+    opacity: 0.8;
+  }
+</style>
+
+<article class="quest-shell">
+  <header class="quest-header">
+    <h1>{{ page.title }}</h1>
+
+    <div class="quest-meta">
+      {% if page.status %}
+        <span class="bi-tag bi-tag--{{ page.status }}">{{ page.status }}</span>
+      {% endif %}
+      
+      {% if page.started %}
+        {% if page.status %}<span class="sep" aria-hidden="true">/</span>{% endif %}
+        <span>{{ page.started }}</span>
+      {% endif %}
+      
+      {% if page.ended %}
+        <span class="sep" aria-hidden="true">→</span>
+        <span>{{ page.ended }}</span>
+      {% endif %}
+      
+      {% if page["min-read"] %}
+        <span class="sep" aria-hidden="true">/</span>
+        <span>{{ page["min-read"] }} min read</span>
+      {% endif %}
+      
+      {% if page["words"] %}
+        <span class="sep" aria-hidden="true">/</span>
+        <span>{{ page["words"] }} words</span>
+      {% endif %}
+    </div>
+
+    {% include section-nav.html %}
+
+    {% if page.tags %}
+      <div class="quest-tag-list" aria-label="Topics">
+        {% for tag in page.tags %}
+          <span class="bi-tag">{{ tag }}</span>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="quest-body">
+    {{ content }}
+  </div>
+</article>

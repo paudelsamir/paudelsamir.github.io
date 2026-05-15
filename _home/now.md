@@ -4,7 +4,7 @@ title: Now
 category: home
 ---
 
-# now
+# Now
 
 i am currently [building](/projects/), [listening](https://open.spotify.com/user/31g2gnq2rpifktdd2zaruavjmwcq), [reading](https://goodreads.com/paudelsamir), [journaling](/journal/), running. trying to stay sane.
 
@@ -14,7 +14,5 @@ actually i'm keeping lists of [quests](/quests/) to improve myself spending time
 just finished the quest [365daysofdata](/quests/365daysofdata/).
 
 
-check [writings](/writings/) for the recent dives and raw thoughts.(probably empty by now)
-
-## links
+check [blogs](/blogs/) for the recent dives and raw thoughts.
 

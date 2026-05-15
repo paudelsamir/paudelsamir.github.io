@@ -12,15 +12,20 @@ highlighter: rouge
 kramdown:
   input: GFM
   syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
   hard_wrap: false
   toc_levels: 1..6
   show_warnings: true
-  enable_coderay: true
   parse_span_html: true
   parse_block_html: true
 
 # Collections
 collections:
+  blogs:
+    output: true
+    permalink: /blogs/:path/
   home:
     output: true
     permalink: /:slug/
@@ -36,6 +41,12 @@ collections:
 
 # Defaults
 defaults:
+  - scope:
+      path: ""
+      type: "blogs"
+    values:
+      layout: "blog"
+      category: blog
   - scope:
       path: ""
       type: "home"
@@ -62,6 +73,8 @@ defaults:
       category: meta
 
 # Build settings
+open_external_links_in_new_tab: true
+embed_tweets: true
 exclude:
   - .venv
   - node_modules
@@ -73,9 +86,9 @@ exclude:
   - .directory
   - vendor
   - v1
+  - digital-garden-jekyll-template
 
-include:
-  - .htaccess
+include: []
 
 # Plugins
 plugins:

@@ -1,13 +1,15 @@
 ---
-layout: default
+layout: quest
 title: 365 Days of Data
-category: life
+category: tech
 permalink: /quests/365daysofdata/
+status: completed
+started: 2024-12-14
+ended: 2025-12-14
+
 ---
 
-# 365 Days of Data
-
-A year long journey from 2024-12-14 → 2025-12-14 with Data Science, AI, Machine learning and Deep learning.
+A year-long journey with data science, AI, machine learning, and deep learning.
 
 ## Projects Completed
 
@@ -153,7 +155,7 @@ A year long journey from 2024-12-14 → 2025-12-14 with Data Science, AI, Machin
 | [Day121](#day-121-building-a-seq2seq-chatbot---defining-model-encoder-attention-decoder) | 2025-07-14 | Building a Seq2Seq Chatbot - Defining Model (encoder, attention, decoder) | [Notebook](10-Projects-Based-ML-DL/02-Natural-Language-Processing/chatbot.ipynb) |
 | [Day122](#day-122-building-a-seq2seq-chatbot--evaluation--deployment) | 2025-07-15 | Building a Seq2Seq Chatbot – Evaluation / Deployment | [Live Demo](https://seq2seq-chatbot-samir.streamlit.app) |
 | [Day123](#day-123-transformers--deep-dive-into-attention-and-architecture) | 2025-07-20 | Transformers – Deep Dive into Attention and Architecture | [Attention Paper](https://arxiv.org/abs/1706.03762) |
-| [Day124](#day-124-transformers--vitals-understanding-everything) | 2025-07-21 | Transformers – Vitals [understanding everything] | [Transformer Guide](https://towardsdatascience.com/transformers-explained-visually-part-1-overview-of-functionality-95a6dd460452) |
+| [Day124](#day-124-transformers--vitals-understanding-everything) | 2025-07-21 | Transformers – Vitals (understanding everything) | [Transformer Guide](https://towardsdatascience.com/transformers-explained-visually-part-1-overview-of-functionality-95a6dd460452) |
 | [Day125](#day-125-gpt-from-scratch---project-setup) | 2025-07-22 | GPT from Scratch - Project Setup | [Karpathy's Tutorial](https://www.youtube.com/watch?v=kCc8FmEb1nY) |
 | [Day126](#day-126-gpt-from-scratch---bigram-language-model) | 2025-07-23 | GPT from Scratch - Bigram Language Model | [Notebook](11-Foundations-Of-LLMS/GPT-From-Scratch/let-s-build-gpt-from-scratch-in-code-spelled-out.ipynb) |
 | [Day127](#day-127-gpt-from-scratch---self-attention) | 2025-07-24 | GPT from Scratch - Self-Attention | [Notebook](11-Foundations-Of-LLMS/GPT-From-Scratch/let-s-build-gpt-from-scratch-in-code-spelled-out.ipynb) |
@@ -170,11 +172,11 @@ A year long journey from 2024-12-14 → 2025-12-14 with Data Science, AI, Machin
 | [Day137](#day-137-finetuning--teaching-llms-to-follow-prompts-and-perform-complex-tasks-visualizations) | 2025‑08‑03 | Finetuning – Teaching LLMs to Follow Prompts and Perform Complex Tasks, Visualizations | [Build a Large Language Model from Scratch](https://www.manning.com/books/build-a-large-language-model-from-scratch) |
 | [Day138](#day-138-llm-fine-tuning--evaluation) | 2025‑08‑04 | LLM Fine-Tuning & Evaluation | [Build a Large Language Model from Scratch](https://www.manning.com/books/build-a-large-language-model-from-scratch) |
 | [Day139](#day-139-exploring-hugging-face-transformers) | 2025‑08‑05 | Exploring Hugging Face Transformers | [Build a Large Language Model from Scratch](https://www.manning.com/books/build-a-large-language-model-from-scratch) |
-| [Day140](#day-140-project--sentiment-analysis-planning--exploring-vit) | 2025‑08‑06 | Project – Sentiment Analysis [Planning] + Exploring ViT | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis-System/01.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
-| [Day141](#day-141-project--sentiment-analysis-preprocessing--vit-architecture) | 2025‑08‑07 | Project – Sentiment Analysis [Preprocessing] + ViT Architecture | [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
-| [Day142](#day-142-project--sentiment-analysis-eda--testing-glove) | 2025‑08‑08 | Project – Sentiment Analysis [EDA + Testing GloVe] | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/02.ipynb), [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/03.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
-| [Day143](#day-143-project--sentiment-analysis-advanced-architectures) | 2025‑08‑09 | Project – Sentiment Analysis [Advanced Architectures] | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/02.ipynb), [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/03.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
-| [Day144](#day-144-project--sentiment-analysis-app-deployment) | 2025‑08‑10 | Project – Sentiment Analysis [App Deployment] | [Live Demo](https://cine-rank.vercel.app), [Code](https://github.com/paudelsamir/cineRank) |
+| [Day140](#day-140-project--sentiment-analysis-planning--exploring-vit) | 2025‑08‑06 | Project – Sentiment Analysis (Planning) + Exploring ViT | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis-System/01.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
+| [Day141](#day-141-project--sentiment-analysis-preprocessing--vit-architecture) | 2025‑08‑07 | Project – Sentiment Analysis (Preprocessing) + ViT Architecture | [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
+| [Day142](#day-142-project--sentiment-analysis-eda--testing-glove) | 2025‑08‑08 | Project – Sentiment Analysis (EDA + Testing GloVe) | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/02.ipynb), [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/03.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
+| [Day143](#day-143-project--sentiment-analysis-advanced-architectures) | 2025‑08‑09 | Project – Sentiment Analysis (Advanced Architectures) | [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/02.ipynb), [Notebook](10-Projects-Based-ML-DL/04-Sentiment-Analysis/03.ipynb), [Kaggle Code](https://www.kaggle.com/abhilash1910/code) |
+| [Day144](#day-144-project--sentiment-analysis-app-deployment) | 2025‑08‑10 | Project – Sentiment Analysis (App Deployment) | [Live Demo](https://cine-rank.vercel.app), [Code](https://github.com/paudelsamir/cineRank) |
 | [Day145](#day-145-diving-deep-into-vision-transformers-vits) | 2025‑08‑11 | Diving Deep into Vision Transformers (ViTs) | [Blog](https://sthalles.github.io/an-intuitive-introduction-to-the-vision-transformer/) |
 | [Day146](#day-146-diving-into-diffusion-models) | 2025‑08‑12 | Diving into Diffusion Models | [Video](https://youtu.be/iv-5mZ_9CPY) |
 | [Day147](#day-147-diffusion-model-deep-dive) | 2025‑08‑13 | Diffusion Model Deep Dive | [Paper](13-Computer-Vision-And-Other-GenAI-Paradigms/images/day147_Unet_paper.png) |
