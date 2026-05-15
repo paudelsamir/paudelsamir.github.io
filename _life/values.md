@@ -4,6 +4,8 @@ title: values and beliefs
 category: life
 ---
 
+# Values and beliefs
+
 ## Values
 
 ### general conduct

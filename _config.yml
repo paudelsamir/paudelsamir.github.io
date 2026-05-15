@@ -1,7 +1,8 @@
 title: Wiki - Samir Paudel
 description: Samir's wiki and portfolio.
-url: https://paudelsamir.github.io
+url: https://samirpaudel.me
 baseurl: ""
+logo: /assets/blacklogo.png
 
 # Jekyll Configuration
 permalink: /:slug/
@@ -93,6 +94,5 @@ include: []
 # Plugins
 plugins:
   - jekyll-feed
-  - jekyll-seo-tag
   - jekyll-sitemap
   - jemoji

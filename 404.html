@@ -1,0 +1,150 @@
+---
+layout: default
+permalink: /404.html
+---
+
+<style>
+  .canvas-404 {
+    max-width: 680px;
+    margin: 7rem auto;
+    padding: 0 2rem;
+    position: relative;
+  }
+
+  /* Abstract Minimal Graphic representing a broken path */
+  .void-matrix {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 3.5rem;
+    opacity: 0.8;
+  }
+
+  .void-line {
+    height: 3px;
+    background: currentColor;
+    border-radius: 2px;
+  }
+  .void-line-1 { width: 40px; color: var(--accent, #2eb398); }
+  .void-line-2 { width: 12px; opacity: 0.2; }
+  .void-line-3 { width: 8px; opacity: 0.1; }
+  .void-line-4 { width: 4px; opacity: 0.05; }
+
+  /* Typography */
+  .meta-error {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--accent, #2eb398);
+    margin-bottom: 0.75rem;
+  }
+
+  .title-error {
+    font-size: 3rem;
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -0.04em;
+    margin: 0 0 1.5rem 0;
+  }
+
+  .text-error {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    opacity: 0.6;
+    margin-bottom: 4rem;
+    max-width: 520px;
+  }
+
+  /* Recovery Routes styled like your minimal layout lines */
+  .recovery-title {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.4;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .recovery-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recovery-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.85rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.04);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    transition: transform 0.2s ease;
+  }
+
+  .recovery-row:hover {
+    transform: translateX(4px);
+  }
+
+  .recovery-row:hover .route-name {
+    color: var(--accent, #2eb398);
+  }
+
+  .route-name {
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .route-code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    font-size: 0.75rem;
+    opacity: 0.4;
+  }
+
+  @media (max-width: 500px) {
+    .canvas-404 { margin: 4rem auto; }
+    .title-error { font-size: 2.2rem; }
+  }
+</style>
+
+<div class="canvas-404">
+  <div class="void-matrix" aria-hidden="true">
+    <div class="void-line void-line-1"></div>
+    <div class="void-line void-line-2"></div>
+    <div class="void-line void-line-3"></div>
+    <div class="void-line void-line-4"></div>
+  </div>
+
+  <header>
+    <div class="meta-error">ERR_STATUS // 404</div>
+    <h1 class="title-error">This path is currently unmapped.</h1>
+    <p class="text-error">
+      The coordinates you requested point to a runtime location that doesn't exist, or has been purged from the active ledger index.
+    </p>
+  </header>
+
+  <nav aria-label="Recovery routes">
+    <div class="recovery-title">Available Vectors</div>
+    <div class="recovery-links">
+      
+      <a href="{{ '/' | relative_url }}" class="recovery-row">
+        <span class="route-name">Return to Root</span>
+        <span class="route-code">~/</span>
+      </a>
+
+      <a href="{{ '/journal/' | relative_url }}" class="recovery-row">
+        <span class="route-name">Open Chronological Journals</span>
+        <span class="route-code">~/journal</span>
+      </a>
+
+      <a href="{{ '/quests/' | relative_url }}" class="recovery-row">
+        <span class="route-name">Check Active Tracks</span>
+        <span class="route-code">~/quests</span>
+      </a>
+
+    </div>
+  </nav>
+</div>

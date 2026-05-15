@@ -15,10 +15,15 @@
     <meta property="og:description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 20 }}">
     <meta property="og:url" content="{{ site.url }}{{ page.url }}">
     <meta property="og:type" content="website">
-    {% if page.og_image %}<meta property="og:image" content="{{ page.og_image | absolute_url }}">{% endif %}
+    <meta property="og:site_name" content="Samir Paudel">
+    {% assign og_image = page.og_image | default: "/assets/preview.png" %}
+    <meta property="og:image" content="{{ og_image | absolute_url }}">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@samireey">
+    <meta name="twitter:creator" content="@samireey">
     <meta name="twitter:title" content="{% if page.title %}{{ page.title }} - Samir Paudel{% else %}Samir Paudel - Digital Garden{% endif %}">
     <meta name="twitter:description" content="{{ page.excerpt | default: site.description | strip_html | truncatewords: 20 }}">
+    <meta name="twitter:image" content="{{ og_image | absolute_url }}">
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +44,8 @@
             "https://medium.com/@paudelsamir"
         ],
         "email": "samirpaudel2005@gmail.com",
+        "image": "{{ site.url }}/assets/preview.png",
+        "description": "{{ site.description }}",
         "jobTitle": "AI/ML Developer",
         "knowsAbout": ["Artificial Intelligence", "Machine Learning", "Web Development", "Linux"]
     }
