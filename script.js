@@ -534,6 +534,26 @@ document.addEventListener('DOMContentLoaded', () => {
             scheduleNext();
             window.addEventListener('pageshow', function() { displayAge(new Date()); });
         }
+
+        // Lightbox for all images
+        var lb = document.querySelector('.img-lightbox-overlay') || (function() {
+            var el = document.createElement('div');
+            el.className = 'img-lightbox-overlay';
+            el.innerHTML = '<img src="" alt="">';
+            document.body.appendChild(el);
+            el.addEventListener('click', function() { el.classList.remove('active'); });
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') el.classList.remove('active');
+            });
+            return el;
+        })();
+        document.querySelectorAll('#main-content img').forEach(function(img) {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                lb.querySelector('img').src = this.src;
+                lb.classList.add('active');
+            });
+        });
     }
 
     // Mobile TOC: polished bottom-sheet navigation for small screens
