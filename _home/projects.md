@@ -8,6 +8,8 @@ category: home
 
 25+ projects built over time. all opensource, all ideas started somewhere.
 
+built through [quests](/quests/) and daily learning. see my [uses](/uses/) for the stack. check [about](/about/) for my dev journey.
+
 
 
 ## Fullstack AI Applications

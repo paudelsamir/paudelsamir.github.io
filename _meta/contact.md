@@ -8,6 +8,8 @@ category: meta
 
 I ❤️ to talk with peoples.
 
+start with my [about](/about/) for context.
+
 ## Quick Contact
 
 - **Email**: [samirpaudel2005@gmail.com](mailto:samirpaudel2005@gmail.com)

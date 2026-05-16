@@ -9,8 +9,6 @@ category: life
 
 I listen [mostly during exercises.][gym-playlist]. 
 
-I can't focus while listening.
-
 I prefer [Spotify][spotify-profile] and [YT Music][yt-music-link].
 
 ## Some favorite lines

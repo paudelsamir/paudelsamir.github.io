@@ -1,7 +1,7 @@
 ---
 layout: quest
 title: 30 Days of Data
-category: life
+category: tech
 permalink: /quests/30daysofdata/
 status: completed
 started: 2024-10-02

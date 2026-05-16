@@ -9,6 +9,8 @@ permalink: /habits/
 
 trying to build small rituals that keep me steady.
 
+rooted in my [values](/values/). see what i'm up to on [now](/now/).
+
 i use [grit][grit-app] to track my habits. it's been solid so far.
 
 ## right now

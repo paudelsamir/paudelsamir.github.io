@@ -7,6 +7,7 @@ hide_toc: true
 
 # gallery
 
+more about me on [about](/about/).
 
 <style>
 .gallery-grid {

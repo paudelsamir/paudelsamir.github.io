@@ -5,4 +5,10 @@ category: life
 permalink: /journal/
 ---
 
-A timeline of years. Each year, a new chapter — written in moments, revised in reflection.
+A timeline of years. Each year, a new chapter, written in moments, revised in reflection.
+
+<br>
+navigate to [Blogs](/blogs/) for intentional writings.
+
+
+

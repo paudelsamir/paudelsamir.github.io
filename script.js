@@ -508,6 +508,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             };
         });
+
+        // Age counter for /now/ page
+        var ageEl = document.querySelector('.age-value');
+        if (ageEl) {
+            var birth = new Date(2005, 1, 16);
+            function displayAge(now) {
+                var age = now.getFullYear() - birth.getFullYear();
+                var m = now.getMonth() - birth.getMonth();
+                if (m < 0 || (m === 0 && now.getDate() < birth.getDate())) age--;
+                var b = new Date(now.getFullYear(), birth.getMonth(), birth.getDate());
+                if (now < b) b.setFullYear(b.getFullYear() - 1);
+                var days = Math.floor((now - b) / 86400000);
+                ageEl.textContent = age + ' years, ' + days + ' days';
+            }
+            displayAge(new Date());
+            fetch('https://worldtimeapi.org/api/timezone/Asia/Kathmandu')
+                .then(function(r) { return r.json(); })
+                .then(function(d) { displayAge(new Date(d.datetime)); })
+                .catch(function() {});
+            function scheduleNext() {
+                var ms = new Date().setHours(24, 0, 0, 0) - Date.now();
+                setTimeout(function() { displayAge(new Date()); scheduleNext(); }, ms);
+            }
+            scheduleNext();
+            window.addEventListener('pageshow', function() { displayAge(new Date()); });
+        }
     }
 
     // Mobile TOC: polished bottom-sheet navigation for small screens

@@ -8,7 +8,9 @@ started: 2025-10-19
 ended: 2026-02-08
 ---
 
+100 LeetCode problems across arrays, trees, graphs, DP, sliding window & more.
 
+repo → [Coding-Interview-Preparation](https://github.com/paudelsamir/Coding-Interview-Preparation)
 
 | Problem | Solution Preview | Level / Approach (Language) |
 | ------- | ---------------- | --------------------------- |

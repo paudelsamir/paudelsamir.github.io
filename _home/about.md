@@ -9,6 +9,8 @@ category: home
 ## intro
 hey my name's [Samir](/portfolio/){: data-tp-title="Samir Paudel" data-tp-excerpt="Bringing Ideas to life.." data-tp-image="/assets/Gallery/19_selfie_hiking_pahadma.jpg" }, I'm based in Nepal.
 
+been into tech for about **4 years** now. i save good [bookmarks](/bookmarks/) and daily [used](/uses/) tools i rely on.
+
 I've built a decent [typing speed](https://monkeytype.com/profile/paudelsamir), so i am writing this wiki to document my journey toward my [personal renaissance](https://www.artofmanliness.com/skills/manly-know-how/how-to-be-a-renaissance-man/)
  
 i am learning and [building](/projects/), but more importantly, i am building myself guided by my [values](/values/) and [habits](/habits/).

@@ -6,3 +6,6 @@ permalink: /blogs/
 ---
 
 formal / informal writing, essays, and more intentional notes live here.
+
+
+<br>
