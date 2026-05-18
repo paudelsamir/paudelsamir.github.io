@@ -1,4 +1,4 @@
-# robots.txt for paudelsamir.github.io
+# robots.txt for samirpaudel.me
 User-agent: *
 Allow: /
 
@@ -8,9 +8,13 @@ Disallow: /.venv/
 Disallow: /.env*
 Disallow: /vendor/
 Disallow: */.map
+Disallow: /old/
+Disallow: /comingsoon/
+Disallow: /information/
 
-Sitemap: https://paudelsamir.github.io/sitemap.xml
-Sitemap: https://paudelsamir.github.io/feed.xml
+# Sitemaps
+Sitemap: https://samirpaudel.me/sitemap.xml
+Sitemap: https://samirpaudel.me/feed.xml
 
 Crawl-delay: 1
 

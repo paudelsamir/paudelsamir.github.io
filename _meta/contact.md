@@ -2,6 +2,7 @@
 layout: default
 title: Contact
 category: meta
+description: Ways to reach me — email, socials, and a cal link if you want to talk.
 ---
 
 # Get in Touch

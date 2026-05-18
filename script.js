@@ -509,10 +509,12 @@ document.addEventListener('DOMContentLoaded', () => {
             };
         });
 
-        // Age counter for /now/ page
+        // Age counter + today's date for /now/ page
         var ageEl = document.querySelector('.age-value');
-        if (ageEl) {
+        var todayEl = document.querySelector('.today-date');
+        if (ageEl || todayEl) {
             var birth = new Date(2005, 1, 16);
+            var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
             function displayAge(now) {
                 var age = now.getFullYear() - birth.getFullYear();
                 var m = now.getMonth() - birth.getMonth();
@@ -520,7 +522,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 var b = new Date(now.getFullYear(), birth.getMonth(), birth.getDate());
                 if (now < b) b.setFullYear(b.getFullYear() - 1);
                 var days = Math.floor((now - b) / 86400000);
-                ageEl.textContent = age + ' years, ' + days + ' days';
+                if (ageEl) ageEl.textContent = age + ' years, ' + days + ' days';
+                if (todayEl) todayEl.textContent = months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
             }
             displayAge(new Date());
             fetch('https://worldtimeapi.org/api/timezone/Asia/Kathmandu')

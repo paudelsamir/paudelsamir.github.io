@@ -1,8 +1,28 @@
-title: Wiki - Samir Paudel
-description: Samir's wiki and portfolio.
+title: Samir Paudel — AI/ML Developer & Linux Enthusiast
+description: Personal wiki and portfolio of Samir Paudel — projects, experiments, blog posts, and things I've learned over time.
 url: https://samirpaudel.me
 baseurl: ""
-logo: /assets/blacklogo.png
+logo: /assets/logo_samir_light.png
+author: Samir Paudel
+lang: en
+locale: en_US
+
+# SEO
+twitter:
+  username: samireey
+  card: summary_large_image
+social:
+  name: Samir Paudel
+  links:
+    - https://github.com/paudelsamir
+    - https://twitter.com/samireey
+    - https://www.linkedin.com/in/paudelsamir
+    - https://medium.com/@paudelsamir
+
+webmaster_verifications:
+  google: 
+  bing: 
+  yandex: 
 
 # Jekyll Configuration
 permalink: /:slug/

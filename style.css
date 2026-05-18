@@ -144,6 +144,51 @@ a.external-link:hover {
     border-bottom-color: var(--border-hover);
 }
 
+/* Hidden crawlable SEO navigation — visible to search engines only */
+.seo-nav {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Skip link for keyboard accessibility */
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--text-main);
+    color: var(--bg-base);
+    padding: 8px 16px;
+    border-radius: 0 0 6px 6px;
+    z-index: 10000;
+    font-family: var(--font-ui);
+    font-size: 14px;
+    text-decoration: none;
+}
+.skip-link:focus {
+    top: 0;
+}
+
+/* Homepage navigation */
+.home-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0;
+}
+.home-nav li {
+    padding: 0.4rem 0;
+    font-size: 1.05rem;
+}
+.home-nav li a {
+    font-weight: 500;
+}
 
 
 /* Loading Bar */

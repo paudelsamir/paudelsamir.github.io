@@ -1,7 +1,8 @@
 ---
 layout: default
-title: Uses
+title: Setup
 category: tech
+description: Hardware, software, and tools I actually use daily. Arch Linux, VS Code, Python stuff, and more.
 ---
 
 # Uses
