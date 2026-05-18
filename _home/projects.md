@@ -2,7 +2,7 @@
 layout: default
 title: Projects
 category: home
-description: Stuff I've built — ML models, web apps, experiments. Some finished, some not. All open source.
+description: Stuff I've built - ML models, web apps, experiments. Some finished, some not. All open source.
 ---
 
 # Projects

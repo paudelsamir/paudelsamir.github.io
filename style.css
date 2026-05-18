@@ -163,6 +163,24 @@ a.external-link:hover {
     top: 0;
 }
 
+/* Crawlable nav for search engines — off-screen, not display:none */
+.seo-nav {
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+.seo-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+.seo-nav a {
+    display: block;
+}
+
 /* Homepage navigation */
 .home-nav ul {
     list-style: none;

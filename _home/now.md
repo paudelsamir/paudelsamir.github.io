@@ -2,7 +2,7 @@
 layout: default
 title: Now
 category: home
-description: What I'm up to right now — reading, building, learning. Updated occasionally.
+description: What I'm up to right now - reading, building, learning. Updated occasionally.
 ---
 
 # Now

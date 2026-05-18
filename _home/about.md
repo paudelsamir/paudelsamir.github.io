@@ -2,7 +2,7 @@
 layout: default
 title: About
 category: home
-description: About me — CS student, AI/ML developer from Nepal. I build things, break things, and write about what I learn.
+description: About me - CS student, AI/ML developer from Nepal. I build things, break things, and write about what I learn.
 ---
 
 # About me !!
