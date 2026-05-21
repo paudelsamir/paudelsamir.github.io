@@ -54,7 +54,7 @@ layout: default
 
             <div class="bi-feed">
               {% for quest in active_quests %}
-                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} → {{ quest.ended }}{% endif %}{% endcapture %}
+                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} › {{ quest.ended }}{% endif %}{% endcapture %}
 
                 <article class="bi-entry">
                   <a class="bi-entry-link-cover" href="{{ quest.url | relative_url }}" aria-label="{{ quest.title }}"></a>
@@ -92,7 +92,7 @@ layout: default
 
             <div class="bi-feed">
               {% for quest in completed_quests %}
-                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} → {{ quest.ended }}{% endif %}{% endcapture %}
+                {% capture tp_meta %}{% if quest.started %}{{ quest.started }}{% endif %}{% if quest.ended %} › {{ quest.ended }}{% endif %}{% endcapture %}
 
                 <article class="bi-entry" style="opacity: 0.8;">
                   <a class="bi-entry-link-cover" href="{{ quest.url | relative_url }}" aria-label="{{ quest.title }}"></a>
@@ -101,7 +101,7 @@ layout: default
                       <span class="bi-tag" style="opacity: 0.6; text-transform: uppercase;">{{ quest.status | default: "done" }}</span>
                       {% if quest.started or quest.ended %}
                         <span class="sep" aria-hidden="true">·</span>
-                        <span>{{ quest.started }}{% if quest.ended %} → {{ quest.ended }}{% endif %}</span>
+                        <span>{{ quest.started }}{% if quest.ended %} <span class="date-arrow"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span> {{ quest.ended }}{% endif %}</span>
                       {% endif %}
                     </div>
 

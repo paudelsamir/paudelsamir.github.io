@@ -143,20 +143,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     function applyTheme(isDark) {
-        const lightLogo = document.querySelector('.light-logo');
-        const darkLogo = document.querySelector('.dark-logo');
+        const lightLogos = document.querySelectorAll('.light-logo');
+        const darkLogos = document.querySelectorAll('.dark-logo');
         if (isDark) {
             document.body.classList.add('dark');
             if (sunIcon) sunIcon.classList.remove('active');
             if (moonIcon) moonIcon.classList.add('active');
-            if (lightLogo) lightLogo.style.display = 'none';
-            if (darkLogo) darkLogo.style.display = 'block';
+            lightLogos.forEach(el => el.style.display = 'none');
+            darkLogos.forEach(el => el.style.display = 'block');
         } else {
             document.body.classList.remove('dark');
             if (sunIcon) sunIcon.classList.add('active');
             if (moonIcon) moonIcon.classList.remove('active');
-            if (lightLogo) lightLogo.style.display = 'block';
-            if (darkLogo) darkLogo.style.display = 'none';
+            lightLogos.forEach(el => el.style.display = 'block');
+            darkLogos.forEach(el => el.style.display = 'none');
         }
     };
 
@@ -427,7 +427,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 anchor.className = 'heading-anchor';
                 anchor.setAttribute('type', 'button');
                 anchor.setAttribute('aria-label', `Copy link to ${h.id}`);
-                anchor.innerHTML = '⧉';
+                anchor.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
 
                 anchor.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -484,6 +484,45 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateMobileTocState();
             };
         }
+
+        // Enhance GitHub-style markdown callouts with icons
+        function enhanceCallouts() {
+            const callouts = document.querySelectorAll('.markdown-alert');
+            const icons = {
+                note: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>',
+                tip: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/><path d="M10 21h4"/></svg>',
+                warning: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>',
+                important: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>',
+                caution: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>'
+            };
+
+            callouts.forEach(callout => {
+                // Determine type from class
+                let type = 'note';
+                if (callout.classList.contains('markdown-alert-tip')) type = 'tip';
+                else if (callout.classList.contains('markdown-alert-warning')) type = 'warning';
+                else if (callout.classList.contains('markdown-alert-important')) type = 'important';
+                else if (callout.classList.contains('markdown-alert-caution')) type = 'caution';
+
+                // Check if title already exists
+                if (!callout.querySelector('.markdown-alert-title')) {
+                    const title = document.createElement('p');
+                    title.className = 'markdown-alert-title';
+                    title.innerHTML = `${icons[type]} ${type.charAt(0).toUpperCase() + type.slice(1)}`;
+                    
+                    // Insert title at the beginning
+                    const firstChild = callout.firstChild;
+                    if (firstChild) {
+                        callout.insertBefore(title, firstChild);
+                    } else {
+                        callout.appendChild(title);
+                    }
+                }
+            });
+        }
+
+        // Run callout enhancement after a short delay
+        setTimeout(enhanceCallouts, 150);
 
         window.onscroll = () => {
             updateMobileTocState();
@@ -870,7 +909,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* =========================================================================
-       5. Command Palette Logic
+       5. Command Palette Logic (Lunr.js powered)
        ========================================================================= */
     const dialog = document.getElementById('cmd-palette');
     const cmdKBtn = document.getElementById('cmd-k-btn');
@@ -882,93 +921,55 @@ document.addEventListener('DOMContentLoaded', () => {
     let searchIndexLoaded = false;
     let listItems = [];
     let selectedIndex = 0;
+    let lunrIndex = null;
+    let currentSearchIndex = 0;
 
-    const loadSearchIndex = async () => {
+    async function loadSearchIndex() {
         if (searchIndexLoaded) return;
         try {
             const res = await fetch('/search.json');
-            searchDB = await res.json();
-            searchIndexLoaded = true;
-        } catch (e) {
-            searchDB = [];
-        }
-    };
+            const docs = await res.json();
+            searchDB = docs;
 
-    const highlightMatch = (text, query) => {
-        if (!query) return text;
-        const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
-        return text.replace(regex, '<mark>$1</mark>');
-    };
+            lunr.tokenizer.separator = /[\s/]+/;
+            lunrIndex = lunr(function () {
+                this.ref('id');
+                this.field('title', { boost: 500 });
+                this.field('content', { boost: 1 });
+                this.field('url');
+                this.metadataWhitelist = ['position'];
 
-    const getExcerpt = (content, query) => {
-        if (!query || !content) return content ? content.slice(0, 120) + '...' : '';
-        const idx = content.toLowerCase().indexOf(query.toLowerCase());
-        if (idx === -1) return content.slice(0, 120) + '...';
-        const start = Math.max(0, idx - 60);
-        const end = Math.min(content.length, idx + query.length + 80);
-        let excerpt = (start > 0 ? '...' : '') + content.slice(start, end) + (end < content.length ? '...' : '');
-        return excerpt;
-    };
-
-    const buildPalette = (items, query) => {
-        if (!paletteLinksContainer) return;
-        paletteLinksContainer.innerHTML = '';
-        items.forEach(item => {
-            const li = document.createElement('li');
-            const button = document.createElement('button');
-            button.className = 'palette-link-item';
-            button.dataset.url = item.url;
-
-            const titleDiv = document.createElement('div');
-            titleDiv.style.display = 'flex';
-            titleDiv.style.alignItems = 'center';
-            titleDiv.style.gap = '8px';
-            titleDiv.style.width = '100%';
-
-            const titleSpan = document.createElement('span');
-            titleSpan.style.fontWeight = '500';
-            titleSpan.style.flex = '1';
-            titleSpan.innerHTML = query ? highlightMatch(item.title, query) : item.title;
-
-            const badge = document.createElement('span');
-            badge.className = 'palette-badge';
-            badge.textContent = item.category || 'page';
-
-            titleDiv.appendChild(titleSpan);
-            titleDiv.appendChild(badge);
-
-            const excerptDiv = document.createElement('div');
-            excerptDiv.className = 'palette-excerpt';
-            const excerpt = getExcerpt(item.content || item.excerpt || '', query);
-            excerptDiv.innerHTML = query ? highlightMatch(excerpt, query) : excerpt;
-
-            button.appendChild(titleDiv);
-            button.appendChild(excerptDiv);
-
-            button.addEventListener('click', () => {
-                closePalette();
-                if (item.url !== window.location.pathname) loadPage(item.url);
+                for (var i in docs) {
+                    this.add({
+                        id: i,
+                        title: docs[i].title,
+                        content: docs[i].content,
+                        url: docs[i].url
+                    });
+                }
             });
 
-            li.appendChild(button);
-            paletteLinksContainer.appendChild(li);
-        });
-    };
+            searchIndexLoaded = true;
+        } catch (e) {
+            console.warn('Failed to load search index:', e);
+            searchDB = [];
+        }
+    }
 
-    const scrollPaletteItemIntoView = (index) => {
+    function scrollPaletteItemIntoView(index) {
         const item = listItems[index];
         if (item) item.scrollIntoView({ block: 'nearest' });
-    };
+    }
 
-    const setSelectedPaletteItem = (index) => {
+    function setSelectedPaletteItem(index) {
         if (!listItems.length) return;
         listItems.forEach(item => item.classList.remove('selected'));
         selectedIndex = ((index % listItems.length) + listItems.length) % listItems.length;
         listItems[selectedIndex].classList.add('selected');
         scrollPaletteItemIntoView(selectedIndex);
-    };
+    }
 
-    const openPalette = async () => {
+    async function openPalette() {
         if (dialog) {
             dialog.showModal();
             if (searchInput) {
@@ -978,43 +979,269 @@ document.addEventListener('DOMContentLoaded', () => {
                 searchInput.focus();
             }
         }
-    };
+    }
 
-    const closePalette = () => { if (dialog) dialog.close(); };
+    function closePalette() {
+        if (dialog) dialog.close();
+    }
 
-    const filterPalette = (query) => {
-        const lowerQuery = query.toLowerCase().trim();
-        let filteredDB = searchDB;
-
-        if (lowerQuery.length > 0) {
-            filteredDB = searchDB.filter(item =>
-                item.title.toLowerCase().includes(lowerQuery) ||
-                (item.content && item.content.toLowerCase().includes(lowerQuery)) ||
-                item.url.toLowerCase().includes(lowerQuery)
-            ).slice(0, 30);
-        } else {
-            filteredDB = searchDB.slice(0, 20);
+    function addHighlightedText(parent, text, start, end, positions) {
+        var index = start;
+        for (var i in positions) {
+            var position = positions[i];
+            var span = document.createElement('span');
+            span.innerHTML = escapeHTML(text.substring(index, position[0]));
+            parent.appendChild(span);
+            index = position[0] + position[1];
+            var highlight = document.createElement('mark');
+            highlight.innerHTML = escapeHTML(text.substring(position[0], index));
+            parent.appendChild(highlight);
         }
+        var span = document.createElement('span');
+        span.innerHTML = escapeHTML(text.substring(index, end));
+        parent.appendChild(span);
+    }
+
+    function escapeHTML(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    function filterPalette(query) {
+        currentSearchIndex++;
+        var searchIndex = currentSearchIndex;
+        var input = query.trim();
+
+        if (!paletteLinksContainer) return;
+        paletteLinksContainer.innerHTML = '';
+
+        if (input === '' && searchDB.length > 0) {
+            var recent = searchDB.slice(0, 20);
+            buildPalette(recent.map(function(r) { return { ref: searchDB.indexOf(r), doc: r }; }), input, searchIndex);
+            if (paletteFooter) {
+                paletteFooter.innerHTML = '<span>' + searchDB.length + ' pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>';
+            }
+            listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
+            if (listItems.length > 0) setSelectedPaletteItem(0);
+            return;
+        }
+
+        if (input === '') {
+            if (paletteFooter) {
+                paletteFooter.innerHTML = '<span>0 results</span><span><kbd>esc</kbd> close</span>';
+            }
+            listItems = [];
+            return;
+        }
+
+        if (!lunrIndex) return;
+
+        var results = lunrIndex.query(function (q) {
+            var tokens = lunr.tokenizer(input);
+            q.term(tokens, { boost: 10 });
+            q.term(tokens, { wildcard: lunr.Query.wildcard.TRAILING });
+        });
+
+        if (results.length === 0 && input.length > 2) {
+            var tokens = lunr.tokenizer(input).filter(function (token) {
+                return token.str.length < 20;
+            });
+            if (tokens.length > 0) {
+                results = lunrIndex.query(function (q) {
+                    q.term(tokens, { editDistance: Math.round(Math.sqrt(input.length / 2 - 1)) });
+                });
+            }
+        }
+
+        if (results.length === 0) {
+            var noResultsDiv = document.createElement('div');
+            noResultsDiv.classList.add('search-no-result');
+            noResultsDiv.textContent = 'No results found';
+            paletteLinksContainer.appendChild(noResultsDiv);
+            if (paletteFooter) {
+                paletteFooter.innerHTML = '<span>0 results</span><span><kbd>esc</kbd> close</span>';
+            }
+            listItems = [];
+            return;
+        }
+
+        buildPalette(results, input, searchIndex);
 
         if (paletteFooter) {
-            const count = filteredDB.length;
-            const total = searchDB.length;
-            paletteFooter.innerHTML = lowerQuery
-                ? `<span>${count} of ${total} pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>`
-                : `<span>${total} pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>`;
+            paletteFooter.innerHTML = '<span>' + results.length + ' of ' + searchDB.length + ' pages</span><span><kbd>↑</kbd> <kbd>↓</kbd> navigate · <kbd>↵</kbd> open</span>';
         }
 
-        buildPalette(filteredDB, lowerQuery);
         listItems = Array.from(paletteLinksContainer.querySelectorAll('.palette-link-item'));
-        if (listItems.length > 0) {
-            const currentPathIndex = listItems.findIndex(item => item.dataset.url === window.location.pathname);
-            setSelectedPaletteItem(currentPathIndex >= 0 ? currentPathIndex : 0);
-        }
-    };
+        if (listItems.length > 0) setSelectedPaletteItem(0);
+    }
+
+    function buildPalette(results, query, searchIndex) {
+        if (!paletteLinksContainer) return;
+        if (searchIndex !== currentSearchIndex) return;
+
+        results.forEach(function (result) {
+            var doc = (result.doc) ? result.doc : searchDB[result.ref];
+            if (!doc) return;
+
+            var li = document.createElement('li');
+            var button = document.createElement('button');
+            button.className = 'palette-link-item';
+            button.dataset.url = doc.url;
+
+            var titleDiv = document.createElement('div');
+            titleDiv.style.display = 'flex';
+            titleDiv.style.alignItems = 'center';
+            titleDiv.style.gap = '8px';
+            titleDiv.style.width = '100%';
+
+            var titleSpan = document.createElement('span');
+            titleSpan.style.fontWeight = '500';
+            titleSpan.style.flex = '1';
+            titleSpan.textContent = doc.title;
+
+            var badge = document.createElement('span');
+            badge.className = 'palette-badge';
+            badge.textContent = doc.category || 'page';
+
+            titleDiv.appendChild(titleSpan);
+            titleDiv.appendChild(badge);
+
+            // Highlight title matches
+            var metadata = result.matchData ? result.matchData.metadata : null;
+            var titlePositions = [];
+            var contentPositions = [];
+
+            if (metadata) {
+                for (var j in metadata) {
+                    var meta = metadata[j];
+                    if (meta.title) {
+                        var positions = meta.title.position;
+                        for (var k in positions) {
+                            titlePositions.push(positions[k]);
+                        }
+                    }
+                    if (meta.content) {
+                        var positions = meta.content.position;
+                        for (var k in positions) {
+                            var position = positions[k];
+                            var previewStart = position[0];
+                            var previewEnd = position[0] + position[1];
+                            var ellipsesBefore = true;
+                            var ellipsesAfter = true;
+
+                            for (var kk = 0; kk < 3; kk++) {
+                                var nextSpace = doc.content.lastIndexOf(' ', previewStart - 2);
+                                var nextDot = doc.content.lastIndexOf('. ', previewStart - 2);
+                                if ((nextDot >= 0) && (nextDot > nextSpace)) {
+                                    previewStart = nextDot + 1;
+                                    ellipsesBefore = false;
+                                    break;
+                                }
+                                if (nextSpace < 0) {
+                                    previewStart = 0;
+                                    ellipsesBefore = false;
+                                    break;
+                                }
+                                previewStart = nextSpace + 1;
+                            }
+
+                            for (var kk = 0; kk < 3; kk++) {
+                                var nextSpace = doc.content.indexOf(' ', previewEnd + 1);
+                                var nextDot = doc.content.indexOf('. ', previewEnd + 1);
+                                if ((nextDot >= 0) && (nextDot < nextSpace)) {
+                                    previewEnd = nextDot;
+                                    ellipsesAfter = false;
+                                    break;
+                                }
+                                if (nextSpace < 0) {
+                                    previewEnd = doc.content.length;
+                                    ellipsesAfter = false;
+                                    break;
+                                }
+                                previewEnd = nextSpace;
+                            }
+
+                            contentPositions.push({
+                                highlight: position,
+                                previewStart: previewStart, previewEnd: previewEnd,
+                                ellipsesBefore: ellipsesBefore, ellipsesAfter: ellipsesAfter
+                            });
+                        }
+                    }
+                }
+            }
+
+            if (titlePositions.length > 0) {
+                titlePositions.sort(function (p1, p2) { return p1[0] - p2[0]; });
+                titleSpan.innerHTML = '';
+                addHighlightedText(titleSpan, doc.title, 0, doc.title.length, titlePositions);
+            }
+
+            button.appendChild(titleDiv);
+
+            if (contentPositions.length > 0) {
+                contentPositions.sort(function (p1, p2) { return p1.highlight[0] - p2.highlight[0]; });
+                var previewGroups = [];
+                var currentGroup = {
+                    highlight: [contentPositions[0].highlight],
+                    previewStart: contentPositions[0].previewStart,
+                    previewEnd: contentPositions[0].previewEnd,
+                    ellipsesBefore: contentPositions[0].ellipsesBefore,
+                    ellipsesAfter: contentPositions[0].ellipsesAfter
+                };
+
+                for (var j = 1; j < contentPositions.length; j++) {
+                    var cp = contentPositions[j];
+                    if (currentGroup.previewEnd < cp.previewStart) {
+                        previewGroups.push(currentGroup);
+                        currentGroup = {
+                            highlight: [cp.highlight],
+                            previewStart: cp.previewStart,
+                            previewEnd: cp.previewEnd,
+                            ellipsesBefore: cp.ellipsesBefore,
+                            ellipsesAfter: cp.ellipsesAfter
+                        };
+                    } else {
+                        currentGroup.highlight.push(cp.highlight);
+                        currentGroup.previewEnd = cp.previewEnd;
+                        currentGroup.ellipsesAfter = cp.ellipsesAfter;
+                    }
+                }
+                previewGroups.push(currentGroup);
+
+                var excerptDiv = document.createElement('div');
+                excerptDiv.className = 'palette-excerpt';
+
+                for (var j = 0; j < Math.min(previewGroups.length, 2); j++) {
+                    var group = previewGroups[j];
+                    if (group.ellipsesBefore) {
+                        excerptDiv.appendChild(document.createTextNode('... '));
+                    }
+                    addHighlightedText(excerptDiv, doc.content, group.previewStart, group.previewEnd, group.highlight);
+                    if (group.ellipsesAfter) {
+                        excerptDiv.appendChild(document.createTextNode(' ...'));
+                    }
+                    if (j < Math.min(previewGroups.length, 2) - 1) {
+                        excerptDiv.appendChild(document.createElement('br'));
+                    }
+                }
+                button.appendChild(excerptDiv);
+            }
+
+            button.addEventListener('click', function () {
+                closePalette();
+                if (doc.url !== window.location.pathname) loadPage(doc.url);
+            });
+
+            li.appendChild(button);
+            paletteLinksContainer.appendChild(li);
+        });
+    }
 
     if (cmdKBtn) cmdKBtn.addEventListener('click', openPalette);
 
-    document.addEventListener('click', (e) => {
+    document.addEventListener('click', function (e) {
         if (!dialog || !dialog.open) return;
         if (!dialog.contains(e.target) && cmdKBtn && !cmdKBtn.contains(e.target)) {
             closePalette();
@@ -1022,35 +1249,259 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     if (dialog) {
-        dialog.addEventListener('click', (e) => {
+        dialog.addEventListener('click', function (e) {
             if (e.target === dialog) closePalette();
         });
     }
 
     if (searchInput) {
-        searchInput.addEventListener('input', (e) => filterPalette(e.target.value));
-        searchInput.addEventListener('focus', () => filterPalette(searchInput.value));
+        searchInput.addEventListener('input', function (e) { filterPalette(e.target.value); });
+        searchInput.addEventListener('focus', function () { filterPalette(searchInput.value); });
+        searchInput.addEventListener('keyup', function (e) {
+            if (e.keyCode === 27) {
+                searchInput.value = '';
+                searchInput.blur();
+                closePalette();
+            }
+        });
+        searchInput.addEventListener('keydown', function (e) {
+            switch (e.keyCode) {
+                case 38:
+                case 40:
+                case 13:
+                    e.preventDefault();
+                    break;
+            }
+        });
     }
 
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', function (e) {
         if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
             e.preventDefault();
             if (dialog) dialog.open ? closePalette() : openPalette();
         }
+        if (e.shiftKey && e.keyCode === 83) {
+            e.preventDefault();
+            openPalette();
+        }
 
         if (dialog && dialog.open) {
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                setSelectedPaletteItem(selectedIndex + 1);
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                setSelectedPaletteItem(selectedIndex - 1);
-            } else if (e.key === 'Enter') {
-                e.preventDefault();
-                listItems[selectedIndex]?.click();
-            } else if (e.key === 'Escape') {
-                closePalette();
+            switch (e.keyCode) {
+                case 38:
+                    e.preventDefault();
+                    var active = document.querySelector('.palette-link-item.selected');
+                    if (active) {
+                        active.classList.remove('selected');
+                        if (active.parentElement.previousSibling) {
+                            var previous = active.parentElement.previousSibling.querySelector('.palette-link-item');
+                            if (previous) {
+                                previous.classList.add('selected');
+                                previous.scrollIntoView(false);
+                            }
+                        }
+                    }
+                    break;
+                case 40:
+                    e.preventDefault();
+                    var active = document.querySelector('.palette-link-item.selected');
+                    if (active) {
+                        if (active.parentElement.nextSibling) {
+                            var next = active.parentElement.nextSibling.querySelector('.palette-link-item');
+                            if (next) {
+                                active.classList.remove('selected');
+                                next.classList.add('selected');
+                                next.scrollIntoView(false);
+                            }
+                        }
+                    } else {
+                        var first = document.querySelector('.palette-link-item');
+                        if (first) first.classList.add('selected');
+                    }
+                    break;
+                case 13:
+                    e.preventDefault();
+                    var active = document.querySelector('.palette-link-item.selected');
+                    if (active) active.click();
+                    else {
+                        var first = document.querySelector('.palette-link-item');
+                        if (first) first.click();
+                    }
+                    break;
+                case 27:
+                    closePalette();
+                    break;
             }
+        }
+    });
+
+    /* =========================================================================
+       6. AI Chat Widget (multi-turn)
+       ========================================================================= */
+
+    const aiChatToggle = document.getElementById('ai-chat-toggle');
+    const aiChatToggleMobile = document.getElementById('ai-chat-toggle-mobile');
+    const aiChatWindow = document.getElementById('ai-chat-window');
+    const aiChatClose = document.querySelector('.ai-chat-close');
+    const aiChatMessages = document.getElementById('ai-chat-messages');
+    const aiChatInput = document.getElementById('ai-chat-input');
+    const aiChatSend = document.getElementById('ai-chat-send');
+    const aiChatQuickActions = document.getElementById('ai-chat-quick-actions');
+
+    // Set this to your deployed Cloudflare Worker URL
+    const AI_CHAT_WORKER_URL = 'https://ai-chat-proxy.samirpaudel.workers.dev';
+
+    let isGenerating = false;
+    let chatHistory = [{ role: 'model', text: "Hi! I'm Sam — ask me anything about myself, my work, or what I'm building." }];
+
+    function escapeHTML(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function formatAI(text) {
+        var s = escapeHTML(text);
+        s = s.replace(/—/g, '-');
+        s = s.replace(/---/g, '-');
+        s = s.replace(/--/g, '-');
+        s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+        s = s.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+        s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
+        s = s.replace(/`(.+?)`/g, '<code>$1</code>');
+        s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+        s = s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+        s = s.replace(/\n/g, '<br>');
+        return s;
+    }
+
+    function createOverlay() {
+        var overlay = document.getElementById('ai-chat-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'ai-chat-overlay';
+            overlay.className = 'ai-chat-overlay';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', closeChat);
+        }
+        return overlay;
+    }
+
+    function toggleChat() {
+        aiChatWindow.classList.contains('open') ? closeChat() : openChat();
+    }
+
+    function openChat() {
+        aiChatWindow.classList.add('open');
+        createOverlay().classList.add('open');
+        aiChatWindow.setAttribute('aria-hidden', 'false');
+        aiChatInput.focus();
+    }
+
+    function closeChat() {
+        aiChatWindow.classList.remove('open');
+        var overlay = document.getElementById('ai-chat-overlay');
+        if (overlay) overlay.classList.remove('open');
+        aiChatWindow.setAttribute('aria-hidden', 'true');
+    }
+
+    function addMessage(text, type) {
+        var messageDiv = document.createElement('div');
+        messageDiv.className = 'ai-chat-message ai-chat-message-' + type;
+        var bubbleDiv = document.createElement('div');
+        bubbleDiv.className = 'ai-chat-message-bubble';
+        bubbleDiv.innerHTML = (type === 'ai') ? formatAI(text) : escapeHTML(text).replace(/\n/g, '<br>');
+        messageDiv.appendChild(bubbleDiv);
+        aiChatMessages.appendChild(messageDiv);
+        scrollToBottom();
+    }
+
+    function showTypingIndicator() {
+        var typingDiv = document.createElement('div');
+        typingDiv.className = 'ai-chat-message ai-chat-message-ai';
+        typingDiv.id = 'ai-chat-typing-indicator';
+        typingDiv.innerHTML = '<div class="ai-chat-message-bubble"><div class="ai-chat-typing"><span></span><span></span><span></span></div></div>';
+        aiChatMessages.appendChild(typingDiv);
+        scrollToBottom();
+    }
+
+    function hideTypingIndicator() {
+        var indicator = document.getElementById('ai-chat-typing-indicator');
+        if (indicator) indicator.remove();
+    }
+
+    function scrollToBottom() {
+        aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+    }
+
+    async function sendMessage(message) {
+        if (!message.trim() || isGenerating) return;
+
+        if (aiChatQuickActions) aiChatQuickActions.style.display = 'none';
+
+        addMessage(message, 'user');
+        chatHistory.push({ role: 'user', text: message });
+        aiChatInput.value = '';
+        aiChatSend.disabled = true;
+
+        showTypingIndicator();
+        isGenerating = true;
+
+        try {
+            var response = await fetch(AI_CHAT_WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: chatHistory })
+            });
+
+            if (!response.ok) throw new Error('Server error: ' + response.status);
+
+            var data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            hideTypingIndicator();
+            addMessage(data.response, 'ai');
+            chatHistory.push({ role: 'model', text: data.response });
+
+        } catch (error) {
+            hideTypingIndicator();
+            console.error('AI Chat error:', error);
+            addMessage('Sorry, I hit an error. Please try again.', 'ai');
+        } finally {
+            isGenerating = false;
+            aiChatSend.disabled = false;
+            aiChatInput.focus();
+        }
+    }
+
+    if (aiChatToggle) aiChatToggle.addEventListener('click', toggleChat);
+    if (aiChatToggleMobile) aiChatToggleMobile.addEventListener('click', toggleChat);
+    if (aiChatClose) aiChatClose.addEventListener('click', closeChat);
+    if (aiChatSend) aiChatSend.addEventListener('click', function () { sendMessage(aiChatInput.value); });
+
+    if (aiChatInput) {
+        aiChatInput.addEventListener('input', function () {
+            aiChatSend.disabled = !aiChatInput.value.trim() || isGenerating;
+        });
+        aiChatInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage(aiChatInput.value);
+            }
+        });
+    }
+
+    if (aiChatQuickActions) {
+        aiChatQuickActions.addEventListener('click', function (e) {
+            var btn = e.target.closest('.ai-chat-quick-btn');
+            if (btn) sendMessage(btn.getAttribute('data-question'));
+        });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
+            e.preventDefault();
+            toggleChat();
+        }
+        if (e.key === 'Escape' && aiChatWindow && aiChatWindow.classList.contains('open')) {
+            closeChat();
         }
     });
 

@@ -108,6 +108,9 @@ exclude:
   - vendor
   - v1
   - digital-garden-jekyll-template
+  - scripts
+  - package.json
+  - worker
 
 include: []
 

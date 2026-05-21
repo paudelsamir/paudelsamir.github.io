@@ -138,6 +138,12 @@
                     <kbd>⌘K</kbd>
                 </button>
 
+                <button id="ai-chat-toggle" class="nav-btn ai-chat-nav-btn" aria-label="Chat with Sam">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                    <span class="nav-btn-text">ask sam</span>
+                    <kbd>⌘L</kbd>
+                </button>
+
                 <span class="tooltip-wrapper">
                     <a href="/portfolio" aria-label="Portfolio"
                         style="margin-left: 4px; display: flex; align-items: center; text-decoration: none;">
@@ -439,8 +445,10 @@
     <!-- Hidden element for sidebar resizer -->
     <div id="sidebar-resizer"></div>
 
+    <script src="{{ site.baseurl }}/assets/js/vendor/lunr.min.js"></script>
     <script src="/script.js"></script>
     {% include link-previews.html wrapperQuerySelector=".garden-flow" %}
+    {% include ai-chat.html %}
 </body>
 
 </html>

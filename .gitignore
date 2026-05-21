@@ -30,6 +30,9 @@ Thumbs.db
 dist/
 build/
 
+# Cloudflare Worker secrets (local dev)
+worker/.dev.vars
+
 # Unused/Deprecated
 v1/
 vendor/

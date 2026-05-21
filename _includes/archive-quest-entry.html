@@ -2,7 +2,7 @@
 {% capture tp_meta %}
   {% if quest.status %}{{ quest.status }}{% endif %}
   {% if quest.started %} · {{ quest.started }}{% endif %}
-  {% if quest.ended %} → {{ quest.ended }}{% endif %}
+  {% if quest.ended %} › {{ quest.ended }}{% endif %}
   {% if quest["min-read"] %} · {{ quest["min-read"] }} min{% endif %}
 {% endcapture %}
 
@@ -17,7 +17,9 @@
         <time datetime="{{ quest.started }}">{{ quest.started }}</time>
       {% endif %}
       {% if quest.ended %}
-        <span class="sep" aria-hidden="true">→</span>
+        <span class="sep date-arrow" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </span>
         <span>{{ quest.ended }}</span>
       {% endif %}
       {% if quest["min-read"] %}

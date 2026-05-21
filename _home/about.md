@@ -28,13 +28,20 @@ if you think we can build something great together, drop me a [mail](mailto:sami
 
 ---
 
-here's some quick navigation to the major section of the wiki.
+{::nomarkdown}
+<style>
+  .about-sections { text-align: center; margin: 2rem 0 0.5rem; }
+  .about-sections p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+</style>
 
-{% assign nav_current = include.current | default: page.url %}
-<nav class="section-nav" aria-label="Writing sections">
-  <a href="{{ '/blogs/' | relative_url }}" class="section-nav-btn{% if nav_current contains '/blogs/' %} is-active{% endif %}">blogs</a>
-  <a href="{{ '/journal/' | relative_url }}" class="section-nav-btn{% if nav_current contains '/journal/' %} is-active{% endif %}">journal</a>
-  <a href="{{ '/quests/' | relative_url }}" class="section-nav-btn{% if nav_current contains '/quests/' %} is-active{% endif %}">quests</a>
-</nav>
+<div class="about-sections">
+  <p>explore the wiki</p>
+  <nav class="section-nav" aria-label="Wiki sections">
+    <a href="/blogs/" class="section-nav-btn">blogs</a>
+    <a href="/journal/" class="section-nav-btn">journal</a>
+    <a href="/quests/" class="section-nav-btn">quests</a>
+  </nav>
+</div>
+{:/nomarkdown}
 
 

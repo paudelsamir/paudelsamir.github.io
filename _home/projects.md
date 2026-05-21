@@ -11,197 +11,55 @@ description: Stuff I've built - ML models, web apps, experiments. Some finished,
 
 built through [quests](/quests/) and daily learning. see my [uses](/uses/) for the stack. check [about](/about/) for my dev journey.
 
-
-
 ## Fullstack AI Applications
 
 {::nomarkdown}
-<style>
-.projects-grid-fullstack { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
-.projects-grid-fullstack img { height: 200px; }
-@media (max-width: 768px) {
-  .projects-grid-fullstack { grid-template-columns: 1fr; gap: 1rem; }
-  .projects-grid-fullstack img { height: 150px; }
-  .projects-grid-fullstack h4 { font-size: 1rem !important; }
-  .projects-grid-fullstack p { font-size: 0.9rem !important; }
-  .projects-grid-fullstack a { font-size: 0.85rem !important; }
-}
-</style>
-<div class="projects-grid-fullstack">
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/meantrainer_landing_page.jpg" alt="MeanTrainer" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">MeanTrainer</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">ai-powered fitness assistant. personalized workouts and nutrition guidance.</p>
-      <a href="https://meantrainer.vercel.app/" target="_blank" style="margin-right:1rem; text-decoration: underline;">live</a>
-      <a href="https://github.com/paudelsamir/meantrainer" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/nyayak_landing_page.jpg" alt="Nyayak" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Nyayak</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">AI-powered legal navigation platform for Nepal with legal guidance, lawyer discovery, and court navigation</p>
-      <a href="https://github.com/paudelsamir/nyayak" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
+<div class="projects-grid">
+{% for project in site.data.projects.fullstack %}
+  {% include project-card.html
+    title=project.title
+    description=project.description
+    image=project.image
+    demo=project.demo
+    code=project.code
+    tags=project.tags
+  %}
+{% endfor %}
 </div>
 {:/nomarkdown}
-
-
 
 ## AI/ML & Deep Learning
 
 {::nomarkdown}
-<style>
-.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
-.projects-grid img { height: 200px; }
-@media (max-width: 768px) {
-  .projects-grid { grid-template-columns: 1fr; gap: 1rem; }
-  .projects-grid img { height: 150px; }
-  .projects-grid h4 { font-size: 1rem !important; }
-  .projects-grid p { font-size: 0.9rem !important; }
-  .projects-grid a { font-size: 0.85rem !important; }
-}
-</style>
 <div class="projects-grid">
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/cinerank.png" alt="cineRank" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">cineRank — Movie Ranker</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">sentiment analysis meets recommendations. built with nlp.</p>
-      <a href="https://cine-rank.vercel.app" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/football.png" alt="Player Value" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Player Value Prediction</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">predicting player market value from stats. regression + ensemble methods.</p>
-      <a href="https://paudelsamir.streamlit.app/" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/Player-Value-Prediction" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/movie.png" alt="Movie Recommender" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Movie Recommender System</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">collaborative filtering meets content-based. watch patterns become suggestions.</p>
-      <a href="https://movie-recommender-samir.streamlit.app/" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/movie-recommender" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/catdog.png" alt="Cat vs Dog" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Cat vs Dog Classifier</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">cnn image classification. 95%+ accuracy. furry problem solved.</p>
-      <a href="https://cat-vs-dog-classifier.streamlit.app/" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/cat-vs-dog-classifier" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/guess-eyes.png" alt="Guess Footballer" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Guess The Footballer By Eyes</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">visual recognition. identify players from their eyes. creepy but accurate.</p>
-      <a href="https://guess-footballer-with-eyes.streamlit.app/" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/01-Image-Classification/Guess-The-Footballer-By-Eyes" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/image-captioning.png" alt="Image Captioning" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Image Captioning</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">transforms images into words. showing ai what computers see.</p>
-      <a href="https://image-captioning-samir.streamlit.app" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/03-Image-Captioning" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/seq2seq-chatbot.png" alt="Seq2Seq Chatbot" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Seq2Seq Chatbot</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">sequence-to-sequence models. conversations that almost make sense.</p>
-      <a href="https://seq2seq-chatbot-samir.streamlit.app" target="_blank" style="margin-right:1rem; text-decoration: underline;">demo</a>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/02-Natural-Language-Processing/seq2seq-charbot" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/gpt-scratch.png" alt="GPT" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">GPT from Scratch</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">building transformers from first principles. understanding the math.</p>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/choose_your_own_adventure.png" alt="Adventure" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Choose Your Own Adventure</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">interactive storytelling with data. branching narratives.</p>
-      <a href="https://github.com/paudelsamir/Choose-Your-Own-Adventure" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
+{% for project in site.data.projects.aiml %}
+  {% include project-card.html
+    title=project.title
+    description=project.description
+    image=project.image
+    demo=project.demo
+    code=project.code
+    tags=project.tags
+  %}
+{% endfor %}
 </div>
 {:/nomarkdown}
-
 
 ## Collections
 
 {::nomarkdown}
-<style>
-.projects-grid-collections { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 2rem 0; }
-.projects-grid-collections img { height: 200px; }
-@media (max-width: 768px) {
-  .projects-grid-collections { grid-template-columns: 1fr; gap: 1rem; }
-  .projects-grid-collections img { height: 150px; }
-  .projects-grid-collections h4 { font-size: 1rem !important; }
-  .projects-grid-collections p { font-size: 0.9rem !important; }
-  .projects-grid-collections a { font-size: 0.85rem !important; }
-}
-</style>
-<div class="projects-grid-collections">
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/eda.png" alt="EDA" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">EDA Projects Collection</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">exploratory data analysis. finding patterns in noise.</p>
-      <a href="https://github.com/paudelsamir/EDA-Projects" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/genai_projects_collection.png" alt="GenAI" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">GenAI Mini Projects</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">building with llms. rag, agents, chains. modern ai exploration.</p>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
-
-  <div style="border: 1px solid var(--border); background: var(--bg-surface); overflow: hidden;">
-    <img src="/assets/images/agentic_ai_project_colections.png" alt="Agentic" style="width: 100%; height: 200px; object-fit: cover;">
-    <div style="padding: 1.5rem;">
-      <h4 style="margin: 0 0 0.5rem 0;">Agentic AI Mini Projects</h4>
-      <p style="margin: 0.5rem 0 1rem 0; color: var(--text-muted);">autonomous agents. systems that think and act. the future.</p>
-      <a href="https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI" target="_blank" style="text-decoration: underline;">code</a>
-    </div>
-  </div>
+<div class="projects-grid">
+{% for project in site.data.projects.collections %}
+  {% include project-card.html
+    title=project.title
+    description=project.description
+    image=project.image
+    code=project.code
+    tags=project.tags
+  %}
+{% endfor %}
 </div>
 {:/nomarkdown}
-
-
 
 ## Others
 
@@ -298,4 +156,3 @@ built through [quests](/quests/) and daily learning. see my [uses](/uses/) for t
 </div>
 </details>
 {:/nomarkdown}
-

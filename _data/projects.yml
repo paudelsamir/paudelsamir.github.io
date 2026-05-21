@@ -1,0 +1,94 @@
+fullstack:
+  - title: "MeanTrainer"
+    description: "AI-powered fitness assistant. Personalized workouts and nutrition guidance."
+    image: "/assets/images/meantrainer_landing_page.jpg"
+    demo: "https://meantrainer.vercel.app/"
+    code: "https://github.com/paudelsamir/meantrainer"
+    tags: ["Next.js", "AI", "Fitness"]
+
+  - title: "Nyayak"
+    description: "AI-powered legal navigation platform for Nepal with legal guidance, lawyer discovery, and court navigation."
+    image: "/assets/images/nyayak_landing_page.jpg"
+    code: "https://github.com/paudelsamir/nyayak"
+    tags: ["AI", "Legal", "Nepal"]
+
+aiml:
+  - title: "cineRank"
+    description: "Sentiment analysis meets recommendations. Built with NLP."
+    image: "/assets/images/cinerank.png"
+    demo: "https://cine-rank.vercel.app"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis"
+    tags: ["NLP", "Python", "ML"]
+
+  - title: "Player Value Prediction"
+    description: "Predicting player market value from stats. Regression + ensemble methods."
+    image: "/assets/images/football.png"
+    demo: "https://paudelsamir.streamlit.app/"
+    code: "https://github.com/paudelsamir/Player-Value-Prediction"
+    tags: ["Regression", "Python", "Sports"]
+
+  - title: "Movie Recommender"
+    description: "Collaborative filtering meets content-based. Watch patterns become suggestions."
+    image: "/assets/images/movie.png"
+    demo: "https://movie-recommender-samir.streamlit.app/"
+    code: "https://github.com/paudelsamir/movie-recommender"
+    tags: ["Recommendation", "Python", "ML"]
+
+  - title: "Cat vs Dog Classifier"
+    description: "CNN image classification. 95%+ accuracy. Furry problem solved."
+    image: "/assets/images/catdog.png"
+    demo: "https://cat-vs-dog-classifier.streamlit.app/"
+    code: "https://github.com/paudelsamir/cat-vs-dog-classifier"
+    tags: ["CNN", "Computer Vision", "Deep Learning"]
+
+  - title: "Guess The Footballer"
+    description: "Visual recognition. Identify players from their eyes. Creepy but accurate."
+    image: "/assets/images/guess-eyes.png"
+    demo: "https://guess-footballer-with-eyes.streamlit.app/"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/01-Image-Classification/Guess-The-Footballer-By-Eyes"
+    tags: ["Image Classification", "CNN", "Fun"]
+
+  - title: "Image Captioning"
+    description: "Transforms images into words. Showing AI what computers see."
+    image: "/assets/images/image-captioning.png"
+    demo: "https://image-captioning-samir.streamlit.app"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/03-Image-Captioning"
+    tags: ["Vision-Language", "Deep Learning", "NLP"]
+
+  - title: "Seq2Seq Chatbot"
+    description: "Sequence-to-sequence models. Conversations that almost make sense."
+    image: "/assets/images/seq2seq-chatbot.png"
+    demo: "https://seq2seq-chatbot-samir.streamlit.app"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/02-Natural-Language-Processing/seq2seq-charbot"
+    tags: ["NLP", "Seq2Seq", "Chatbot"]
+
+  - title: "GPT from Scratch"
+    description: "Building transformers from first principles. Understanding the math."
+    image: "/assets/images/gpt-scratch.png"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch"
+    tags: ["Transformers", "LLM", "Deep Learning"]
+
+  - title: "Choose Your Own Adventure"
+    description: "Interactive storytelling with data. Branching narratives."
+    image: "/assets/images/choose_your_own_adventure.png"
+    code: "https://github.com/paudelsamir/Choose-Your-Own-Adventure"
+    tags: ["Interactive", "Data", "Storytelling"]
+
+collections:
+  - title: "EDA Projects"
+    description: "Exploratory data analysis. Finding patterns in noise."
+    image: "/assets/images/eda.png"
+    code: "https://github.com/paudelsamir/EDA-Projects"
+    tags: ["EDA", "Python", "Analysis"]
+
+  - title: "GenAI Mini Projects"
+    description: "Building with LLMs. RAG, agents, chains. Modern AI exploration."
+    image: "/assets/images/genai_projects_collection.png"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI"
+    tags: ["GenAI", "LLM", "RAG"]
+
+  - title: "Agentic AI Projects"
+    description: "Autonomous agents. Systems that think and act. The future."
+    image: "/assets/images/agentic_ai_project_colections.png"
+    code: "https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI"
+    tags: ["Agents", "AI", "Autonomous"]

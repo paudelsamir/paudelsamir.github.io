@@ -69,15 +69,17 @@ layout: default
                   <a class="bi-entry-link-cover" href="{{ post.url | relative_url }}" aria-label="{{ post.title }}"></a>
                   <div class="bi-entry-inner">
                     <div class="bi-entry-meta">
+                      <svg class="bi-meta-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
                       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%b %-d, %Y" }}</time>
                       <span class="sep" aria-hidden="true">·</span>
                       <span>{{ post["min-read"] }} min read</span>
                       <span class="sep" aria-hidden="true">·</span>
                       <span>{{ post["words"] }} words</span>
-                      {% if post["author"] %}
-                        <span class="sep" aria-hidden="true">·</span>
-                        <span>{{ post["author"] }}</span>
-                      {% endif %}
                     </div>
 
                     <h2 class="bi-entry-title" id="{{ post.slug | default: post.title | slugify }}">

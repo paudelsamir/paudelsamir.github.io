@@ -1,0 +1,40 @@
+<!-- AI Chat Widget -->
+<div id="ai-chat-widget">
+  <button id="ai-chat-toggle-mobile" class="ai-chat-toggle-mobile" aria-label="Chat with Sam">
+    <img src="/assets/logo_samir_light_nobg.png" alt="" class="ai-chat-toggle-mobile-logo light-logo">
+    <img src="/assets/logo_samir_dark_nobg.png" alt="" class="ai-chat-toggle-mobile-logo dark-logo" style="display:none;">
+  </button>
+
+  <div id="ai-chat-window" class="ai-chat-window" role="dialog" aria-label="AI Chat" aria-hidden="true">
+    <div class="ai-chat-header">
+      <span class="ai-chat-header-title">Sam</span>
+      <button class="ai-chat-close" aria-label="Close chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <div id="ai-chat-messages" class="ai-chat-messages">
+      <div class="ai-chat-message ai-chat-message-ai">
+        <div class="ai-chat-message-bubble">
+          Hi! I'm Sam — ask me anything about myself, my work, or what I'm building.
+        </div>
+      </div>
+    </div>
+
+    <div id="ai-chat-quick-actions" class="ai-chat-quick-actions">
+      <button class="ai-chat-quick-btn" data-question="Are you available to hire?">Available to hire?</button>
+      <button class="ai-chat-quick-btn" data-question="What are your skills?">Skills</button>
+      <button class="ai-chat-quick-btn" data-question="Tell me about your projects">Projects</button>
+      <button class="ai-chat-quick-btn" data-question="How can I contact Sam?">Contact</button>
+    </div>
+
+    <div class="ai-chat-input-area">
+      <input type="text" id="ai-chat-input" class="ai-chat-input" placeholder="ask anything..." autocomplete="off">
+      <button id="ai-chat-send" class="ai-chat-send" aria-label="Send message" disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+      </button>
+    </div>
+
+    <div class="ai-chat-disclaimer">powered by groq — may make mistakes</div>
+  </div>
+</div>

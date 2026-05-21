@@ -1,0 +1,297 @@
+---
+layout: default
+title: Gallery
+category: life
+hide_toc: true
+description: Moments captured — photos by Samir Paudel
+---
+
+<style>
+  .pg-root { max-width: 960px; margin: 0 auto; }
+  .pg-header { margin-bottom: 2rem; }
+  .pg-header h1 {
+    font-size: 2.25rem; font-weight: 700;
+    letter-spacing: -0.03em; line-height: 1.2;
+    margin-bottom: 0.5rem;
+  }
+  .pg-header p { font-size: 0.9rem; color: var(--text-muted); }
+
+  .pg-grid {
+    column-count: 3;
+    column-gap: 0.5rem;
+  }
+
+  .pg-item {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 0.5rem;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  .pg-item-inner {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .pg-item-inner:hover {
+    box-shadow: 0 0 0 3px var(--bg-base), 0 0 0 5px var(--text-main);
+  }
+
+  .pg-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: saturate(0.85);
+    transition: filter .3s ease;
+  }
+
+  .pg-item-inner:hover .pg-img { filter: saturate(1); }
+
+  /* Lightbox */
+  .pg-lb {
+    border: none; background: transparent; padding: 0;
+  }
+  .pg-lb[open] {
+    position: fixed; inset: 0; margin: 0;
+    display: flex; align-items: center; justify-content: center;
+    max-width: none; max-height: none; width: 100%; height: 100%;
+    overflow: hidden; touch-action: none;
+  }
+  .pg-lb::backdrop { background: rgba(0,0,0,0.6); }
+
+  .pg-lb-content {
+    position: relative;
+    max-width: min(90vw, 1100px); max-height: 85dvh;
+    display: flex; flex-direction: column; align-items: center; gap: .75rem;
+  }
+
+  .pg-lb-img {
+    max-width: min(90vw, 1100px); max-height: 70dvh;
+    width: auto; height: auto; border-radius: 8px; display: block;
+    user-select: none;
+  }
+
+  .pg-lb-close {
+    position: absolute; top: -2.25rem; right: -.5rem;
+    font-size: 1.25rem; font-weight: 300;
+    color: oklch(70% 0 0);
+    background: none; border: none; cursor: pointer;
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color .15s ease; line-height: 1;
+  }
+  .pg-lb-close:hover { color: oklch(90% 0 0); }
+
+  .pg-lb-meta { display: flex; flex-direction: column; align-items: center; gap: .2rem; text-align: center; }
+  .pg-lb-meta:empty { display: none; }
+
+  .pg-lb-caption {
+    font-family: var(--font-ui); font-size: 0.8rem; font-weight: 400;
+    color: var(--text-muted);
+  }
+  .pg-lb-caption strong { color: var(--text-main); font-weight: 600; }
+
+  .pg-lb-controls {
+    display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+  }
+
+  .pg-lb-btn {
+    font-size: 1rem; font-weight: 300;
+    color: oklch(70% 0 0);
+    background: none; border: none; cursor: pointer;
+    min-width: 44px; min-height: 44px;
+    display: flex; align-items: center; justify-content: center;
+    transition: color .15s ease; line-height: 1;
+  }
+  .pg-lb-btn:hover { color: oklch(90% 0 0); }
+
+  .pg-lb-counter {
+    font-family: var(--font-ui); font-size: 0.75rem; font-weight: 400;
+    color: var(--text-muted); font-variant-numeric: tabular-nums;
+    letter-spacing: .06em; min-width: 5ch; text-align: center;
+  }
+
+  @media (max-width: 1024px) {
+    .pg-grid { column-count: 2; }
+  }
+  @media (max-width: 640px) {
+    .pg-grid { column-count: 1; }
+    .pg-lb-content { max-width: 95vw; }
+    .pg-lb-close { top: -2.5rem; right: 0; }
+  }
+</style>
+
+<div class="pg-root">
+  <header class="pg-header">
+    <h1>gallery</h1>
+    <p>moments captured — more about me on <a href="/about/">about</a>.</p>
+  </header>
+
+  <div class="pg-grid">
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Me 2015">
+        <img class="pg-img" src="/assets/Gallery/1_me_2015.jpeg" alt="Me 2015" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Vai Ra Ma">
+        <img class="pg-img" src="/assets/Gallery/2_vai_ra_ma.png" alt="Vai Ra Ma" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Hero Sanako">
+        <img class="pg-img" src="/assets/Gallery/3_hero_sanako.jpeg" alt="Hero Sanako" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Godawari">
+        <img class="pg-img" src="/assets/Gallery/4_godawari.jpeg" alt="Godawari" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Swambhu">
+        <img class="pg-img" src="/assets/Gallery/5_swambhu.jpeg" alt="Swambhu" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Dashain 2022">
+        <img class="pg-img" src="/assets/Gallery/6_dashain_2022.jpeg" alt="Dashain 2022" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Buffon in Nepal">
+        <img class="pg-img" src="/assets/Gallery/8_buffon_in_nepal.jpeg" alt="Buffon in Nepal" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Basantapur">
+        <img class="pg-img" src="/assets/Gallery/10_basantapur.jpeg" alt="Basantapur" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Hiking">
+        <img class="pg-img" src="/assets/Gallery/11_hiking.jpeg" alt="Hiking" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Photographic Inhill">
+        <img class="pg-img" src="/assets/Gallery/12_photographic_inhill.jpeg" alt="Photographic Inhill" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Side Look 2023">
+        <img class="pg-img" src="/assets/Gallery/13_sidelook_2023.jpg" alt="Side Look 2023" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Sky Look 2023">
+        <img class="pg-img" src="/assets/Gallery/14_skylook_2023.jpg" alt="Sky Look 2023" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Horse Ride Baglung">
+        <img class="pg-img" src="/assets/Gallery/15_horse_ride_baglung.jpg" alt="Horse Ride Baglung" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Hiking Champadevi">
+        <img class="pg-img" src="/assets/Gallery/16_hiking_champadevi.jpeg" alt="Hiking Champadevi" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Hiking Bhundole">
+        <img class="pg-img" src="/assets/Gallery/17_hiking_bhundole.jpeg" alt="Hiking Bhundole" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Chitwan Roadtrip 2024">
+        <img class="pg-img" src="/assets/Gallery/18_chitwan_roadtrip_2024.jpeg" alt="Chitwan Roadtrip 2024" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Selfie Hiking Pahadma">
+        <img class="pg-img" src="/assets/Gallery/19_selfie_hiking_pahadma.jpg" alt="Selfie Hiking Pahadma" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Tree Climbing">
+        <img class="pg-img" src="/assets/Gallery/21_tree_climbing.jpg" alt="Tree Climbing" loading="lazy">
+      </div>
+    </div>
+    <div class="pg-item">
+      <div class="pg-item-inner" tabindex="0" role="button" aria-label="Gumba">
+        <img class="pg-img" src="/assets/Gallery/22_gumba.jpeg" alt="Gumba" loading="lazy">
+      </div>
+    </div>
+  </div>
+</div>
+
+<dialog class="pg-lb" id="pg-lb">
+  <div class="pg-lb-content">
+    <button class="pg-lb-close" aria-label="Close">&times;</button>
+    <img class="pg-lb-img" src="" alt="">
+    <div class="pg-lb-meta">
+      <span class="pg-lb-caption"></span>
+    </div>
+    <div class="pg-lb-controls">
+      <button class="pg-lb-btn pg-lb-prev" aria-label="Previous">&larr;</button>
+      <span class="pg-lb-counter" role="status" aria-live="polite"></span>
+      <button class="pg-lb-btn pg-lb-next" aria-label="Next">&rarr;</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  (function () {
+    var items = document.querySelectorAll('.pg-item');
+    var photos = [];
+
+    items.forEach(function (item, i) {
+      var img = item.querySelector('.pg-img');
+      var inner = item.querySelector('.pg-item-inner');
+      photos.push({ src: img.src, alt: img.alt });
+
+      inner.addEventListener('click', function () {
+        document.getElementById('pg-lb').querySelector('.pg-lb-img').src = photos[i].src;
+        document.getElementById('pg-lb').querySelector('.pg-lb-img').alt = photos[i].alt;
+        document.getElementById('pg-lb').querySelector('.pg-lb-caption').textContent = photos[i].alt;
+        document.getElementById('pg-lb').querySelector('.pg-lb-counter').textContent = (i + 1) + ' / ' + photos.length;
+        window.__lbIdx = i;
+        document.getElementById('pg-lb').showModal();
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    var lb = document.getElementById('pg-lb');
+    lb.querySelector('.pg-lb-close').addEventListener('click', function () { lb.close(); document.body.style.overflow = ''; });
+    lb.addEventListener('click', function (e) { if (e.target === lb) { lb.close(); document.body.style.overflow = ''; } });
+    lb.addEventListener('close', function () { document.body.style.overflow = ''; });
+
+    lb.querySelector('.pg-lb-prev').addEventListener('click', function () {
+      var i = (window.__lbIdx - 1 + photos.length) % photos.length;
+      window.__lbIdx = i;
+      lb.querySelector('.pg-lb-img').src = photos[i].src;
+      lb.querySelector('.pg-lb-img').alt = photos[i].alt;
+      lb.querySelector('.pg-lb-caption').textContent = photos[i].alt;
+      lb.querySelector('.pg-lb-counter').textContent = (i + 1) + ' / ' + photos.length;
+    });
+
+    lb.querySelector('.pg-lb-next').addEventListener('click', function () {
+      var i = (window.__lbIdx + 1) % photos.length;
+      window.__lbIdx = i;
+      lb.querySelector('.pg-lb-img').src = photos[i].src;
+      lb.querySelector('.pg-lb-img').alt = photos[i].alt;
+      lb.querySelector('.pg-lb-caption').textContent = photos[i].alt;
+      lb.querySelector('.pg-lb-counter').textContent = (i + 1) + ' / ' + photos.length;
+    });
+
+    lb.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') { lb.close(); document.body.style.overflow = ''; }
+      if (e.key === 'ArrowLeft') lb.querySelector('.pg-lb-prev').click();
+      if (e.key === 'ArrowRight') lb.querySelector('.pg-lb-next').click();
+    });
+  })();
+</script>

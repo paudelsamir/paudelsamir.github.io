@@ -453,45 +453,127 @@ document.addEventListener("DOMContentLoaded", function () {
         });
   }
 
-  const galleryImages = [
-    { src: './assets/Gallery/1_typing_.png', alt: 'Typing in Kathmandu', date: 'September 08, 2025' },
-    { src: './assets/Gallery/2_selfie_hiking.jpg', alt: 'Selfie Hiking', date: 'August 27, 2025' },
-    { src: './assets/Gallery/3_chitwan.jpeg', alt: 'Chitwan Eco-Tour', date: 'July 21, 2025' },
-    { src: './assets/Gallery/4_hiking.jpeg', alt: 'Mountain Trail', date: 'June 12, 2025' },
-    { src: './assets/Gallery/5_basantapur.jpeg', alt: 'Basantapur Vibes', date: 'May 04, 2025' },
-    { src: './assets/Gallery/5_horse_ride.jpg', alt: 'Horse Ride', date: 'April 18, 2025' },
-    { src: './assets/Gallery/6_dadama.jpeg', alt: 'Dadama Waterfall', date: 'September 14, 2024' },
-    { src: './assets/Gallery/6_sidelook.jpg', alt: 'Sidelook Portrait', date: 'August 30, 2024' },
-    { src: './assets/Gallery/6_skylook.jpg', alt: 'Skylook Panorama', date: 'August 05, 2024' },
-    { src: './assets/Gallery/7_hiking.jpeg', alt: 'Hiking Crew', date: 'July 19, 2024' },
-    { src: './assets/Gallery/8_hiking.jpeg', alt: 'Slope Shot', date: 'June 10, 2024' },
-    { src: './assets/Gallery/9_buffon.jpeg', alt: 'Buffon Meetup', date: 'March 28, 2024' },
-    { src: './assets/Gallery/11_flagpoint.jpg', alt: 'Flagpoint Lookout', date: 'January 11, 2024' },
-    { src: './assets/Gallery/11_godawari.jpeg', alt: 'Godawari Walk', date: 'January 05, 2024' },
-    { src: './assets/Gallery/12_swambhu.jpeg', alt: 'Swambhu Rituals', date: 'April 16, 2024' },
-    { src: './assets/Gallery/13_dashain.jpeg', alt: 'Dashain Fest', date: 'November 02, 2024' },
-    { src: './assets/Gallery/14_hero_sanako.jpeg', alt: 'Hero Sanako', date: 'July 14, 2015' },
-    { src: './assets/Gallery/15_vai_ra_ma.png', alt: 'Vai Ra Ma', date: 'October 11, 2014' },
-    { src: './assets/Gallery/16_me_2015.jpeg', alt: 'Throwback 2015', date: 'December 20, 2014' }
-  ];
+   const galleryImages = [
+     { src: './assets/Gallery/1_typing_.png', alt: 'Typing in Kathmandu', caption: 'Typing in Kathmandu' },
+     { src: './assets/Gallery/2_selfie_hiking.jpg', alt: 'Selfie Hiking', caption: 'Selfie Hiking' },
+     { src: './assets/Gallery/3_chitwan.jpeg', alt: 'Chitwan Eco-Tour', caption: 'Chitwan Eco-Tour' },
+     { src: './assets/Gallery/4_hiking.jpeg', alt: 'Mountain Trail', caption: 'Mountain Trail' },
+     { src: './assets/Gallery/5_basantapur.jpeg', alt: 'Basantapur Vibes', caption: 'Basantapur Vibes' },
+     { src: './assets/Gallery/5_horse_ride.jpg', alt: 'Horse Ride', caption: 'Horse Ride' },
+     { src: './assets/Gallery/6_dadama.jpeg', alt: 'Dadama Waterfall', caption: 'Dadama Waterfall' },
+     { src: './assets/Gallery/6_sidelook.jpg', alt: 'Sidelook Portrait', caption: 'Sidelook Portrait' },
+     { src: './assets/Gallery/6_skylook.jpg', alt: 'Skylook Panorama', caption: 'Skylook Panorama' },
+     { src: './assets/Gallery/7_hiking.jpeg', alt: 'Hiking Crew', caption: 'Hiking Crew' },
+     { src: './assets/Gallery/8_hiking.jpeg', alt: 'Slope Shot', caption: 'Slope Shot' },
+     { src: './assets/Gallery/9_buffon.jpeg', alt: 'Buffon Meetup', caption: 'Buffon Meetup' },
+     { src: './assets/Gallery/11_flagpoint.jpg', alt: 'Flagpoint Lookout', caption: 'Flagpoint Lookout' },
+     { src: './assets/Gallery/11_godawari.jpeg', alt: 'Godawari Walk', caption: 'Godawari Walk' },
+     { src: './assets/Gallery/12_swambhu.jpeg', alt: 'Swambhu Rituals', caption: 'Swambhu Rituals' },
+     { src: './assets/Gallery/13_dashain.jpeg', alt: 'Dashain Fest', caption: 'Dashain Fest' },
+     { src: './assets/Gallery/14_hero_sanako.jpeg', alt: 'Hero Sanako', caption: 'Hero Sanako' },
+     { src: './assets/Gallery/15_vai_ra_ma.png', alt: 'Vai Ra Ma', caption: 'Vai Ra Ma' },
+     { src: './assets/Gallery/16_me_2015.jpeg', alt: 'Throwback 2015', caption: 'Throwback 2015' }
+   ];
 
-  const galleryGrid = document.getElementById('gallery-grid');
+   const galleryGrid = document.getElementById('gallery-grid');
 
-  if (galleryGrid && galleryImages.length > 0) {
-    const fragment = document.createDocumentFragment();
+   if (galleryGrid && galleryImages.length > 0) {
+     const fragment = document.createDocumentFragment();
 
-    galleryImages.forEach(image => {
-      const card = document.createElement('div');
-      card.className = 'gallery-item';
+     galleryImages.forEach(image => {
+       const card = document.createElement('div');
+       card.className = 'gallery-item';
 
-      card.innerHTML = `
-        <img src="${image.src}" alt="${image.alt}" loading="lazy">
-        <div class="gallery-date">${image.date}</div>
-      `;
+       card.innerHTML = `
+         <img src="${image.src}" alt="${image.alt}" loading="lazy">
+         <div class="gallery-caption">${image.caption}</div>
+       `;
 
-      fragment.appendChild(card);
-    });
+       fragment.appendChild(card);
+     });
 
-    galleryGrid.appendChild(fragment);
-  }
-});
+     galleryGrid.appendChild(fragment);
+   }
+
+   // Wiki Knowledge Gallery
+   const wikiGalleryItems = [
+     {
+       icon: 'school',
+       title: 'Knowledge Synthesis',
+       description: 'Connecting disparate ideas into coherent understanding'
+     },
+     {
+       icon: 'lightbulb',
+       title: 'Insight Generation',
+       description: 'The moment when understanding clicks into place'
+     },
+     {
+       icon: 'trending-up',
+       title: 'Skill Progression',
+       description: 'Tracking growth from novice to mastery'
+     },
+     {
+       icon: 'book',
+       title: 'Deep Learning',
+       description: 'Immersive study that transforms perspective'
+     },
+     {
+       icon: 'sync',
+       title: 'Iterative Improvement',
+       description: 'Continuous refinement through practice'
+     },
+     {
+       icon: 'shield',
+       title: 'Resilience Building',
+       description: 'Developing mental fortitude through challenges'
+     },
+     {
+       icon: 'heart',
+       title: 'Passion Cultivation',
+       description: 'Nurturing intrinsic motivation for lifelong learning'
+     },
+     {
+       icon: 'brain',
+       title: 'Cognitive Flexibility',
+       description: 'Adapting thinking patterns to new contexts'
+     },
+     {
+       icon: 'target',
+       title: 'Focused Intention',
+       description: 'Directing attention toward meaningful goals'
+     }
+   ];
+
+   const wikiGalleryGrid = document.getElementById('wiki-gallery-grid');
+
+   if (wikiGalleryGrid && wikiGalleryItems.length > 0) {
+     const fragment = document.createDocumentFragment();
+
+     wikiGalleryItems.forEach((item, index) => {
+       const card = document.createElement('div');
+       card.className = 'wiki-gallery-item';
+
+       // Use different images from the gallery for variety
+       const galleryIndex = (index * 2) % galleryImages.length;
+       const imageSrc = galleryImages[galleryIndex].src;
+       const imageAlt = galleryImages[galleryIndex].alt;
+
+       card.innerHTML = `
+         <div class="wiki-gallery-card">
+           <div class="wiki-gallery-face wiki-gallery-front">
+             <img src="${imageSrc}" alt="${imageAlt}" loading="lazy">
+           </div>
+           <div class="wiki-gallery-face wiki-gallery-back">
+             <ion-icon name="${item.icon}" class="wiki-gallery-icon"></ion-icon>
+             <h3 class="wiki-gallery-title">${item.title}</h3>
+             <p class="wiki-gallery-description">${item.description}</p>
+           </div>
+         </div>
+       `;
+
+       fragment.appendChild(card);
+     });
+
+     wikiGalleryGrid.appendChild(fragment);
+   }
+ });

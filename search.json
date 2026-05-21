@@ -5,9 +5,10 @@
   {
     "title": {{ item.title | default: item.slug | jsonify }},
     "url": {{ item.url | jsonify }},
-    "content": {{ item.content | strip_html | normalize_whitespace | truncatewords: 300 | jsonify }},
-    "excerpt": {{ item.excerpt | default: item.content | strip_html | normalize_whitespace | truncatewords: 50 | jsonify }},
-    "category": {{ item.collection | default: "page" | jsonify }}
+    "content": {{ item.content | strip_html | normalize_whitespace | truncatewords: 300 | jsonify | default: "" }},
+    "excerpt": {{ item.excerpt | default: item.content | strip_html | normalize_whitespace | truncatewords: 50 | jsonify | default: "" }},
+    "category": {{ item.collection | default: "page" | jsonify }},
+    "doc": {{ item.collection | capitalize | default: item.title | jsonify }}
   }{% unless forloop.last %},{% endunless %}
   {% endfor %}
   {% for page in site.pages %}
@@ -15,9 +16,10 @@
   ,{
     "title": {{ page.title | jsonify }},
     "url": {{ page.url | jsonify }},
-    "content": {{ page.content | strip_html | normalize_whitespace | truncatewords: 300 | jsonify }},
-    "excerpt": {{ page.content | strip_html | normalize_whitespace | truncatewords: 50 | jsonify }},
-    "category": "page"
+    "content": {{ page.content | strip_html | normalize_whitespace | truncatewords: 300 | jsonify | default: "" }},
+    "excerpt": {{ page.content | strip_html | normalize_whitespace | truncatewords: 50 | jsonify | default: "" }},
+    "category": "page",
+    "doc": {{ page.title | jsonify }}
   }
   {% endif %}
   {% endfor %}

@@ -27,3 +27,10 @@ start with my [about](/about/) for context.
 ## Location / Meetup
 
 Based in Kathmandu, Nepal (NST, UTC+5:45) — [schedule a meetup](https://cal.com/paudelsamir/quick)
+
+> [!NOTE]
+> Hey this is note
+> you can see /contact/ page for more details.
+
+>[!WARNING]
+> Hey this is a warning
