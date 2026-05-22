@@ -735,7 +735,7 @@ body.dark .container-success {
     cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     font-family: var(--font-ui);
     font-size: 13px;
     padding: 4px 10px;
@@ -746,7 +746,6 @@ body.dark .container-success {
 .nav-btn:hover {
     border-color: var(--border-hover);
     color: var(--text-main);
-    background-color: var(--bg-surface);
 }
 
 kbd {
