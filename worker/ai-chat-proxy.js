@@ -26,7 +26,7 @@ SITE SECTIONS:
 - [/bookmarks](/bookmarks) — resources
 - [/contact](/contact) — reach me`;
 
-const DEFAULT_ORIGIN = 'https://samirpaudel.me';
+const RAG_DATA_URL = 'https://samirpaudel.me/rag-data.json';
 const EMBED_MODEL = '@cf/baai/bge-small-en-v1.5';
 const GROQ_API = 'https://api.groq.com/openai/v1/chat/completions';
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
@@ -37,20 +37,19 @@ let ragEmbeddings = null;
 let ragReady = false;
 let loading = false;
 
-async function loadRag(env, origin) {
+async function loadRag(env) {
   if (ragReady) return;
   loading = true;
 
   try {
-    const url = `${origin}/rag-data.json`;
-    const res = await fetch(url);
+    const res = await fetch(RAG_DATA_URL);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     const chunks = await res.json();
     if (!chunks.length) throw new Error('empty RAG data');
 
     const texts = chunks.map(c => `${c.title}: ${c.text}`.slice(0, 2000));
     const result = await env.AI.run(EMBED_MODEL, { text: texts });
-    const embeddings = result.data.map(d => d.embedding);
+    const embeddings = result.data;
 
     ragChunks = chunks;
     ragEmbeddings = embeddings;
@@ -108,11 +107,9 @@ export default {
         });
       }
 
-      const origin = request.headers.get('Origin') || DEFAULT_ORIGIN;
-
       if (!ragReady) {
         await Promise.race([
-          loadRag(env, origin),
+          loadRag(env),
           new Promise(resolve => setTimeout(resolve, 6000))
         ]);
       }
@@ -131,13 +128,13 @@ export default {
       if (ragReady && ragChunks.length > 0 && userMsg) {
         try {
           const qResult = await env.AI.run(EMBED_MODEL, { text: [userMsg.text] });
-          const qEmb = qResult.data[0].embedding;
+          const qEmb = qResult.data[0];
           const relevant = topK(qEmb, 8);
 
           contextText = relevant
             .map(c => `[${c.title}](${c.url}): ${c.text}`)
             .join('\n\n');
-          console.log(`RAG context for "${userMsg.text.slice(0, 50)}": ${relevant.length} chunks`);
+          console.log(`RAG query ok: ${relevant.length} chunks`);
         } catch (err) {
           console.error('RAG query failed:', err);
         }
