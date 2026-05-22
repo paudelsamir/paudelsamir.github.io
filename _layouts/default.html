@@ -92,6 +92,26 @@
 </head>
 
 <body class="light{% if page.hide_toc %} page-no-toc{% endif %}">
+    <div id="dappled-light">
+        <div id="glow"></div>
+        <div id="glow-bounce"></div>
+        <div class="perspective">
+            <div id="leaves"></div>
+            <div id="blinds">
+                <div class="shutters">
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                    <div class="shutter"></div><div class="shutter"></div><div class="shutter"></div><div class="shutter"></div>
+                </div>
+                <div class="vertical">
+                    <div class="bar"></div><div class="bar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="loading-bar"></div>
 
     <!-- Skip link for accessibility -->
@@ -191,19 +211,18 @@
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
+                            <span>home</span>
                             <svg class="folder-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
                                 </path>
                             </svg>
-                            <span>home</span>
                         </div>
                         <div class="tree-children is-open" id="home-children">
                             {% assign home_docs = site.home | sort: "order" %}
                             {% for doc in home_docs %}
                             <a href="{{ doc.url }}"
                                 class="tree-item is-link{% if page.url == doc.url %} active{% endif %}{% if page.url contains '/blogs/' and doc.slug == 'blogs' %} active{% endif %}">
-                                <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
                                 {{ doc.slug | replace: "-", " " }}
                             </a>
                             {% endfor %}
@@ -217,12 +236,12 @@
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
+                            <span>life</span>
                             <svg class="folder-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
                                 </path>
                             </svg>
-                            <span>life</span>
                         </div>
                         <div class="tree-children is-open" id="life-children">
                                                                 {% assign life_docs = site.life | sort: "order" %}
@@ -230,7 +249,6 @@
                                                                     {% unless doc.path contains 'journal/' or doc.path contains 'challenges/' or doc.path contains 'quests/' %}
                             <a href="{{ doc.url }}"
                                 class="tree-item is-link{% if page.url == doc.url %} active{% endif %}">
-                                <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                                 {{ doc.slug | replace: "-", " " }}
                             </a>
                                                                 {% endunless %}
@@ -253,7 +271,6 @@
                                                                         {% for doc in quest_docs %}
                                                                         {% if doc.path contains 'quests/' and doc.slug != 'index' %}
                                                                         <a href="{{ doc.url }}" class="tree-item is-link tree-item-nested{% if page.url == doc.url %} active{% endif %}">
-                                    <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                                     {{ doc.slug | replace: "-", " " }}
                                 </a>
                                                                         {% endif %}
@@ -278,7 +295,6 @@
                                     {% if doc.path contains 'journal/' and doc.slug != 'index' %}
                                     <a href="{{ doc.url }}"
                                         class="tree-item is-link tree-item-nested{% if page.url == doc.url %} active{% endif %}">
-                                        <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
                                         {{ doc.slug | replace: "-", " " }}
                                     </a>
                                     {% endif %}
@@ -295,19 +311,18 @@
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
+                            <span>tech</span>
                             <svg class="folder-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
                                 </path>
                             </svg>
-                            <span>tech</span>
                         </div>
                         <div class="tree-children is-open" id="tech-children">
                             {% assign tech_docs = site.tech | sort: "order" %}
                             {% for doc in tech_docs %}
                             <a href="{{ doc.url }}"
                                 class="tree-item is-link{% if page.url == doc.url %} active{% endif %}">
-                                <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
                                 {{ doc.slug | replace: "-", " " }}
                             </a>
                             {% endfor %}
@@ -321,19 +336,18 @@
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
+                            <span>meta</span>
                             <svg class="folder-icon" width="14" height="14" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                                 <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z">
                                 </path>
                             </svg>
-                            <span>meta</span>
                         </div>
                         <div class="tree-children is-open" id="meta-children">
                             {% assign meta_docs = site.meta | sort: "order" %}
                             {% for doc in meta_docs %}
                             <a href="{{ doc.url }}"
                                 class="tree-item is-link{% if page.url == doc.url %} active{% endif %}">
-                                <svg class="file-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                                 {{ doc.slug | replace: "-", " " }}
                             </a>
                             {% endfor %}

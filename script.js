@@ -142,7 +142,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    function applyTheme(isDark) {
+    function applyTheme(isDark, animate = false) {
         const lightLogos = document.querySelectorAll('.light-logo');
         const darkLogos = document.querySelectorAll('.dark-logo');
         if (isDark) {
@@ -158,6 +158,14 @@ document.addEventListener('DOMContentLoaded', () => {
             lightLogos.forEach(el => el.style.display = 'block');
             darkLogos.forEach(el => el.style.display = 'none');
         }
+        if (animate) {
+            document.body.classList.add('animation-ready');
+            const onEnd = () => {
+                document.body.classList.remove('animation-ready');
+                document.getElementById('dappled-light')?.removeEventListener('animationend', onEnd);
+            };
+            document.getElementById('dappled-light')?.addEventListener('animationend', onEnd);
+        }
     };
 
     if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
@@ -167,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (themeToggle) {
         themeToggle.addEventListener('click', () => {
             const isDark = !document.body.classList.contains('dark');
-            applyTheme(isDark);
+            applyTheme(isDark, true);
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     }
@@ -1346,19 +1354,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const aiChatInput = document.getElementById('ai-chat-input');
     const aiChatSend = document.getElementById('ai-chat-send');
     const aiChatQuickActions = document.getElementById('ai-chat-quick-actions');
+    const aiChatScrollBottom = document.getElementById('ai-chat-scroll-bottom');
 
-    // Set this to your deployed Cloudflare Worker URL
     const AI_CHAT_WORKER_URL = 'https://ai-chat-proxy.samirpaudel.workers.dev';
 
     let isGenerating = false;
     let chatHistory = [{ role: 'model', text: "Hi! I'm Sam — ask me anything about myself, my work, or what I'm building." }];
+    let prewarmed = false;
 
     function escapeHTML(str) {
         return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     }
 
     function formatAI(text) {
-        var s = escapeHTML(text);
+        var s = text;
+        s = s.replace(/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g, '[$2]($1)');
+        s = escapeHTML(s);
         s = s.replace(/—/g, '-');
         s = s.replace(/---/g, '-');
         s = s.replace(/--/g, '-');
@@ -1367,7 +1378,7 @@ document.addEventListener('DOMContentLoaded', () => {
         s = s.replace(/\*(.+?)\*/g, '<em>$1</em>');
         s = s.replace(/`(.+?)`/g, '<code>$1</code>');
         s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-        s = s.replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+        s = s.replace(/(https?:\/\/[^\s<"')]+)(?![^<]*<\/a>)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
         s = s.replace(/\n/g, '<br>');
         return s;
     }
@@ -1393,6 +1404,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createOverlay().classList.add('open');
         aiChatWindow.setAttribute('aria-hidden', 'false');
         aiChatInput.focus();
+        prewarmWorker();
     }
 
     function closeChat() {
@@ -1400,6 +1412,16 @@ document.addEventListener('DOMContentLoaded', () => {
         var overlay = document.getElementById('ai-chat-overlay');
         if (overlay) overlay.classList.remove('open');
         aiChatWindow.setAttribute('aria-hidden', 'true');
+    }
+
+    function prewarmWorker() {
+        if (prewarmed) return;
+        prewarmed = true;
+        fetch(AI_CHAT_WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: [{ role: 'user', text: 'ping' }] })
+        }).catch(function () {});
     }
 
     function addMessage(text, type) {
@@ -1410,7 +1432,7 @@ document.addEventListener('DOMContentLoaded', () => {
         bubbleDiv.innerHTML = (type === 'ai') ? formatAI(text) : escapeHTML(text).replace(/\n/g, '<br>');
         messageDiv.appendChild(bubbleDiv);
         aiChatMessages.appendChild(messageDiv);
-        scrollToBottom();
+        requestAnimationFrame(scrollToBottom);
     }
 
     function showTypingIndicator() {
@@ -1419,7 +1441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typingDiv.id = 'ai-chat-typing-indicator';
         typingDiv.innerHTML = '<div class="ai-chat-message-bubble"><div class="ai-chat-typing"><span></span><span></span><span></span></div></div>';
         aiChatMessages.appendChild(typingDiv);
-        scrollToBottom();
+        requestAnimationFrame(scrollToBottom);
     }
 
     function hideTypingIndicator() {
@@ -1429,6 +1451,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function scrollToBottom() {
         aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+        if (aiChatScrollBottom) aiChatScrollBottom.classList.remove('visible');
+    }
+
+    function toggleScrollButton() {
+        if (!aiChatScrollBottom) return;
+        var threshold = 80;
+        var atBottom = aiChatMessages.scrollHeight - aiChatMessages.scrollTop - aiChatMessages.clientHeight < threshold;
+        aiChatScrollBottom.classList.toggle('visible', !atBottom);
     }
 
     async function sendMessage(message) {
@@ -1495,6 +1525,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    if (aiChatScrollBottom) {
+        aiChatScrollBottom.addEventListener('click', scrollToBottom);
+    }
+
+    if (aiChatMessages) {
+        aiChatMessages.addEventListener('scroll', toggleScrollButton);
+    }
+
     document.addEventListener('keydown', function (e) {
         if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
             e.preventDefault();
@@ -1504,5 +1542,7 @@ document.addEventListener('DOMContentLoaded', () => {
             closeChat();
         }
     });
+
+    prewarmWorker();
 
 });

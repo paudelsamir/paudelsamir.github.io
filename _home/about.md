@@ -26,22 +26,10 @@ and yeah, i am ==open to work==. you can check out my [projects](/projects/) and
 
 if you think we can build something great together, drop me a [mail](mailto:samirpaudel2005@gmail.com) or [a message via whatsapp](https://wa.me/+9779862093072).
 
----
 
-{::nomarkdown}
-<style>
-  .about-sections { text-align: center; margin: 2rem 0 0.5rem; }
-  .about-sections p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 0.75rem; }
-</style>
+## explore the wiki
+these are some features of the wiki that you might find interesting
 
-<div class="about-sections">
-  <p>explore the wiki</p>
-  <nav class="section-nav" aria-label="Wiki sections">
-    <a href="/blogs/" class="section-nav-btn">blogs</a>
-    <a href="/journal/" class="section-nav-btn">journal</a>
-    <a href="/quests/" class="section-nav-btn">quests</a>
-  </nav>
-</div>
-{:/nomarkdown}
+[blogs](/blogs/) · [journal](/journal/) · [quests](/quests/)
 
 
