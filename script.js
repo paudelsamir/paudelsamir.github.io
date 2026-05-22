@@ -939,6 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const docs = await res.json();
             searchDB = docs;
 
+            if (typeof lunr === 'undefined') return;
             lunr.tokenizer.separator = /[\s/]+/;
             lunrIndex = lunr(function () {
                 this.ref('id');
