@@ -31,14 +31,17 @@ const EMBED_MODEL = '@cf/baai/bge-small-en-v1.5';
 const GROQ_API = 'https://api.groq.com/openai/v1/chat/completions';
 const GROQ_MODEL = 'llama-3.3-70b-versatile';
 
-// ── In-memory RAG cache ──
+// ── In-memory RAG cache (auto-refreshes every 5 min) ──
 let ragChunks = null;
 let ragEmbeddings = null;
 let ragReady = false;
-let loading = false;
+let ragHash = '';
+let ragUpdated = 0;
+const RAG_TTL = 300_000;
 
 async function loadRag(env) {
-  if (ragReady) return;
+  if (ragReady && Date.now() - ragUpdated < RAG_TTL) return;
+  if (loading) return;
   loading = true;
 
   try {
@@ -47,14 +50,19 @@ async function loadRag(env) {
     const chunks = await res.json();
     if (!chunks.length) throw new Error('empty RAG data');
 
+    const hash = chunks.map(c => c.id + c.text.slice(0, 40)).join('|');
+    if (hash === ragHash && ragReady) { ragUpdated = Date.now(); return; }
+
     const texts = chunks.map(c => `${c.title}: ${c.text}`.slice(0, 2000));
     const result = await env.AI.run(EMBED_MODEL, { text: texts });
     const embeddings = result.data;
 
     ragChunks = chunks;
     ragEmbeddings = embeddings;
+    ragHash = hash;
+    ragUpdated = Date.now();
     ragReady = true;
-    console.log(`RAG loaded: ${chunks.length} chunks`);
+    console.log(`RAG ${chunks.length} chunks (${ragUpdated ? 'refresh' : 'initial'})`);
   } catch (err) {
     console.error('RAG load failed:', err);
   } finally {
@@ -107,12 +115,10 @@ export default {
         });
       }
 
-      if (!ragReady) {
-        await Promise.race([
-          loadRag(env),
-          new Promise(resolve => setTimeout(resolve, 6000))
-        ]);
-      }
+      await Promise.race([
+        loadRag(env),
+        new Promise(resolve => setTimeout(resolve, 8000))
+      ]);
 
       const apiKey = env.GROQ_API_KEY;
       if (!apiKey) {
