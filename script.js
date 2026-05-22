@@ -1359,7 +1359,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const AI_CHAT_WORKER_URL = 'https://ai-chat-proxy.samirpaudel.workers.dev';
 
     let isGenerating = false;
-    let chatHistory = [{ role: 'model', text: "Hi! I'm Sam — ask me anything about myself, my work, or what I'm building." }];
+    let chatHistory = [{ role: 'model', text: 'Hey, I\'m Sam — an assistant created by <a href="https://x.com/samireey" target="_blank" rel="noopener noreferrer">@samir</a>. You can ask me anything about him and I\'ll answer from his site.' }];
     let prewarmed = false;
 
     function escapeHTML(str) {
