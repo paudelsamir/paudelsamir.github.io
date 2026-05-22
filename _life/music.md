@@ -4,7 +4,7 @@ title: Music
 category: life
 ---
 
-# music
+# Music
 
 
 I listen [mostly during exercises.][gym-playlist]. 
@@ -20,12 +20,12 @@ I prefer [Spotify][spotify-profile] and [YT Music][yt-music-link].
 > [Bartika Eam Rai][bartika-profile], [Khai][khai-song]
 
 > *And you are young and life is long, and there is time to kill today. And then one day you find ten years have got behind you. No one told you when to run, you missed the starting gun.*
-> — [Pink Floyd][pink-floyd-link]
+> - [Pink Floyd][pink-floyd-link]
 , [Time][time-song]
 
 
 > *Last name ever, first name greatest*
-> — [Drake][drake-link], [Forever][forever-song]
+> - [Drake][drake-link], [Forever][forever-song]
 
 
 i absolutely love **[Urja][urja-album]** by **[The Elements][the-elements-profile]**.

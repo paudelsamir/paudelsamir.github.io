@@ -12,7 +12,7 @@ excerpt: "A deep dive into FIFA data, exploring player stats, club dynamics, and
 
 Well !! I tried combining my love for football with data science….
 
-> Disclaimer: I’m not a pro data scientist — yet. Just a football fan who took a deep dive into machine learning. Expect some twists, turns, and a few ‘Wait, what?’ moments along the way.”
+> Disclaimer: I’m not a pro data scientist - yet. Just a football fan who took a deep dive into machine learning. Expect some twists, turns, and a few ‘Wait, what?’ moments along the way.”
 
 The Journey Map
 ---------------
@@ -32,7 +32,7 @@ Day 1: Operation Clean-Up
 
 ![captionless image](https://miro.medium.com/v2/resize:fit:1120/format:webp/1*v1CHNfP1H_LPZ9mxAVCuyg.png)![After Cleaning and splitting of FIFA Dataset](https://miro.medium.com/v2/resize:fit:882/format:webp/1*2eFhYFedmFg5aJUlfjNDXw.png)
 
-Starting with the basics — data cleaning. Already being familiar with pandas and numpy made this part surprisingly smooth.
+Starting with the basics - data cleaning. Already being familiar with pandas and numpy made this part surprisingly smooth.
 
 Organized 19,000+ players (yes, I counted) into clear categories:
 
@@ -54,7 +54,7 @@ Day 2: EDA day → The Question Marathon (feat. An Epic UCL Night)
 
 Post-match, fueled by football excitement, I tackled these burning questions:
 
-**1.Built the “Moneyball Dream Team” — best players over 75+ rating with lowest possible price (there are some serious bargains out there!)**
+**1.Built the “Moneyball Dream Team” - best players over 75+ rating with lowest possible price (there are some serious bargains out there!)**
 
 ![captionless image](https://miro.medium.com/v2/resize:fit:1400/format:webp/1*Ku32NbVWINY5-A7HcDhPWQ.png)
 
@@ -94,7 +94,7 @@ _Ramos is better at passing and dribbling to help midfielder in attacking along 
 
 ![right players amount > left players amount](https://miro.medium.com/v2/resize:fit:930/format:webp/1*5OB-dQupKOuncSKmslc_Ng.png)
 
-Day 3: Getting Technical — Final Insights
+Day 3: Getting Technical - Final Insights
 -----------------------------------------
 
 ### The ML Journey:
@@ -108,7 +108,7 @@ My_Brain = {
 }
 ```
 
-First time using sklearn — shoutout to the [internet](https://www.youtube.com/watch?v=0B5eIE_1vpU&t=6575s) for the 3-hour crash course!
+First time using sklearn - shoutout to the [internet](https://www.youtube.com/watch?v=0B5eIE_1vpU&t=6575s) for the 3-hour crash course!
 
 _Didn’t quite finish it, but no worries, I’ll be back for more soon ❤._
 
@@ -137,7 +137,7 @@ _the higher the shooting and dribbling skills, the better the player_
 
 > But let’s be real, no spreadsheet is gonna settle the GOAT debate.Whether you’re chanting for Messi or Ronaldo, these stats won’t change the fact that every fan has their own GOAT. so let’s just agree on one thing: we’re all lucky to watch these legends do their thing. 🙌
 
-> Here is my goat for you — — ANTONY the legend😅
+> Here is my goat for you - - ANTONY the legend😅
 
 ![captionless image](https://miro.medium.com/v2/resize:fit:440/format:webp/1*amMN-sZgRHLe0pZsVJrTNA.gif)
 

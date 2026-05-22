@@ -94,10 +94,15 @@ export default {
       return new Response(null, {
         headers: {
           'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'POST, OPTIONS',
+          'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
           'Access-Control-Allow-Headers': 'Content-Type',
         },
       });
+    }
+
+    // Lightweight warmup — no API calls
+    if (request.method === 'GET') {
+      return new Response('ok', { status: 200 });
     }
 
     if (request.method !== 'POST') {
@@ -109,6 +114,11 @@ export default {
     try {
       const body = await request.json();
       const messages = body.messages;
+
+      // Ping/prewarm — respond immediately without using Groq quota
+      if (messages && Array.isArray(messages) && messages.length === 1 && messages[0].text === 'ping') {
+        return new Response(JSON.stringify({ response: '' }), { headers: cors });
+      }
 
       if (!messages || !Array.isArray(messages) || messages.length === 0) {
         return new Response(JSON.stringify({ error: 'messages array is required' }), {
@@ -177,6 +187,13 @@ export default {
 
       if (!res.ok) {
         const err = await res.text();
+        const retryMatch = err.match(/try again in (\d+)m([\d.]+)s/);
+        if (res.status === 429 && retryMatch) {
+          const m = retryMatch[1];
+          const s = Math.round(parseFloat(retryMatch[2]));
+          const time = m + 'm ' + s + 's';
+          return new Response(JSON.stringify({ response: 'Rate limit hit — I need a short break. Try again in about **' + time + '**.' }), { headers: cors });
+        }
         return new Response(JSON.stringify({ error: 'Groq API error', details: err }), {
           status: res.status, headers: cors,
         });

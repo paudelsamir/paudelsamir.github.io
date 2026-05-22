@@ -9,8 +9,6 @@ description: Hardware, software, and tools I actually use daily. Arch Linux, VS 
 
 Tools, gear, and software I rely on.
 
-for context see my [about](/about/). check [bookmarks](/bookmarks/) for inspiration and [learning](/learning/) for resources.
-
 <img src="/assets/dotfiles-screenshot.webp" alt="Dotfiles screenshot" loading="lazy" decoding="async">
 
 Take a look at my [dotfiles](https://github.com/paudelsamir/dotfiles).
@@ -69,5 +67,5 @@ Take a look at my [dotfiles](https://github.com/paudelsamir/dotfiles).
 Curious about other uses pages? Check out [uses.tech](https://uses.tech).
 
 
-
+for context see my [about](/about/). check [bookmarks](/bookmarks/) for inspiration and [learning](/learning/) for resources.
 

@@ -360,6 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             breadcrumbs.push({ label: activeTreeLink.textContent.trim(), current: true });
 
+            // Truncate long breadcrumb labels
+            breadcrumbs.forEach(function (crumb) {
+                if (crumb.label.length > 10) {
+                    crumb.label = crumb.label.slice(0, 8) + '..';
+                }
+            });
+
             const breadcrumbsContainer = document.getElementById('breadcrumbs');
             if (breadcrumbsContainer) {
                 breadcrumbsContainer.innerHTML = breadcrumbs.map((crumb, index) => {
@@ -604,6 +611,94 @@ document.addEventListener('DOMContentLoaded', () => {
                 lb.classList.add('active');
             });
         });
+
+        // Initialize Nepal districts map on AJAX navigation (skip if already rendered)
+        var mapWrapper = document.getElementById('nepal-map-wrapper');
+        if (mapWrapper && !mapWrapper.querySelector('svg')) {
+            function initMapWhenReady() {
+                var depsLoaded = typeof d3 !== 'undefined' && typeof topojson !== 'undefined';
+                var mapLoaded = typeof window.initNepalMap === 'function';
+                if (!depsLoaded || !mapLoaded) {
+                    var loadingEl = mapWrapper.querySelector('.nepal-loading');
+                    if (loadingEl) loadingEl.textContent = 'Loading map...';
+                }
+                if (mapLoaded && depsLoaded) {
+                    window.initNepalMap();
+                } else {
+                    var promises = [];
+                    if (!depsLoaded) {
+                        promises.push(new Promise(function(resolve, reject) {
+                            var s = document.createElement('script');
+                            s.src = 'https://d3js.org/d3.v7.min.js';
+                            s.onload = resolve;
+                            s.onerror = reject;
+                            document.head.appendChild(s);
+                        }));
+                        promises.push(new Promise(function(resolve, reject) {
+                            var s = document.createElement('script');
+                            s.src = 'https://cdn.jsdelivr.net/npm/topojson-client@3';
+                            s.onload = resolve;
+                            s.onerror = reject;
+                            document.head.appendChild(s);
+                        }));
+                    }
+                    if (!mapLoaded) {
+                        promises.push(new Promise(function(resolve, reject) {
+                            var s = document.createElement('script');
+                            s.src = '/assets/js/nepal-map.js';
+                            s.onload = resolve;
+                            s.onerror = reject;
+                            document.head.appendChild(s);
+                        }));
+                    }
+                    if (promises.length > 0) {
+                        Promise.all(promises).then(function() {
+                            if (typeof window.initNepalMap === 'function') {
+                                window.initNepalMap();
+                            }
+                        }).catch(function() {
+                            var loadingEl = mapWrapper.querySelector('.nepal-loading');
+                            if (loadingEl) loadingEl.textContent = 'Could not load map. Try refreshing.';
+                        });
+                    }
+                }
+            }
+            // Wait a tick for DOM to settle on AJAX nav
+            setTimeout(initMapWhenReady, 50);
+        }
+
+        // Init blog/quest/journal dropdowns (open with, share) on AJAX nav
+        var openWithBtn = document.getElementById('openWithBtn');
+        var shareBtn = document.getElementById('sharePostBtn');
+        if (openWithBtn && !openWithBtn.dataset.dropdownInit) {
+            var openWithMenu = document.getElementById('openWithMenu');
+            var shareMenu = document.getElementById('sharePostMenu');
+            if (openWithMenu && shareMenu) {
+                function closeAll() {
+                    openWithBtn.setAttribute('aria-expanded', 'false');
+                    openWithMenu.classList.remove('show');
+                    shareBtn.setAttribute('aria-expanded', 'false');
+                    shareMenu.classList.remove('show');
+                }
+                function createToggle(el, menu, otherBtn, otherMenu) {
+                    return function (e) {
+                        e.stopPropagation();
+                        var isOpen = el.getAttribute('aria-expanded') === 'true';
+                        el.setAttribute('aria-expanded', !isOpen);
+                        menu.classList.toggle('show');
+                        otherBtn.setAttribute('aria-expanded', 'false');
+                        otherMenu.classList.remove('show');
+                    };
+                }
+                openWithBtn.addEventListener('click', createToggle(openWithBtn, openWithMenu, shareBtn, shareMenu));
+                shareBtn.addEventListener('click', createToggle(shareBtn, shareMenu, openWithBtn, openWithMenu));
+                openWithMenu.addEventListener('click', function (e) { e.stopPropagation(); });
+                shareMenu.addEventListener('click', function (e) { e.stopPropagation(); });
+                document.addEventListener('click', closeAll);
+                openWithBtn.dataset.dropdownInit = 'true';
+                shareBtn.dataset.dropdownInit = 'true';
+            }
+        }
     }
 
     // Mobile TOC: polished bottom-sheet navigation for small screens
@@ -1544,5 +1639,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     prewarmWorker();
+
+    /* =========================================================================
+       7. Blog/Quest/Journal utilities (open with, share)
+       ========================================================================= */
+
+    window.openWith = function (platform) {
+        var url = window.location.href.replace(/\/$/, '');
+        var prompt = encodeURIComponent('Read ' + url + ', I want to ask questions about it.');
+        if (platform === 'chatgpt') {
+            window.open('https://chatgpt.com/?prompt=' + prompt, '_blank');
+        } else if (platform === 'claude') {
+            window.open('https://claude.ai/new?q=' + prompt, '_blank');
+        }
+    };
+
+    window.shareTo = function (platform) {
+        var url = encodeURIComponent(window.location.href);
+        if (platform === 'copy') {
+            navigator.clipboard.writeText(window.location.href).then(function () {
+                var el = document.getElementById('copyLinkText');
+                if (el) {
+                    var orig = el.innerText;
+                    el.innerText = 'Link Copied!';
+                    setTimeout(function () { el.innerText = orig; }, 2000);
+                }
+            });
+        } else if (platform === 'x') {
+            window.open('https://x.com/intent/post?url=' + url, '_blank');
+        } else if (platform === 'linkedin') {
+            window.open('https://www.linkedin.com/feed/?shareActive=true&url=' + url + '&shareUrl=' + url, '_blank');
+        }
+    };
 
 });

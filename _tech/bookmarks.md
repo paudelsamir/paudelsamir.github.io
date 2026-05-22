@@ -8,8 +8,6 @@ category: tech
 
 This is why i love the internet.
 
-i also keep a [tools](/uses/) list i rely on.
-
 ## Starter Pack
 
 - [Awesome Lists](https://github.com/sindresorhus/awesome)  when i need to learn, research, or find literally anything on the internet.
@@ -33,3 +31,6 @@ i also keep a [tools](/uses/) list i rely on.
 - [Antidote to Slop](https://www.beautyofsaas.com/p/antidote-to-slop-an-archive-of-life)
 - [Link Log](https://pncnmnp.github.io/blogs/link-log.html)
 - [Erik Gahner's Links](https://github.com/erikgahner/links)
+
+
+i also keep a [tools](/uses/) list i rely on.

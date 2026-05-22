@@ -253,7 +253,7 @@ layout: default
 
   /* Monospaced Code Blocks */
   .quest-body pre, .quest-body code {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, monospace;
+    font-family: var(--font-mono);
   }
 
   .quest-body pre {
@@ -454,69 +454,4 @@ layout: default
 </article>
 
 <script>
-  (function initDropdown() {
-    var openWithBtn = document.getElementById('openWithBtn');
-    var openWithMenu = document.getElementById('openWithMenu');
-    var shareBtn = document.getElementById('sharePostBtn');
-    var shareMenu = document.getElementById('sharePostMenu');
-
-    if (!openWithBtn || !openWithMenu || !shareBtn || !shareMenu) {
-      setTimeout(initDropdown, 100);
-      return;
-    }
-
-    function closeAll() {
-      openWithBtn.setAttribute('aria-expanded', 'false');
-      openWithMenu.classList.remove('show');
-      shareBtn.setAttribute('aria-expanded', 'false');
-      shareMenu.classList.remove('show');
-    }
-
-    function toggle(el, menu, otherBtn, otherMenu) {
-      return function (e) {
-        e.stopPropagation();
-        var isOpen = el.getAttribute('aria-expanded') === 'true';
-        el.setAttribute('aria-expanded', !isOpen);
-        menu.classList.toggle('show');
-        otherBtn.setAttribute('aria-expanded', 'false');
-        otherMenu.classList.remove('show');
-      };
-    }
-
-    openWithBtn.addEventListener('click', toggle(openWithBtn, openWithMenu, shareBtn, shareMenu));
-    shareBtn.addEventListener('click', toggle(shareBtn, shareMenu, openWithBtn, openWithMenu));
-
-    openWithMenu.addEventListener('click', function (e) { e.stopPropagation(); });
-    shareMenu.addEventListener('click', function (e) { e.stopPropagation(); });
-
-    document.addEventListener('click', closeAll);
-  })();
-
-  function openWith(platform) {
-    var url = window.location.href.replace(/\/$/, '');
-    var prompt = encodeURIComponent('Read ' + url + ', I want to ask questions about it.');
-
-    if (platform === 'chatgpt') {
-      window.open('https://chatgpt.com/?prompt=' + prompt, '_blank');
-    } else if (platform === 'claude') {
-      window.open('https://claude.ai/new?q=' + prompt, '_blank');
-    }
-  }
-
-  function shareTo(platform) {
-    var url = encodeURIComponent(window.location.href);
-
-    if (platform === 'copy') {
-      navigator.clipboard.writeText(window.location.href).then(function () {
-        var el = document.getElementById('copyLinkText');
-        var orig = el.innerText;
-        el.innerText = 'Link Copied!';
-        setTimeout(function () { el.innerText = orig; }, 2000);
-      });
-    } else if (platform === 'x') {
-      window.open('https://x.com/intent/post?url=' + url, '_blank');
-    } else if (platform === 'linkedin') {
-      window.open('https://www.linkedin.com/feed/?shareActive=true&url=' + url + '&shareUrl=' + url, '_blank');
-    }
-  }
 </script>

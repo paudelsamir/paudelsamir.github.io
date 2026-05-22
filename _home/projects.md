@@ -9,8 +9,6 @@ description: Stuff I've built - ML models, web apps, experiments. Some finished,
 
 25+ projects built over time. all opensource, all ideas started somewhere.
 
-built through [quests](/quests/) and daily learning. see my [uses](/uses/) for the stack. check [about](/about/) for my dev journey.
-
 ## Fullstack AI Applications
 
 {::nomarkdown}
@@ -156,3 +154,5 @@ built through [quests](/quests/) and daily learning. see my [uses](/uses/) for t
 </div>
 </details>
 {:/nomarkdown}
+
+see my [uses](/uses/) for the stack. check [about](/about/) for my dev journey.

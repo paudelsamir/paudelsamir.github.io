@@ -5,7 +5,7 @@ category: life
 permalink: /habits/
 ---
 
-# habits
+# Habits
 
 trying to build small rituals that keep me steady.
 

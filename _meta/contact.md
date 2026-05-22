@@ -22,8 +22,8 @@ start with my [about](/about/) for context.
 - **Twitter**: [@samireey](https://twitter.com/samireey)
 - **LinkedIn**: [paudelsamir](https://www.linkedin.com/in/paudelsamir)
 - **Medium**: [@paudelsamir](https://medium.com/@paudelsamir)
-- **Chess**: [samireey](https://www.chess.com/member/samireey) — let's play a game ♟
+- **Chess**: [samireey](https://www.chess.com/member/samireey) - let's play a game ♟
 
 ## Location / Meetup
 
-Based in Kathmandu, Nepal (NST, UTC+5:45) — [schedule a meetup](https://cal.com/paudelsamir/quick)
+Based in Kathmandu, Nepal (NST, UTC+5:45) - [schedule a meetup](https://cal.com/paudelsamir/quick)

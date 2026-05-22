@@ -5,7 +5,7 @@ category: home
 description: About me - CS student, AI/ML developer from Nepal. I build things, break things, and write about what I learn.
 ---
 
-# About me !!
+# About me
 
 ## intro
 hey my name's [Samir](/portfolio/){: data-tp-title="Samir Paudel" data-tp-excerpt="Bringing Ideas to life.." data-tp-image="/assets/Gallery/19_selfie_hiking_pahadma.jpg" }, I'm based in Nepal.
@@ -27,9 +27,10 @@ and yeah, i am ==open to work==. you can check out my [projects](/projects/) and
 if you think we can build something great together, drop me a [mail](mailto:samirpaudel2005@gmail.com) or [a message via whatsapp](https://wa.me/+9779862093072).
 
 
-## explore the wiki
-these are some features of the wiki that you might find interesting
 
+
+## explore the wiki
+these are featured sections of my wiki <br>
 [blogs](/blogs/) · [journal](/journal/) · [quests](/quests/)
 
 

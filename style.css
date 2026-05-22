@@ -823,6 +823,11 @@ body.mobile-sidebar-open .sidebar-backdrop {
     pointer-events: auto;
 }
 
+body.mobile-sidebar-open .mobile-toc-fab,
+body.mobile-sidebar-open .ai-chat-toggle-mobile {
+    display: none !important;
+}
+
 @media (min-width: 1101px) {
     .left-sidebar {
         position: static;
@@ -1647,7 +1652,7 @@ body.dark .markdown-alert-caution {
         width: auto;
         max-width: 100%;
         padding: 2rem clamp(20px, 3.5vw, 48px);
-        margin: 0;
+        margin: 0 0 0 2vw;
     }
 }
 
@@ -2246,11 +2251,11 @@ dialog::backdrop {
     --toc-progress: 0;
     position: fixed;
     left: 50%;
-    bottom: 34px;
+    bottom: 20px;
     transform: translateX(-50%);
-    min-width: 240px;
+    min-width: 200px;
     max-width: calc(100vw - 40px);
-    height: 50px;
+    height: 44px;
     border-radius: 999px;
     border: 1px solid var(--mobile-toc-pill-border);
     background: var(--mobile-toc-pill-bg);
@@ -2623,12 +2628,20 @@ body.mobile-toc-open {
 
 /* Blockquotes */
 .garden-flow blockquote {
-    margin: 1.5rem 0;
-    padding: 0.5rem 0 0.5rem 1.5rem;
+    margin: 0.75rem 0;
+    padding: 0 0 0 1.5rem;
     border-left: 3px solid var(--border);
     color: var(--text-muted);
     font-style: italic;
     background: var(--bg-surface);
+}
+
+.garden-flow blockquote > :first-child {
+    margin-top: 0;
+}
+
+.garden-flow blockquote > :last-child {
+    margin-bottom: 0;
 }
 
 /* Code Blocks */
@@ -4448,24 +4461,26 @@ body.dark .journal-timeline-card:hover {
     position: fixed;
     right: 20px;
     bottom: 20px;
-    width: 50px;
-    height: 50px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
-    border: none;
-    background: var(--accent);
-    color: #fff;
+    border: 1px solid var(--border);
+    background: var(--bg-surface);
+    color: var(--text-muted);
     cursor: pointer;
     z-index: 150;
     display: none;
     align-items: center;
     justify-content: center;
-    transition: transform .2s ease, box-shadow .2s ease;
-    box-shadow: 0 4px 16px rgba(0,0,0,.18);
+    transition: transform .2s ease, border-color .2s ease, color .2s ease;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .ai-chat-toggle-mobile:hover {
-    transform: scale(1.08);
-    box-shadow: 0 6px 24px rgba(0,0,0,.22);
+    transform: scale(1.05);
+    border-color: var(--text-muted);
+    color: var(--text);
 }
 
 .ai-chat-toggle-mobile:active {
@@ -4961,6 +4976,7 @@ body.dark #dappled-light > .perspective {
 #dappled-light #blinds .shutter,
 #dappled-light #blinds .bar {
     background-color: var(--shadow);
+    filter: blur(5px);
 }
 
 #dappled-light #blinds .shutter {
@@ -5007,4 +5023,25 @@ body.dark #dappled-light #blinds .shutters {
     66%  { transform: rotateX(3deg)  rotateY(-1deg) scale(1.04);}
     100% { transform: rotateX(0)    rotateY(0)    scale(1);   }
 }
+
+@media (max-width: 700px) {
+    #dappled-light > .perspective {
+        width: 120vw;
+        height: 100vh;
+        top: 0;
+        transform: matrix3d(.5, .04, 0, -.004, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    }
+    #dappled-light #leaves {
+        width: 800px;
+        height: 700px;
+        left: -200px;
+    }
+}
+
+/* ════════════════════════════════════════════
+   Nepal Districts Map
+   ════════════════════════════════════════════ */
+/* ════════════════════════════════════════════
+   Sidebar "nepal" link decoration
+    ════════════════════════════════════════════ */
 
