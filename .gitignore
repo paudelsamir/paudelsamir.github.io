@@ -35,7 +35,7 @@ worker/.dev.vars
 
 # Unused/Deprecated
 v1/
-vendor/
+/vendor/
 comingsoon/
 old/
 public/
