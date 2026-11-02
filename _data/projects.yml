@@ -1,94 +1,231 @@
 fullstack:
   - title: "MeanTrainer"
-    description: "AI-powered fitness assistant. Personalized workouts and nutrition guidance."
+    description: "AI fitness assistant: personalized workouts & nutrition."
     image: "/assets/images/meantrainer_landing_page.jpg"
     demo: "https://meantrainer.vercel.app/"
     code: "https://github.com/paudelsamir/meantrainer"
     tags: ["Next.js", "AI", "Fitness"]
 
   - title: "Nyayak"
-    description: "AI-powered legal navigation platform for Nepal with legal guidance, lawyer discovery, and court navigation."
+    description: "AI legal assistant for Nepal: guidance, lawyers, courts."
     image: "/assets/images/nyayak_landing_page.jpg"
     code: "https://github.com/paudelsamir/nyayak"
     tags: ["AI", "Legal", "Nepal"]
 
 aiml:
   - title: "cineRank"
-    description: "Sentiment analysis meets recommendations. Built with NLP."
+    description: "NLP sentiment analysis meets movie recommendations."
     image: "/assets/images/cinerank.png"
     demo: "https://cine-rank.vercel.app"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/04-Sentiment-Analysis"
     tags: ["NLP", "Python", "ML"]
 
   - title: "Player Value Prediction"
-    description: "Predicting player market value from stats. Regression + ensemble methods."
+    description: "Predicts player market value from stats."
     image: "/assets/images/football.png"
     demo: "https://paudelsamir.streamlit.app/"
     code: "https://github.com/paudelsamir/Player-Value-Prediction"
     tags: ["Regression", "Python", "Sports"]
 
   - title: "Movie Recommender"
-    description: "Collaborative filtering meets content-based. Watch patterns become suggestions."
+    description: "Collaborative + content-based movie suggestions."
     image: "/assets/images/movie.png"
     demo: "https://movie-recommender-samir.streamlit.app/"
     code: "https://github.com/paudelsamir/movie-recommender"
     tags: ["Recommendation", "Python", "ML"]
 
   - title: "Cat vs Dog Classifier"
-    description: "CNN image classification. 95%+ accuracy. Furry problem solved."
+    description: "CNN classifier: cats vs dogs (95%+)."
     image: "/assets/images/catdog.png"
     demo: "https://cat-vs-dog-classifier.streamlit.app/"
     code: "https://github.com/paudelsamir/cat-vs-dog-classifier"
     tags: ["CNN", "Computer Vision", "Deep Learning"]
 
   - title: "Guess The Footballer"
-    description: "Visual recognition. Identify players from their eyes. Creepy but accurate."
+    description: "Identifies footballers by their eyes."
     image: "/assets/images/guess-eyes.png"
     demo: "https://guess-footballer-with-eyes.streamlit.app/"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/01-Image-Classification/Guess-The-Footballer-By-Eyes"
     tags: ["Image Classification", "CNN", "Fun"]
 
   - title: "Image Captioning"
-    description: "Transforms images into words. Showing AI what computers see."
+    description: "Generates captions for images (CV+NL)."
     image: "/assets/images/image-captioning.png"
     demo: "https://image-captioning-samir.streamlit.app"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/03-Image-Captioning"
     tags: ["Vision-Language", "Deep Learning", "NLP"]
 
   - title: "Seq2Seq Chatbot"
-    description: "Sequence-to-sequence models. Conversations that almost make sense."
+    description: "Seq2seq conversational chatbot with attention."
     image: "/assets/images/seq2seq-chatbot.png"
     demo: "https://seq2seq-chatbot-samir.streamlit.app"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/10-Projects-Based-ML-DL/02-Natural-Language-Processing/seq2seq-charbot"
     tags: ["NLP", "Seq2Seq", "Chatbot"]
 
   - title: "GPT from Scratch"
-    description: "Building transformers from first principles. Understanding the math."
+    description: "Builds a transformer LLM from first principles."
     image: "/assets/images/gpt-scratch.png"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/11-Foundations-Of-LLMS/GPT-From-Scratch"
     tags: ["Transformers", "LLM", "Deep Learning"]
 
+  - title: "Formation Tracker"
+    description: "Football vision: detect, track, team, stats."
+    image: "/assets/images/formation_preview.jpg"
+    code: "https://github.com/paudelsamir/formation"
+    tags: ["CV", "YOLO", "Sports"]
+  - title: "Image Captioning Transformer"
+    description: "Image captioner (ResNet + Transformer)."
+    image: "/assets/images/Image-Captioning-Transformer_preview.gif"
+    code: "https://github.com/paudelsamir/Image-Captioning-Transformer"
+    tags: ["CV", "NLP", "Transformer"]
+  - title: "MCP Resume Analyzer"
+    description: "MCP resume scorer using Ollama."
+    image: "/assets/images/mcp-resume-analyzer_preview.png"
+    code: "https://github.com/paudelsamir/mcp-resume-analyzer"
+    tags: ["MCP", "AI", "Tools"]
   - title: "Choose Your Own Adventure"
-    description: "Interactive storytelling with data. Branching narratives."
+    description: "AI branching adventure game."
     image: "/assets/images/choose_your_own_adventure.png"
     code: "https://github.com/paudelsamir/Choose-Your-Own-Adventure"
     tags: ["Interactive", "Data", "Storytelling"]
 
 collections:
+  - title: "365 Days of Data"
+    description: "Year-long AI/ML learning journey with projects."
+    image: "/assets/images/365daysofdata_preview.png"
+    code: "https://github.com/paudelsamir/365DaysOfData"
+    tags: ["Data Science", "ML", "AI"]
+
   - title: "EDA Projects"
-    description: "Exploratory data analysis. Finding patterns in noise."
+    description: "Exploratory data analysis projects."
     image: "/assets/images/eda.png"
     code: "https://github.com/paudelsamir/EDA-Projects"
     tags: ["EDA", "Python", "Analysis"]
 
+  - title: "Semester Works"
+    description: "All CS semester resources & labs (8 semesters)."
+    image: "/assets/images/semester-works_preview.jpg"
+    code: "https://github.com/paudelsamir/semester-works"
+    tags: ["CSIT", "Labs", "Archive"]
+
+  - title: "Coding Interview Prep"
+    description: "LeetCode solutions (Python/C++) with notes."
+    image: "/assets/images/Coding-Interview-Preparation_preview.jpg"
+    code: "https://github.com/paudelsamir/Coding-Interview-Preparation"
+    tags: ["DSA", "LeetCode", "Interview"]
+
   - title: "GenAI Mini Projects"
-    description: "Building with LLMs. RAG, agents, chains. Modern AI exploration."
-    image: "/assets/images/genai_projects_collection.png"
+    description: "LLM/RAG/agent mini projects."
+    image: "/assets/images/genai_projects_collection.jpg"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/15-Projects-Based-GenAI"
     tags: ["GenAI", "LLM", "RAG"]
 
   - title: "Agentic AI Projects"
-    description: "Autonomous agents. Systems that think and act. The future."
+    description: "Autonomous agent experiments."
     image: "/assets/images/agentic_ai_project_colections.png"
     code: "https://github.com/paudelsamir/365DaysOfData/tree/main/16-Project-Based-AgenticAI"
     tags: ["Agents", "AI", "Autonomous"]
+
+omarchy:
+  - title: "Switcher"
+    description: "Niri-style alt-tab and overview for Omarchy."
+    image: "/assets/images/switcher_preview.png"
+    code: "https://github.com/paudelsamir/switcher"
+    demo: "https://plugins.omarchy.org/plugin.html?id=paudelsamir.switcher"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "News Dash"
+    description: "RSS/Atom news reader plugin for Omarchy."
+    image: "/assets/images/newsdash_preview.png"
+    code: "https://github.com/paudelsamir/newsdash"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Notch Island"
+    description: "Dock/clock/media/settings notch for Omarchy."
+    image: "/assets/images/notch-island_preview.png"
+    code: "https://github.com/paudelsamir/notch-island"
+    demo: "https://plugins.omarchy.org/plugin.html?id=paudelsamir.notch-island"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Now Playing"
+    description: "Currently-playing media widget for Omarchy."
+    image: "/assets/images/nowplaying_preview.png"
+    code: "https://github.com/paudelsamir/nowplaying"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Opencode Usage"
+    description: "Tracks model usage (esp. free tiers)."
+    image: "/assets/images/opencode-usage_preview.png"
+    code: "https://github.com/paudelsamir/opencode-usage"
+    demo: "https://plugins.omarchy.org/plugin.html?id=paudelsamir.opencode-usage"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Minimize Pill"
+    description: "Minimal Hyprland minimizer widget."
+    image: "/assets/images/minimize-pill_preview.png"
+    code: "https://github.com/paudelsamir/minimize-pill"
+    demo: "https://plugins.omarchy.org/plugin.html?id=paudelsamir.minimize-pill"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Agebar"
+    description: "Aging tracker quickshell widget."
+    image: "/assets/images/agebar_preview.png"
+    code: "https://github.com/paudelsamir/agebar"
+    demo: "https://plugins.omarchy.org/plugin.html?id=paudelsamir.agebar"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Bhagwat Geeta"
+    description: "Pocket Geeta for quickshell."
+    image: "/assets/images/bhagwat-geeta_preview.png"
+    code: "https://github.com/paudelsamir/bhagwat-geeta"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Wayfarer"
+    description: "Slowly complete the map of your life."
+    image: "/assets/images/wayfarer_preview.png"
+    code: "https://github.com/paudelsamir/wayfarer"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+  - title: "Countdown GNOME Extension"
+    description: "GNOME top-bar countdown widget."
+    image: "/assets/images/countdown-gnome-extension_preview.png"
+    code: "https://github.com/paudelsamir/countdown-gnome-extension"
+    tags: ["JavaScript", "GNOME", "Linux"]
+
+  - title: "Guitar Practice"
+    description: "Guitar practice: routines, tuner, tabs, tracker."
+    image: "/assets/images/guitar_preview.png"
+    code: "https://github.com/paudelsamir/guitar"
+    tags: ["QML", "Quickshell", "Omarchy"]
+
+more:
+  - title: "30DaysOfData-LearningUtsav"
+    description: "30-day beginner data science challenge."
+    image: "/assets/images/30DaysOfData-LearningUtsav_preview.png"
+    code: "https://github.com/paudelsamir/30DaysOfData-LearningUtsav"
+    tags: ["GitHub"]
+
+  - title: "chesssense"
+    description: "Chess engine built from scratch."
+    image: "/assets/images/chesssense_preview.png"
+    code: "https://github.com/paudelsamir/chesssense"
+    tags: ["GitHub"]
+
+  - title: "mini-compiler"
+    description: "Minimal lexer/parser/codegen compiler."
+    image: "/assets/images/mini-compiler_preview.png"
+    code: "https://github.com/paudelsamir/mini-compiler"
+    tags: ["GitHub"]
+
+  - title: "Movie-Recommender-System"
+    description: "Content-based recommender with posters."
+    image: "/assets/images/Movie-Recommender-System_preview.png"
+    code: "https://github.com/paudelsamir/Movie-Recommender-System"
+    tags: ["GitHub"]
+
+  - title: "toneclone"
+    description: "Discord bot replies in your tone."
+    image: "/assets/images/toneclone_preview.png"
+    code: "https://github.com/paudelsamir/toneclone"
+    tags: ["GitHub"]
+

@@ -11,12 +11,11 @@ trying to build small rituals that keep me steady.
 
 rooted in my [values](/values/). see what i'm up to on [now](/now/).
 
-i use [grit][grit-app] to track my habits. it's been solid so far.
-
 ## right now
 habits i've been keeping so far:
-- workoutssss
-- no sugar
+- wake up early
+- journal
+- deep work sessions with no distractions
 - enough sleep
 - daily walks
 - plenty of water
@@ -24,13 +23,13 @@ habits i've been keeping so far:
 
 
 
+## right now
+workoutss (halted for a while)
+
 ## planning
 here are some i'd like to try:
-- [wake up early][morning-experiment]
 - [cold shower][cold-shower-story]
 - [meditation][meditation-milestone]
-- [journal][why-i-journal]
-- [deep work sessions with no distractions][deep-work-experiment]
 
 <!-- VERIFIED MIXED BACKLINKS -->
 [grit-app]: https://f-droid.org/packages/com.shub39.grit/

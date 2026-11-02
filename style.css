@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Geist Serif';
+  src: url('/assets/fonts/geist-serif/GeistSerifVF.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
     --bg-base: #f7f2e9;
     --bg-surface: #fcf8f1;
@@ -33,8 +41,8 @@
     --mobile-toc-progress-track: rgba(42, 36, 27, 0.14);
     --mobile-toc-backdrop: rgba(24, 19, 12, 0.16);
 
-    --font-heading: 'Lora', Georgia, serif;
-    --font-body: 'Lora', Georgia, serif;
+    --font-heading: 'Geist Serif', serif;
+    --font-body: 'Geist Serif', serif;
     --font-ui: 'Geist', 'Inter', -apple-system, sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
 
@@ -1139,10 +1147,11 @@ body.mobile-sidebar-open .mobile-toc-fab {
 
 h1 {
     font-size: 2.75rem;
-    font-style: italic;
+    font-style: normal;
     font-weight: 500;
     margin-bottom: 0.5rem;
     letter-spacing: -0.03em;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -4641,3 +4650,167 @@ body.dark #dappled-light #blinds .shutters {
    Sidebar "nepal" link decoration
     ════════════════════════════════════════════ */
 
+/* About page: a quieter editorial landing surface for the main introduction. */
+.page-about .center-reading-column {
+    padding-top: clamp(2.5rem, 8vh, 6rem);
+}
+
+.page-about .garden-flow {
+    max-width: 720px;
+}
+
+.page-about .garden-flow > h1 {
+    max-width: 12ch;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+    font-size: clamp(2.8rem, 7vw, 5.25rem);
+    font-weight: 500;
+    letter-spacing: -0.07em;
+    line-height: 0.98;
+    text-transform: none;
+}
+
+.page-about .garden-flow > h2 {
+    margin-top: 4.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.8rem;
+    font-family: var(--font-ui);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.page-about .garden-flow > h2::after {
+    display: none;
+}
+
+.page-about .garden-flow > p {
+    max-width: 64ch;
+    color: var(--text-muted);
+    font-size: 1.03rem;
+    line-height: 1.9;
+}
+
+.page-about .garden-flow > p:first-of-type {
+    color: var(--text-main);
+    font-size: 1.18rem;
+    line-height: 1.75;
+}
+
+.page-about .garden-flow > p:first-of-type::first-letter {
+    color: var(--accent);
+}
+
+.page-about .garden-flow a:not(.about-link-card) {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+}
+
+.page-about .garden-flow mark {
+    color: var(--accent);
+    background: var(--selection-bg);
+    border-radius: 0.3em;
+    font-weight: 600;
+    padding: 0.12em 0.35em;
+}
+
+.page-about .about-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.page-about .about-link-card {
+    position: relative;
+    display: flex;
+    min-height: 8rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    color: var(--text-main);
+    text-decoration: none;
+    background: var(--bg-surface);
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    box-shadow: 0 8px 18px rgba(42, 36, 27, 0.035);
+    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease, box-shadow 160ms ease;
+}
+
+.page-about .about-link-card:hover,
+.page-about .about-link-card:focus-visible {
+    color: var(--text-main);
+    background: var(--bg-elevated);
+    border-color: var(--accent);
+    box-shadow: 0 12px 24px rgba(42, 36, 27, 0.08);
+    outline: none;
+    transform: translateY(-3px);
+}
+
+.page-about .about-link-card:active {
+    background: var(--selection-bg);
+    border-color: var(--accent);
+    transform: translateY(-1px) scale(0.99);
+}
+
+.page-about .about-link-kicker {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.page-about .about-link-card strong {
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.page-about .about-link-arrow {
+    position: absolute;
+    top: 0.9rem;
+    right: 1rem;
+    color: var(--accent);
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    transition: transform 160ms ease;
+}
+
+.page-about .about-link-card:hover .about-link-arrow,
+.page-about .about-link-card:focus-visible .about-link-arrow {
+    transform: translate(2px, -2px);
+}
+
+@media (max-width: 700px) {
+    .page-about .center-reading-column {
+        padding-top: 2rem;
+    }
+
+    .page-about .garden-flow > h1 {
+        font-size: clamp(2.7rem, 15vw, 4.5rem);
+    }
+
+    .page-about .garden-flow > p:first-of-type {
+        font-size: 1.05rem;
+    }
+
+    .page-about .about-links {
+        grid-template-columns: 1fr;
+    }
+
+    .page-about .about-link-card {
+        min-height: 5.25rem;
+    }
+}
+
+@media (hover: none) and (pointer: coarse) {
+    .page-about .about-link-card {
+        border-color: var(--border-hover);
+        box-shadow: 0 6px 16px rgba(42, 36, 27, 0.06);
+    }
+
+    .page-about .about-link-arrow {
+        opacity: 1;
+    }
+}

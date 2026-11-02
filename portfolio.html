@@ -184,7 +184,7 @@
           }
         </style>
 
-        <button class="info_more-btn" data-sidebar-btn>
+        <button class="info_more-btn" data-sidebar-btn aria-expanded="false" aria-controls="sidebar-details">
           <span>Show Contacts</span>
 
           <ion-icon name="chevron-down"></ion-icon>
@@ -193,7 +193,7 @@
       </div>
 
       <!-- sidebar info section -->
-      <div class="sidebar-info_more">
+      <div class="sidebar-info_more" id="sidebar-details">
 
         <!-- separator line -->
         <div class="separator"></div>
@@ -227,7 +227,7 @@
             </div>
             <div class="contact-info">
               <p class="contact-title">Github</p>
-              <a href="https://github.com/paudelsamir" class="contact-link" target="_blank">@paudelsamir</a>
+              <a href="https://github.com/paudelsamir" class="contact-link" target="_blank" rel="noopener noreferrer">@paudelsamir</a>
             </div>
           </li>
 
@@ -237,7 +237,7 @@
             </div>
             <div class="contact-info">
               <p class="contact-title">X (Twitter)</p>
-              <a href="https://twitter.com/samireey" class="contact-link" target="_blank">@samireey</a>
+              <a href="https://twitter.com/samireey" class="contact-link" target="_blank" rel="noopener noreferrer">@samireey</a>
             </div>
           </li>
 
@@ -584,7 +584,7 @@
         <div class="github-contribution-section">
           <h3 class="h3 service-title">Github Activities</h3>
           <div class="contribution-graph">
-            <a href="https://github.com/paudelsamir" target="_blank">
+            <a href="https://github.com/paudelsamir" target="_blank" rel="noopener noreferrer">
               <img src="https://ghchart.rshah.org/4b5563/paudelsamir" alt="Samir's GitHub Contribution Graph"
                 loading="lazy"
                 style="width: 100%; border-radius: 10px; filter: grayscale(100%); transition: filter 0.3s ease;">
@@ -641,7 +641,7 @@
         <header>
           <h2 class="h2 article-title">Resume</h2>
           <!-- Mobile-only Download Resume Button -->
-          <a href="/resume" class="resume-download-btn mobile-resume-download-btn" target="_blank" rel="noopener noreferrer" download>
+          <a href="/resume/samir_paudel_resume.pdf" class="resume-download-btn mobile-resume-download-btn" target="_blank" rel="noopener noreferrer" download>
             <span></span>
             <span></span>
             <span></span>
@@ -783,7 +783,7 @@
             </div>
             <h3 class="h3">Academic History</h3>
             <!-- Download button -->
-            <a href="/resume" class="resume-download-btn desktop-resume-download-btn" target="_blank"
+            <a href="/resume/samir_paudel_resume.pdf" class="resume-download-btn desktop-resume-download-btn" target="_blank"
               rel="noopener noreferrer" download>
               <span></span>
               <span></span>
@@ -1404,7 +1404,7 @@
                       <img src="/assets/icon-github.svg" alt="GitHub Link">
                     </a>
                   </div>
-                  <img src="/assets/images/genai_projects_collection.png" alt="GenAI Mini Projects" loading="lazy"
+                  <img src="/assets/images/genai_projects_collection.jpg" alt="GenAI Mini Projects" loading="lazy"
                     style="background: linear-gradient(135deg, #0d0d0d 0%, #2d2d2d 100%); width: 100%; height: 220px;">
                 </figure>
                 <h3 class="project-title">GenAI Mini Projects</h3>
@@ -1909,10 +1909,13 @@
               async function showQuote() {
                 const quote = await getQuote();
                 quoteElem.textContent = quote.quote;
-                author.innerHTML = `&mdash; ${quote.author}`;
+                author.textContent = `— ${quote.author}`;
               }
 
-              showQuote();
+              showQuote().catch(() => {
+                quoteElem.textContent = 'Building in public, one experiment at a time.';
+                author.textContent = '— Samir';
+              });
             </script>
 
       </article>

@@ -8,7 +8,7 @@ description: About me - CS student, AI/ML developer from Nepal. I build things, 
 # About me
 
 ## intro
-hey my name's [Samir](/portfolio/){: data-tp-title="Samir Paudel" data-tp-excerpt="Bringing Ideas to life.." data-tp-image="/assets/Gallery/19_selfie_hiking_pahadma.jpg" }, I'm based in Nepal.
+hey my name's [Samir](https://twitter.com/samireey){: data-tp-title="Samir Paudel on X" data-tp-excerpt="Building, learning, and sharing along the way." data-tp-image="/assets/Gallery/23_dashain_ghibli.jpeg" }, I'm based in Nepal.
 
 been into tech for about **4 years** now. i save good [bookmarks](/bookmarks/) and daily [used](/uses/) tools i rely on.
 
@@ -30,7 +30,24 @@ if you think we can build something great together, drop me a [mail](mailto:sami
 
 
 ## explore the wiki
-these are featured sections of my wiki <br>
-[blogs](/blogs/) · [journal](/journal/) · [quests](/quests/)
+these are featured sections of my wiki
 
-
+{::nomarkdown}
+<div class="about-links">
+<a href="/blogs/" class="about-link-card">
+  <span class="about-link-kicker">read</span>
+  <strong>blogs</strong>
+  <span class="about-link-arrow" aria-hidden="true">↗</span>
+</a>
+<a href="/journal/" class="about-link-card">
+  <span class="about-link-kicker">reflect</span>
+  <strong>journal</strong>
+  <span class="about-link-arrow" aria-hidden="true">↗</span>
+</a>
+<a href="/quests/" class="about-link-card">
+  <span class="about-link-kicker">practice</span>
+  <strong>quests</strong>
+  <span class="about-link-arrow" aria-hidden="true">↗</span>
+</a>
+</div>
+{:/nomarkdown}

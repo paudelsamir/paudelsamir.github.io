@@ -39,6 +39,7 @@ category: life
 
 ## Beliefs
 
+*   **money covers almost 80 percent of your problems.** I found that surprising myself and figuring out myself.
 *   **life is not easy** – [10 bitter lessons i learned from 27 years of life](https://www.reddit.com/r/Life/comments/1l7fu84/10_bitter_lessons_i_learned_from_27_years_of/).
 *   **there's no perfectly [right or wrong](https://plato.stanford.edu/entries/moral-particularism/), same for people.**
 *   **desires can be best and worst at the same time** – the [hedonic treadmill](https://anthonyvicino.com/hedonic-treadmill/) of wanting more.

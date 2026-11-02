@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=JetBrains+Mono:wght@400;500&family=Geist:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- JSON-LD Structured Data: Person -->
     <script type="application/ld+json">
@@ -91,7 +91,7 @@
     {% endunless %}
 </head>
 
-<body class="light{% if page.hide_toc %} page-no-toc{% endif %}">
+<body class="light page-{{ page.slug | default: 'home' }}{% if page.hide_toc %} page-no-toc{% endif %}">
     <div id="dappled-light">
         <div id="glow"></div>
         <div id="glow-bounce"></div>
@@ -128,7 +128,6 @@
             <li><a href="/contact/">Contact</a></li>
             <li><a href="/now/">Now</a></li>
             <li><a href="/quests/">Quests</a></li>
-            <li><a href="/portfolio/">Portfolio</a></li>
         </ul>
     </nav>
 
@@ -157,17 +156,6 @@
                     <span class="nav-btn-text">search</span>
                     <kbd>⌘K</kbd>
                 </button>
-
-                <span class="tooltip-wrapper">
-                    <a href="/portfolio" aria-label="Portfolio"
-                        style="margin-left: 4px; display: flex; align-items: center; text-decoration: none;">
-                        <img src="/assets/logo_samir_light_nobg.png" alt="Samir Paudel" class="logo-img light-logo"
-                            style="height: 24px; width: auto; border-radius: 2px;">
-                        <img src="/assets/logo_samir_dark_nobg.png" alt="Samir Paudel" class="logo-img dark-logo"
-                            style="height: 24px; width: auto; border-radius: 2px; display: none;">
-                    </a>
-                    <span class="tooltip-label" style="bottom: auto; top: calc(100% + 6px);">Portfolio</span>
-                </span>
             </div>
         </div>
     </header>

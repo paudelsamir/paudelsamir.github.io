@@ -43,6 +43,24 @@ description: Stuff I've built - ML models, web apps, experiments. Some finished,
 </div>
 {:/nomarkdown}
 
+
+## Linux
+
+{::nomarkdown}
+<div class="projects-grid">
+{% for project in site.data.projects.omarchy %}
+  {% include project-card.html
+    title=project.title
+    description=project.description
+    image=project.image
+    demo=project.demo
+    code=project.code
+    tags=project.tags
+  %}
+{% endfor %}
+</div>
+{:/nomarkdown}
+
 ## Collections
 
 {::nomarkdown}
@@ -52,6 +70,23 @@ description: Stuff I've built - ML models, web apps, experiments. Some finished,
     title=project.title
     description=project.description
     image=project.image
+    code=project.code
+    tags=project.tags
+  %}
+{% endfor %}
+</div>
+{:/nomarkdown}
+
+## Miscellaneous
+
+{::nomarkdown}
+<div class="projects-grid">
+{% for project in site.data.projects.more %}
+  {% include project-card.html
+    title=project.title
+    description=project.description
+    image=project.image
+    demo=project.demo
     code=project.code
     tags=project.tags
   %}
@@ -151,8 +186,10 @@ description: Stuff I've built - ML models, web apps, experiments. Some finished,
 </tbody>
 </table>
 
+
 </div>
 </details>
 {:/nomarkdown}
+
 
 see my [uses](/uses/) for the stack. check [about](/about/) for my dev journey.
