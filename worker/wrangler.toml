@@ -1,9 +1,0 @@
-name = "ai-chat-proxy"
-main = "ai-chat-proxy.js"
-compatibility_date = "2026-05-21"
-
-[ai]
-binding = "AI"
-
-[observability]
-enabled = true
