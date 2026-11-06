@@ -1,0 +1,58 @@
+<div id="ai-chat-widget">
+  <button id="ai-chat-toggle-mobile" class="ai-chat-toggle-mobile" aria-label="Chat with Sam">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+  </button>
+
+  <div id="ai-chat-window" class="ai-chat-window" role="dialog" aria-label="Chat with Sam" aria-hidden="true">
+
+    <!-- header -->
+    <div class="ai-chat-header">
+      <div class="ai-chat-header-left">
+        <img src="/assets/Gallery/23_dashain_ghibli.jpeg" alt="" class="ai-chat-header-avatar">
+        <span class="ai-chat-header-title">Sam</span>
+      </div>
+      <button class="ai-chat-close" aria-label="Close chat">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+
+    <!-- message scroller -->
+    <div id="ai-chat-messages" class="ai-chat-messages" role="log" aria-live="polite" aria-relevant="additions" tabindex="0">
+
+      <div class="ai-chat-empty" id="ai-chat-empty">
+        <p class="ai-chat-empty-title">Ask anything about Samir</p>
+        <p class="ai-chat-empty-sub">I answer from what&apos;s written on this site.</p>
+
+        <div class="ai-chat-suggestions" id="ai-chat-quick-actions">
+          <button class="ai-chat-suggestion" type="button" data-question="Are you available to hire?">Available to hire?</button>
+          <button class="ai-chat-suggestion" type="button" data-question="What are your skills?">Skills</button>
+          <button class="ai-chat-suggestion" type="button" data-question="Tell me about your projects">Projects</button>
+          <button class="ai-chat-suggestion" type="button" data-question="How can I contact Samir?">Contact</button>
+        </div>
+      </div>
+
+    </div>
+
+    <button id="ai-chat-scroll-bottom" class="ai-chat-scroll-bottom" aria-label="Jump to latest message">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+
+    <!-- prompt input -->
+    <form class="ai-chat-composer" id="ai-chat-form" autocomplete="off">
+      <div class="ai-chat-input-group">
+        <textarea id="ai-chat-input" class="ai-chat-input" rows="1" placeholder="Ask about Samir..." aria-label="Message"></textarea>
+        <div class="ai-chat-input-addons">
+          <span class="ai-chat-hint" aria-hidden="true">enter to send</span>
+          <button id="ai-chat-send" class="ai-chat-send" type="submit" aria-label="Send message" disabled>
+            <svg class="ai-chat-send-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+            <svg class="ai-chat-stop-icon" width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="ai-chat-footer">
+        <span class="ai-chat-disclaimer">powered by groq</span>
+      </div>
+    </form>
+
+  </div>
+</div>

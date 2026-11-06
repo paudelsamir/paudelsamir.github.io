@@ -261,7 +261,14 @@ hide_toc: true
     color: var(--text-muted);
     font: .95rem/1.7 var(--font-ui);
     opacity: .75;
+    cursor: pointer;
 }
+
+.nepal-district.is-hidden {
+    display: none;
+}
+
+
 
 .nepal-district.is-visited {
     color: var(--text-main);

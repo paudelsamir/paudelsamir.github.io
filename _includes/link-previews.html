@@ -27,7 +27,7 @@
     letter-spacing: 0.01em;
   }
   #tooltip-wrapper .tp-body {
-    max-height: 140px; overflow-y: auto;
+    max-height: 260px; overflow-y: auto;
     padding: 0.4rem 0.7rem;
     scrollbar-width: thin;
   }
@@ -303,7 +303,8 @@
             var isRelative = href.startsWith('/') || !/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(href);
             var sameOrigin = false;
             try{ sameOrigin = (a.hostname === window.location.hostname); }catch(e){}
-            if (!(isRelative || sameOrigin)) return;
+            var hasPreset = a.hasAttribute('data-tp-title') || a.hasAttribute('data-tp-excerpt') || a.hasAttribute('data-tp-image') || a.hasAttribute('data-tp-no-text');
+            if (!(isRelative || sameOrigin || hasPreset)) return;
 
             var clone = a.cloneNode(true);
             a.parentNode.replaceChild(clone, a);

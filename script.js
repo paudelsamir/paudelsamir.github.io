@@ -186,7 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const sidebarToggle = document.getElementById('sidebar-toggle');
     const leftSidebar = document.getElementById('left-sidebar');
 
-    const isMobileViewport = () => window.innerWidth <= 768;
+    // Treat anything below the desktop breakpoint (1101px) as a compact
+    // viewport: collapse the sidebar by default and allow outside-click to
+    // close it. Previously only <=768px behaved this way, leaving tablet /
+    // half-screen widths in a broken in-between state.
+    const isMobileViewport = () => window.innerWidth <= 1100;
 
     const closeMobileToc = () => {
         const btn = document.getElementById('mobile-toc-button');
@@ -824,6 +828,27 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.dataset.mobileTocEscBound = 'true';
         }
 
+        // Hover-to-open on pointer devices (desktop/tablet with a mouse):
+        // opening on hover and closing on hover-out, with a small grace delay.
+        const canHover = window.matchMedia('(hover: hover)').matches;
+        if (canHover && mobileBtn && mobilePanel && !mobileBtn.dataset.hoverBound) {
+            mobileBtn.dataset.hoverBound = '1';
+            let closeTimer = null;
+            const openNow = () => {
+                window.clearTimeout(closeTimer);
+                setOpen(true);
+            };
+            const scheduleClose = () => {
+                window.clearTimeout(closeTimer);
+                closeTimer = window.setTimeout(() => setOpen(false), 180);
+            };
+            mobileBtn.addEventListener('mouseenter', openNow);
+            mobileBtn.addEventListener('mouseleave', scheduleClose);
+            mobilePanel.addEventListener('mouseenter', () => window.clearTimeout(closeTimer));
+            mobilePanel.addEventListener('mouseleave', scheduleClose);
+            if (mobileBackdrop) mobileBackdrop.addEventListener('mouseleave', scheduleClose);
+        }
+
         const scrollRoot = getPageScrollRoot();
         const maxScroll = scrollRoot.scrollHeight - scrollRoot.clientHeight;
         const progress = maxScroll > 0 ? Math.min(1, Math.max(0, scrollRoot.scrollTop / maxScroll)) : 0;
@@ -897,6 +922,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('resize', () => {
+        // Keep the sidebar consistent when crossing the compact/desktop
+        // breakpoint: collapse it when entering tablet/mobile widths.
+        if (isMobileViewport() && leftSidebar && !leftSidebar.classList.contains('collapsed')) {
+            leftSidebar.classList.add('collapsed');
+        }
         buildMobileToc();
         syncMobileSidebarState();
     });
@@ -1469,4 +1499,360 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Pronunciation helper used by the About page button
+    // In-site toast helper (no popups/alerts)
+    window.showToast = function (message) {
+        var toast = document.getElementById('site-toast');
+        if (!toast) {
+            toast = document.createElement('div');
+            toast.id = 'site-toast';
+            toast.className = 'site-toast';
+            document.body.appendChild(toast);
+        }
+        toast.textContent = message;
+        toast.classList.add('show');
+        window.clearTimeout(window._toastTimer);
+        window._toastTimer = window.setTimeout(function () {
+            toast.classList.remove('show');
+        }, 2200);
+    };
+
+    // Keep a single audio instance so repeated clicks don't stack.
+    var _pronounceAudio = null;
+    /* =========================================================================
+       6. AI Chat — shadcn-style (ghost replies, input group, stop button)
+       ========================================================================= */
+
+    const aiChatToggle = document.getElementById('ai-chat-toggle');
+    const aiChatToggleMobile = document.getElementById('ai-chat-toggle-mobile');
+    const aiChatWindow = document.getElementById('ai-chat-window');
+    const aiChatClose = document.querySelector('.ai-chat-close');
+    const aiChatMessages = document.getElementById('ai-chat-messages');
+    const aiChatForm = document.getElementById('ai-chat-form');
+    const aiChatInput = document.getElementById('ai-chat-input');
+    const aiChatSend = document.getElementById('ai-chat-send');
+    const aiChatEmpty = document.getElementById('ai-chat-empty');
+    const aiChatQuickActions = document.getElementById('ai-chat-quick-actions');
+    const aiChatScrollBottom = document.getElementById('ai-chat-scroll-bottom');
+
+    const AI_CHAT_WORKER_URL = 'https://ai-chat-proxy.samirpaudel2.workers.dev';
+
+    let isGenerating = false;
+    let activeAbort = null;
+    let prewarmed = false;
+    let chatHistory = [{ role: 'model', text: 'Hey, I\'m Sam, an assistant created by @samir. Ask me anything about him and I\'ll answer from his site.' }];
+
+    function escapeHTML(str) {
+        return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    /* Markdown-ish -> HTML. Agent replies are unframed page text, so lists and
+       code get real block elements rather than inline soup. */
+    function formatReply(text) {
+        var s = text;
+        s = s.replace(/<a\s+href="([^"]+)"[^>]*>([^<]+)<\/a>/g, '[$2]($1)');
+        s = escapeHTML(s);
+        s = s.replace(/\r\n/g, '\n');
+
+        var blocks = [];
+        s = s.replace(/```(\w*)\n?([\s\S]*?)```/g, function (_, lang, code) {
+            blocks.push('<pre><code>' + code.replace(/\n$/, '') + '</code></pre>');
+            return '\u0000' + (blocks.length - 1) + '\u0000';
+        });
+
+        var lines = s.split('\n');
+        var out = [];
+        var listType = null;
+
+        function closeList() {
+            if (listType) { out.push(listType === 'ul' ? '</ul>' : '</ol>'); listType = null; }
+        }
+
+        for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            var blockMatch = line.match(/^\u0000(\d+)\u0000$/);
+
+            if (blockMatch) {
+                closeList();
+                out.push(blocks[+blockMatch[1]]);
+                continue;
+            }
+
+            var ul = line.match(/^\s*[-*]\s+(.*)$/);
+            var ol = line.match(/^\s*\d+[.)]\s+(.*)$/);
+
+            if (ul || ol) {
+                var want = ul ? 'ul' : 'ol';
+                if (listType !== want) { closeList(); out.push(want === 'ul' ? '<ul>' : '<ol>'); listType = want; }
+                out.push('<li>' + inline(ul ? ul[1] : ol[1]) + '</li>');
+                continue;
+            }
+
+            closeList();
+            if (line.trim() === '') continue;
+            out.push('<p>' + inline(line) + '</p>');
+        }
+        closeList();
+
+        function inline(t) {
+            t = t.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+            t = t.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+            t = t.replace(/`([^`]+)`/g, '<code>$1</code>');
+            t = t.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+            t = t.replace(/(https?:\/\/[^\s<"'`)]+)(?![^<]*<\/a>)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+            return t;
+        }
+
+        return out.join('');
+    }
+
+    function createOverlay() {
+        var overlay = document.getElementById('ai-chat-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'ai-chat-overlay';
+            overlay.className = 'ai-chat-overlay';
+            document.body.appendChild(overlay);
+            overlay.addEventListener('click', closeChat);
+        }
+        return overlay;
+    }
+
+    function toggleChat() {
+        aiChatWindow.classList.contains('open') ? closeChat() : openChat();
+    }
+
+    function openChat() {
+        aiChatWindow.classList.add('open');
+        createOverlay().classList.add('open');
+        aiChatWindow.setAttribute('aria-hidden', 'false');
+        setTimeout(function () { aiChatInput.focus(); }, 60);
+        prewarmWorker();
+    }
+
+    function closeChat() {
+        aiChatWindow.classList.remove('open');
+        var overlay = document.getElementById('ai-chat-overlay');
+        if (overlay) overlay.classList.remove('open');
+        aiChatWindow.setAttribute('aria-hidden', 'true');
+    }
+
+    function prewarmWorker() {
+        if (prewarmed) return;
+        prewarmed = true;
+        fetch(AI_CHAT_WORKER_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ messages: [{ role: 'user', text: 'ping' }] })
+        }).catch(function () {});
+    }
+
+    /* ── live-edge autoscroll: follow only while the reader is at the bottom ── */
+    function atLiveEdge() {
+        var threshold = 60;
+        return aiChatMessages.scrollHeight - aiChatMessages.scrollTop - aiChatMessages.clientHeight < threshold;
+    }
+
+    function followIfLive(wasLive) {
+        if (wasLive) aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+    }
+
+    function scrollToBottom(behavior) {
+        aiChatMessages.scrollTo({ top: aiChatMessages.scrollHeight, behavior: behavior || 'smooth' });
+        syncJumpButton();
+    }
+
+    function syncJumpButton() {
+        if (!aiChatScrollBottom) return;
+        aiChatScrollBottom.classList.toggle('visible', !atLiveEdge());
+    }
+
+    function appendTurn(role, html) {
+        var wasLive = atLiveEdge();
+        var wrap = document.createElement('div');
+        wrap.className = 'ai-msg ai-msg-' + role;
+
+        if (role === 'user') {
+            var bubble = document.createElement('div');
+            bubble.className = 'ai-bubble';
+            bubble.textContent = html;
+            wrap.appendChild(bubble);
+        } else {
+            var reply = document.createElement('div');
+            reply.className = 'ai-reply';
+            reply.innerHTML = html;
+            wrap.appendChild(reply);
+        }
+
+        aiChatMessages.appendChild(wrap);
+        requestAnimationFrame(function () { followIfLive(wasLive); });
+        return wrap;
+    }
+
+    function showThinking() {
+      var wasLive = atLiveEdge();
+      var wrap = document.createElement('div');
+      wrap.className = 'ai-msg ai-msg-assistant';
+      wrap.id = 'ai-chat-typing-indicator';
+      wrap.innerHTML = '<div class="ai-typing"><span class="ai-typing-dots"><span></span><span></span><span></span></span><span>thinking</span></div>';
+      aiChatMessages.appendChild(wrap);
+      requestAnimationFrame(function () { followIfLive(wasLive); });
+    }
+
+    function hideThinking() {
+        var el = document.getElementById('ai-chat-typing-indicator');
+        if (el) el.remove();
+    }
+
+    function dismissEmpty() {
+        if (aiChatEmpty && aiChatEmpty.parentNode) aiChatEmpty.remove();
+    }
+
+    function autoGrow() {
+        aiChatInput.style.height = 'auto';
+        aiChatInput.style.height = Math.min(aiChatInput.scrollHeight, 132) + 'px';
+    }
+
+    function syncSendState() {
+        if (isGenerating) return; // stop button owns its own enabled state
+        aiChatSend.disabled = !aiChatInput.value.trim();
+    }
+
+    function setStreaming(streaming) {
+        isGenerating = streaming;
+        aiChatSend.classList.toggle('is-stopping', streaming);
+        aiChatSend.disabled = false;
+        aiChatSend.setAttribute('aria-label', streaming ? 'Stop response' : 'Send message');
+        if (!streaming) syncSendState();
+    }
+
+    function stopReply() {
+        if (activeAbort) activeAbort.abort();
+    }
+
+    async function sendMessage(message) {
+        if (!message.trim() || isGenerating) return;
+
+        dismissEmpty();
+        appendTurn('user', message);
+        chatHistory.push({ role: 'user', text: message });
+        aiChatInput.value = '';
+        autoGrow();
+
+        showThinking();
+        setStreaming(true);
+
+        activeAbort = new AbortController();
+        try {
+            var response = await fetch(AI_CHAT_WORKER_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: chatHistory }),
+                signal: activeAbort.signal
+            });
+
+            if (!response.ok) throw new Error('Server error: ' + response.status);
+
+            var data = await response.json();
+            if (data.error) throw new Error(data.error);
+
+            hideThinking();
+            appendTurn('assistant', formatReply(data.response));
+            chatHistory.push({ role: 'model', text: data.response });
+
+        } catch (error) {
+            hideThinking();
+            if (error && error.name === 'AbortError') {
+                appendTurn('assistant', '<p>Stopped.</p>');
+            } else {
+                console.error('AI Chat error:', error);
+                appendTurn('assistant', '<p>Sorry, I hit an error. Please try again.</p>');
+            }
+        } finally {
+            activeAbort = null;
+            setStreaming(false);
+            aiChatInput.focus();
+        }
+    }
+
+    if (aiChatToggle) aiChatToggle.addEventListener('click', toggleChat);
+    if (aiChatToggleMobile) aiChatToggleMobile.addEventListener('click', toggleChat);
+    if (aiChatClose) aiChatClose.addEventListener('click', closeChat);
+
+    if (aiChatForm) {
+        aiChatForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (isGenerating) { stopReply(); return; }
+            sendMessage(aiChatInput.value);
+        });
+    }
+
+    if (aiChatSend) {
+        aiChatSend.addEventListener('click', function (e) {
+            if (isGenerating) { e.preventDefault(); stopReply(); }
+        });
+    }
+
+    if (aiChatInput) {
+        aiChatInput.addEventListener('input', function () { autoGrow(); syncSendState(); });
+        aiChatInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                if (isGenerating) return; // Enter does nothing mid-reply
+                if (aiChatInput.value.trim()) aiChatForm.requestSubmit();
+            }
+        });
+    }
+
+    if (aiChatQuickActions) {
+        aiChatQuickActions.addEventListener('click', function (e) {
+            var btn = e.target.closest('.ai-chat-suggestion');
+            if (btn) sendMessage(btn.getAttribute('data-question'));
+        });
+    }
+
+    if (aiChatScrollBottom) {
+        aiChatScrollBottom.addEventListener('click', function () { scrollToBottom(); });
+    }
+
+    if (aiChatMessages) {
+        aiChatMessages.addEventListener('scroll', syncJumpButton, { passive: true });
+    }
+
+    document.addEventListener('keydown', function (e) {
+        if ((e.metaKey || e.ctrlKey) && e.key === 'l') {
+            e.preventDefault();
+            toggleChat();
+        }
+        if (e.key === 'Escape' && aiChatWindow && aiChatWindow.classList.contains('open')) {
+            closeChat();
+        }
+    });
+
+    prewarmWorker();
+
+    // Delegated click handler for pronunciation buttons (works under AJAX nav)
+    document.addEventListener('click', function (e) {
+        var btn = e.target && e.target.closest ? e.target.closest('.pronounce-btn') : null;
+        if (btn) {
+            e.preventDefault();
+            e.stopPropagation();
+            window.pronounceName();
+        }
+    });
+
+    window.pronounceName = function () {
+        try {
+            if (!_pronounceAudio) {
+                _pronounceAudio = new Audio('data:audio/mpeg;base64,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');
+            }
+            _pronounceAudio.pause();
+            _pronounceAudio.currentTime = 0;
+            _pronounceAudio.play().catch(function (e) {
+                console.error('audio play failed:', e);
+            });
+        } catch (e) {
+            console.error('pronounceName failed:', e);
+        }
+    };
 });

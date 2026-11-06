@@ -27,3 +27,26 @@ start with my [about](/about/) for context.
 ## Location / Meetup
 
 Based in Kathmandu, Nepal (NST, UTC+5:45) - [schedule a meetup](https://cal.com/paudelsamir/quick)
+
+{::nomarkdown}
+<style>
+  .contact-orbit {
+    width: 100%;
+    max-height: 260px;
+    overflow: hidden;
+    margin: 2rem 0 0;
+    border-radius: 12px;
+  }
+  .contact-orbit ascii-art {
+    width: 100%;
+    display: block;
+    transform: translateY(-16%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .contact-orbit ascii-art { transform: none; }
+  }
+</style>
+<div class="contact-orbit">
+  <ascii-art src="/assets/js/edge-orbit.js" style="width: 100%; display: block;"></ascii-art>
+</div>
+{:/}

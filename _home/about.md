@@ -8,7 +8,7 @@ description: About me - CS student, AI/ML developer from Nepal. I build things, 
 # About me
 
 ## intro
-hey my name's [Samir](https://twitter.com/samireey){: data-tp-title="Samir Paudel on X" data-tp-excerpt="Building, learning, and sharing along the way." data-tp-image="/assets/Gallery/23_dashain_ghibli.jpeg" }, I'm based in Nepal.
+hey my name's [Samir](https://twitter.com/samireey){: data-tp-title="Samir Paudel on X" data-tp-excerpt="Building, learning, and sharing along the way." data-tp-image="/assets/Gallery/23_dashain_ghibli.jpeg" } <button type="button" class="pronounce-btn" aria-label="Hear pronunciation of Samir" title="Hear pronunciation"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/></svg></button>, I'm based in Nepal.
 
 been into tech for about **4 years** now. i save good [bookmarks](/bookmarks/) and daily [used](/uses/) tools i rely on.
 

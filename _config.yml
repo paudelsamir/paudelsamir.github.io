@@ -102,13 +102,16 @@ exclude:
   - .git
   - .gitignore
   - README.md
+  - all_districts.txt
   - Gemfile
   - Gemfile.lock
   - .directory
   - vendor
   - v1
   - digital-garden-jekyll-template
+  - scripts
   - package.json
+  - worker
 
 include: []
 
