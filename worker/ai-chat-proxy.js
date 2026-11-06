@@ -155,11 +155,14 @@ export default {
         try {
           const qResult = await env.AI.run(EMBED_MODEL, { text: [userMsg.text] });
           const qEmb = qResult.data[0];
-          const relevant = topK(qEmb, 8);
+          // Groq's free tier caps at 8k tokens/min, so keep the context tight:
+          // 5 chunks, each capped, is plenty for a 3-sentence answer.
+          const relevant = topK(qEmb, 5);
 
           contextText = relevant
             .map(c => `[${c.title}](${c.url}): ${c.text}`)
-            .join('\n\n');
+            .join('\n\n')
+            .slice(0, 5000);
           console.log(`RAG query ok: ${relevant.length} chunks`);
         } catch (err) {
           console.error('RAG query failed:', err);
@@ -175,12 +178,19 @@ export default {
         systemContent += `\n\nIMPORTANT: The site content index is unavailable right now, so you have NO source material. Do not invent project names, dates, skills, metrics or any other detail. Say you can't pull that up right now and point to the most likely page instead.`;
       }
 
-      const groqMessages = [
+      let groqMessages = [
         { role: 'system', content: systemContent },
       ];
 
       for (const m of messages) {
         groqMessages.push({ role: m.role === 'model' ? 'assistant' : m.role, content: m.text });
+      }
+
+      // Keep only the most recent turns. The client sends the whole history, and
+      // resending it all is what blows Groq's 8k tokens/min free-tier cap.
+      const MAX_HISTORY = 8;
+      if (groqMessages.length > MAX_HISTORY + 1) {
+        groqMessages = [groqMessages[0], ...groqMessages.slice(-(MAX_HISTORY))];
       }
 
       const res = await fetch(GROQ_API, {
@@ -199,13 +209,25 @@ export default {
 
       if (!res.ok) {
         const err = await res.text();
-        const retryMatch = err.match(/try again in (\d+)m([\d.]+)s/);
-        if (res.status === 429 && retryMatch) {
-          const m = retryMatch[1];
-          const s = Math.round(parseFloat(retryMatch[2]));
-          const time = m + 'm ' + s + 's';
-          return new Response(JSON.stringify({ response: 'Rate limit hit — I need a short break. Try again in about **' + time + '**.' }), { headers: cors });
+
+        // Groq reports the wait either as "1m 30s" or as bare seconds ("8.8575s").
+        if (res.status === 429) {
+          const mm = err.match(/try again in (\d+)m\s*([\d.]+)s/);
+          const ss = err.match(/try again in ([\d.]+)s/);
+          let wait = null;
+          if (mm) wait = mm[1] + 'm ' + Math.round(parseFloat(mm[2])) + 's';
+          else if (ss) wait = Math.max(1, Math.round(parseFloat(ss[1]))) + 's';
+
+          if (wait) {
+            return new Response(JSON.stringify({
+              response: 'Rate limit hit — I need a short break. Try again in about **' + wait + '**.',
+            }), { headers: cors });
+          }
+          return new Response(JSON.stringify({
+            response: 'Rate limit hit — try again in a few seconds.',
+          }), { headers: cors });
         }
+
         return new Response(JSON.stringify({ error: 'Groq API error', details: err }), {
           status: res.status, headers: cors,
         });
